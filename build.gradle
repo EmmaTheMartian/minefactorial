@@ -1,0 +1,139 @@
+plugins {
+    id("java-library")
+    id("maven-publish")
+    id("dev.architectury.loom") version "1.7-SNAPSHOT"
+    id("me.fallenbreath.yamlang") version "1.4.0"
+}
+
+version = mod_version
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+
+    maven { url = "https://maven.neoforged.net" }
+    maven { url = "https://maven.parchmentmc.org" }
+
+    // CC Tweaked
+    maven {
+        url "https://maven.squiddev.cc"
+        content {
+            includeGroup("cc.tweaked")
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+loom {
+    runs {
+        all {
+            vmArg("-XX:+AllowEnhancedClassRedefinition")
+        }
+
+        register("data") {
+            data()
+            programArgs("--all", "--mod", mod_id,
+                    "--output", file("src/generated/resources/").absolutePath,
+                    "--existing", file("src/main/resources/").absolutePath)
+        }
+    }
+}
+
+yamlang {
+    targetSourceSets = [sourceSets.main]
+    inputDir = "assets/${mod_id}/lang"
+}
+
+sourceSets.main.resources {
+    srcDir("src/generated/resources")
+    exclude("*.cache/")
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+
+    mappings(loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft_version}:${parchment_mappings_version}@zip")
+    })
+
+    neoForge("net.neoforged:neoforge:${neo_version}")
+
+    // Mods to test compat and such with
+    modLocalRuntime("maven.modrinth:jade:${jade_version}")
+    modLocalRuntime("maven.modrinth:ae2:${ae2_version}")
+    modLocalRuntime("maven.modrinth:mekanism:${mekanism_version}")
+    modLocalRuntime("maven.modrinth:emi:${emi_version}")
+
+    forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.3") // Gradle doesn't get this automatically from the CC Tweaked dependency, for whatever reason
+    modLocalRuntime("cc.tweaked:cc-tweaked-${minecraft_version}-forge:${cc_version}")
+}
+
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [minecraft_version      : minecraft_version,
+                             minecraft_version_range: minecraft_version_range,
+                             neo_version            : neo_version,
+                             neo_version_range      : neo_version_range,
+                             loader_version_range   : loader_version_range,
+                             mod_id                 : mod_id,
+                             mod_name               : mod_name,
+                             mod_license            : mod_license,
+                             mod_version            : mod_version,
+                             mod_authors            : mod_authors,
+                             mod_description        : mod_description]
+
+    inputs.properties replaceProperties
+    expand replaceProperties
+
+    from("src/main/templates")
+    into("build/generated/sources/modMetadata")
+}
+
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+ideaSyncTask.configure {
+    dependsOn(generateModMetadata)
+}
+
+// Example configuration to allow publishing using the maven-publish plugin
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from(components.java)
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

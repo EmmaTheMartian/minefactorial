@@ -1,0 +1,14 @@
+block.minefactorial:
+  steam_boiler: Steam Boiler
+  steam_turbine: Steam Turbine
+  capacitor: Capacitor
+  breaker: Breaker
+
+item.minefactorial:
+  straw: Straw
+  steam_bucket: Steam Bucket
+  oil_bucket: Oil Bucket
+
+fluid_type.minefactorial:
+  steam: Steam
+  oil: Oil
