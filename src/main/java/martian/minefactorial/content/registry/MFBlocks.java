@@ -1,10 +1,9 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.block.BlockBreaker;
-import martian.minefactorial.content.block.BlockCapacitor;
-import martian.minefactorial.content.block.BlockSteamBoiler;
-import martian.minefactorial.content.block.BlockSteamTurbine;
+import martian.minefactorial.content.block.*;
+import martian.minefactorial.content.block.pipe.BlockPipeEnergy;
+import martian.minefactorial.content.block.pipe.BlockPipeFluid;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -34,10 +33,27 @@ public final class MFBlocks {
 			.pushReaction(PushReaction.IGNORE)
 			.strength(2f);
 
+	public static final BlockBehaviour.Properties PIPE_PROPS = BlockBehaviour.Properties.of()
+			.sound(SoundType.STONE)
+			.mapColor(DyeColor.WHITE)
+			.isSuffocating((state, level, pos) -> false)
+			.noOcclusion()
+			.instabreak();
+
 	public static final DeferredBlock<?>
+			// Machines
 			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),
 			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
+			BREAKER = register("breaker", () -> new BlockBreaker(MACHINE_PROPS)),
+			MOB_GRINDER = register("mob_grinder", () -> new BlockMobGrinder(MACHINE_PROPS)),
+			FOUNTAIN = register("fountain", () -> new BlockFountain(MACHINE_PROPS)),
+			EJECTOR = register("ejector", () -> new BlockEjector(MACHINE_PROPS)),
+			// Logistics
 			CAPACITOR = register("capacitor", () -> new BlockCapacitor(MACHINE_PROPS)),
-			BREAKER = register("breaker", () -> new BlockBreaker(MACHINE_PROPS))
-			;
+			PLASTIC_TANK = register("plastic_tank", () -> new BlockPlasticTank(MACHINE_PROPS)),
+			// Transport
+			ENERGY_PIPE = register("energy_pipe", () -> new BlockPipeEnergy(PIPE_PROPS)),
+			FLUID_PIPE = register("fluid_pipe", () -> new BlockPipeFluid(PIPE_PROPS)),
+			CONVEYOR = register("conveyor", () -> new BlockConveyor(PIPE_PROPS.noCollission()))
+	;
 }

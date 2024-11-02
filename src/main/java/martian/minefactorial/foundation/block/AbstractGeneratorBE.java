@@ -10,7 +10,7 @@ public abstract class AbstractGeneratorBE extends AbstractEnergyBE implements IT
 	}
 
 	@Override
-	public int getMaxReceive() {
+	public int getMaxEnergyReceive() {
 		return 0;
 	}
 

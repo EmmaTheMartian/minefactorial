@@ -14,6 +14,9 @@ public class ProtectiveEnergyStorage extends MFEnergyStorage {
 				this.energy += energyReceived;
 			}
 
+			if (energyReceived != 0)
+				this.onChange();
+
 			return energyReceived;
 		} else {
 			return 0;
@@ -26,6 +29,9 @@ public class ProtectiveEnergyStorage extends MFEnergyStorage {
 			if (!simulate) {
 				this.energy -= energyExtracted;
 			}
+
+			if (energyExtracted != 0)
+				this.onChange();
 
 			return energyExtracted;
 		} else {

@@ -1,8 +1,8 @@
 package martian.minefactorial.foundation.client.screen;
 
+import martian.minefactorial.foundation.Mathematics;
 import martian.minefactorial.foundation.block.AbstractMachineBE;
 import martian.minefactorial.foundation.menu.AbstractMachineContainer;
-import martian.minefactorial.foundation.Mathematics;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

@@ -54,6 +54,10 @@ loom {
                     "--existing", file("src/main/resources/").absolutePath)
         }
     }
+
+//    neoForge {
+//        mixin("minefactorial.mixins.json")
+//    }
 }
 
 yamlang {

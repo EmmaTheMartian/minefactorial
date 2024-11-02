@@ -1,8 +1,9 @@
 package martian.minefactorial.content.item;
 
-import martian.minefactorial.content.MFTags;
-import martian.minefactorial.content.registry.MFFluidTypes;
+import martian.minefactorial.content.registry.MFStrawActions;
 import martian.minefactorial.foundation.Raycasting;
+import martian.minefactorial.foundation.fluid.IStrawAction;
+import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -10,11 +11,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
@@ -24,18 +22,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.EffectCures;
-import net.neoforged.neoforge.common.NeoForgeMod;
-import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class ItemStraw extends Item {
-	public static final int DRINK_DURATION = 80;
+public class ItemStraw extends MFItem {
+	protected final int drinkDuration, drinkAmountMb;
 
-	public ItemStraw(Properties properties) {
-		super(properties);
+	public ItemStraw(int drinkDuration, int drinkAmountMb, Properties properties, String... hoverText) {
+		super(properties, hoverText);
+		this.drinkDuration = drinkDuration;
+		this.drinkAmountMb = drinkAmountMb;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ItemStraw extends Item {
 
 	@Override
 	public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity entity) {
-		return DRINK_DURATION;
+		return drinkDuration;
 	}
 
 	@Override
@@ -64,33 +64,39 @@ public class ItemStraw extends Item {
 			FluidState fluidState = state.getFluidState();
 
 			if (fluidState == Fluids.EMPTY.defaultFluidState()) {
-				return stack;
-			}
+				IFluidHandler fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, hit.getBlockPos(), null);
 
-			FluidType fluid = fluidState.getFluidType();
+				// If the fluid handler is null and the fluid state is empty, the player is trying to drink something
+				// that is not a fluid. Normal blocks are not as tasty as oil :3
+				if (fluidHandler == null) {
+					return stack;
+				}
 
-			// Apply effects
-			if (fluid == Fluids.WATER.getFluidType()) {
-				entityLiving.heal(2);
-			} else if (fluid == Fluids.LAVA.getFluidType()) {
-				entityLiving.setRemainingFireTicks(200);
-			} else if (fluid == NeoForgeMod.MILK_TYPE.get()) {
-				entityLiving.removeEffectsCuredBy(EffectCures.MILK);
-			} else if (fluidState.is(MFTags.STEAM)) {
-				entityLiving.setRemainingFireTicks(100);
-			} else if (fluidState.is(MFTags.OIL)) {
-				entityLiving.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 300, 3));
-				entityLiving.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 300, 2));
-				entityLiving.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 300, 1));
-				entityLiving.addEffect(new MobEffectInstance(MobEffects.WITHER, 300, 1));
-			}
-			// Fallbacks
-			else if (fluid.getTemperature() >= 1000) {
-				entityLiving.setRemainingFireTicks(200);
-			}
+				// Drink straight from the tank
+				outer: for (int i = 0; i < fluidHandler.getTanks(); i++) {
+					FluidStack simulated = fluidHandler.drain(drinkAmountMb, IFluidHandler.FluidAction.SIMULATE);
+					if (simulated.is(Fluids.EMPTY) || simulated.getAmount() <= 0) {
+						return stack;
+					}
 
-			// "Drink" the liquid
-			level.setBlockAndUpdate(hit.getBlockPos(), Blocks.AIR.defaultBlockState());
+					FluidStack drained = fluidHandler.drain(drinkAmountMb, IFluidHandler.FluidAction.EXECUTE);
+					// Apply effect, if applicable
+					for (IStrawAction action : MFStrawActions.STRAW_ACTIONS) {
+						if (action.run(stack, level, player, hit.getBlockPos(), drained)) {
+							break outer;
+						}
+					}
+				}
+			} else {
+				// Apply effect, if applicable
+				for (IStrawAction action : MFStrawActions.STRAW_ACTIONS) {
+					if (action.run(stack, level, player, hit.getBlockPos(), new FluidStack(fluidState.getType(), 1000))) {
+						break;
+					}
+				}
+				// "Drink" the liquid
+				level.setBlockAndUpdate(hit.getBlockPos(), Blocks.AIR.defaultBlockState());
+			}
 
 			if (entityLiving instanceof ServerPlayer serverPlayer) {
 				CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);

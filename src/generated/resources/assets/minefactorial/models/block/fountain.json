@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minefactorial:block/machine_frame_bottom",
+    "side": "minefactorial:block/machine_frame_side",
+    "top": "minefactorial:block/machine_frame_top",
+    "up": "minefactorial:block/fluid_output_top"
+  }
+}

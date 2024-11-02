@@ -70,4 +70,20 @@ public final class MFFluids {
 			.levelDecreasePerBlock(1)
 			.block(MFFluids.OIL_BLOCK)
 			.bucket(MFFluids.OIL_BUCKET);
+
+	// Essence
+	public static DeferredHolder<Fluid, FlowingFluid> ESSENCE = registerSource("essence", () -> MFFluids.ESSENCE_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> ESSENCE_FLOWING = registerFlowing("essence_flowing", () -> MFFluids.ESSENCE_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> ESSENCE_BLOCK = registerBlock("essence", MFFluids.ESSENCE);
+	public static DeferredItem<BucketItem> ESSENCE_BUCKET = registerBucket("essence_bucket", MFFluids.ESSENCE);
+
+	public static BaseFlowingFluid.Properties ESSENCE_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.ESSENCE,
+			MFFluids.ESSENCE,
+			MFFluids.ESSENCE_FLOWING
+	)
+			.slopeFindDistance(2)
+			.levelDecreasePerBlock(1)
+			.block(MFFluids.ESSENCE_BLOCK)
+			.bucket(MFFluids.ESSENCE_BUCKET);
 }

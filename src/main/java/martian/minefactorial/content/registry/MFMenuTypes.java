@@ -1,17 +1,17 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.menu.ContainerBreaker;
-import martian.minefactorial.content.menu.ContainerCapacitor;
-import martian.minefactorial.content.menu.ContainerSteamBoiler;
-import martian.minefactorial.content.menu.ContainerSteamTurbine;
+import martian.minefactorial.content.menu.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.apache.commons.lang3.function.TriFunction;
 
 public final class MFMenuTypes {
 	private MFMenuTypes() { }
@@ -22,15 +22,26 @@ public final class MFMenuTypes {
 		return REGISTRY.register(id, () -> IMenuTypeExtension.create(factory));
 	}
 
-	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSteamBoiler>> STEAM_BOILER = register("steam_boiler",
-			(windowId, inventory, data) -> new ContainerSteamBoiler(windowId, inventory, data.readBlockPos()));
+	private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerSimple(String id, TriFunction<Integer, Inventory, BlockPos, T> factory) {
+		return REGISTRY.register(id, () -> IMenuTypeExtension.create((windowId, inventory, buf) ->
+				factory.apply(windowId, inventory, buf.readBlockPos())));
+	}
 
-	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSteamTurbine>> STEAM_TURBINE = register("steam_turbine",
-			(windowId, inventory, data) -> new ContainerSteamTurbine(windowId, inventory, data.readBlockPos()));
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSteamBoiler>> STEAM_BOILER =
+			registerSimple("steam_boiler", ContainerSteamBoiler::new);
 
-	public static final DeferredHolder<MenuType<?>, MenuType<ContainerCapacitor>> CAPACITOR_CONTAINER = register("capacitor",
-			(windowId, inventory, data) -> new ContainerCapacitor(windowId, inventory, data.readBlockPos()));
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSteamTurbine>> STEAM_TURBINE =
+			registerSimple("steam_turbine", ContainerSteamTurbine::new);
 
-	public static final DeferredHolder<MenuType<?>, MenuType<ContainerBreaker>> BREAKER_CONTAINER = register("breaker",
-			(windowId, inventory, data) -> new ContainerBreaker(windowId, inventory, data.readBlockPos()));
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerCapacitor>> CAPACITOR =
+			registerSimple("capacitor", ContainerCapacitor::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerBreaker>> BREAKER =
+			registerSimple("breaker", ContainerBreaker::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMobGrinder>> MOB_GRINDER =
+			registerSimple("mob_grinder", ContainerMobGrinder::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerFountain>> FOUNTAIN =
+			registerSimple("fountain", ContainerFountain::new);
 }

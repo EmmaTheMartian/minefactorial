@@ -2,8 +2,10 @@ package martian.minefactorial.content.block;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.AbstractEnergyBE;
+import martian.minefactorial.foundation.block.IInventoryBE;
 import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +14,10 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockCapacitorBE extends AbstractEnergyBE implements ITickableBE {
+public class BlockCapacitorBE extends AbstractEnergyBE implements ITickableBE, IInventoryBE {
 	protected final ItemStackHandler itemHandler = new ItemStackHandler();
 
 	public static final int SLOT_COUNT = 1;
@@ -23,12 +26,24 @@ public class BlockCapacitorBE extends AbstractEnergyBE implements ITickableBE {
 		super(MFBlockEntityTypes.CAPACITOR.get(), pos, blockState);
 	}
 
-	public ItemStackHandler getItemHandler() {
+	public ItemStack getHeldStack() {
+		return itemHandler.getStackInSlot(0);
+	}
+
+	public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
+		return direction == Direction.UP || direction == null ?
+				getEnergyStorage().getReceiveOnly() :
+				getEnergyStorage().getExtractOnly();
+	}
+
+	@Override
+	public ItemStackHandler getInventory() {
 		return itemHandler;
 	}
 
-	public ItemStack getHeldStack() {
-		return itemHandler.getStackInSlot(0);
+	@Override
+	public boolean canDistributeInDirection(Direction direction) {
+		return direction != Direction.UP;
 	}
 
 	@Override
@@ -40,8 +55,8 @@ public class BlockCapacitorBE extends AbstractEnergyBE implements ITickableBE {
 		// Attempt to charge the held item, if it exists
 		IEnergyStorage itemEnergy = getHeldStack().getCapability(Capabilities.EnergyStorage.ITEM);
 		if (itemEnergy != null && itemEnergy.canReceive()) {
-			int received = itemEnergy.receiveEnergy(Math.min(getEnergyStored(), getMaxExtract()), false);
-			getEnergyStorage().extractEnergy(received, false);
+			int received = itemEnergy.receiveEnergy(Math.min(getEnergyStored(), getMaxEnergyExtract()), false);
+			getEnergyStorage().forceExtractEnergy(received, false);
 			setChanged();
 		}
 
@@ -62,6 +77,7 @@ public class BlockCapacitorBE extends AbstractEnergyBE implements ITickableBE {
 	@ParametersAreNonnullByDefault
 	public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
 		super.loadAdditional(tag, registries);
-		itemHandler.deserializeNBT(registries, tag.getCompound("Item"));
+		if (tag.contains("Item"))
+			itemHandler.deserializeNBT(registries, tag.getCompound("Item"));
 	}
 }

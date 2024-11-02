@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/rail_flat",
+	"textures": {
+		"rail": "minefactorial:block/conveyor_rail"
+	}
+}

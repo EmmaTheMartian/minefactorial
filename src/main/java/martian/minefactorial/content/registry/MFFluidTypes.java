@@ -30,7 +30,7 @@ public final class MFFluidTypes {
 			WATER_STILL_TEXTURE,
 			WATER_FLOWING,
 			WATER_OVERLAY,
-			0xFFEEEEEE,
+			0xFFEFEFEF,
 			new Vector3f(0.8f, 0.8f, 0.8f),
 			FluidType.Properties.create()
 	));
@@ -39,7 +39,7 @@ public final class MFFluidTypes {
 			WATER_STILL_TEXTURE,
 			WATER_FLOWING,
 			WATER_OVERLAY,
-			0xFF777777,
+			0xFF555555,
 			new Vector3f(0.1f, 0.1f, 0.1f),
 			FluidType.Properties.create()
 					.density(3000)
@@ -52,4 +52,13 @@ public final class MFFluidTypes {
 					entity.setDeltaMovement(vec3.x * (double) 0.95F, vec3.y + (double) (vec3.y < (double) 0.06F ? 5.0E-4F : 0.0F), vec3.z * (double) 0.95F);
 				}
 			});
+
+	public static final DeferredHolder<FluidType, BasicFluidType> ESSENCE = register("essence", new BasicFluidType(
+			WATER_STILL_TEXTURE,
+			WATER_FLOWING,
+			WATER_OVERLAY,
+			0xFF44FF44,
+			new Vector3f(0.1f, 0.9f, 0.1f),
+			FluidType.Properties.create()
+	));
 }

@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/template_rail_raised_sw",
+	"textures": {
+		"rail": "minefactorial:block/conveyor_rail_invert"
+	}
+}

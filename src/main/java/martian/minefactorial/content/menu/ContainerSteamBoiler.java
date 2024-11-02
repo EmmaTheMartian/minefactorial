@@ -19,8 +19,6 @@ public class ContainerSteamBoiler extends AbstractMachineContainer<BlockSteamBoi
 		assert this.blockEntity != null;
 
 		this.waterCapacity = this.blockEntity.getWaterTank().getCapacity();
-		this.steamCapacity = this.blockEntity.getSteamTank().getCapacity();
-
 		addDataSlot(new DataSlot() {
 			@Override
 			public int get() {
@@ -33,6 +31,7 @@ public class ContainerSteamBoiler extends AbstractMachineContainer<BlockSteamBoi
 			}
 		});
 
+		this.steamCapacity = this.blockEntity.getSteamTank().getCapacity();
 		addDataSlot(new DataSlot() {
 			@Override
 			public int get() {
@@ -69,7 +68,7 @@ public class ContainerSteamBoiler extends AbstractMachineContainer<BlockSteamBoi
 			}
 		});
 
-		addSlot(new SlotItemHandler(this.blockEntity.getItemHandler(), 0, 35, 53));
+		addSlot(new SlotItemHandler(this.blockEntity.getInventory(), 0, 35, 53));
 
 		addPlayerInventorySlots(playerInventory, 8, 84);
 	}

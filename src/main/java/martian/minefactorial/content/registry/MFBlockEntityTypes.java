@@ -1,10 +1,9 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.block.BlockBreakerBE;
-import martian.minefactorial.content.block.BlockCapacitorBE;
-import martian.minefactorial.content.block.BlockSteamBoilerBE;
-import martian.minefactorial.content.block.BlockSteamTurbineBE;
+import martian.minefactorial.content.block.*;
+import martian.minefactorial.content.block.pipe.BlockPipeEnergyBE;
+import martian.minefactorial.content.block.pipe.BlockPipeFluidBE;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -29,6 +28,7 @@ public final class MFBlockEntityTypes {
 		return REGISTRY.register(id, () -> new BlockEntityType<>(blockEntityFactory, Arrays.stream(validBlockHolders).map(DeferredBlock::get).collect(Collectors.toSet()), null));
 	}
 
+	// Machines
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockSteamTurbineBE>> STEAM_TURBINE =
 			register("steam_turbine", BlockSteamTurbineBE::new, MFBlocks.STEAM_TURBINE);
 
@@ -40,4 +40,27 @@ public final class MFBlockEntityTypes {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockBreakerBE>> BREAKER =
 			register("breaker", BlockBreakerBE::new, MFBlocks.BREAKER);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPlasticTankBE>> PLASTIC_TANK =
+			register("plastic_tank", BlockPlasticTankBE::new, MFBlocks.PLASTIC_TANK);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockMobGrinderBE>> MOB_GRINDER =
+			register("mob_grinder", BlockMobGrinderBE::new, MFBlocks.MOB_GRINDER);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockConveyorBE>> CONVEYOR =
+			register("conveyor", BlockConveyorBE::new, MFBlocks.CONVEYOR);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockEjectorBE>> EJECTOR =
+			register("ejector", BlockEjectorBE::new, MFBlocks.EJECTOR);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockFountainBE>> FOUNTAIN =
+			register("fountain", BlockFountainBE::new, MFBlocks.FOUNTAIN);
+
+
+	// Pipes
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPipeEnergyBE>> ENERGY_PIPE =
+			register("energy_pipe", BlockPipeEnergyBE::new, MFBlocks.ENERGY_PIPE);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPipeFluidBE>> FLUID_PIPE =
+			register("fluid_pipe", BlockPipeFluidBE::new, MFBlocks.FLUID_PIPE);
 }

@@ -12,7 +12,9 @@ public final class MFTabs {
 
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Minefactorial.MODID);
 
-	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MINEFACTORIAL_TAB = REGISTRY.register("minefactorial_tab", () -> CreativeModeTab.builder().build());
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MINEFACTORIAL_TAB = REGISTRY.register("minefactorial_tab", () -> CreativeModeTab.builder()
+			.icon(MFItems.STRAW::toStack)
+			.build());
 
 	public static void addItems(final BuildCreativeModeTabContentsEvent event) {
 		if (event.getTab() == MINEFACTORIAL_TAB.get()) {

@@ -27,12 +27,31 @@ public abstract class AbstractMachineBE
 		return currentIdleTime;
 	}
 
+	/**
+	 * Called when idle runs out to check for new work. This is only executed on the server.
+	 * @return If work is available.
+	 */
 	public abstract boolean checkForWork();
 
+	/**
+	 * Called when the machine should perform its task. This is only executed on the server.
+	 */
 	public abstract void doWork();
 
 	@Override
 	public void serverTick() {
+		// Eject items, if there are any
+		if (this instanceof IInventoryBE inventoryBE && inventoryBE.shouldEjectItems() && !inventoryBE.isEmpty()) {
+			BlockPos ejectPos = getBlockPos().relative(inventoryBE.getEjectDirection(getBlockState()));
+			assert level != null;
+			if (!level.getBlockState(ejectPos).isCollisionShapeFullBlock(level, ejectPos)) {
+				int index = inventoryBE.getFirstStackIndex();
+				if (index > -1) {
+					IInventoryBE.ejectFrom(inventoryBE, 64);
+				}
+			}
+		}
+
 		// Check if idle timer has expired
 		if (isIdle) {
 			if (++currentIdleTime >= getIdleTime()) {

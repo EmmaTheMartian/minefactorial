@@ -22,32 +22,12 @@ public abstract class AbstractEnergyBE extends BlockEntity implements IEnergyBE 
 	}
 
 	protected ProtectiveEnergyStorage makeEnergyStorage() {
-		return new ProtectiveEnergyStorage(getMaxEnergy(), getMaxReceive(), getMaxExtract());
+		return new ProtectiveEnergyStorage(getMaxEnergy(), getMaxEnergyReceive(), getMaxEnergyExtract());
 	}
 
+	@Override
 	public ProtectiveEnergyStorage getEnergyStorage() {
 		return energyStorage;
-	}
-
-	public int getEnergyStored() {
-		return energyStorage.getEnergyStored();
-	}
-
-	public void distributePower() {
-		assert level != null;
-
-		for (Direction direction : Direction.values()) {
-			if (getEnergyStorage().getEnergyStored() <= 0) {
-				return;
-			}
-
-			IEnergyStorage energy = level.getCapability(Capabilities.EnergyStorage.BLOCK, getBlockPos().relative(direction), null);
-			if (energy != null && energy.canReceive()) {
-				int received = energy.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getMaxExtract()), false);
-				getEnergyStorage().extractEnergy(received, false);
-				setChanged();
-			}
-		}
 	}
 
 	@Override

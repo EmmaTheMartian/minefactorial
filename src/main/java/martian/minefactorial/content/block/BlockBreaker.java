@@ -1,7 +1,6 @@
 package martian.minefactorial.content.block;
 
 import martian.minefactorial.content.menu.ContainerBreaker;
-import martian.minefactorial.content.menu.ContainerCapacitor;
 import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

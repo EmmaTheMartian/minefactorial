@@ -1,0 +1,25 @@
+{
+	"variants": {
+		"facing=up": {
+			"model": "minefactorial:block/ejector_up"
+		},
+		"facing=down": {
+			"model": "minefactorial:block/ejector_down"
+		},
+		"facing=north": {
+			"model": "minefactorial:block/ejector"
+		},
+		"facing=east": {
+			"model": "minefactorial:block/ejector",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "minefactorial:block/ejector",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "minefactorial:block/ejector",
+			"y": 270
+		}
+	}
+}

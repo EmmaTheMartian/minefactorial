@@ -10,7 +10,7 @@ public abstract class AbstractMachineGeneratorBE extends AbstractMachineBE imple
 	}
 
 	@Override
-	public int getMaxReceive() {
+	public int getMaxEnergyReceive() {
 		return 0;
 	}
 

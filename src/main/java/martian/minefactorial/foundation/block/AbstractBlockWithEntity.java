@@ -12,13 +12,13 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.function.BiFunction;
 
 public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends Block implements EntityBlock {
-	private final BiFunction<BlockPos, BlockState, T> blockEntityFactory;
+	private final BlockEntityFactory<T> blockEntityFactory;
+	protected boolean hasTicker = true;
 
 	public AbstractBlockWithEntity(
-			BiFunction<BlockPos, BlockState, T> blockEntityFactory,
+			BlockEntityFactory<T> blockEntityFactory,
 			Properties properties
 	) {
 		super(properties);
@@ -33,6 +33,10 @@ public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends Blo
 	@Override
 	@ParametersAreNonnullByDefault
 	public @Nullable <U extends BlockEntity> BlockEntityTicker<U> getTicker(Level level, BlockState state, BlockEntityType<U> blockEntityType) {
+		if (!hasTicker) {
+			return null;
+		}
+
 		if (level.isClientSide) {
 			return (level_, pos, state_, be) -> {
 				if (be instanceof ITickableBE tickableBE) {

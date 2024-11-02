@@ -4,6 +4,7 @@ import martian.minefactorial.content.menu.ContainerSteamBoiler;
 import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -43,5 +44,12 @@ public class BlockSteamBoiler extends AbstractBlockWithEntity<BlockSteamBoilerBE
 			}
 		}
 		return ItemInteractionResult.SUCCESS;
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+		Containers.dropContentsOnDestroy(state, newState, level, pos);
+		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 }

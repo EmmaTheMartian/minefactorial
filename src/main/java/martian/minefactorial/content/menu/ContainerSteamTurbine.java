@@ -18,7 +18,6 @@ public class ContainerSteamTurbine extends AbstractMachineContainer<BlockSteamTu
 		addEnergySlot(this.blockEntity);
 
 		this.steamCapacity = this.blockEntity.getTank().getCapacity();
-
 		addDataSlot(new DataSlot() {
 			@Override
 			public int get() {
