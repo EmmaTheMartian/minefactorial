@@ -1,9 +1,7 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minefactorial:block/template_machine",
   "textures": {
-    "bottom": "minefactorial:block/machine_frame_bottom",
     "side": "minefactorial:block/machine/steam_boiler_side",
-    "top": "minefactorial:block/machine_frame_top",
     "up": "minefactorial:block/fluid_output_top"
   }
 }

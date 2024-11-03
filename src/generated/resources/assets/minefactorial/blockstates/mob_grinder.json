@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "minefactorial:block/mob_grinder",
+      "y": 90
+    },
+    "facing=north": {
       "model": "minefactorial:block/mob_grinder"
+    },
+    "facing=south": {
+      "model": "minefactorial:block/mob_grinder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "minefactorial:block/mob_grinder",
+      "y": 270
     }
   }
 }

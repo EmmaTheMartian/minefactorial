@@ -1,10 +1,7 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minefactorial:block/template_machine",
   "textures": {
-    "bottom": "minefactorial:block/machine_frame_bottom",
     "north": "minefactorial:block/machine/mob_grinder_front",
-    "side": "minefactorial:block/machine_frame_side",
-    "south": "minefactorial:block/item_output_side",
-    "top": "minefactorial:block/machine_frame_top"
+    "south": "minefactorial:block/item_output_side"
   }
 }

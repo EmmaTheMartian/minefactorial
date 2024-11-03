@@ -1,6 +1,7 @@
 package martian.minefactorial.datagen;
 
 import martian.minefactorial.datagen.client.MFBlockStateProvider;
+import martian.minefactorial.datagen.client.MFItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -25,6 +26,7 @@ public final class MFDataGen {
 		ExistingFileHelper efh = event.getExistingFileHelper();
 
 		dataGenerator.addProvider(true, new MFBlockStateProvider(packOutput, efh));
+		dataGenerator.addProvider(true, new MFItemModelProvider(packOutput, efh));
 	}
 
 	private static void runServerGenerators(final GatherDataEvent event) {
