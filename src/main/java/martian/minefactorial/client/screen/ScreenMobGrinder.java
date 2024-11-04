@@ -1,6 +1,6 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.BlockMobGrinderBE;
+import martian.minefactorial.content.block.machinery.BlockMobGrinderBE;
 import martian.minefactorial.content.menu.ContainerMobGrinder;
 import martian.minefactorial.content.registry.MFFluids;
 import martian.minefactorial.foundation.Mathematics;

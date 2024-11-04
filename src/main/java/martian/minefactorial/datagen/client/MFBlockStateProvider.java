@@ -4,20 +4,15 @@ import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.foundation.pipenet.AbstractPipeBlock;
 import martian.minefactorial.foundation.pipenet.PipeState;
-import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
 
 import static martian.minefactorial.Minefactorial.id;
 
@@ -34,54 +29,103 @@ public class MFBlockStateProvider extends BlockStateProvider {
 			FLUID_OUTPUT_SIDE = blockId("fluid_output_side"),
 			FLUID_OUTPUT_TOP = blockId("fluid_output_top"),
 			FLUID_OUTPUT_BOTTOM = blockId("fluid_output_bottom"),
+			FLUID_INPUT_SIDE = blockId("fluid_input_side"),
+			FLUID_INPUT_TOP = blockId("fluid_input_top"),
+			FLUID_INPUT_BOTTOM = blockId("fluid_input_bottom"),
 			ITEM_OUTPUT_SIDE = blockId("item_output_side"),
 			ITEM_OUTPUT_TOP = blockId("item_output_top"),
 			ITEM_OUTPUT_BOTTOM = blockId("item_output_bottom");
 
 	@Override
 	protected void registerStatesAndModels() {
-		// Machines
-		simpleMachineBlock(MFBlocks.STEAM_TURBINE, m -> m.texture("side", blockId("machine/steam_turbine_side")));
-		simpleMachineBlock(MFBlocks.STEAM_BOILER, m -> m
+		simpleBlockWithItem(MFBlocks.STEAM_TURBINE.get(), getMachineModel(MFBlocks.STEAM_TURBINE)
+				.texture("side", blockId("machine/steam_turbine_side")));
+		simpleBlockWithItem(MFBlocks.STEAM_BOILER.get(), getMachineModel(MFBlocks.STEAM_BOILER)
 				.texture("side", blockId("machine/steam_boiler_side"))
 				.texture("up", FLUID_OUTPUT_TOP));
+		simpleBlockWithItem(MFBlocks.FOUNTAIN.get(), getMachineModel(MFBlocks.FOUNTAIN)
+				.texture("up", FLUID_OUTPUT_TOP));
+		simpleBlockWithItem(MFBlocks.CAPACITOR.get(), getMachineModel(MFBlocks.CAPACITOR)
+				.texture("side", blockId("machine/capacitor_side")));
+		simpleBlockWithItem(MFBlocks.PLASTIC_TANK.get(), getMachineModel(MFBlocks.PLASTIC_TANK)
+				.texture("side", blockId("machine/tank_side")));
+		simpleBlockWithItem(MFBlocks.CREATIVE_CAPACITOR.get(), getCreativeMachineModel(MFBlocks.CREATIVE_CAPACITOR)
+				.texture("side", blockId("machine/creative_capacitor_side")));
+		simpleBlockWithItem(MFBlocks.CREATIVE_TANK.get(), getCreativeMachineModel(MFBlocks.CREATIVE_TANK)
+				.texture("side", blockId("machine/creative_tank_side")));
+
+		horizontallyDirectionalBlockWithItem(MFBlocks.MOB_GRINDER, getMachineModel(MFBlocks.MOB_GRINDER)
+				.texture("north", blockId("machine/mob_grinder_front"))
+				.texture("south", ITEM_OUTPUT_SIDE));
+
+		directionalBlockWithItem(MFBlocks.FLUID_EXTRACTOR, new ModelFile.UncheckedModelFile(blockId("fluid_extractor")));
+
 		specialDirectionalMachine(
 				MFBlocks.BREAKER,
-				models().withExistingParent(MFBlocks.BREAKER.getId().getPath(), TEMPLATE_MACHINE)
+				getMachineModel(MFBlocks.BREAKER)
 						.texture("north", blockId("machine/breaker_front"))
 						.texture("south", ITEM_OUTPUT_SIDE),
-				models().withExistingParent(MFBlocks.BREAKER.getId().getPath() + "_up", TEMPLATE_MACHINE)
+				getMachineModel(MFBlocks.BREAKER, "_up")
 						.texture("up", blockId("machine/breaker_up_front"))
 						.texture("down", ITEM_OUTPUT_BOTTOM),
-				models().withExistingParent(MFBlocks.BREAKER.getId().getPath() + "_down", TEMPLATE_MACHINE)
+				getMachineModel(MFBlocks.BREAKER, "_down")
 						.texture("down", blockId("machine/breaker_down_front"))
 						.texture("up", ITEM_OUTPUT_TOP)
 		);
-		directionalMachine(MFBlocks.MOB_GRINDER, true, m -> m
-				.texture("north", blockId("machine/mob_grinder_front"))
-				.texture("south", ITEM_OUTPUT_SIDE));
-		simpleMachineBlock(MFBlocks.FOUNTAIN, m -> m.texture("up", FLUID_OUTPUT_TOP));
+		specialDirectionalMachine(
+				MFBlocks.PUMP,
+				getMachineModel(MFBlocks.PUMP)
+						.texture("north", FLUID_INPUT_SIDE)
+						.texture("south", FLUID_OUTPUT_SIDE),
+				getMachineModel(MFBlocks.PUMP, "_up")
+						.texture("up", FLUID_INPUT_TOP)
+						.texture("down", FLUID_OUTPUT_BOTTOM),
+				getMachineModel(MFBlocks.PUMP, "_down")
+						.texture("down", FLUID_INPUT_BOTTOM)
+						.texture("up", FLUID_OUTPUT_TOP)
+		);
 
-		// Logistics
-		simpleMachineBlock(MFBlocks.CAPACITOR, m -> m.texture("side", blockId("machine/capacitor_side")));
-		simpleMachineBlock(MFBlocks.PLASTIC_TANK, m -> m.texture("side", blockId("machine/tank_side")));
-
-		// Transport
 		pipeBlock(MFBlocks.ENERGY_PIPE);
 		pipeBlock(MFBlocks.FLUID_PIPE);
 	}
 
-	private void simpleMachineBlock(DeferredBlock<?> block, UnaryOperator<BlockModelBuilder> modelBuilderUnaryOperator) {
-		simpleBlockWithItem(block.get(), modelBuilderUnaryOperator.apply(getMachineModel(block.getId().getPath())));
+	// ID and model shorthands
+	private BlockModelBuilder getMachineModel(String id) {
+		return models().withExistingParent(id, TEMPLATE_MACHINE);
 	}
 
-	private void directionalMachine(DeferredBlock<?> block, boolean horizontalOnly, UnaryOperator<BlockModelBuilder> modelBuilderUnaryOperator) {
-		BlockModelBuilder model = modelBuilderUnaryOperator.apply(getMachineModel(block.getId().getPath()));
-		if (horizontalOnly) {
-			horizontallyDirectionalBlock(block.get(), model);
-		} else {
-			directionalBlock(block.get(), model);
-		}
+	private BlockModelBuilder getCreativeMachineModel(String id) {
+		return models().withExistingParent(id, blockId("template_machine_creative"));
+	}
+
+	private BlockModelBuilder getMachineModel(DeferredBlock<?> block) {
+		return models().withExistingParent(block.getId().getPath(), blockId("template_machine"));
+	}
+
+	private BlockModelBuilder getCreativeMachineModel(DeferredBlock<?> block) {
+		return models().withExistingParent(block.getId().getPath(), blockId("template_machine_creative"));
+	}
+
+	private BlockModelBuilder getMachineModel(DeferredBlock<?> block, String idAffix) {
+		return models().withExistingParent(block.getId().getPath() + idAffix, blockId("template_machine"));
+	}
+
+	private BlockModelBuilder getCreativeMachineModel(DeferredBlock<?> block, String idAffix) {
+		return models().withExistingParent(block.getId().getPath() + idAffix, blockId("template_machine_creative"));
+	}
+
+	private ResourceLocation blockId(String path) {
+		return id("block/" + path);
+	}
+
+	// State and Model Helpers
+	private void horizontallyDirectionalBlockWithItem(DeferredBlock<?> block, ModelFile model) {
+		horizontalBlock(block.get(), model);
+		simpleBlockItem(block.get(), model);
+	}
+
+	private void directionalBlockWithItem(DeferredBlock<?> block, ModelFile model) {
+		directionalBlock(block.get(), model);
 		simpleBlockItem(block.get(), model);
 	}
 
@@ -98,25 +142,6 @@ public class MFBlockStateProvider extends BlockStateProvider {
 					.build();
 		});
 		simpleBlockItem(block.get(), modelHorizontal);
-	}
-
-	private BlockModelBuilder getMachineModel(String id) {
-		return models().withExistingParent(id, blockId("template_machine"));
-	}
-
-	private ResourceLocation blockId(String path) {
-		return id("block/" + path);
-	}
-
-	// BlockState helpers
-	public void horizontallyDirectionalBlock(Block block, ModelFile modelFile) {
-		getVariantBuilder(block).forAllStates(state -> {
-			Direction dir = state.getValue(HorizontalDirectionalBlock.FACING);
-			return ConfiguredModel.builder()
-					.modelFile(modelFile)
-					.rotationY(((int) dir.toYRot() + 180) % 360)
-					.build();
-		});
 	}
 
 	// Thank you Thepigcat for letting me use this code! :D

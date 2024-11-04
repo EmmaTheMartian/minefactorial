@@ -65,6 +65,11 @@ public abstract class AbstractMachineBE
 
 		// Do work
 		if (++currentWork >= getMaxWork()) {
+			// Check for work just once more to be sure that everything is still valid
+			if (!checkForWork()) {
+				return;
+			}
+
 			// If we do not have enough energy, immediately go idle
 			if (this.getEnergyStored() < this.getEnergyPerWork()) {
 				isIdle = true;

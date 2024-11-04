@@ -3,6 +3,6 @@
 	"textures": {
 		"all": "minefactorial:block/machine_frame_side",
 		"down": "minefactorial:block/machine_frame_bottom",
-		"up": "minefactorial:block/item_output_top_and_bottom"
+		"up": "minefactorial:block/item_output_top"
 	}
 }

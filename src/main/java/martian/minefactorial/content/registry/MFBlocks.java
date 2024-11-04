@@ -1,9 +1,17 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.block.*;
-import martian.minefactorial.content.block.pipe.BlockPipeEnergy;
-import martian.minefactorial.content.block.pipe.BlockPipeFluid;
+import martian.minefactorial.content.block.logistics.*;
+import martian.minefactorial.content.block.machinery.BlockBreaker;
+import martian.minefactorial.content.block.machinery.BlockFountain;
+import martian.minefactorial.content.block.machinery.BlockMobGrinder;
+import martian.minefactorial.content.block.machinery.BlockPump;
+import martian.minefactorial.content.block.power.BlockSteamBoiler;
+import martian.minefactorial.content.block.power.BlockSteamTurbine;
+import martian.minefactorial.content.block.storage.BlockCapacitor;
+import martian.minefactorial.content.block.storage.BlockCreativeTank;
+import martian.minefactorial.content.block.storage.BlockPlasticTank;
+import martian.minefactorial.content.block.storage.BlockCreativeCapacitor;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -37,23 +45,27 @@ public final class MFBlocks {
 			.sound(SoundType.STONE)
 			.mapColor(DyeColor.WHITE)
 			.isSuffocating((state, level, pos) -> false)
-			.noOcclusion()
-			.instabreak();
+			.noOcclusion();
 
 	public static final DeferredBlock<?>
-			// Machines
-			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),
-			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
+			// Logistics
+			CONVEYOR = register("conveyor", () -> new BlockConveyor(PIPE_PROPS.noCollission())),
+			EJECTOR = register("ejector", () -> new BlockEjector(MACHINE_PROPS)),
+			FLUID_EXTRACTOR = register("fluid_extractor", () -> new BlockFluidExtractor(MACHINE_PROPS)),
+			ENERGY_PIPE = register("energy_pipe", () -> new BlockPipeEnergy(PIPE_PROPS)),
+			FLUID_PIPE = register("fluid_pipe", () -> new BlockPipeFluid(PIPE_PROPS)),
+			// Machinery
 			BREAKER = register("breaker", () -> new BlockBreaker(MACHINE_PROPS)),
 			MOB_GRINDER = register("mob_grinder", () -> new BlockMobGrinder(MACHINE_PROPS)),
 			FOUNTAIN = register("fountain", () -> new BlockFountain(MACHINE_PROPS)),
-			EJECTOR = register("ejector", () -> new BlockEjector(MACHINE_PROPS)),
-			// Logistics
+			PUMP = register("pump", () -> new BlockPump(MACHINE_PROPS)),
+			// Storage
 			CAPACITOR = register("capacitor", () -> new BlockCapacitor(MACHINE_PROPS)),
+			CREATIVE_CAPACITOR = register("creative_capacitor", () -> new BlockCreativeCapacitor(MACHINE_PROPS)),
 			PLASTIC_TANK = register("plastic_tank", () -> new BlockPlasticTank(MACHINE_PROPS)),
-			// Transport
-			ENERGY_PIPE = register("energy_pipe", () -> new BlockPipeEnergy(PIPE_PROPS)),
-			FLUID_PIPE = register("fluid_pipe", () -> new BlockPipeFluid(PIPE_PROPS)),
-			CONVEYOR = register("conveyor", () -> new BlockConveyor(PIPE_PROPS.noCollission()))
+			CREATIVE_TANK = register("creative_tank", () -> new BlockCreativeTank(MACHINE_PROPS)),
+			// Power
+			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
+			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS))
 	;
 }

@@ -1,6 +1,6 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.BlockSteamTurbineBE;
+import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.menu.ContainerSteamTurbine;
 import martian.minefactorial.content.registry.MFFluids;
 import martian.minefactorial.foundation.Mathematics;

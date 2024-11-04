@@ -1,6 +1,6 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.BlockBreakerBE;
+import martian.minefactorial.content.block.machinery.BlockBreakerBE;
 import martian.minefactorial.content.menu.ContainerBreaker;
 import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.network.chat.Component;

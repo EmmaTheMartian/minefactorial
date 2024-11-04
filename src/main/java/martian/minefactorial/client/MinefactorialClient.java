@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -23,6 +24,7 @@ import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.ApiStatus;
 
+@OnlyIn(Dist.CLIENT)
 public final class MinefactorialClient {
 	private MinefactorialClient() { }
 
@@ -34,9 +36,11 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.STEAM_BOILER.get(), ScreenSteamBoiler::new);
 			event.register(MFMenuTypes.STEAM_TURBINE.get(), ScreenSteamTurbine::new);
 			event.register(MFMenuTypes.CAPACITOR.get(), ScreenCapacitor::new);
+			event.register(MFMenuTypes.CREATIVE_CAPACITOR.get(), ScreenCreativeCapacitor::new);
 			event.register(MFMenuTypes.BREAKER.get(), ScreenBreaker::new);
 			event.register(MFMenuTypes.MOB_GRINDER.get(), ScreenMobGrinder::new);
 			event.register(MFMenuTypes.FOUNTAIN.get(), ScreenFountain::new);
+			event.register(MFMenuTypes.PUMP.get(), ScreenPump::new);
 		}
 
 		@SubscribeEvent

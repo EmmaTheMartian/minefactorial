@@ -1,0 +1,9 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "#side",
+		"side": "minefactorial:block/creative_machine_frame_side",
+		"down": "minefactorial:block/creative_machine_frame_bottom",
+		"up": "minefactorial:block/creative_machine_frame_top"
+	}
+}

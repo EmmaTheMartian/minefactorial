@@ -1,6 +1,6 @@
 package martian.minefactorial.content.menu;
 
-import martian.minefactorial.content.block.BlockSteamTurbineBE;
+import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
 import martian.minefactorial.foundation.menu.AbstractMachineContainer;

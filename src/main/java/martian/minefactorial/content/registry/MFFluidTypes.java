@@ -17,7 +17,7 @@ public final class MFFluidTypes {
 
 	public static final ResourceLocation
 			WATER_STILL_TEXTURE = ResourceLocation.withDefaultNamespace("block/water_still"),
-			WATER_FLOWING = ResourceLocation.withDefaultNamespace("block/water_flowing"),
+			WATER_FLOWING = ResourceLocation.withDefaultNamespace("block/water_flow"),
 			WATER_OVERLAY = ResourceLocation.withDefaultNamespace("block/water_overlay");
 
 	public static final DeferredRegister<FluidType> REGISTRY = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, Minefactorial.MODID);

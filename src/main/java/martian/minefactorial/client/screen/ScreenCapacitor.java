@@ -1,6 +1,6 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.BlockCapacitorBE;
+import martian.minefactorial.content.block.storage.BlockCapacitorBE;
 import martian.minefactorial.content.menu.ContainerCapacitor;
 import martian.minefactorial.foundation.client.screen.AbstractEnergyScreen;
 import net.minecraft.network.chat.Component;

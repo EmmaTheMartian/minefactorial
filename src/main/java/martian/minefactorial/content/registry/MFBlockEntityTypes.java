@@ -1,9 +1,17 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.block.*;
-import martian.minefactorial.content.block.pipe.BlockPipeEnergyBE;
-import martian.minefactorial.content.block.pipe.BlockPipeFluidBE;
+import martian.minefactorial.content.block.logistics.*;
+import martian.minefactorial.content.block.machinery.BlockBreakerBE;
+import martian.minefactorial.content.block.machinery.BlockFountainBE;
+import martian.minefactorial.content.block.machinery.BlockMobGrinderBE;
+import martian.minefactorial.content.block.machinery.BlockPumpBE;
+import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
+import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
+import martian.minefactorial.content.block.storage.BlockCapacitorBE;
+import martian.minefactorial.content.block.storage.BlockCreativeTankBE;
+import martian.minefactorial.content.block.storage.BlockPlasticTankBE;
+import martian.minefactorial.content.block.storage.BlockCreativeCapacitorBE;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -38,11 +46,17 @@ public final class MFBlockEntityTypes {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockCapacitorBE>> CAPACITOR =
 			register("capacitor", BlockCapacitorBE::new, MFBlocks.CAPACITOR);
 
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockCreativeCapacitorBE>> CREATIVE_CAPACITOR =
+			register("creative_capacitor", BlockCreativeCapacitorBE::new, MFBlocks.CREATIVE_CAPACITOR);
+
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockBreakerBE>> BREAKER =
 			register("breaker", BlockBreakerBE::new, MFBlocks.BREAKER);
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPlasticTankBE>> PLASTIC_TANK =
 			register("plastic_tank", BlockPlasticTankBE::new, MFBlocks.PLASTIC_TANK);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockCreativeTankBE>> CREATIVE_TANK =
+			register("creative_tank", BlockCreativeTankBE::new, MFBlocks.CREATIVE_TANK);
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockMobGrinderBE>> MOB_GRINDER =
 			register("mob_grinder", BlockMobGrinderBE::new, MFBlocks.MOB_GRINDER);
@@ -55,6 +69,12 @@ public final class MFBlockEntityTypes {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockFountainBE>> FOUNTAIN =
 			register("fountain", BlockFountainBE::new, MFBlocks.FOUNTAIN);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPumpBE>> PUMP =
+			register("pump", BlockPumpBE::new, MFBlocks.PUMP);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockFluidExtractorBE>> FLUID_EXTRACTOR =
+			register("fluid_extractor", BlockFluidExtractorBE::new, MFBlocks.FLUID_EXTRACTOR);
 
 
 	// Pipes

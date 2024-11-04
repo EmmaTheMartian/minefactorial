@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.EffectCures;
@@ -20,14 +21,16 @@ public class Minefactorial {
 	public static final String MODID = "minefactorial";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public Minefactorial(IEventBus modBus) {
+	public Minefactorial(IEventBus modBus, Dist dist) {
 		// Add event listeners
 		modBus.addListener(MFTabs::addItems);
 		modBus.addListener(MFDataGen::onGatherData);
 		modBus.register(MinefactorialListeners.ModBusEvents.class);
-		modBus.register(MinefactorialClient.ModBusEvents.class);
 //		NeoForge.EVENT_BUS.register(MinefactorialListeners.GameBusEvents.class); // There are no events on this *yet*
-		NeoForge.EVENT_BUS.register(MinefactorialClient.GameBusEvents.class);
+		if (dist.isClient()) {
+			modBus.register(MinefactorialClient.ModBusEvents.class);
+			NeoForge.EVENT_BUS.register(MinefactorialClient.GameBusEvents.class);
+		}
 
 		// Registration :D
 		MFFluids.REGISTRY.register(modBus);

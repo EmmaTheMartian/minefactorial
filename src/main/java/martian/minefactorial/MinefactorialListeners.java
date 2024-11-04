@@ -1,7 +1,8 @@
 package martian.minefactorial;
 
-import martian.minefactorial.content.block.BlockCapacitorBE;
-import martian.minefactorial.content.block.BlockSteamBoilerBE;
+import martian.minefactorial.content.block.storage.BlockCapacitorBE;
+import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
+import martian.minefactorial.content.block.storage.BlockCreativeCapacitorBE;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.*;
 import net.minecraft.core.Direction;
@@ -41,11 +42,18 @@ final class MinefactorialListeners {
 			registerEnergyCapability(MFBlockEntityTypes.CAPACITOR.get(), BlockCapacitorBE::getEnergyStorage);
 			registerItemCapability(MFBlockEntityTypes.CAPACITOR.get());
 
+			// Creative Capacitor
+			registerEnergyCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
+			registerItemCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
+
 			// Breaker
 			registerEnergyCapability(MFBlockEntityTypes.BREAKER.get());
 
 			// Plastic Tank
 			registerSingleFluidCapability(MFBlockEntityTypes.PLASTIC_TANK.get());
+
+			// Creative Tank
+			registerSingleFluidCapability(MFBlockEntityTypes.CREATIVE_TANK.get());
 
 			// Mob Grinder
 			registerEnergyCapability(MFBlockEntityTypes.MOB_GRINDER.get());
@@ -58,6 +66,13 @@ final class MinefactorialListeners {
 			// Fountain
 			registerEnergyCapability(MFBlockEntityTypes.FOUNTAIN.get());
 			registerSingleFluidCapability(MFBlockEntityTypes.FOUNTAIN.get());
+
+			// Pump
+			registerEnergyCapability(MFBlockEntityTypes.PUMP.get());
+			registerSingleFluidCapability(MFBlockEntityTypes.PUMP.get());
+
+			// Fluid Extractor
+			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_EXTRACTOR.get());
 
 			// Pipes
 			registerEnergyCapability(MFBlockEntityTypes.ENERGY_PIPE.get());

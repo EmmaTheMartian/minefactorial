@@ -1,6 +1,6 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.BlockFountainBE;
+import martian.minefactorial.content.block.machinery.BlockFountainBE;
 import martian.minefactorial.content.menu.ContainerFountain;
 import martian.minefactorial.foundation.Mathematics;
 import martian.minefactorial.foundation.client.FluidRenderer;

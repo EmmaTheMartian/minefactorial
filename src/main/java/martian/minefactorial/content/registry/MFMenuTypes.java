@@ -36,6 +36,9 @@ public final class MFMenuTypes {
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerCapacitor>> CAPACITOR =
 			registerSimple("capacitor", ContainerCapacitor::new);
 
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerCreativeCapacitor>> CREATIVE_CAPACITOR =
+			registerSimple("creative_capacitor", ContainerCreativeCapacitor::new);
+
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerBreaker>> BREAKER =
 			registerSimple("breaker", ContainerBreaker::new);
 
@@ -44,4 +47,7 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerFountain>> FOUNTAIN =
 			registerSimple("fountain", ContainerFountain::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerPump>> PUMP =
+			registerSimple("pump", ContainerPump::new);
 }
