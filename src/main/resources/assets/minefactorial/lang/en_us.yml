@@ -1,0 +1,49 @@
+block.minefactorial:
+  # Logistics
+  conveyor: Conveyor
+  ejector: Ejector
+  fluid_extractor: Fluid Extractor
+  energy_pipe: Energy Cable
+  fluid_pipe: Fluid Pipe
+  # Machinery
+  breaker: Breaker
+  mob_grinder: Mob Grinder
+  fountain: Fountain
+  pump: Pump
+  placer: Placer
+  # Storage
+  capacitor: Capacitor
+  creative_capacitor: Creative Capacitor
+  plastic_tank: Plastic Tank
+  creative_tank: Creative Tank
+  # Power
+  steam_boiler: Steam Boiler
+  steam_turbine: Steam Turbine
+  # Fluids
+  steam: Steam
+  oil: Oil
+  essence: Essence
+
+item.minefactorial:
+  straw: Straw
+  straw.desc:
+    "0": Use to drink fluid from the world or from tanks
+    "1": Side effects may vary
+  mega_straw: Mega Straw
+  mega_straw.desc:
+    "0": woah. you must be very thirsty to want this much slurping power
+    "1": Use to drink fluid from the world or from tanks
+    "2": Side effects may vary
+  wrench: Wrench
+  wrench.desc.0: Rotates blocks
+
+  steam_bucket: Steam Bucket
+  oil_bucket: Oil Bucket
+  essence_bucket: Essence Bucket
+
+fluid_type.minefactorial:
+  steam: Steam
+  oil: Oil
+  essence: Essence
+
+itemGroup.minefactorial.name: MineFactorial
