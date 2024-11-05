@@ -1,7 +1,7 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.machinery.BlockBreakerBE;
-import martian.minefactorial.content.menu.ContainerBreaker;
+import martian.minefactorial.content.block.machinery.BlockPlacerBE;
+import martian.minefactorial.content.menu.ContainerPlacer;
 import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -9,10 +9,10 @@ import net.minecraft.world.entity.player.Inventory;
 
 import static martian.minefactorial.Minefactorial.id;
 
-public class ScreenBreaker extends AbstractMachineScreen<BlockBreakerBE, ContainerBreaker> {
-	public static final ResourceLocation UI = id("textures/gui/generic_5_slot_machine.png");
+public class ScreenPlacer extends AbstractMachineScreen<BlockPlacerBE, ContainerPlacer> {
+	public static final ResourceLocation UI = id("textures/gui/generic_1_slot_machine.png");
 
-	public ScreenBreaker(ContainerBreaker menu, Inventory playerInventory, Component title) {
+	public ScreenPlacer(ContainerPlacer menu, Inventory playerInventory, Component title) {
 		super(menu, playerInventory, title);
 	}
 

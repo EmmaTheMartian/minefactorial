@@ -2,10 +2,7 @@ package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.block.logistics.*;
-import martian.minefactorial.content.block.machinery.BlockBreaker;
-import martian.minefactorial.content.block.machinery.BlockFountain;
-import martian.minefactorial.content.block.machinery.BlockMobGrinder;
-import martian.minefactorial.content.block.machinery.BlockPump;
+import martian.minefactorial.content.block.machinery.*;
 import martian.minefactorial.content.block.power.BlockSteamBoiler;
 import martian.minefactorial.content.block.power.BlockSteamTurbine;
 import martian.minefactorial.content.block.storage.BlockCapacitor;
@@ -59,6 +56,7 @@ public final class MFBlocks {
 			MOB_GRINDER = register("mob_grinder", () -> new BlockMobGrinder(MACHINE_PROPS)),
 			FOUNTAIN = register("fountain", () -> new BlockFountain(MACHINE_PROPS)),
 			PUMP = register("pump", () -> new BlockPump(MACHINE_PROPS)),
+			PLACER = register("placer", () -> new BlockPlacer(MACHINE_PROPS)),
 			// Storage
 			CAPACITOR = register("capacitor", () -> new BlockCapacitor(MACHINE_PROPS)),
 			CREATIVE_CAPACITOR = register("creative_capacitor", () -> new BlockCreativeCapacitor(MACHINE_PROPS)),

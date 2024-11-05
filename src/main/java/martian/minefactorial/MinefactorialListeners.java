@@ -2,7 +2,6 @@ package martian.minefactorial;
 
 import martian.minefactorial.content.block.storage.BlockCapacitorBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
-import martian.minefactorial.content.block.storage.BlockCreativeCapacitorBE;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.*;
 import net.minecraft.core.Direction;
@@ -73,6 +72,10 @@ final class MinefactorialListeners {
 
 			// Fluid Extractor
 			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_EXTRACTOR.get());
+
+			// Placer
+			registerEnergyCapability(MFBlockEntityTypes.PLACER.get());
+			registerItemCapability(MFBlockEntityTypes.PLACER.get());
 
 			// Pipes
 			registerEnergyCapability(MFBlockEntityTypes.ENERGY_PIPE.get());

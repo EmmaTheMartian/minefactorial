@@ -34,7 +34,10 @@ public class MFBlockStateProvider extends BlockStateProvider {
 			FLUID_INPUT_BOTTOM = blockId("fluid_input_bottom"),
 			ITEM_OUTPUT_SIDE = blockId("item_output_side"),
 			ITEM_OUTPUT_TOP = blockId("item_output_top"),
-			ITEM_OUTPUT_BOTTOM = blockId("item_output_bottom");
+			ITEM_OUTPUT_BOTTOM = blockId("item_output_bottom"),
+			GENERIC_OUTPUT_SIDE = blockId("generic_output_side"),
+			GENERIC_OUTPUT_TOP = blockId("generic_output_top"),
+			GENERIC_OUTPUT_BOTTOM = blockId("generic_output_bottom");
 
 	@Override
 	protected void registerStatesAndModels() {
@@ -83,6 +86,12 @@ public class MFBlockStateProvider extends BlockStateProvider {
 				getMachineModel(MFBlocks.PUMP, "_down")
 						.texture("down", FLUID_INPUT_BOTTOM)
 						.texture("up", FLUID_OUTPUT_TOP)
+		);
+		specialDirectionalMachine(
+				MFBlocks.PLACER,
+				getMachineModel(MFBlocks.PUMP).texture("north", GENERIC_OUTPUT_SIDE),
+				getMachineModel(MFBlocks.PUMP, "_up").texture("up", GENERIC_OUTPUT_TOP),
+				getMachineModel(MFBlocks.PUMP, "_down").texture("down", GENERIC_OUTPUT_BOTTOM)
 		);
 
 		pipeBlock(MFBlocks.ENERGY_PIPE);

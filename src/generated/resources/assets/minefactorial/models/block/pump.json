@@ -1,7 +1,7 @@
 {
   "parent": "minefactorial:block/template_machine",
   "textures": {
-    "north": "minefactorial:block/fluid_input_side",
+    "north": "minefactorial:block/generic_output_side",
     "south": "minefactorial:block/fluid_output_side"
   }
 }

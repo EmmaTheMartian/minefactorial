@@ -50,4 +50,7 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerPump>> PUMP =
 			registerSimple("pump", ContainerPump::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerPlacer>> PLACER =
+			registerSimple("placer", ContainerPlacer::new);
 }

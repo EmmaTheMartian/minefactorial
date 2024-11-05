@@ -1,19 +1,25 @@
 block.minefactorial:
-  steam_boiler: Steam Boiler
-  steam_turbine: Steam Turbine
-  capacitor: Capacitor
-  creative_capacitor: Creative Capacitor
-  breaker: Breaker
-  plastic_tank: Plastic Tank
-  creative_tank: Creative Tank
-  mob_grinder: Mob Grinder
+  # Logistics
   conveyor: Conveyor
   ejector: Ejector
-  fountain: Fountain
-  pump: Pump
   fluid_extractor: Fluid Extractor
   energy_pipe: Energy Cable
   fluid_pipe: Fluid Pipe
+  # Machinery
+  breaker: Breaker
+  mob_grinder: Mob Grinder
+  fountain: Fountain
+  pump: Pump
+  placer: Placer
+  # Storage
+  capacitor: Capacitor
+  creative_capacitor: Creative Capacitor
+  plastic_tank: Plastic Tank
+  creative_tank: Creative Tank
+  # Power
+  steam_boiler: Steam Boiler
+  steam_turbine: Steam Turbine
+  # Fluids
   steam: Steam
   oil: Oil
   essence: Essence

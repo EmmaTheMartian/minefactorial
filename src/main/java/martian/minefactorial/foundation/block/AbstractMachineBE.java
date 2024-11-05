@@ -5,6 +5,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractMachineBE
@@ -42,14 +44,7 @@ public abstract class AbstractMachineBE
 	public void serverTick() {
 		// Eject items, if there are any
 		if (this instanceof IInventoryBE inventoryBE && inventoryBE.shouldEjectItems() && !inventoryBE.isEmpty()) {
-			BlockPos ejectPos = getBlockPos().relative(inventoryBE.getEjectDirection(getBlockState()));
-			assert level != null;
-			if (!level.getBlockState(ejectPos).isCollisionShapeFullBlock(level, ejectPos)) {
-				int index = inventoryBE.getFirstStackIndex();
-				if (index > -1) {
-					IInventoryBE.ejectFrom(inventoryBE, 64);
-				}
-			}
+			IInventoryBE.ejectFrom(inventoryBE, 64);
 		}
 
 		// Check if idle timer has expired

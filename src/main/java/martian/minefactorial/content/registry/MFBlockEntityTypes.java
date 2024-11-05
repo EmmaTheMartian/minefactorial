@@ -2,10 +2,7 @@ package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.block.logistics.*;
-import martian.minefactorial.content.block.machinery.BlockBreakerBE;
-import martian.minefactorial.content.block.machinery.BlockFountainBE;
-import martian.minefactorial.content.block.machinery.BlockMobGrinderBE;
-import martian.minefactorial.content.block.machinery.BlockPumpBE;
+import martian.minefactorial.content.block.machinery.*;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.block.storage.BlockCapacitorBE;
@@ -75,6 +72,9 @@ public final class MFBlockEntityTypes {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockFluidExtractorBE>> FLUID_EXTRACTOR =
 			register("fluid_extractor", BlockFluidExtractorBE::new, MFBlocks.FLUID_EXTRACTOR);
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlockPlacerBE>> PLACER =
+			register("placer", BlockPlacerBE::new, MFBlocks.PLACER);
 
 
 	// Pipes

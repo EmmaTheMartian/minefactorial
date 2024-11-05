@@ -2,6 +2,6 @@
   "parent": "minefactorial:block/template_machine",
   "textures": {
     "down": "minefactorial:block/fluid_output_bottom",
-    "up": "minefactorial:block/fluid_input_top"
+    "up": "minefactorial:block/generic_output_top"
   }
 }
