@@ -16,12 +16,18 @@ repositories {
 
     // CC Tweaked
     maven {
-        url "https://maven.squiddev.cc"
+        url = "https://maven.squiddev.cc"
         content {
             includeGroup("cc.tweaked")
         }
     }
 
+    // Legacy Landscape
+    maven {
+        url = "https://maven.muonmc.org/releases/"
+    }
+
+    // Jade, AE2, Mekanism, and EMI
     exclusiveContent {
         forRepository {
             maven {
@@ -54,10 +60,6 @@ loom {
                     "--existing", file("src/main/resources/").absolutePath)
         }
     }
-
-//    neoForge {
-//        mixin("minefactorial.mixins.json")
-//    }
 }
 
 yamlang {
@@ -79,6 +81,9 @@ dependencies {
     })
 
     neoForge("net.neoforged:neoforge:${neo_version}")
+
+    // Mods that MineFactorial has integration with
+    modLocalRuntime("gay.sylv.legacy_landscape:legacy_landscape:${legacy_landscape_version}") { transitive = false }
 
     // Mods to test compat and such with
     modLocalRuntime("maven.modrinth:jade:${jade_version}")

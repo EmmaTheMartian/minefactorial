@@ -1,0 +1,17 @@
+{
+	"neoforge:conditions": [
+		{
+			"type": "neoforge:mod_loaded",
+			"modid": "legacy_landscape"
+		}
+	],
+	"type": "legacy_landscape:void",
+	"group": "misc",
+	"ingredient": {
+		"item": "minefactorial:straw"
+	},
+	"result": {
+		"count": 1,
+		"id": "minefactorial:mega_straw"
+	}
+}
