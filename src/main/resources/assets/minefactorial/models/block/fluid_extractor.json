@@ -1,10 +1,12 @@
 {
 	"credit": "Made with Blockbench",
-	"texture_size": [64, 64],
 	"ambientocclusion": false,
+	"texture_size": [64, 64],
 	"textures": {
-		"0": "minefactorial:block/machine/fluid_extractor",
-		"particle": "minefactorial:block/machine/fluid_extractor"
+		"1": "minefactorial:block/machine/fluid_extractor_side",
+		"2": "minefactorial:block/machine/fluid_extractor_bottom",
+		"3": "minefactorial:block/machine/fluid_extractor_top",
+		"particle": "minefactorial:block/machine/fluid_extractor_top"
 	},
 	"elements": [
 		{
@@ -12,12 +14,12 @@
 			"to": [15, 10, 15],
 			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 7]},
 			"faces": {
-				"north": {"uv": [6, 2.5, 8.5, 6], "rotation": 270, "texture": "#0"},
-				"east": {"uv": [6, 2.5, 2.5, 0], "rotation": 180, "texture": "#0"},
-				"south": {"uv": [0, 2.5, 2.5, 6], "rotation": 90, "texture": "#0"},
-				"west": {"uv": [9.5, 0, 6, 2.5], "texture": "#0"},
-				"up": {"uv": [8.5, 2.5, 12, 6], "rotation": 90, "texture": "#0"},
-				"down": {"uv": [2.5, 2.5, 6, 6], "rotation": 90, "texture": "#0", "cullface": "down"}
+				"north": {"uv": [15, 16, 1, 6], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [15, 16, 1, 6], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [15, 16, 1, 6], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [15, 16, 1, 6], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [15, 16, 1, 6], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [15, 15, 1, 1], "rotation": 180, "texture": "#2"}
 			}
 		},
 		{
@@ -25,12 +27,12 @@
 			"to": [14, 16, 14],
 			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 7]},
 			"faces": {
-				"north": {"uv": [4.5, 7.5, 6, 10.5], "rotation": 270, "texture": "#0"},
-				"east": {"uv": [4.5, 7.5, 1.5, 6], "rotation": 180, "texture": "#0"},
-				"south": {"uv": [0, 7.5, 1.5, 10.5], "rotation": 90, "texture": "#0"},
-				"west": {"uv": [7.5, 6, 4.5, 7.5], "texture": "#0"},
-				"up": {"uv": [6, 7.5, 9, 10.5], "rotation": 90, "texture": "#0", "cullface": "up"},
-				"down": {"uv": [1.5, 7.5, 4.5, 10.5], "rotation": 90, "texture": "#0"}
+				"north": {"uv": [2, 6, 14, 0], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [2, 6, 14, 0], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [2, 6, 14, 0], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [2, 6, 14, 0], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [2, 14, 14, 2], "rotation": 180, "texture": "#3"},
+				"down": {"uv": [2, 6, 14, 0], "rotation": 180, "texture": "#1"}
 			}
 		}
 	],
