@@ -1,6 +1,0 @@
-{
-  "parent": "minefactorial:block/template_machine",
-  "textures": {
-    "side": "minefactorial:block/machine/capacitor_side"
-  }
-}

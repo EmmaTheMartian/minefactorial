@@ -1,7 +1,0 @@
-{
-  "parent": "minefactorial:block/template_machine",
-  "textures": {
-    "side": "minefactorial:block/machine/steam_boiler_side",
-    "up": "minefactorial:block/fluid_output_top"
-  }
-}

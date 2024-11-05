@@ -1,7 +1,0 @@
-{
-  "parent": "minefactorial:block/template_machine",
-  "textures": {
-    "north": "minefactorial:block/machine/breaker_front",
-    "south": "minefactorial:block/item_output_side"
-  }
-}

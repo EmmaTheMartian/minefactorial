@@ -1,6 +1,0 @@
-{
-  "parent": "minefactorial:block/pipe_base",
-  "textures": {
-    "texture": "minefactorial:block/fluid_pipe"
-  }
-}
