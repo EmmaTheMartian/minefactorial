@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "minefactorial:block/breaker_down",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "minefactorial:block/breaker",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "minefactorial:block/breaker"
+    },
+    "facing=south": {
+      "model": "minefactorial:block/breaker",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "minefactorial:block/breaker_up",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "minefactorial:block/breaker",
+      "y": 270
+    }
+  }
+}

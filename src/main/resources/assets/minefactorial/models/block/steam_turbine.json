@@ -1,0 +1,7 @@
+{
+  "parent": "minefactorial:block/template_machine",
+  "textures": {
+    "side": "minefactorial:block/machine/steam_turbine_side",
+    "up": "minefactorial:block/machine/steam_turbine_top"
+  }
+}

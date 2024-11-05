@@ -1,0 +1,6 @@
+{
+  "parent": "minefactorial:block/template_machine_creative",
+  "textures": {
+    "side": "minefactorial:block/machine/creative_capacitor_side"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minefactorial:block/template_machine",
+  "textures": {
+    "side": "minefactorial:block/machine/tank_side"
+  }
+}
