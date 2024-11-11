@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/redstone/redstone_clock_on",
+    "east": "minefactorial:block/redstone/redstone_clock_on",
+    "north": "minefactorial:block/redstone/redstone_clock_on",
+    "south": "minefactorial:block/redstone/redstone_clock_on",
+    "up": "minefactorial:block/redstone/redstone_clock_on",
+    "west": "minefactorial:block/redstone/redstone_clock_on"
+  }
+}

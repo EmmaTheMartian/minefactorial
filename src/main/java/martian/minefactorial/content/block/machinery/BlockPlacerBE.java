@@ -1,22 +1,14 @@
 package martian.minefactorial.content.block.machinery;
 
-import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.FakePlayerHelpers;
 import martian.minefactorial.foundation.block.AbstractSlottedMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.util.FakePlayer;
 
 public class BlockPlacerBE extends AbstractSlottedMachineBE {
 	public static final int SLOTS = 1;
@@ -56,7 +48,6 @@ public class BlockPlacerBE extends AbstractSlottedMachineBE {
 		// are not public, and I would prefer to avoid access wideners for this when a fake player can do the job
 		// perfectly too.
 		FakePlayerHelpers.placeBlockItem((ServerLevel) level, worldPosition.relative(getFacing()), toPlace, getFacing());
-		toPlace.shrink(1);
 		setChanged();
 	}
 

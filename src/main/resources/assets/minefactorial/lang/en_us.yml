@@ -11,14 +11,23 @@ block.minefactorial:
   fountain: Fountain
   pump: Pump
   placer: Placer
+  # Power
+  steam_boiler: Steam Boiler
+  steam_turbine: Steam Turbine
+  # Redstone
+  redstone_clock: Redstone Clock
   # Storage
   capacitor: Capacitor
   creative_capacitor: Creative Capacitor
   plastic_tank: Plastic Tank
   creative_tank: Creative Tank
-  # Power
-  steam_boiler: Steam Boiler
-  steam_turbine: Steam Turbine
+  storage_unit: Storage Unit
+  # Decor
+  plastic_block: Plastic Block
+  smooth_plastic: Smooth Plastic Block
+  plastic_bricks: Plastic Bricks
+  plastic_pillar: Plastic Pillar
+  plastic_road: Plastic Road
   # Fluids
   steam: Steam
   oil: Oil
@@ -47,3 +56,6 @@ fluid_type.minefactorial:
   essence: Essence
 
 itemGroup.minefactorial.name: MineFactorial
+
+messages.minefactorial:
+  set_ticks_to: "Set ticks to %d."

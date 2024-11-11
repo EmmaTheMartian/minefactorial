@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/decor/smooth_plastic",
+    "east": "minefactorial:block/decor/smooth_plastic",
+    "north": "minefactorial:block/decor/smooth_plastic",
+    "south": "minefactorial:block/decor/smooth_plastic",
+    "up": "minefactorial:block/decor/smooth_plastic",
+    "west": "minefactorial:block/decor/smooth_plastic"
+  }
+}

@@ -1,5 +1,6 @@
 package martian.minefactorial;
 
+import martian.minefactorial.content.block.logistics.BlockFluidExtractorBE;
 import martian.minefactorial.content.block.storage.BlockCapacitorBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
@@ -29,57 +30,56 @@ final class MinefactorialListeners {
 		static void onRegisterCapabilities(final RegisterCapabilitiesEvent event) {
 			registerCapabilitiesEvent = event;
 
-			// Steam Turbine
-			registerEnergyCapability(MFBlockEntityTypes.STEAM_TURBINE.get());
-			registerSingleFluidCapability(MFBlockEntityTypes.STEAM_TURBINE.get());
+			////// Logistics //////
+			// Ejector
+			registerItemCapability(MFBlockEntityTypes.EJECTOR.get());
+			// Fluid Extractor
+			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_EXTRACTOR.get(), BlockFluidExtractorBE::getFluidHandler);
+			// Pipes
+			registerEnergyCapability(MFBlockEntityTypes.ENERGY_PIPE.get());
+			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_PIPE.get());
 
-			// Steam Boiler
-			registerSingleFluidCapability(MFBlockEntityTypes.STEAM_BOILER.get(), BlockSteamBoilerBE::getTankForSide);
-			registerItemCapability(MFBlockEntityTypes.STEAM_BOILER.get());
-
-			// Capacitor
-			registerEnergyCapability(MFBlockEntityTypes.CAPACITOR.get(), BlockCapacitorBE::getEnergyStorage);
-			registerItemCapability(MFBlockEntityTypes.CAPACITOR.get());
-
-			// Creative Capacitor
-			registerEnergyCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
-			registerItemCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
-
+			////// Machinery //////
 			// Breaker
 			registerEnergyCapability(MFBlockEntityTypes.BREAKER.get());
-
-			// Plastic Tank
-			registerSingleFluidCapability(MFBlockEntityTypes.PLASTIC_TANK.get());
-
-			// Creative Tank
-			registerSingleFluidCapability(MFBlockEntityTypes.CREATIVE_TANK.get());
-
 			// Mob Grinder
 			registerEnergyCapability(MFBlockEntityTypes.MOB_GRINDER.get());
 			registerSingleFluidCapability(MFBlockEntityTypes.MOB_GRINDER.get());
 			registerItemCapability(MFBlockEntityTypes.MOB_GRINDER.get());
-
-			// Ejector
-			registerItemCapability(MFBlockEntityTypes.EJECTOR.get());
-
 			// Fountain
 			registerEnergyCapability(MFBlockEntityTypes.FOUNTAIN.get());
 			registerSingleFluidCapability(MFBlockEntityTypes.FOUNTAIN.get());
-
 			// Pump
 			registerEnergyCapability(MFBlockEntityTypes.PUMP.get());
 			registerSingleFluidCapability(MFBlockEntityTypes.PUMP.get());
-
-			// Fluid Extractor
-			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_EXTRACTOR.get());
-
 			// Placer
 			registerEnergyCapability(MFBlockEntityTypes.PLACER.get());
 			registerItemCapability(MFBlockEntityTypes.PLACER.get());
 
-			// Pipes
-			registerEnergyCapability(MFBlockEntityTypes.ENERGY_PIPE.get());
-			registerSingleFluidCapability(MFBlockEntityTypes.FLUID_PIPE.get());
+			////// Power //////
+			// Steam Boiler
+			registerSingleFluidCapability(MFBlockEntityTypes.STEAM_BOILER.get(), BlockSteamBoilerBE::getTankForSide);
+			registerItemCapability(MFBlockEntityTypes.STEAM_BOILER.get());
+			// Steam Turbine
+			registerEnergyCapability(MFBlockEntityTypes.STEAM_TURBINE.get());
+			registerSingleFluidCapability(MFBlockEntityTypes.STEAM_TURBINE.get());
+
+			////// Redstone //////
+			// Nothing yet :P
+
+			////// Storage //////
+			// Capacitor
+			registerEnergyCapability(MFBlockEntityTypes.CAPACITOR.get(), BlockCapacitorBE::getEnergyStorage);
+			registerItemCapability(MFBlockEntityTypes.CAPACITOR.get());
+			// Creative Capacitor
+			registerEnergyCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
+			registerItemCapability(MFBlockEntityTypes.CREATIVE_CAPACITOR.get());
+			// Plastic Tank
+			registerSingleFluidCapability(MFBlockEntityTypes.PLASTIC_TANK.get());
+			// Creative Tank
+			registerSingleFluidCapability(MFBlockEntityTypes.CREATIVE_TANK.get());
+			// Storage Unit
+			registerItemCapability(MFBlockEntityTypes.STORAGE_UNIT.get());
 
 			registerCapabilitiesEvent = null;
 		}

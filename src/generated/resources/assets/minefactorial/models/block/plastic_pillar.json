@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minefactorial:block/decor/plastic_pillar_end",
+    "side": "minefactorial:block/decor/plastic_pillar_side"
+  }
+}

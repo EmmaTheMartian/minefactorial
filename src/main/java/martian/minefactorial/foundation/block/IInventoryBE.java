@@ -143,13 +143,14 @@ public interface IInventoryBE extends IBE, Container {
 			IItemHandler itemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, ejectBlockPos, direction);
 			if (itemHandler != null) {
 				ItemStack remainder = insertItemInto(itemHandler, toEject);
-				if (!remainder.isEmpty()) {
-					// There was a remainder left, meaning that the item handler is probably full.
-					return;
-				}
+
 				level.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pos, 0);
 				level.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pos, direction.get3DDataValue());
-				be.setItem(i, remainder);
+
+				// Merge the remainder and the pre-existing stack
+				stack.grow(remainder.getCount());
+
+				be.setItem(i, stack);
 				return;
 			}
 

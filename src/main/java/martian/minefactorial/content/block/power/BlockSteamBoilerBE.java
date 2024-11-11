@@ -31,7 +31,7 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 		}
 	};
 
-	private final FluidTank steamTank = new FluidTank(2000, fluidStack -> fluidStack.is(MFTags.STEAM)) {
+	private final FluidTank steamTank = new FluidTank(2000, fluidStack -> fluidStack.is(MFTags.Fluids.STEAM)) {
 		@Override
 		protected void onContentsChanged() {
 			setChanged();
@@ -64,6 +64,9 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 	}
 
 	public void serverTick() {
+		assert level != null;
+		BlockState state = getBlockState();
+
 		if (burnTicksLeft <= 0) {
 			// Check for new burnable items
 			int time = getHeldStack().getBurnTime(RecipeType.SMELTING);
@@ -76,6 +79,8 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 			burnTicksLeft--;
 		}
 
+		boolean isLit = state.getValue(BlockSteamBoiler.LIT);
+
 		if (
 				burnTicksLeft > 0 &&
 				getWaterTank().getFluidAmount() > 0 &&
@@ -83,6 +88,11 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 		) {
 			getWaterTank().drain(1, IFluidHandler.FluidAction.EXECUTE);
 			getSteamTank().fill(new FluidStack(MFFluids.STEAM, 1), IFluidHandler.FluidAction.EXECUTE);
+			if (!isLit) {
+				level.setBlockAndUpdate(worldPosition, state.setValue(BlockSteamBoiler.LIT, true));
+			}
+		} else if (isLit) {
+			level.setBlockAndUpdate(worldPosition, state.setValue(BlockSteamBoiler.LIT, false));
 		}
 
 		// Automatically push steam up

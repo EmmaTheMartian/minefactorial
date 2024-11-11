@@ -97,7 +97,7 @@ public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> {
 	@ParametersAreNonnullByDefault
 	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (level.getBlockEntity(pos) instanceof BlockEjectorBE ejectorBE) {
-			IInventoryBE.ejectFrom(ejectorBE, 1);
+			IInventoryBE.ejectFrom(ejectorBE, 64);
 		}
 	}
 

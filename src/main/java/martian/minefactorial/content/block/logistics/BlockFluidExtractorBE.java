@@ -10,9 +10,18 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
+import javax.annotation.Nullable;
+
 public class BlockFluidExtractorBE extends AbstractSingleTankBE implements ITickableBE {
 	public BlockFluidExtractorBE(BlockPos pos, BlockState blockState) {
 		super(MFBlockEntityTypes.FLUID_EXTRACTOR.get(), 1000, pos, blockState);
+	}
+
+	public @Nullable IFluidHandler getFluidHandler(Direction direction) {
+		if (direction == getBlockState().getValue(BlockFluidExtractor.FACING).getOpposite()) {
+			return getTank();
+		}
+		return null;
 	}
 
 	@Override

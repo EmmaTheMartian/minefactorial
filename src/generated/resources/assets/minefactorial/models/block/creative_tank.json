@@ -1,6 +1,11 @@
 {
-  "parent": "minefactorial:block/template_machine_creative",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "side": "minefactorial:block/machine/creative_tank_side"
+    "down": "minefactorial:block/creative_machine_frame_bottom",
+    "east": "minefactorial:block/machine/creative_tank_side",
+    "north": "minefactorial:block/machine/creative_tank_side",
+    "south": "minefactorial:block/machine/creative_tank_side",
+    "up": "minefactorial:block/creative_machine_frame_top",
+    "west": "minefactorial:block/machine/creative_tank_side"
   }
 }

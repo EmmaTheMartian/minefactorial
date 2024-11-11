@@ -12,7 +12,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 public class BlockSteamTurbineBE extends AbstractGeneratorBE implements ISingleTankBE {
 	public final int STEAM_PER_WORK = 2, ENERGY_GENERATION_PER_WORK = 1;
 
-	private final FluidTank tank = new FluidTank(2000, fluidStack -> fluidStack.is(MFTags.STEAM)) {
+	private final FluidTank tank = new FluidTank(2000, fluidStack -> fluidStack.is(MFTags.Fluids.STEAM)) {
 		@Override
 		protected void onContentsChanged() {
 			setChanged();

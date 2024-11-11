@@ -1,26 +1,26 @@
 {
   "variants": {
     "facing=down": {
-      "model": "minefactorial:block/pump_down",
+      "model": "minefactorial:block/placer_down",
       "y": 90
     },
     "facing=east": {
-      "model": "minefactorial:block/pump",
+      "model": "minefactorial:block/placer",
       "y": 90
     },
     "facing=north": {
-      "model": "minefactorial:block/pump"
+      "model": "minefactorial:block/placer"
     },
     "facing=south": {
-      "model": "minefactorial:block/pump",
+      "model": "minefactorial:block/placer",
       "y": 180
     },
     "facing=up": {
-      "model": "minefactorial:block/pump_up",
+      "model": "minefactorial:block/placer_up",
       "y": 90
     },
     "facing=west": {
-      "model": "minefactorial:block/pump",
+      "model": "minefactorial:block/placer",
       "y": 270
     }
   }

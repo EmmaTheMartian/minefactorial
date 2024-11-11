@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "minefactorial:block/plastic_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "minefactorial:block/plastic_pillar"
+    },
+    "axis=z": {
+      "model": "minefactorial:block/plastic_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

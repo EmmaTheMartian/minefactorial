@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -42,9 +41,10 @@ public class BlockBreakerBE extends AbstractSlottedMachineBE {
 	public void doWork() {
 		assert level != null;
 		BlockPos pos = worldPosition.relative(getFacing());
-		BlockState state = level.getBlockState(pos);
 		// Iterate over the block's drops and add the drops to the breaker's inventory. If the item does not fit, we
 		// instead will drop it in the world.
+		// We break with a fake player to ensure that a block's data is retained. For example, breaking a shulker box
+		// without a fake player will not retain its inventory.
 		FakePlayerHelpers.breakBlockAndGetDrops((ServerLevel) level, pos).forEach(stack -> {
 			ItemStack remainder = giveItem(stack);
 			if (!remainder.isEmpty()) {

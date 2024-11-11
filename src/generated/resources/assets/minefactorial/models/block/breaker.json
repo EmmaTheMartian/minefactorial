@@ -1,7 +1,11 @@
 {
-  "parent": "minefactorial:block/template_machine",
+  "parent": "minecraft:block/cube",
   "textures": {
+    "down": "minefactorial:block/machine_frame_bottom",
+    "east": "minefactorial:block/machine_frame_side",
     "north": "minefactorial:block/machine/breaker_front",
-    "south": "minefactorial:block/item_output_side"
+    "south": "minefactorial:block/item_output_side",
+    "up": "minefactorial:block/machine_frame_top",
+    "west": "minefactorial:block/machine_frame_side"
   }
 }

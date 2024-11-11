@@ -19,6 +19,7 @@ public final class MFItems {
 		return REGISTRY.register(id, supplier);
 	}
 
+	// Hover ID shorthands
 	private static String[] getHoverTextIdsFor(String id, int lines) {
 		String[] ids = new String[lines];
 		for (int i = 0; i < lines; i++) {
@@ -31,9 +32,18 @@ public final class MFItems {
 		return getHoverTextIdsFor(id, 1);
 	}
 
+	private static DeferredItem<?> simpleItem(String id) {
+		return register(id, () -> new Item(new Item.Properties()));
+	}
+
 	public static final DeferredItem<?>
 			STRAW = register("straw", () -> new ItemStraw(80, 1000, new Item.Properties().stacksTo(1), getHoverTextIdsFor("straw", 2))),
 			MEGA_STRAW = register("mega_straw", () -> new ItemStraw(80, Integer.MAX_VALUE, new Item.Properties().stacksTo(1), getHoverTextIdsFor("mega_straw", 3))),
-			WRENCH = register("wrench", () -> new ItemWrench(new Item.Properties().stacksTo(1), getHoverTextIdsFor("wrench")))
+			WRENCH = register("wrench", () -> new ItemWrench(new Item.Properties().stacksTo(1), getHoverTextIdsFor("wrench"))),
+			RAW_RUBBER = simpleItem("raw_rubber"),
+			RUBBER_INGOT = simpleItem("rubber_ingot"),
+			RAW_PLASTIC = simpleItem("raw_plastic"),
+			PLASTIC_INGOT = simpleItem("plastic_ingot"),
+			PLASTIC_SHEETS = simpleItem("plastic_sheets")
 	;
 }

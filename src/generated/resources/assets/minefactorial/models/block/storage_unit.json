@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/machine_frame_bottom",
+    "east": "minefactorial:block/machine/storage_unit_side",
+    "north": "minefactorial:block/machine/storage_unit_side",
+    "south": "minefactorial:block/machine/storage_unit_side",
+    "up": "minefactorial:block/machine_frame_top",
+    "west": "minefactorial:block/machine/storage_unit_side"
+  }
+}

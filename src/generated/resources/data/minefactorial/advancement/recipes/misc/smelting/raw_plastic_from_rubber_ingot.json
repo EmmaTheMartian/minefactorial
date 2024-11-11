@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_rubber_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:rubber_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:smelting/raw_plastic_from_rubber_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_rubber_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:smelting/raw_plastic_from_rubber_ingot"
+    ]
+  }
+}

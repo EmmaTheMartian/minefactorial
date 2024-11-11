@@ -1,8 +1,12 @@
 package martian.minefactorial.content;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
 public final class MFTags {
@@ -12,8 +16,32 @@ public final class MFTags {
 		return ResourceLocation.fromNamespaceAndPath("c", path);
 	}
 
-	public static final TagKey<Fluid> MILK = FluidTags.create(c("milk"));
-	public static final TagKey<Fluid> STEAM = FluidTags.create(c("steam"));
-	public static final TagKey<Fluid> OIL = FluidTags.create(c("oil"));
-	public static final TagKey<Fluid> CRUDE_OIL = FluidTags.create(c("crude_oil"));
+	public static final class Items {
+		private static TagKey<Item> cTag(String id) {
+			return ItemTags.create(c(id));
+		}
+
+		public static final TagKey<Item>
+				RUBBER_INGOT = cTag("ingots/rubber"),
+				PLASTIC_INGOT = cTag("ingots/plastic"),
+				PLASTIC_SHEETS = cTag("plates/plastic");
+	}
+
+	public static final class Blocks {
+		private static TagKey<Block> cTag(String id) {
+			return BlockTags.create(c(id));
+		}
+
+	}
+
+	public static final class Fluids {
+		private static TagKey<Fluid> cTag(String id) {
+			return FluidTags.create(c(id));
+		}
+
+		public static final TagKey<Fluid>
+				STEAM = cTag("steam"),
+				OIL = cTag("oil"),
+				CRUDE_OIL = cTag("crude_oil");
+	}
 }

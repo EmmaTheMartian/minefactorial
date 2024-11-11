@@ -1,0 +1,27 @@
+{
+  "values": [
+    "minefactorial:conveyor",
+    "minefactorial:ejector",
+    "minefactorial:fluid_extractor",
+    "minefactorial:energy_pipe",
+    "minefactorial:fluid_pipe",
+    "minefactorial:breaker",
+    "minefactorial:mob_grinder",
+    "minefactorial:fountain",
+    "minefactorial:pump",
+    "minefactorial:placer",
+    "minefactorial:steam_boiler",
+    "minefactorial:steam_turbine",
+    "minefactorial:redstone_clock",
+    "minefactorial:capacitor",
+    "minefactorial:creative_capacitor",
+    "minefactorial:plastic_tank",
+    "minefactorial:creative_tank",
+    "minefactorial:storage_unit",
+    "minefactorial:plastic_block",
+    "minefactorial:smooth_plastic",
+    "minefactorial:plastic_bricks",
+    "minefactorial:plastic_pillar",
+    "minefactorial:plastic_road"
+  ]
+}
