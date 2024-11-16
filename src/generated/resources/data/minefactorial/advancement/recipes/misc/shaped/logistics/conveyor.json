@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_rubber_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:rubber_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:shaped/logistics/conveyor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_rubber_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:shaped/logistics/conveyor"
+    ]
+  }
+}

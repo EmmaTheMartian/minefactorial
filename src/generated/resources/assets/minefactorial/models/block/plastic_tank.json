@@ -4,6 +4,7 @@
     "down": "minefactorial:block/machine_frame_bottom",
     "east": "minefactorial:block/machine/tank_side",
     "north": "minefactorial:block/machine/tank_side",
+    "particle": "minefactorial:block/machine_frame_top",
     "south": "minefactorial:block/machine/tank_side",
     "up": "minefactorial:block/machine_frame_top",
     "west": "minefactorial:block/machine/tank_side"

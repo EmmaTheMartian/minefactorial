@@ -16,8 +16,9 @@ class MFLootTableProvider(event: GatherDataEvent) : DapperLootTableProvider(
 ) {
 	private class BlockLoot(registries: HolderLookup.Provider) : BlockProvider(registries) {
 		override fun generate() {
+			val skippedBlocks = setOf(MFBlocks.RUBBER_LEAVES)
 			MFBlocks.REGISTRY.entries.forEach {
-				if (it.get().lootTable === BuiltInLootTables.EMPTY) {
+				if (it.get().lootTable === BuiltInLootTables.EMPTY || skippedBlocks.contains(it)) {
 					return@forEach
 				}
 				dropSelf(it.get())

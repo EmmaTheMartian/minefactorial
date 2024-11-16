@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:dropper"
+    },
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "PPP",
+    " D ",
+    "RFR"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minefactorial:ejector"
+  }
+}

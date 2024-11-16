@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    "P P",
+    " R ",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minefactorial:redstone_clock"
+  }
+}

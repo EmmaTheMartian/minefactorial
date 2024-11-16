@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,triggered=false": {
+      "model": "minefactorial:block/ejector_down",
+      "y": 90
+    },
+    "facing=down,triggered=true": {
+      "model": "minefactorial:block/ejector_down",
+      "y": 90
+    },
+    "facing=east,triggered=false": {
+      "model": "minefactorial:block/ejector",
+      "y": 90
+    },
+    "facing=east,triggered=true": {
+      "model": "minefactorial:block/ejector",
+      "y": 90
+    },
+    "facing=north,triggered=false": {
+      "model": "minefactorial:block/ejector"
+    },
+    "facing=north,triggered=true": {
+      "model": "minefactorial:block/ejector"
+    },
+    "facing=south,triggered=false": {
+      "model": "minefactorial:block/ejector",
+      "y": 180
+    },
+    "facing=south,triggered=true": {
+      "model": "minefactorial:block/ejector",
+      "y": 180
+    },
+    "facing=up,triggered=false": {
+      "model": "minefactorial:block/ejector_up",
+      "y": 90
+    },
+    "facing=up,triggered=true": {
+      "model": "minefactorial:block/ejector_up",
+      "y": 90
+    },
+    "facing=west,triggered=false": {
+      "model": "minefactorial:block/ejector",
+      "y": 270
+    },
+    "facing=west,triggered=true": {
+      "model": "minefactorial:block/ejector",
+      "y": 270
+    }
+  }
+}

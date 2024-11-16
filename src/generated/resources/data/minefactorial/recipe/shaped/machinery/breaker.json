@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "H": {
+      "item": "minefactorial:wrench"
+    },
+    "I": {
+      "item": "minecraft:golden_pickaxe"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "S": {
+      "item": "minecraft:golden_shovel"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "IHS",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:breaker"
+  }
+}

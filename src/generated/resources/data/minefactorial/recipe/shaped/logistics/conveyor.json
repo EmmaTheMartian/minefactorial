@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:dusts/redstone"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "tag": "c:ingots/rubber"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "DID"
+  ],
+  "result": {
+    "count": 16,
+    "id": "minefactorial:conveyor"
+  }
+}

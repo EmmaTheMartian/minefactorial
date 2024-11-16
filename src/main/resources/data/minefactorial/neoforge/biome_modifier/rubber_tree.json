@@ -1,0 +1,6 @@
+{
+	"type": "neoforge:add_features",
+	"biomes": "#is_overworld",
+	"features": "minefactorial:rubber_tree",
+	"step": "vegetal_decoration"
+}

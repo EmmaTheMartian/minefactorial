@@ -1,6 +1,7 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.content.block.foliage.BlockRubberWood;
 import martian.minefactorial.content.block.logistics.*;
 import martian.minefactorial.content.block.machinery.*;
 import martian.minefactorial.content.block.power.BlockSteamBoiler;
@@ -10,13 +11,17 @@ import martian.minefactorial.content.block.storage.*;
 import martian.regolith.DeferredHolders;
 import martian.regolith.builder.RegolithBlockBuilder;
 import martian.regolith.neoforge.RegolithNeoForge;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -47,37 +52,67 @@ public final class MFBlocks {
 		return getRegolithBuilder(props).register(ids).done();
 	}
 
+	// Properties and such
+	public static Boolean never(BlockState a, BlockGetter b, BlockPos c, EntityType<?> d) { return false; }
+	public static Boolean never(BlockState a, BlockGetter b, BlockPos c) { return false; }
+
 	public static final BlockBehaviour.Properties
 			MACHINE_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.METAL)
-					.mapColor(DyeColor.WHITE)
+					.mapColor(MapColor.METAL)
 					.pushReaction(PushReaction.IGNORE)
 					.strength(3f)
 					.requiresCorrectToolForDrops(),
 			PLASTIC_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.POLISHED_DEEPSLATE)
-					.mapColor(DyeColor.WHITE)
+					.mapColor(MapColor.COLOR_LIGHT_GRAY)
 					.strength(3f)
 					.requiresCorrectToolForDrops(),
 			ROAD_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.POLISHED_DEEPSLATE)
-					.mapColor(DyeColor.WHITE)
+					.mapColor(MapColor.COLOR_GRAY)
 					.strength(3f)
 					.speedFactor(1.15f)
 					.requiresCorrectToolForDrops(),
 			PIPE_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.STONE)
-					.mapColor(DyeColor.WHITE)
+					.mapColor(MapColor.METAL)
 					.strength(2f)
-					.isSuffocating((state, level, pos) -> false)
+					.isSuffocating(MFBlocks::never)
 					.noOcclusion(),
 			CONVEYOR_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.STONE)
-					.mapColor(DyeColor.WHITE)
-					.isSuffocating((state, level, pos) -> false)
+					.mapColor(MapColor.METAL)
+					.isSuffocating(MFBlocks::never)
 					.noOcclusion()
 					.noCollission()
-					.instabreak();
+					.instabreak(),
+			WOOD_PROPS = BlockBehaviour.Properties.of()
+					.mapColor(MapColor.WOOD)
+					.instrument(NoteBlockInstrument.BASS)
+					.strength(2.0F)
+					.sound(SoundType.WOOD)
+					.ignitedByLava(),
+			LEAVES_PROPS = BlockBehaviour.Properties.of()
+					.mapColor(MapColor.PLANT)
+					.strength(0.2F)
+					.randomTicks()
+					.sound(SoundType.GRASS)
+					.noOcclusion()
+					.isValidSpawn(Blocks::ocelotOrParrot)
+					.isSuffocating(MFBlocks::never)
+					.isViewBlocking(MFBlocks::never)
+					.ignitedByLava()
+					.pushReaction(PushReaction.DESTROY)
+					.isRedstoneConductor(MFBlocks::never),
+			SAPLINGS_PROPS = BlockBehaviour.Properties.of()
+					.mapColor(MapColor.PLANT)
+					.noCollission()
+					.randomTicks()
+					.instabreak()
+					.sound(SoundType.GRASS)
+					.pushReaction(PushReaction.DESTROY)
+	;
 
 	public static final DeferredBlock<?>
 			// Logistics
@@ -102,7 +137,13 @@ public final class MFBlocks {
 			CREATIVE_CAPACITOR = register("creative_capacitor", () -> new BlockCreativeCapacitor(MACHINE_PROPS)),
 			PLASTIC_TANK = register("plastic_tank", () -> new BlockPlasticTank(MACHINE_PROPS)),
 			CREATIVE_TANK = register("creative_tank", () -> new BlockCreativeTank(MACHINE_PROPS)),
-			STORAGE_UNIT = register("storage_unit", () -> new BlockStorageUnit(MACHINE_PROPS))
+			STORAGE_UNIT = register("storage_unit", () -> new BlockStorageUnit(MACHINE_PROPS)),
+			// Foliage
+			RUBBER_WOOD = register("rubber_wood", () -> new BlockRubberWood(WOOD_PROPS)),
+			RUBBER_LEAVES = register("rubber_leaves", () -> new LeavesBlock(LEAVES_PROPS)),
+			RUBBER_SAPLING = register("rubber_sapling", () -> new SaplingBlock(BlockRubberWood.TREE_GROWER, SAPLINGS_PROPS)),
+			// Misc
+			MACHINE_FRAME = register("machine_frame", () -> new Block(MACHINE_PROPS))
 	;
 
 	// Decorative blocks

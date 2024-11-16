@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minefactorial:rubber_wood"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:jungle_planks"
+  }
+}

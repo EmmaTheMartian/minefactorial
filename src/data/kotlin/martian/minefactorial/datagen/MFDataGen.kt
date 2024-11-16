@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
 @EventBusSubscriber(modid = Minefactorial.MODID, bus = EventBusSubscriber.Bus.MOD)
-object MFDataGenMod {
+object MFDataGen {
 	@JvmStatic
 	@SubscribeEvent
 	fun onGatherData(event: GatherDataEvent) {

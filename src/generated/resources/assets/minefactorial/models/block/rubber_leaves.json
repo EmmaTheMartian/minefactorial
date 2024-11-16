@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "down": "minefactorial:block/foliage/rubber_leaves",
+    "east": "minefactorial:block/foliage/rubber_leaves",
+    "north": "minefactorial:block/foliage/rubber_leaves",
+    "particle": "minefactorial:block/foliage/rubber_leaves",
+    "south": "minefactorial:block/foliage/rubber_leaves",
+    "up": "minefactorial:block/foliage/rubber_leaves",
+    "west": "minefactorial:block/foliage/rubber_leaves"
+  }
+}

@@ -13,6 +13,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.EffectCures;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
 import org.slf4j.Logger;
 
@@ -22,9 +23,11 @@ public class Minefactorial {
 	public static final Logger LOGGER = LogUtils.getLogger();
 
 	public Minefactorial(IEventBus modBus, Dist dist) {
+		// The milk-ification
+		NeoForgeMod.enableMilkFluid();
+
 		// Add event listeners
 		modBus.addListener(MFTabs::addItems);
-//		modBus.addListener(MFDataGen::onGatherData);
 		modBus.register(MinefactorialListeners.ModBusEvents.class);
 //		NeoForge.EVENT_BUS.register(MinefactorialListeners.GameBusEvents.class); // There are no events on this *yet*
 		if (dist.isClient()) {

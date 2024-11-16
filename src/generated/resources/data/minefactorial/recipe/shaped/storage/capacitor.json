@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minefactorial:energy_pipe"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "PRP",
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:capacitor"
+  }
+}

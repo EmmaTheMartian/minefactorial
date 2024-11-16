@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "axis=x,has_rubber=false": {
+      "model": "minefactorial:block/rubber_wood_horizontal"
+    },
+    "axis=x,has_rubber=true": {
+      "model": "minefactorial:block/rubber_wood_vertical_with_rubber"
+    },
+    "axis=y,has_rubber=false": {
+      "model": "minefactorial:block/rubber_wood_vertical"
+    },
+    "axis=y,has_rubber=true": {
+      "model": "minefactorial:block/rubber_wood_vertical_with_rubber"
+    },
+    "axis=z,has_rubber=false": {
+      "model": "minefactorial:block/rubber_wood_horizontal"
+    },
+    "axis=z,has_rubber=true": {
+      "model": "minefactorial:block/rubber_wood_vertical_with_rubber"
+    }
+  }
+}

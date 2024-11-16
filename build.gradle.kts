@@ -103,6 +103,7 @@ yamlang {
 dependencies {
     minecraft("com.mojang:minecraft:${prop("minecraft_version")}")
 
+    @Suppress("UnstableApiUsage")
     mappings(loom.layered {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${prop("parchment_minecraft_version")}:${prop("parchment_mappings_version")}@zip")

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "N": {
+      "item": "minecraft:nether_bricks"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "T": {
+      "item": "minefactorial:plastic_tank"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "TFT",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:steam_boiler"
+  }
+}

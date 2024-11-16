@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "P P",
+    "RBR",
+    "P P"
+  ],
+  "result": {
+    "count": 2,
+    "id": "minefactorial:fluid_extractor"
+  }
+}

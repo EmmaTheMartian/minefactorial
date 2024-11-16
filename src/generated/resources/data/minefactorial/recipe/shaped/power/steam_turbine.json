@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "I": {
+      "item": "minecraft:piston"
+    },
+    "N": {
+      "item": "minecraft:nether_bricks"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "T": {
+      "item": "minefactorial:plastic_tank"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "ITI",
+    "NFN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:steam_turbine"
+  }
+}

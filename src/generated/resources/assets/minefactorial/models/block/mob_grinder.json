@@ -4,6 +4,7 @@
     "down": "minefactorial:block/machine_frame_bottom",
     "east": "minefactorial:block/machine_frame_side",
     "north": "minefactorial:block/machine/mob_grinder_front",
+    "particle": "minefactorial:block/machine_frame_top",
     "south": "minefactorial:block/item_output_side",
     "up": "minefactorial:block/machine_frame_top",
     "west": "minefactorial:block/machine_frame_side"

@@ -1,23 +1,28 @@
 package martian.minefactorial.datagen.client
 
+import martian.dapper.api.client.CubeModel
+import martian.dapper.api.client.CubeModel.Companion.all
+import martian.dapper.api.client.CubeModel.Companion.down
+import martian.dapper.api.client.CubeModel.Companion.from
+import martian.dapper.api.client.CubeModel.Companion.north
+import martian.dapper.api.client.CubeModel.Companion.renderType
+import martian.dapper.api.client.CubeModel.Companion.side
+import martian.dapper.api.client.CubeModel.Companion.south
+import martian.dapper.api.client.CubeModel.Companion.up
+import martian.dapper.api.client.DapperBlockStateProvider
+import martian.dapper.api.mcId
 import martian.minefactorial.Minefactorial
+import martian.minefactorial.content.block.foliage.BlockRubberWood
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock
 import martian.minefactorial.content.registry.MFBlocks
-import martian.dapper.api.client.CubeModel
-import martian.dapper.api.client.CubeModel.Companion.from
-import martian.dapper.api.client.CubeModel.Companion.all
-import martian.dapper.api.client.CubeModel.Companion.side
-import martian.dapper.api.client.CubeModel.Companion.up
-import martian.dapper.api.client.CubeModel.Companion.down
-import martian.dapper.api.client.CubeModel.Companion.north
-import martian.dapper.api.client.CubeModel.Companion.south
-import martian.dapper.api.client.DapperBlockStateProvider
 import martian.minefactorial.datagen.id
 import martian.minefactorial.foundation.pipenet.AbstractPipeBlock
 import martian.minefactorial.foundation.pipenet.PipeState
 import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
-import net.neoforged.neoforge.client.model.generators.*
+import net.minecraft.world.level.block.RotatedPillarBlock
+import net.neoforged.neoforge.client.model.generators.ModelFile
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import net.neoforged.neoforge.registries.DeferredBlock
 
@@ -61,6 +66,7 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.CREATIVE_CAPACITOR.addModel(creativeMachineFrame.copy() side machineId("creative_capacitor_side"))
 		MFBlocks.CREATIVE_TANK.addModel(creativeMachineFrame.copy() side machineId("creative_tank_side"))
 		MFBlocks.STORAGE_UNIT.addModel(machineFrame.copy() side machineId("storage_unit_side"))
+		MFBlocks.MACHINE_FRAME.addModel(machineFrame)
 
 		MFBlocks.MOB_GRINDER.addHorizontalDirectionalModel(machineFrame.copy()
 			north machineId("mob_grinder_front")
@@ -83,6 +89,11 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 			machineFrame.copy() up genericOutputTop,
 			machineFrame.copy() down genericOutputBottom
 		)
+		MFBlocks.EJECTOR.addSpecialDirectionalModel(
+			machineFrame.copy() north itemOutputSide,
+			machineFrame.copy() up itemOutputTop,
+			machineFrame.copy() down itemOutputBottom,
+		)
 
 		dapperToggleState(
 			MFBlocks.REDSTONE_CLOCK.get(),
@@ -90,6 +101,61 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 			CubeModel() all blockId("redstone/redstone_clock_on"),
 			CubeModel() all blockId("redstone/redstone_clock_off")
 		)
+
+		// why is the datagen for rubber wood so cursed...
+		// todo: dapper-ify this
+		getVariantBuilder(MFBlocks.RUBBER_WOOD.get()).apply {
+			// We build these models early so that we don't build any duplicates as we're going
+			val modelVertical = CubeModel()
+				.side(blockId("foliage/rubber_wood"))
+				.up(blockId("foliage/rubber_wood_end"))
+				.down(blockId("foliage/rubber_wood_end"))
+				.build("rubber_wood_vertical", models())
+			val modelHorizontal = CubeModel()
+				.all(blockId("foliage/rubber_wood"))
+				.north(blockId("foliage/rubber_wood_end"))
+				.south(blockId("foliage/rubber_wood_end"))
+				.build("rubber_wood_horizontal", models())
+			val modelVerticalWithRubber = CubeModel()
+				.withParent(modelVertical.uncheckedLocation)
+				.side(blockId("foliage/rubber_wood_with_rubber"))
+				.build("rubber_wood_vertical_with_rubber", models())
+			val modelHorizontalWithRubber = CubeModel()
+				.withParent(modelVertical.uncheckedLocation)
+				.side(blockId("foliage/rubber_wood_with_rubber"))
+				.build("rubber_wood_vertical_with_rubber", models())
+
+			// Iterate through each possible block state for rubber wood...
+			setOf(
+				Direction.Axis.X to true,
+				Direction.Axis.X to false,
+				Direction.Axis.Y to true,
+				Direction.Axis.Y to false,
+				Direction.Axis.Z to true,
+				Direction.Axis.Z to false,
+			).forEach { pair ->
+				// ...then data generate a state for it
+				partialState()
+					.with(RotatedPillarBlock.AXIS, pair.first)
+					.with(BlockRubberWood.HAS_RUBBER, pair.second)
+					.modelForState()
+					.modelFile(if (pair.second) {
+						if (pair.first.isHorizontal)
+							modelHorizontalWithRubber
+						else modelVerticalWithRubber
+					} else {
+						if (pair.first.isHorizontal)
+							modelHorizontal
+						else modelVertical
+					})
+					.addModel()
+			}
+
+			simpleBlockItem(MFBlocks.RUBBER_WOOD.get(), modelVertical)
+		}
+
+		MFBlocks.RUBBER_LEAVES.addModel(CubeModel() all blockId("foliage/rubber_leaves") renderType "cutout".mcId)
+		MFBlocks.RUBBER_SAPLING.addModel(CubeModel.crossModel(blockId("foliage/rubber_sapling")), makeItem = false)
 
 		pipeBlock(MFBlocks.ENERGY_PIPE)
 		pipeBlock(MFBlocks.FLUID_PIPE)
@@ -106,6 +172,8 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 	// https://github.com/Thepigcat76/Buildcraft-Legacy/blob/f9de2cf42727334d31670c462e0e5af96cc553fe/src/main/java/com/thepigcat/fancy_pipes/datagen/FPBlockStateProvider.java#L50
 	private fun pipeBlock(block: DeferredBlock<*>) {
 		val loc = block.id
+		val model = pipeBaseModel(loc)
+
 		val builder = getMultipartBuilder(block.get())
 		pipeConnection(builder, loc, Direction.UP, 180, 0)
 		pipeConnection(builder, loc, Direction.DOWN, 0, 0)
@@ -113,7 +181,9 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		pipeConnection(builder, loc, Direction.EAST, 90, 270)
 		pipeConnection(builder, loc, Direction.SOUTH, 90, 0)
 		pipeConnection(builder, loc, Direction.WEST, 90, 90)
-		builder.part().modelFile(pipeBaseModel(loc)).addModel().end()
+		builder.part().modelFile(model).addModel().end()
+
+		simpleBlockItem(block.get(), model)
 	}
 
 	private fun pipeConnection(

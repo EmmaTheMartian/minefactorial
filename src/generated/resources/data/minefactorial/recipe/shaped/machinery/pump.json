@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "U": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "pattern": [
+    "PBP",
+    " U ",
+    "RFR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:pump"
+  }
+}

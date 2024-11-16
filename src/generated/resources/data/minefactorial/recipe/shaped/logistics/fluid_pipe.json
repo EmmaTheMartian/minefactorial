@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    "PPP",
+    " B ",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "minefactorial:fluid_pipe"
+  }
+}

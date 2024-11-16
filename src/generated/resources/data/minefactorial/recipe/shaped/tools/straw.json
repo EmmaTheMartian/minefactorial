@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    "PP",
+    "P ",
+    "P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:straw"
+  }
+}

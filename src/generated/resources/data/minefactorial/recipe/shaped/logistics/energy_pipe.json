@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "PPP",
+    " R ",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "minefactorial:energy_pipe"
+  }
+}

@@ -5,29 +5,43 @@ block.minefactorial:
   fluid_extractor: Fluid Extractor
   energy_pipe: Energy Cable
   fluid_pipe: Fluid Pipe
+
   # Machinery
   breaker: Breaker
   mob_grinder: Mob Grinder
   fountain: Fountain
   pump: Pump
   placer: Placer
+
   # Power
   steam_boiler: Steam Boiler
   steam_turbine: Steam Turbine
+
   # Redstone
   redstone_clock: Redstone Clock
+
   # Storage
   capacitor: Capacitor
   creative_capacitor: Creative Capacitor
   plastic_tank: Plastic Tank
   creative_tank: Creative Tank
   storage_unit: Storage Unit
+
+  # Foliage
+  rubber_wood: Rubber Wood
+  rubber_leaves: Rubber Leaves
+  rubber_sapling: Rubber Sapling
+
+  # Misc
+  machine_frame: Machine Frame
+
   # Decor
   plastic_block: Plastic Block
   smooth_plastic: Smooth Plastic Block
   plastic_bricks: Plastic Bricks
   plastic_pillar: Plastic Pillar
   plastic_road: Plastic Road
+
   # Fluids
   steam: Steam
   oil: Oil
@@ -40,11 +54,20 @@ item.minefactorial:
     "1": Side effects may vary
   mega_straw: Mega Straw
   mega_straw.desc:
-    "0": woah. you must be very thirsty to want this much slurping power
+    "0": Woah. You must be very thirsty to want this much slurping power
     "1": Use to drink fluid from the world or from tanks
     "2": Side effects may vary
   wrench: Wrench
   wrench.desc.0: Rotates blocks
+  tree_tap: Tree Tap
+  tree_tap.desc.0: Use on Rubber Wood to obtain Raw Rubber
+
+  raw_rubber: Raw Rubber
+  raw_rubber.desc.0: Obtain by using a Tree Tap on Rubber Wood
+  rubber_ingot: Rubber Bar
+  raw_plastic: Raw Plastic
+  plastic_ingot: Plastic Ingot
+  plastic_sheets: Plastic Sheets
 
   steam_bucket: Steam Bucket
   oil_bucket: Oil Bucket
