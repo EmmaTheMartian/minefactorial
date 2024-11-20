@@ -10,7 +10,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractSingleTankMachineBE extends AbstractMachineBE implements ISingleTankBE {
-	private final FluidTank tank;
+	protected final FluidTank tank;
 	protected final int capacity;
 
 	public AbstractSingleTankMachineBE(BlockEntityType<?> type, int capacity, BlockPos pos, BlockState blockState) {

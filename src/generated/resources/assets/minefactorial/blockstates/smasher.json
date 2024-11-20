@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "minefactorial:block/smasher",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "minefactorial:block/smasher"
+    },
+    "facing=south": {
+      "model": "minefactorial:block/smasher",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "minefactorial:block/smasher",
+      "y": 270
+    }
+  }
+}

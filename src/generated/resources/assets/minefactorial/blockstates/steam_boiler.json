@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "minefactorial:block/steam_boiler"
+    "lit=false": {
+      "model": "minefactorial:block/steam_boiler_off"
+    },
+    "lit=true": {
+      "model": "minefactorial:block/steam_boiler_on"
     }
   }
 }

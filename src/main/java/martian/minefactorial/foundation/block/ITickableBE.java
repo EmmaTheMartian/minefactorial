@@ -1,7 +1,10 @@
 package martian.minefactorial.foundation.block;
 
-public interface ITickableBE {
-	default void serverTick() { }
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.server.level.ServerLevel;
 
-	default void clientTick() { }
+public interface ITickableBE {
+	default void serverTick(ServerLevel level) { }
+
+	default void clientTick(ClientLevel level) { }
 }

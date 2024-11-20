@@ -28,6 +28,12 @@ repositories {
     // Kotlin For Forge
     maven("https://thedarkcolour.github.io/KotlinForForge/")
 
+    // EMI
+    maven("https://maven.terraformersmc.com/")
+
+    // Legacy Landscape
+    maven("https://maven.muonmc.org/releases/")
+
     // CC Tweaked
     maven("https://maven.squiddev.cc") {
         content {
@@ -35,10 +41,7 @@ repositories {
         }
     }
 
-    // Legacy Landscape
-    maven("https://maven.muonmc.org/releases/")
-
-    // Jade, AE2, Mekanism, and EMI
+    // Jade, AE2, Mekanism
     exclusiveContent {
         forRepository {
             maven("https://api.modrinth.com/maven")
@@ -111,27 +114,37 @@ dependencies {
 
     neoForge("net.neoforged:neoforge:${prop("neo_version")}")
 
-    // Embedded (JiJ) Dependencies
+    // Regolith
     include(implementation("martian:regolith-neoforge:${prop("regolith_version")}")!!)
 
-    // Dev-env-only Dependencies
+    // Dapper (for datagen)
     implementation("martian:dapper:${prop("dapper_version")}")
+
+    // KotlinForForge (for datagen)
     implementation("thedarkcolour:kotlinforforge-neoforge:${prop("kff_version")}") {
         // https://github.com/thedarkcolour/KotlinForForge/issues/103
         exclude(group = "net.neoforged.fancymodloader", module = "loader")
     }
 
-    // Mods that MineFactorial has integration with
-//    modLocalRuntime("gay.sylv.legacy_landscape:legacy_landscape:${legacy_landscape_version}") { transitive = false }
+    // EMI
+    compileOnly("dev.emi:emi-neoforge:${prop("emi_version")}:api")
+    runtimeOnly("dev.emi:emi-neoforge:${prop("emi_version")}")
 
-    // Mods to test compat and such with
-    modLocalRuntime("maven.modrinth:jade:${prop("jade_version")}")
-    modLocalRuntime("maven.modrinth:ae2:${prop("ae2_version")}")
-    modLocalRuntime("maven.modrinth:mekanism:${prop("mekanism_version")}")
-    modLocalRuntime("maven.modrinth:emi:${prop("emi_version")}")
+    // Legacy Landscape
+    modLocalRuntime("gay.sylv.legacy_landscape:legacy_landscape:${prop("legacy_landscape_version")}") { isTransitive = false }
 
+    // ComputerCraft
     forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.3") // Gradle doesn't get this automatically from the CC Tweaked dependency, for whatever reason
     modLocalRuntime("cc.tweaked:cc-tweaked-${prop("minecraft_version")}-forge:${prop("cc_version")}")
+
+    // Jade (todo: replace this with its actual maven instead of modrinth maven)
+    modLocalRuntime("maven.modrinth:jade:${prop("jade_version")}")
+
+    // AE2 (todo: replace this with its actual maven instead of modrinth maven)
+    modLocalRuntime("maven.modrinth:ae2:${prop("ae2_version")}")
+
+    // Mekanism (todo: replace this with its actual maven instead of modrinth maven)
+    modLocalRuntime("maven.modrinth:mekanism:${prop("mekanism_version")}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -148,7 +161,6 @@ val replaceProperties = mapOf(
         "mod_version"             to prop("mod_version"),
         "mod_authors"             to prop("mod_authors"),
         "mod_description"         to prop("mod_description"),
-        "datagen_mod_id"          to prop("datagen_mod_id")
 )
 
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {

@@ -30,7 +30,7 @@ public class BlockFountain extends AbstractBlockWithEntity<BlockFountainBE> {
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Fountain");
+					return state.getBlock().getName();
 				}
 
 				@Override

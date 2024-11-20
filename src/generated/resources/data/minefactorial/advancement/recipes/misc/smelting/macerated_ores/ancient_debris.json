@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_macerated_ancient_debris": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:macerated_ancient_debris"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:smelting/macerated_ores/ancient_debris"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_macerated_ancient_debris"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:smelting/macerated_ores/ancient_debris"
+    ]
+  }
+}

@@ -1,11 +1,11 @@
 package martian.minefactorial.content.block.machinery;
 
-import martian.minefactorial.content.menu.ContainerBreaker;
 import martian.minefactorial.content.menu.ContainerPlacer;
 import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -63,7 +63,7 @@ public class BlockPlacer extends AbstractBlockWithEntity<BlockPlacerBE> {
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Placer");
+					return state.getBlock().getName();
 				}
 
 				@Override
@@ -73,5 +73,24 @@ public class BlockPlacer extends AbstractBlockWithEntity<BlockPlacerBE> {
 			}, buf -> buf.writeBlockPos(pos));
 		}
 		return ItemInteractionResult.SUCCESS;
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+		Containers.dropContentsOnDestroy(state, newState, level, pos);
+		super.onRemove(state, level, pos, newState, movedByPiston);
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	protected boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
 	}
 }

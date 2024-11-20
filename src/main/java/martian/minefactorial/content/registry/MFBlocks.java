@@ -14,7 +14,6 @@ import martian.regolith.neoforge.RegolithNeoForge;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -127,6 +126,8 @@ public final class MFBlocks {
 			FOUNTAIN = register("fountain", () -> new BlockFountain(MACHINE_PROPS)),
 			PUMP = register("pump", () -> new BlockPump(MACHINE_PROPS)),
 			PLACER = register("placer", () -> new BlockPlacer(MACHINE_PROPS)),
+			SMASHER = register("smasher", () -> new BlockSmasher(MACHINE_PROPS)),
+			MACERATOR = register("macerator", () -> new BlockMacerator(MACHINE_PROPS)),
 			// Power
 			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
 			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),

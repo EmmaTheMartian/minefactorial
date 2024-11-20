@@ -1,6 +1,7 @@
 package martian.minefactorial.foundation.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -15,8 +16,8 @@ public abstract class AbstractMachineGeneratorBE extends AbstractMachineBE imple
 	}
 
 	@Override
-	public void serverTick() {
-		super.serverTick();
+	public void serverTick(ServerLevel level) {
+		super.serverTick(level);
 		this.distributePower();
 	}
 }

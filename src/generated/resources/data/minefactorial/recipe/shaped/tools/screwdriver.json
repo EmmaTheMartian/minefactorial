@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    "I",
+    "P",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:screwdriver"
+  }
+}

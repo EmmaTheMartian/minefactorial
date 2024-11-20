@@ -63,7 +63,7 @@ public class BlockBreaker extends AbstractBlockWithEntity<BlockBreakerBE> {
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Breaker");
+					return state.getBlock().getName();
 				}
 
 				@Override

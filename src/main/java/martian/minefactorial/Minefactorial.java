@@ -6,6 +6,7 @@ import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.neoforged.api.distmarker.Dist;
@@ -21,6 +22,7 @@ import org.slf4j.Logger;
 public class Minefactorial {
 	public static final String MODID = "minefactorial";
 	public static final Logger LOGGER = LogUtils.getLogger();
+	public static final RandomSource RANDOM = RandomSource.create();
 
 	public Minefactorial(IEventBus modBus, Dist dist) {
 		// The milk-ification
@@ -43,6 +45,8 @@ public class Minefactorial {
 		MFItems.REGISTRY.register(modBus);
 		MFTabs.REGISTRY.register(modBus);
 		MFMenuTypes.REGISTRY.register(modBus);
+		MFRecipeTypes.REGISTRY.register(modBus);
+		MFRecipeSerializers.REGISTRY.register(modBus);
 
 		// Add Straw actions
 		MFStrawActions.add(FluidTags.WATER, player -> player.heal(2));

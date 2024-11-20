@@ -13,6 +13,8 @@ import martian.dapper.api.client.DapperBlockStateProvider
 import martian.dapper.api.mcId
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.block.foliage.BlockRubberWood
+import martian.minefactorial.content.block.machinery.BlockMacerator
+import martian.minefactorial.content.block.power.BlockSteamBoiler
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock
 import martian.minefactorial.content.registry.MFBlocks
 import martian.minefactorial.datagen.id
@@ -56,10 +58,9 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 			down creativeMachineFrameBottom
 			side creativeMachineFrameSide)
 
-		MFBlocks.STEAM_TURBINE.addModel(machineFrame.copy() side machineId("steam_turbine_side"))
-		MFBlocks.STEAM_BOILER.addModel(machineFrame.copy()
-			side machineId("steam_boiler_side")
-			up fluidOutputTop)
+		MFBlocks.STEAM_TURBINE.addModel(machineFrame.copy()
+			side machineId("steam_turbine_side")
+			up machineId("steam_turbine_top"))
 		MFBlocks.FOUNTAIN.addModel(machineFrame.copy() up fluidOutputTop)
 		MFBlocks.CAPACITOR.addModel(machineFrame.copy() side machineId("capacitor_side"))
 		MFBlocks.PLASTIC_TANK.addModel(machineFrame.copy() side machineId("tank_side"))
@@ -70,6 +71,9 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 
 		MFBlocks.MOB_GRINDER.addHorizontalDirectionalModel(machineFrame.copy()
 			north machineId("mob_grinder_front")
+			south itemOutputSide)
+		MFBlocks.SMASHER.addHorizontalDirectionalModel(machineFrame.copy()
+			north machineId("smasher_front")
 			south itemOutputSide)
 
 		MFBlocks.FLUID_EXTRACTOR.addDirectionalModel(CubeModel() from blockId("fluid_extractor"))
@@ -101,6 +105,44 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 			CubeModel() all blockId("redstone/redstone_clock_on"),
 			CubeModel() all blockId("redstone/redstone_clock_off")
 		)
+		dapperToggleState(
+			MFBlocks.STEAM_BOILER.get(),
+			BlockSteamBoiler.LIT,
+			machineFrame.copy()
+				side machineId("steam_boiler_side_lit")
+				up fluidOutputTop,
+			machineFrame.copy()
+				side machineId("steam_boiler_side")
+				up fluidOutputTop
+		)
+
+		getVariantBuilder(MFBlocks.MACERATOR.get()).apply {
+			val modelRunning = machineFrame.copy()
+				.up(machineId("macerator_top_running"))
+				.north(machineId("macerator_side_running"))
+				.south(itemOutputSide)
+				.build("macerator_running", models())
+			val modelNotRunning = machineFrame.copy()
+				.up(machineId("macerator_top"))
+				.north(machineId("macerator_side"))
+				.south(itemOutputSide)
+				.build("macerator_running", models())
+
+			MFBlocks.MACERATOR.get().stateDefinition.possibleStates.forEach { state ->
+				val direction = state.getValue(BlockMacerator.FACING);
+				val running = state.getValue(BlockMacerator.RUNNING);
+
+				partialState()
+					.with(BlockMacerator.FACING, direction)
+					.with(BlockMacerator.RUNNING, running)
+					.modelForState()
+					.rotationY(((direction.toYRot() + 180) % 360).toInt())
+					.modelFile(if (running) modelRunning else modelNotRunning)
+					.addModel()
+			}
+
+			simpleBlockItem(MFBlocks.MACERATOR.get(), modelNotRunning)
+		}
 
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this

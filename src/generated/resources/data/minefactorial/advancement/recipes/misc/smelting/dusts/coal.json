@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_coal_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:coal_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:smelting/dusts/coal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_coal_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:smelting/dusts/coal"
+    ]
+  }
+}

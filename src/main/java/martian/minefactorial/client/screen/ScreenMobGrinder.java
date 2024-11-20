@@ -35,18 +35,15 @@ public class ScreenMobGrinder extends AbstractMachineScreen<BlockMobGrinderBE, C
 	public void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
-		int mb = this.menu.getEssenceMillibuckets();
-		if (mb > 0) {
-			float filled_percent = ((float) mb / this.menu.essenceCapacity);
-			int height = (int) (TANK_HEIGHT * filled_percent);
-
-			FluidRenderer.renderFluidGui(
-					new FluidStack(MFFluids.ESSENCE, mb),
+		if (this.menu.getEssenceMillibuckets() >= 0) {
+			FluidRenderer.renderFluidTankGui(
+					new FluidStack(MFFluids.ESSENCE, this.menu.getEssenceMillibuckets()),
+					menu.essenceCapacity,
 					graphics,
 					leftPos + TANK_X,
-					topPos + TANK_Y + (TANK_HEIGHT - height), // we do this to render from the bottom to the top
+					topPos + TANK_Y,
 					TANK_WIDTH,
-					height
+					TANK_HEIGHT
 			);
 		}
 	}

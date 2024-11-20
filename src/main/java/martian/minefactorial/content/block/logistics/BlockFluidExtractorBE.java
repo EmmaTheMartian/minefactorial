@@ -5,6 +5,7 @@ import martian.minefactorial.foundation.block.AbstractSingleTankBE;
 import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -25,9 +26,7 @@ public class BlockFluidExtractorBE extends AbstractSingleTankBE implements ITick
 	}
 
 	@Override
-	public void serverTick() {
-		assert level != null;
-
+	public void serverTick(ServerLevel level) {
 		Direction facing = getBlockState().getValue(BlockFluidExtractor.FACING);
 
 		IFluidHandler extractStorage = level.getCapability(Capabilities.FluidHandler.BLOCK, getBlockPos().relative(facing.getOpposite()), facing.getOpposite());

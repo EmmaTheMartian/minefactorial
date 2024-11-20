@@ -49,7 +49,7 @@ public class BlockSteamBoiler extends AbstractBlockWithEntity<BlockSteamBoilerBE
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Steam Boiler");
+					return state.getBlock().getName();
 				}
 
 				@Override

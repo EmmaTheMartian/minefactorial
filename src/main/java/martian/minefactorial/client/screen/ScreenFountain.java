@@ -35,17 +35,15 @@ public class ScreenFountain extends AbstractMachineScreen<BlockFountainBE, Conta
 	public void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
-		if (this.menu.fluidAmount > 0) {
-			float filled_percent = ((float) this.menu.fluidAmount / this.menu.capacity);
-			int height = (int) (TANK_HEIGHT * filled_percent);
-
-			FluidRenderer.renderFluidGui(
+		if (this.menu.fluidAmount >= 0) {
+			FluidRenderer.renderFluidTankGui(
 					new FluidStack(BuiltInRegistries.FLUID.byId(this.menu.fluidStackId), this.menu.fluidAmount),
+					menu.capacity,
 					graphics,
 					leftPos + TANK_X,
-					topPos + TANK_Y + (TANK_HEIGHT - height), // we do this to render from the bottom to the top
+					topPos + TANK_Y,
 					TANK_WIDTH,
-					height
+					TANK_HEIGHT
 			);
 		}
 	}

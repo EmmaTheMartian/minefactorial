@@ -51,7 +51,7 @@ public class ItemWrench extends MFItem {
 		facing = state.getOptionalValue(BlockStateProperties.HORIZONTAL_FACING);
 		if (facing.isPresent()) {
 			if (facing.get() != context.getClickedFace()) {
-				level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.FACING, context.getHorizontalDirection()));
+				level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.HORIZONTAL_FACING, context.getClickedFace()));
 			}
 			return InteractionResult.SUCCESS_NO_ITEM_USED;
 		}

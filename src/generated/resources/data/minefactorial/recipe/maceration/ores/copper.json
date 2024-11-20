@@ -1,0 +1,17 @@
+{
+  "type": "minefactorial:maceration",
+  "craftDuration": 120,
+  "input": {
+    "tag": "c:ores/copper"
+  },
+  "powerPerTick": 2,
+  "results": [
+    {
+      "chance": 1.0,
+      "stack": {
+        "count": 1,
+        "id": "minefactorial:macerated_copper"
+      }
+    }
+  ]
+}

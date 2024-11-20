@@ -30,7 +30,7 @@ public class BlockSteamTurbine extends AbstractBlockWithEntity<BlockSteamTurbine
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Steam Turbine");
+					return state.getBlock().getName();
 				}
 
 				@Override

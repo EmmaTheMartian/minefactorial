@@ -1,10 +1,13 @@
 package martian.minefactorial;
 
 import martian.minefactorial.content.block.logistics.BlockFluidExtractorBE;
-import martian.minefactorial.content.block.storage.BlockCapacitorBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
+import martian.minefactorial.content.block.storage.BlockCapacitorBE;
+import martian.minefactorial.content.net.PacketServerboundSetSmasherFortuneLevel;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.*;
+import martian.minefactorial.foundation.block.AbstractEnergyBE;
+import martian.minefactorial.foundation.block.IInventoryBE;
+import martian.minefactorial.foundation.block.ISingleTankBE;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -16,6 +19,9 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import javax.annotation.Nullable;
 
@@ -55,6 +61,13 @@ final class MinefactorialListeners {
 			// Placer
 			registerEnergyCapability(MFBlockEntityTypes.PLACER.get());
 			registerItemCapability(MFBlockEntityTypes.PLACER.get());
+			// Smasher
+			registerEnergyCapability(MFBlockEntityTypes.SMASHER.get());
+			registerItemCapability(MFBlockEntityTypes.SMASHER.get());
+			registerSingleFluidCapability(MFBlockEntityTypes.SMASHER.get());
+			// Macerator
+			registerEnergyCapability(MFBlockEntityTypes.MACERATOR.get());
+			registerSidedItemCapability(MFBlockEntityTypes.MACERATOR.get());
 
 			////// Power //////
 			// Steam Boiler
@@ -82,6 +95,13 @@ final class MinefactorialListeners {
 			registerItemCapability(MFBlockEntityTypes.STORAGE_UNIT.get());
 
 			registerCapabilitiesEvent = null;
+		}
+
+		@SubscribeEvent
+		static void onRegisterPayloadHandlers(final RegisterPayloadHandlersEvent event) {
+			final PayloadRegistrar registrar = event.registrar("1");
+
+			registrar.playToServer(PacketServerboundSetSmasherFortuneLevel.TYPE, PacketServerboundSetSmasherFortuneLevel.STREAM_CODEC, PacketServerboundSetSmasherFortuneLevel::handle);
 		}
 	}
 
@@ -111,7 +131,12 @@ final class MinefactorialListeners {
 
 	private static <T extends BlockEntity & IInventoryBE> void registerItemCapability(BlockEntityType<T> type) {
 		assert registerCapabilitiesEvent != null;
-		registerCapabilitiesEvent.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, (be, direction) -> be.getInventory());
+		registerCapabilitiesEvent.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, IInventoryBE::getInventory);
+	}
+
+	private static <T extends BlockEntity & IInventoryBE> void registerSidedItemCapability(BlockEntityType<T> type) {
+		assert registerCapabilitiesEvent != null;
+		registerCapabilitiesEvent.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, SidedInvWrapper::new);
 	}
 
 	private static <T extends BlockEntity> void registerItemCapability(BlockEntityType<T> type, ICapabilityProvider<T, Direction, IItemHandler> capabilityProvider) {

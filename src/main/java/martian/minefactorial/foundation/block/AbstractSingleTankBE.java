@@ -6,15 +6,26 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 
 public class AbstractSingleTankBE extends BlockEntity implements ISingleTankBE {
-	private final FluidTank tank;
+	protected final FluidTank tank;
+	protected final int capacity;
 
 	public AbstractSingleTankBE(BlockEntityType<?> type, int capacity, BlockPos pos, BlockState blockState) {
 		super(type, pos, blockState);
-		this.tank = new FluidTank(capacity) {
+		this.capacity = capacity;
+		this.tank = makeFluidTank();
+	}
+
+	protected boolean validate(FluidStack stack) {
+		return true;
+	}
+
+	protected FluidTank makeFluidTank() {
+		return new FluidTank(capacity, this::validate) {
 			@Override
 			public void onContentsChanged() {
 				AbstractSingleTankBE.this.setChanged();

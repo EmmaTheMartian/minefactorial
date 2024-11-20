@@ -35,16 +35,15 @@ public class ScreenSteamTurbine extends AbstractEnergyScreen<BlockSteamTurbineBE
 	public void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
-		int steam = this.menu.getSteamMillibuckets();
-
-		if (steam > 0) {
-			FluidRenderer.renderFluidGui(
-					new FluidStack(MFFluids.STEAM, steam),
+		if (this.menu.getSteamMillibuckets() >= 0) {
+			FluidRenderer.renderFluidTankGui(
+					new FluidStack(MFFluids.STEAM, this.menu.getSteamMillibuckets()),
+					menu.steamCapacity,
 					graphics,
 					leftPos + STEAM_TANK_X,
 					topPos + STEAM_TANK_Y,
 					TANK_WIDTH,
-					(int) (TANK_HEIGHT * ((float) steam / this.menu.steamCapacity))
+					TANK_HEIGHT
 			);
 		}
 	}

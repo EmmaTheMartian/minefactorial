@@ -5,6 +5,7 @@ import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.AbstractGeneratorBE;
 import martian.minefactorial.foundation.block.ISingleTankBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
@@ -29,7 +30,7 @@ public class BlockSteamTurbineBE extends AbstractGeneratorBE implements ISingleT
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		if (tank.getFluidAmount() > STEAM_PER_WORK && this.getMaxEnergy() > this.getEnergyStored()) {
 			tank.drain(STEAM_PER_WORK, IFluidHandler.FluidAction.EXECUTE);
 			this.getEnergyStorage().forceReceiveEnergy(ENERGY_GENERATION_PER_WORK, false);

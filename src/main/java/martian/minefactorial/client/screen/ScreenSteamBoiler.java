@@ -43,31 +43,27 @@ public class ScreenSteamBoiler extends AbstractMFScreen<ContainerSteamBoiler> {
 		int steam = this.menu.getSteamMillibuckets();
 		int burnTicksLeft = this.menu.getBurnTicksLeft();
 
-		if (water > 0) {
-			float filled_percent = ((float) water / this.menu.waterCapacity);
-			int height = (int) (TANK_HEIGHT * filled_percent);
-
-			FluidRenderer.renderFluidGui(
+		if (water >= 0) {
+			FluidRenderer.renderFluidTankGui(
 					new FluidStack(Fluids.WATER, water),
+					menu.waterCapacity,
 					graphics,
 					leftPos + WATER_TANK_X,
-					topPos + WATER_TANK_Y + (TANK_HEIGHT - height), // we do this to render from the bottom to the top
+					topPos + WATER_TANK_Y,
 					TANK_WIDTH,
-					height
+					TANK_HEIGHT
 			);
 		}
 
-		if (steam > 0) {
-			float filled_percent = ((float) steam / this.menu.steamCapacity);
-			int height = (int) (TANK_HEIGHT * filled_percent);
-
-			FluidRenderer.renderFluidGui(
+		if (steam >= 0) {
+			FluidRenderer.renderFluidTankGui(
 					new FluidStack(MFFluids.STEAM, steam),
+					menu.steamCapacity,
 					graphics,
 					leftPos + STEAM_TANK_X,
 					topPos + STEAM_TANK_Y,
 					TANK_WIDTH,
-					height
+					TANK_HEIGHT
 			);
 		}
 

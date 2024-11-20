@@ -5,6 +5,7 @@ import martian.minefactorial.foundation.block.AbstractSingleTankBE;
 import martian.minefactorial.foundation.block.ISingleTankBE;
 import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -20,7 +21,7 @@ public class BlockCreativeTankBE extends AbstractSingleTankBE implements ISingle
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		getTank().fill(new FluidStack(getTank().getFluid().getFluid(), Integer.MAX_VALUE), IFluidHandler.FluidAction.EXECUTE);
 		setChanged();
 	}

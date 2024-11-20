@@ -1,6 +1,8 @@
 package martian.minefactorial.foundation.block;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -40,13 +42,13 @@ public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends Blo
 		if (level.isClientSide) {
 			return (level_, pos, state_, be) -> {
 				if (be instanceof ITickableBE tickableBE) {
-					tickableBE.clientTick();
+					tickableBE.clientTick((ClientLevel) level);
 				}
 			};
 		} else {
 			return (level_, pos, state_, be) -> {
 				if (be instanceof ITickableBE tickableBE) {
-					tickableBE.serverTick();
+					tickableBE.serverTick((ServerLevel) level);
 				}
 			};
 		}

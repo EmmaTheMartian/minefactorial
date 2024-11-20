@@ -53,4 +53,10 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerPlacer>> PLACER =
 			registerSimple("placer", ContainerPlacer::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSmasher>> SMASHER =
+			registerSimple("smasher", ContainerSmasher::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMacerator>> MACERATOR =
+			registerSimple("macerator", ContainerMacerator::new);
 }

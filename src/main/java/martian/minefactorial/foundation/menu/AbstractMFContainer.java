@@ -61,6 +61,23 @@ public abstract class AbstractMFContainer extends AbstractContainerMenu {
 		return index;
 	}
 
+	protected int addOutputSlotRange(Container container, int index, int x, int y, int count, int dx) {
+		for (int i = 0; i < count; i++) {
+			addSlot(new SlotOutputOnly(container, index, x, y));
+			x += dx;
+			index++;
+		}
+		return index;
+	}
+
+	protected int addOutputSlotBox(Container container, int index, int x, int y, int horizontalCount, int verticalCount, int dx, int dy) {
+		for (int i = 0; i < verticalCount; i++) {
+			index = addOutputSlotRange(container, index, x, y, horizontalCount, dx);
+			y += dy;
+		}
+		return index;
+	}
+
 	protected void addPlayerInventorySlots(Container playerInventory, int leftColumn, int topRow) {
 		// Player inventory
 		addSlotBox(playerInventory, 9, leftColumn, topRow, 9, 3, 18, 18);

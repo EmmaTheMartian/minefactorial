@@ -27,12 +27,12 @@ public abstract class AbstractSingleTankAndInventoryMachineBE
 		this.inventory = makeItemStackHandler();
 	}
 
-	protected boolean validate(FluidStack stack) {
+	protected boolean validateFluidStack(FluidStack stack) {
 		return true;
 	}
 
 	protected FluidTank makeFluidTank() {
-		return new FluidTank(tankCapacity, this::validate) {
+		return new FluidTank(tankCapacity, this::validateFluidStack) {
 			@Override
 			public void onContentsChanged() {
 				AbstractSingleTankAndInventoryMachineBE.this.setChanged();
@@ -57,6 +57,11 @@ public abstract class AbstractSingleTankAndInventoryMachineBE
 	@Override
 	public ItemStackHandler getInventory() {
 		return inventory;
+	}
+
+	@Override
+	public boolean shouldEjectItems() {
+		return autoEject;
 	}
 
 	@Override

@@ -1,22 +1,13 @@
 package martian.minefactorial.content.block.redstone;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -28,9 +19,8 @@ public class BlockRedstoneClockBE extends BlockEntity implements ITickableBE {
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		if (--ticksToNextToggle <= 0) {
-			assert level != null;
 			level.setBlockAndUpdate(worldPosition, getBlockState()
 					.setValue(BlockRedstoneClock.POWERED, !getBlockState().getValue(BlockRedstoneClock.POWERED)));
 			ticksToNextToggle = toggleTimeTicks;

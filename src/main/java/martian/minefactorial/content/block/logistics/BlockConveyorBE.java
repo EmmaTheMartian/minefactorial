@@ -2,8 +2,10 @@ package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.ITickableBE;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -35,12 +37,12 @@ public class BlockConveyorBE extends BlockEntity implements ITickableBE {
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		commonTick();
 	}
 
 	@Override
-	public void clientTick() {
+	public void clientTick(ClientLevel level) {
 		commonTick();
 	}
 

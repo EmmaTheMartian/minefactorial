@@ -1,7 +1,7 @@
 {
   "variants": {
     "powered=false": {
-      "model": "minefactorial:block/redstone_clock_on"
+      "model": "minefactorial:block/redstone_clock_off"
     },
     "powered=true": {
       "model": "minefactorial:block/redstone_clock_on"

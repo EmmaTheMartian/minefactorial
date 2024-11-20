@@ -1,10 +1,10 @@
 package martian.minefactorial.foundation.block;
 
-import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -45,7 +45,7 @@ public abstract class AbstractCapacitorBE extends AbstractEnergyBE implements IT
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		if (getEnergyStored() <= 0) {
 			return;
 		}

@@ -1,11 +1,13 @@
 package martian.minefactorial.foundation.block;
 
+import martian.minefactorial.foundation.ArrayHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -19,8 +21,30 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public interface IInventoryBE extends IBE, Container {
+import javax.annotation.Nullable;
+import java.util.Arrays;
+
+public interface IInventoryBE extends IBE, WorldlyContainer {
 	ItemStackHandler getInventory();
+
+	default ItemStackHandler getInventory(Direction side) {
+		return getInventory();
+	}
+
+	@Override
+	default int @NotNull [] getSlotsForFace(@NotNull Direction side) {
+		return ArrayHelpers.rangeOf(getInventory(side).getSlots());
+	}
+
+	@Override
+	default boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStack, Direction direction) {
+		return true;
+	}
+
+	@Override
+	default boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
+		return true;
+	}
 
 	/**
 	 * @return If the inventory is full. This does NOT account for stack sizes.
@@ -95,6 +119,10 @@ public interface IInventoryBE extends IBE, Container {
 		return true;
 	}
 
+	default boolean canEjectSlot(int slot) {
+		return true;
+	}
+
 	default Direction getEjectDirection(BlockState state) {
 		if (state.hasProperty(HorizontalDirectionalBlock.FACING)) {
 			return state.getValue(HorizontalDirectionalBlock.FACING);
@@ -118,6 +146,59 @@ public interface IInventoryBE extends IBE, Container {
 		return slot;
 	}
 
+	/**
+	 * Ejects an ItemStack into the world or into a valid container. This method does not
+	 * care what the ejecting block is. To eject from an IInventoryBE, use one of the
+	 * overloads.
+	 * @param level The level
+	 * @param pos The position of the block ejecting the stack
+	 * @param direction The direction to eject in
+	 * @param toEject The stack to eject
+	 * @return If the stack could not be ejected (i.e, there is a block in the way or the
+	 * container was full), this is the remainder.
+	 */
+	static ItemStack ejectStack(ServerLevel level, BlockPos pos, Direction direction, ItemStack toEject) {
+		// Adapted from net.minecraft.core.dispenser.DefaultDispenseItemBehavior
+		BlockPos ejectBlockPos = pos.relative(direction);
+		Position ejectPos = ejectBlockPos.getCenter();
+
+		if (toEject.isEmpty()) {
+			return ItemStack.EMPTY;
+		}
+
+		// If the block in the eject direction has an item handler, we can try to dump the item into it instantly
+		IItemHandler itemHandler = level.getCapability(Capabilities.ItemHandler.BLOCK, ejectBlockPos, direction);
+		if (itemHandler != null) {
+			ItemStack remainder = insertItemInto(itemHandler, toEject);
+
+			level.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pos, 0);
+			level.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pos, direction.get3DDataValue());
+
+			return remainder;
+		}
+
+		// If the block in the eject direction did not have an item handler and is a full block, we cannot eject
+		if (level.getBlockState(ejectBlockPos).isCollisionShapeFullBlock(level, ejectBlockPos)) {
+			return toEject;
+		}
+
+		// No obstructions, so we can eject the item
+		double yPos = ejectPos.y();
+		if (direction.getAxis() == Direction.Axis.Y) {
+			yPos -= 0.125;
+		} else {
+			yPos -= 0.15625;
+		}
+
+		ItemEntity ie = new ItemEntity(level, ejectPos.x(), yPos, ejectPos.z(), toEject);
+		ie.setDeltaMovement(0, 0, 0);
+		level.addFreshEntity(ie);
+
+		level.levelEvent(LevelEvent.SOUND_DISPENSER_DISPENSE, pos, 0);
+		level.levelEvent(LevelEvent.PARTICLES_SHOOT_SMOKE, pos, direction.get3DDataValue());
+		return ItemStack.EMPTY;
+	}
+
 	static void ejectFrom(ServerLevel level, BlockPos pos, Direction direction, int slot, int maxCount) {
 		if (!(level.getBlockEntity(pos) instanceof IInventoryBE be)) {
 			return;
@@ -125,6 +206,10 @@ public interface IInventoryBE extends IBE, Container {
 
 		int i = slot == -1 ? be.getRandomUsedSlot(level.random) : slot;
 		if (i < 0 || i > be.getInventory().getSlots()) {
+			return;
+		}
+
+		if (!be.canEjectSlot(i)) {
 			return;
 		}
 
@@ -181,9 +266,9 @@ public interface IInventoryBE extends IBE, Container {
 		ejectFrom((ServerLevel) be.getLevel(), be.getBlockPos(), be.getEjectDirection(be.getBlockState()), -1, maxAmount);
 	}
 
-	static ItemStack insertItemInto(IItemHandler itemHandler, ItemStack stack) {
+	static ItemStack insertItemInto(IItemHandler itemHandler, ItemStack stack, int startIndex, int endIndex) {
 		ItemStack copy = stack.copy();
-		for (int i = 0; i < itemHandler.getSlots(); i++) {
+		for (int i = startIndex; i < endIndex; i++) {
 			// Insert the item and yoink the remainder
 			ItemStack remainder = itemHandler.insertItem(i, copy, false);
 			// If the remainder is empty or its count is different from the stack's, then something changed
@@ -195,5 +280,9 @@ public interface IInventoryBE extends IBE, Container {
 			}
 		}
 		return copy;
+	}
+
+	static ItemStack insertItemInto(IItemHandler itemHandler, ItemStack stack) {
+		return insertItemInto(itemHandler, stack, 0, itemHandler.getSlots());
 	}
 }

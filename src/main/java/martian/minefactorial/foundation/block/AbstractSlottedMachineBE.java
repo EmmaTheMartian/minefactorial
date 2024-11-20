@@ -33,6 +33,11 @@ public abstract class AbstractSlottedMachineBE extends AbstractMachineBE impleme
 	}
 
 	@Override
+	public boolean shouldEjectItems() {
+		return autoEject;
+	}
+
+	@Override
 	protected void saveAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
 		super.saveAdditional(tag, registries);
 		tag.put("Inventory", inventory.serializeNBT(registries));

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_raw_plastic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:raw_plastic"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:shaped/decor/plastic_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_raw_plastic"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:shaped/decor/plastic_block"
+    ]
+  }
+}

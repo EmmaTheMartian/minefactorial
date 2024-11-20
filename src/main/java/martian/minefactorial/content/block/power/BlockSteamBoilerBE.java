@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -54,17 +55,17 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 		return steamTank;
 	}
 
+	public ItemStack getHeldStack() {
+		return itemHandler.getStackInSlot(0);
+	}
+
 	@Override
 	public ItemStackHandler getInventory() {
 		return itemHandler;
 	}
 
-	public ItemStack getHeldStack() {
-		return itemHandler.getStackInSlot(0);
-	}
-
-	public void serverTick() {
-		assert level != null;
+	@Override
+	public void serverTick(ServerLevel level) {
 		BlockState state = getBlockState();
 
 		if (burnTicksLeft <= 0) {
@@ -97,7 +98,6 @@ public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInv
 
 		// Automatically push steam up
 		if (getSteamTank().getFluidAmount() > 0) {
-			assert level != null;
 			IFluidHandler fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, worldPosition.above(), Direction.DOWN);
 			if (fluidHandler != null) {
 				fluidHandler.fill(new FluidStack(MFFluids.STEAM, 1), IFluidHandler.FluidAction.EXECUTE);

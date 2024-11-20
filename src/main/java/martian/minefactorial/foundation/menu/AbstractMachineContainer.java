@@ -24,7 +24,7 @@ public abstract class AbstractMachineContainer<T extends BlockEntity> extends Ab
 
 		this.block = block;
 		this.pos = pos;
-		//noinspection unchecked
+		//noinspection unchecked,resource
 		this.blockEntity = (T) (playerInventory.player.level().getBlockEntity(pos));
 	}
 

@@ -27,8 +27,7 @@ public class BlockPlacerBE extends AbstractSlottedMachineBE {
 	}
 
 	@Override
-	public boolean checkForWork() {
-		assert level != null;
+	public boolean checkForWork(ServerLevel level) {
 		BlockPos pos = worldPosition.relative(getFacing());
 		return level.isInWorldBounds(pos) &&
 				level.getBlockState(pos).isAir() &&
@@ -37,8 +36,7 @@ public class BlockPlacerBE extends AbstractSlottedMachineBE {
 	}
 
 	@Override
-	public void doWork() {
-		assert level != null;
+	public void doWork(ServerLevel level) {
 		// This will always be a BlockItem thanks to #checkForWork
 		ItemStack toPlace = getItem(0);
 		// We place using a fake player so that if the block item has specific data to be placed, it'll be used.
@@ -47,7 +45,7 @@ public class BlockPlacerBE extends AbstractSlottedMachineBE {
 		// Technically I could also just copy and paste the code that BlockItem#place uses, but a lot of the methods
 		// are not public, and I would prefer to avoid access wideners for this when a fake player can do the job
 		// perfectly too.
-		FakePlayerHelpers.placeBlockItem((ServerLevel) level, worldPosition.relative(getFacing()), toPlace, getFacing());
+		FakePlayerHelpers.placeBlockItem(level, worldPosition.relative(getFacing()), toPlace, getFacing());
 		setChanged();
 	}
 

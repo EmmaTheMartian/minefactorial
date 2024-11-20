@@ -31,7 +31,7 @@ public class BlockCapacitor extends AbstractBlockWithEntity<BlockCapacitorBE> {
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Capacitor");
+					return state.getBlock().getName();
 				}
 
 				@Override

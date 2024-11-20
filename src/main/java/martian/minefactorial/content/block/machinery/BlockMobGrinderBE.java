@@ -4,9 +4,9 @@ import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
 import martian.minefactorial.foundation.ArgLazy;
 import martian.minefactorial.foundation.block.AbstractZonedSingleTankAndInventoryMachineBE;
+import martian.minefactorial.foundation.entity.IMixinLivingEntity;
 import martian.minefactorial.foundation.fluid.FluidHelpers;
 import martian.minefactorial.foundation.item.MFItemStackHandler;
-import martian.minefactorial.foundation.entity.IMixinLivingEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -63,28 +63,25 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 	}
 
 	@Override
-	protected boolean validate(FluidStack stack) {
+	protected boolean validateFluidStack(FluidStack stack) {
 		return stack.is(MFFluids.ESSENCE);
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		FluidHelpers.tryDistributeFluid(level, this);
-		super.serverTick();
+		super.serverTick(level);
 	}
 
 	@Override
-	public boolean checkForWork() {
+	public boolean checkForWork(ServerLevel level) {
 		return getTank().getFluidAmount() < getTankCapacity() &&
 				!isInventoryFull() &&
 				getFirstEntityInWorkZone(LivingEntity.class, IS_ADULT_ANIMAL).isPresent();
 	}
 
 	@Override
-	public void doWork() {
-		assert level != null;
-		ServerLevel serverLevel = (ServerLevel) level;
-
+	public void doWork(ServerLevel level) {
 		Optional<LivingEntity> optionalEntity = getFirstEntityInWorkZone(LivingEntity.class, IS_ADULT_ANIMAL);
 		if (optionalEntity.isEmpty()) {
 			return;
@@ -100,11 +97,10 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 		entity.hurt(DAMAGE_SOURCE.get(level), Float.MAX_VALUE);
 
 		// Item output
-		assert level.getServer() != null;
 		Collection<ItemStack> items = level.getServer()
 				.reloadableRegistries()
 				.getLootTable(entity.getLootTable())
-				.getRandomItems(new LootParams.Builder(serverLevel).create(LootContextParamSet.builder().build()));
+				.getRandomItems(new LootParams.Builder(level).create(LootContextParamSet.builder().build()));
 		if (!items.isEmpty()) {
 			// Simulate item inserts. If this fails then we won't collect the remainder items
 			AtomicBoolean hasStorageForItems = new AtomicBoolean(true);
@@ -121,7 +117,7 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 
 		// Essence output
 		if (entity.shouldDropExperience()) {
-			int reward = entity.getExperienceReward(serverLevel, null) * 10;
+			int reward = entity.getExperienceReward(level, null) * 10;
 			if (reward > 0) {
 				FluidStack stack = new FluidStack(MFFluids.ESSENCE, reward);
 				if (getTank().fill(stack, IFluidHandler.FluidAction.SIMULATE) == reward) {

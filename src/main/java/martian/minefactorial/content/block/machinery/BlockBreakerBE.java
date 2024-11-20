@@ -28,8 +28,7 @@ public class BlockBreakerBE extends AbstractSlottedMachineBE {
 	}
 
 	@Override
-	public boolean checkForWork() {
-		assert level != null;
+	public boolean checkForWork(ServerLevel level) {
 		BlockPos pos = worldPosition.relative(getFacing());
 		BlockState state = level.getBlockState(pos);
 		return level.isInWorldBounds(pos) &&
@@ -38,8 +37,7 @@ public class BlockBreakerBE extends AbstractSlottedMachineBE {
 	}
 
 	@Override
-	public void doWork() {
-		assert level != null;
+	public void doWork(ServerLevel level) {
 		BlockPos pos = worldPosition.relative(getFacing());
 		// Iterate over the block's drops and add the drops to the breaker's inventory. If the item does not fit, we
 		// instead will drop it in the world.

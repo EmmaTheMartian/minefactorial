@@ -15,6 +15,7 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFItems.MEGA_STRAW.basicHandheldModel()
 		MFItems.WRENCH.basicHandheldModel()
 		MFItems.TREE_TAP.basicHandheldModel()
+		MFItems.SCREWDRIVER.basicHandheldModel()
 
 		// Resources
 		MFItems.RAW_RUBBER.basicModel()
@@ -22,6 +23,20 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFItems.RAW_PLASTIC.basicModel()
 		MFItems.PLASTIC_INGOT.basicModel()
 		MFItems.PLASTIC_SHEETS.basicModel()
+
+		MFItems.ORE_DUSTS.get("coal_dust").basicModel()
+		MFItems.ORE_DUSTS.get("iron_dust").basicModel()
+		MFItems.ORE_DUSTS.get("copper_dust").basicModel()
+		MFItems.ORE_DUSTS.get("gold_dust").basicModel()
+		MFItems.ORE_DUSTS.get("diamond_dust").basicModel()
+		MFItems.ORE_DUSTS.get("ancient_debris_dust").basicModel()
+
+		MFItems.MACERATED_ORES.get("macerated_coal").basicModel()
+		MFItems.MACERATED_ORES.get("macerated_iron").basicModel()
+		MFItems.MACERATED_ORES.get("macerated_copper").basicModel()
+		MFItems.MACERATED_ORES.get("macerated_gold").basicModel()
+		MFItems.MACERATED_ORES.get("macerated_diamond").basicModel()
+		MFItems.MACERATED_ORES.get("macerated_ancient_debris").basicModel()
 
 		// Buckets
 		MFFluids.STEAM_BUCKET.basicModel()

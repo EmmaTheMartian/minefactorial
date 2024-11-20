@@ -4,6 +4,7 @@ import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.AbstractCapacitorBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
@@ -30,8 +31,8 @@ public class BlockCreativeCapacitorBE extends AbstractCapacitorBE {
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		this.getEnergyStorage().forceReceiveEnergy(Integer.MAX_VALUE, false);
-		super.serverTick();
+		super.serverTick(level);
 	}
 }

@@ -12,6 +12,8 @@ block.minefactorial:
   fountain: Fountain
   pump: Pump
   placer: Placer
+  smasher: Smasher
+  macerator: Macerator
 
   # Power
   steam_boiler: Steam Boiler
@@ -61,6 +63,8 @@ item.minefactorial:
   wrench.desc.0: Rotates blocks
   tree_tap: Tree Tap
   tree_tap.desc.0: Use on Rubber Wood to obtain Raw Rubber
+  screwdriver: Screwdriver
+  screwdriver.desc.0: Use on machinery to toggle auto-eject
 
   raw_rubber: Raw Rubber
   raw_rubber.desc.0: Obtain by using a Tree Tap on Rubber Wood
@@ -68,6 +72,20 @@ item.minefactorial:
   raw_plastic: Raw Plastic
   plastic_ingot: Plastic Ingot
   plastic_sheets: Plastic Sheets
+
+  macerated_coal: Macerated Coal
+  macerated_copper: Macerated Copper
+  macerated_iron: Macerated Iron
+  macerated_gold: Macerated Gold
+  macerated_diamond: Macerated Diamond
+  macerated_ancient_debris: Macerated Ancient Debris
+
+  coal_dust: Coal Dust
+  copper_dust: Copper Dust
+  iron_dust: Iron Dust
+  gold_dust: Gold Dust
+  diamond_dust: Diamond Dust
+  ancient_debris_dust: Ancient Debris Dust
 
   steam_bucket: Steam Bucket
   oil_bucket: Oil Bucket
@@ -82,3 +100,17 @@ itemGroup.minefactorial.name: MineFactorial
 
 messages.minefactorial:
   set_ticks_to: "Set ticks to %d."
+  enabled_auto_eject: "Enabled Auto Eject"
+  disabled_auto_eject: "Disabled Auto Eject"
+
+emi.category.minefactorial:
+  maceration: Maceration
+
+tag:
+  item.c:
+    ingots.plastic: Plastic Ingots
+    ingots.rubber: Rubber Ingots
+
+    plates.plastic: Plastic Plates
+
+    macerated_ores: Macerated Ores

@@ -4,6 +4,7 @@ import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.AbstractSingleTankMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
@@ -21,8 +22,7 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 		return getBlockPos().relative(getBlockState().getValue(BlockPump.FACING));
 	}
 
-	protected FluidState getTargetFluidState() {
-		assert level != null;
+	protected FluidState getTargetFluidState(ServerLevel level) {
 		return level.getFluidState(getTargetPos());
 	}
 
@@ -32,9 +32,8 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 	}
 
 	@Override
-	public void serverTick() {
+	public void serverTick(ServerLevel level) {
 		if (getTank().getFluidAmount() > 0) {
-			assert level != null;
 			Direction direction = getBlockState().getValue(BlockPump.FACING).getOpposite();
 			IFluidHandler fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, getBlockPos().relative(direction), direction);
 			if (fluidHandler != null) {
@@ -45,19 +44,18 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 			}
 		}
 
-		super.serverTick();
+		super.serverTick(level);
 	}
 
 	@Override
-	public boolean checkForWork() {
+	public boolean checkForWork(ServerLevel level) {
 		return getTank().getSpace() >= 1000 && // Make sure we have at least 1000mB of fluid storage available
-				!getTargetFluidState().is(Fluids.EMPTY); // Make sure the fluid in front of the pump actually exists
+				!getTargetFluidState(level).is(Fluids.EMPTY); // Make sure the fluid in front of the pump actually exists
 	}
 
 	@Override
-	public void doWork() {
-		assert level != null;
-		getTank().fill(new FluidStack(getTargetFluidState().getType(), 1000), IFluidHandler.FluidAction.EXECUTE);
+	public void doWork(ServerLevel level) {
+		getTank().fill(new FluidStack(getTargetFluidState(level).getType(), 1000), IFluidHandler.FluidAction.EXECUTE);
 		level.setBlockAndUpdate(getTargetPos(), Blocks.AIR.defaultBlockState());
 	}
 }

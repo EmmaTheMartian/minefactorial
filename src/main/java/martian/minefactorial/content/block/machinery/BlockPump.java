@@ -62,7 +62,7 @@ public class BlockPump extends AbstractBlockWithEntity<BlockPumpBE> {
 			player.openMenu(new MenuProvider() {
 				@Override
 				public @NotNull Component getDisplayName() {
-					return Component.literal("Pump");
+					return state.getBlock().getName();
 				}
 
 				@Override
