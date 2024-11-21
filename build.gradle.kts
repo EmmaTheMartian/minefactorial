@@ -56,7 +56,12 @@ base {
     archivesName = prop("mod_id")
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+    withJavadocJar()
+}
+
 kotlin.compilerOptions.jvmTarget = JvmTarget.JVM_21
 
 sourceSets {

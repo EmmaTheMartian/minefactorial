@@ -120,3 +120,6 @@ runs/
 
 # Generated resources cache
 src/generated/resources/.cache/
+
+# Allow published jars
+!/repo/**/**.jar
