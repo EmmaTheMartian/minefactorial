@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/foliage/rubber_wood_with_rubber",
+    "east": "minefactorial:block/foliage/rubber_wood_with_rubber",
+    "north": "minefactorial:block/foliage/rubber_wood_end",
+    "particle": "minefactorial:block/foliage/rubber_wood_with_rubber",
+    "south": "minefactorial:block/foliage/rubber_wood_end",
+    "up": "minefactorial:block/foliage/rubber_wood_with_rubber",
+    "west": "minefactorial:block/foliage/rubber_wood_with_rubber"
+  }
+}

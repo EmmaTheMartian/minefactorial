@@ -3,12 +3,12 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractMachineContainer;
+import martian.minefactorial.foundation.menu.AbstractEnergyContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.DataSlot;
 
-public class ContainerSteamTurbine extends AbstractMachineContainer<BlockSteamTurbineBE> {
+public class ContainerSteamTurbine extends AbstractEnergyContainer<BlockSteamTurbineBE> {
 	public final int steamCapacity;
 	protected int steamMillibuckets;
 

@@ -2,10 +2,6 @@
 	"feature": "minefactorial:rubber_tree",
 	"placement": [
 		{
-			"type": "minecraft:count",
-			"count": 1
-		},
-		{
 			"type": "minecraft:in_square"
 		},
 		{
@@ -30,6 +26,20 @@
 					}
 				}
 			}
+		},
+		{
+			"type": "minecraft:random_offset",
+			"xz_spread": 3,
+			"y_spread": 0
+		},
+		{
+			"type": "minecraft:rarity_filter",
+			"chance": 2
+		},
+		{
+			"type": "minecraft:noise_based_count",
+			"noise_to_count_ratio": 1,
+			"noise_factor": 0
 		}
 	]
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "facing=east,running=false": {
-      "model": "minefactorial:block/macerator_running",
+      "model": "minefactorial:block/macerator_not_running",
       "y": 90
     },
     "facing=east,running=true": {
@@ -9,13 +9,13 @@
       "y": 90
     },
     "facing=north,running=false": {
-      "model": "minefactorial:block/macerator_running"
+      "model": "minefactorial:block/macerator_not_running"
     },
     "facing=north,running=true": {
       "model": "minefactorial:block/macerator_running"
     },
     "facing=south,running=false": {
-      "model": "minefactorial:block/macerator_running",
+      "model": "minefactorial:block/macerator_not_running",
       "y": 180
     },
     "facing=south,running=true": {
@@ -23,7 +23,7 @@
       "y": 180
     },
     "facing=west,running=false": {
-      "model": "minefactorial:block/macerator_running",
+      "model": "minefactorial:block/macerator_not_running",
       "y": 270
     },
     "facing=west,running=true": {

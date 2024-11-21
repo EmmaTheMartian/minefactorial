@@ -126,7 +126,7 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				.up(machineId("macerator_top"))
 				.north(machineId("macerator_side"))
 				.south(itemOutputSide)
-				.build("macerator_running", models())
+				.build("macerator_not_running", models())
 
 			MFBlocks.MACERATOR.get().stateDefinition.possibleStates.forEach { state ->
 				val direction = state.getValue(BlockMacerator.FACING);
@@ -163,35 +163,55 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				.side(blockId("foliage/rubber_wood_with_rubber"))
 				.build("rubber_wood_vertical_with_rubber", models())
 			val modelHorizontalWithRubber = CubeModel()
-				.withParent(modelVertical.uncheckedLocation)
-				.side(blockId("foliage/rubber_wood_with_rubber"))
-				.build("rubber_wood_vertical_with_rubber", models())
+				.all(blockId("foliage/rubber_wood_with_rubber"))
+				.north(blockId("foliage/rubber_wood_end"))
+				.south(blockId("foliage/rubber_wood_end"))
+				.build("rubber_wood_horizontal_with_rubber", models())
 
-			// Iterate through each possible block state for rubber wood...
-			setOf(
-				Direction.Axis.X to true,
-				Direction.Axis.X to false,
-				Direction.Axis.Y to true,
-				Direction.Axis.Y to false,
-				Direction.Axis.Z to true,
-				Direction.Axis.Z to false,
-			).forEach { pair ->
-				// ...then data generate a state for it
-				partialState()
-					.with(RotatedPillarBlock.AXIS, pair.first)
-					.with(BlockRubberWood.HAS_RUBBER, pair.second)
-					.modelForState()
-					.modelFile(if (pair.second) {
-						if (pair.first.isHorizontal)
-							modelHorizontalWithRubber
-						else modelVerticalWithRubber
-					} else {
-						if (pair.first.isHorizontal)
-							modelHorizontal
-						else modelVertical
-					})
-					.addModel()
-			}
+			partialState()
+				// Non-rubbery variants
+				.with(BlockRubberWood.HAS_RUBBER, false)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+				.modelForState()
+				.modelFile(modelVertical)
+				.addModel()
+				.partialState()
+				.with(BlockRubberWood.HAS_RUBBER, false)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+				.modelForState()
+				.modelFile(modelHorizontal)
+				.rotationX(90)
+				.addModel()
+				.partialState()
+				.with(BlockRubberWood.HAS_RUBBER, false)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+				.modelForState()
+				.modelFile(modelHorizontal)
+				.rotationX(90)
+				.rotationY(90)
+				.addModel()
+				// Rubbery variants
+				.partialState()
+				.with(BlockRubberWood.HAS_RUBBER, true)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+				.modelForState()
+				.modelFile(modelVerticalWithRubber)
+				.addModel()
+				.partialState()
+				.with(BlockRubberWood.HAS_RUBBER, true)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+				.modelForState()
+				.modelFile(modelHorizontalWithRubber)
+				.rotationX(90)
+				.addModel()
+				.partialState()
+				.with(BlockRubberWood.HAS_RUBBER, true)
+				.with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+				.modelForState()
+				.modelFile(modelHorizontalWithRubber)
+				.rotationX(90)
+				.rotationY(90)
+				.addModel()
 
 			simpleBlockItem(MFBlocks.RUBBER_WOOD.get(), modelVertical)
 		}

@@ -2,13 +2,13 @@ package martian.minefactorial.foundation.client.screen;
 
 import martian.minefactorial.foundation.Mathematics;
 import martian.minefactorial.foundation.block.AbstractEnergyBE;
-import martian.minefactorial.foundation.menu.AbstractMachineContainer;
+import martian.minefactorial.foundation.menu.AbstractEnergyContainer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractEnergyScreen<T extends AbstractEnergyBE, U extends AbstractMachineContainer<T>>
+public abstract class AbstractEnergyScreen<T extends AbstractEnergyBE, U extends AbstractEnergyContainer<T>>
 		extends AbstractMFScreen<U>
 {
 	public static final int
@@ -22,8 +22,6 @@ public abstract class AbstractEnergyScreen<T extends AbstractEnergyBE, U extends
 	@Override
 	public void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
-
-		assert this.menu.blockEntity != null;
 
 		float power_percent = (float) this.menu.getPower() / (float) this.menu.blockEntity.getMaxEnergy();
 		if (power_percent > 0) {
@@ -42,8 +40,6 @@ public abstract class AbstractEnergyScreen<T extends AbstractEnergyBE, U extends
 		super.render(graphics, mouseX, mouseY, partialTick);
 
 		// Render energy tooltip
-		assert this.menu.blockEntity != null;
-//		if (hasEnergy && mouseX >= leftPos + ENERGY_BAR_X && mouseX < leftPos + ENERGY_BAR_X + BAR_WIDTH && mouseY >= topPos + ENERGY_BAR_Y && mouseY < topPos + ENERGY_BAR_Y + BAR_HEIGHT) {
 		if (Mathematics.pointWithinRectangle(mouseX, mouseY, leftPos + ENERGY_BAR_X, topPos + ENERGY_BAR_Y, BAR_WIDTH, BAR_HEIGHT)) {
 			graphics.renderTooltip(this.font, Component.literal(this.menu.getPower() + "/" + this.menu.blockEntity.getMaxEnergy() + " FE"), mouseX, mouseY);
 		}

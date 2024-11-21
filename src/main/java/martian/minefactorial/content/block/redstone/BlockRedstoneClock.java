@@ -23,6 +23,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockRedstoneClock extends AbstractBlockWithEntity<BlockRedstoneClockBE> {
 	public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+	public static final int TIME_MIN = 5, TIME_MAX = 240;
 
 	public BlockRedstoneClock(Properties properties) {
 		super(BlockRedstoneClockBE::new, properties);
@@ -53,13 +54,26 @@ public class BlockRedstoneClock extends AbstractBlockWithEntity<BlockRedstoneClo
 
 	@Override
 	@ParametersAreNonnullByDefault
+	protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+		boolean hasSignal = level.getDirectSignalTo(pos) > 0;
+		if (level.getBlockEntity(pos) instanceof BlockRedstoneClockBE be) {
+			if (be.locked != hasSignal) {
+				be.locked = hasSignal;
+				be.ticksToNextToggle = be.toggleTimeTicks;
+				be.setChanged();
+			}
+		}
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
 	public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (level.getBlockEntity(pos) instanceof BlockRedstoneClockBE redstoneClockBE) {
-			if (player.isCrouching()) {
-				redstoneClockBE.toggleTimeTicks -= 5;
-			} else {
-				redstoneClockBE.toggleTimeTicks += 5;
-			}
+			redstoneClockBE.toggleTimeTicks = Math.clamp(
+					redstoneClockBE.toggleTimeTicks + (player.isCrouching() ? -5 : 5),
+					TIME_MIN,
+					TIME_MAX
+			);
 			redstoneClockBE.ticksToNextToggle = redstoneClockBE.toggleTimeTicks;
 			if (!level.isClientSide) {
 				player.sendSystemMessage(Component.translatable("messages.minefactorial.set_ticks_to", redstoneClockBE.ticksToNextToggle));

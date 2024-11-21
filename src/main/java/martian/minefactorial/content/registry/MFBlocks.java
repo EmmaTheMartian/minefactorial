@@ -84,8 +84,7 @@ public final class MFBlocks {
 					.mapColor(MapColor.METAL)
 					.isSuffocating(MFBlocks::never)
 					.noOcclusion()
-					.noCollission()
-					.instabreak(),
+					.noCollission(),
 			WOOD_PROPS = BlockBehaviour.Properties.of()
 					.mapColor(MapColor.WOOD)
 					.instrument(NoteBlockInstrument.BASS)

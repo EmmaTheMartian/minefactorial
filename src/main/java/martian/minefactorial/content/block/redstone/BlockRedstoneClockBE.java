@@ -13,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockRedstoneClockBE extends BlockEntity implements ITickableBE {
 	public int toggleTimeTicks = 20, ticksToNextToggle = toggleTimeTicks;
+	public boolean locked = false;
 
 	public BlockRedstoneClockBE(BlockPos pos, BlockState blockState) {
 		super(MFBlockEntityTypes.REDSTONE_CLOCK.get(), pos, blockState);
@@ -20,7 +21,7 @@ public class BlockRedstoneClockBE extends BlockEntity implements ITickableBE {
 
 	@Override
 	public void serverTick(ServerLevel level) {
-		if (--ticksToNextToggle <= 0) {
+		if (!locked && --ticksToNextToggle <= 0) {
 			level.setBlockAndUpdate(worldPosition, getBlockState()
 					.setValue(BlockRedstoneClock.POWERED, !getBlockState().getValue(BlockRedstoneClock.POWERED)));
 			ticksToNextToggle = toggleTimeTicks;
@@ -39,6 +40,10 @@ public class BlockRedstoneClockBE extends BlockEntity implements ITickableBE {
 		if (tag.contains("TicksToNextToggle")) {
 			ticksToNextToggle = tag.getInt("TicksToNextToggle");
 		}
+
+		if (tag.contains("Locked")) {
+			locked = tag.getBoolean("Locked");
+		}
 	}
 
 	@Override
@@ -48,5 +53,6 @@ public class BlockRedstoneClockBE extends BlockEntity implements ITickableBE {
 
 		tag.putInt("ToggleTimeTicks", toggleTimeTicks);
 		tag.putInt("TicksToNextToggle", ticksToNextToggle);
+		tag.putBoolean("Locked", locked);
 	}
 }

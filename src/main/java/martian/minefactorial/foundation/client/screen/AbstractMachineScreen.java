@@ -22,6 +22,7 @@ public abstract class AbstractMachineScreen<T extends AbstractMachineBE, U exten
 
 	protected boolean hasWork = true, hasIdle = true;
 
+
 	protected AbstractMachineScreen(U menu, Inventory playerInventory, Component title) {
 		super(menu, playerInventory, title);
 	}
@@ -34,25 +35,23 @@ public abstract class AbstractMachineScreen<T extends AbstractMachineBE, U exten
 	public void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
-		assert this.menu.blockEntity != null;
-
-		float work_percent = (float) this.menu.getWork() / (float) this.menu.blockEntity.getMaxWork();
-		if (work_percent > 0) {
+		float workPercent = (float) this.menu.getWork() / (float) this.menu.getMaxWork();
+		if (workPercent > 0) {
 			graphics.fill(
 					leftPos + WORK_BAR_X + 1,
 					topPos + WORK_BAR_Y + 1,
-					leftPos + WORK_BAR_X + (int) (work_percent * BAR_WIDTH) - 1,
+					leftPos + WORK_BAR_X + (int) (workPercent * BAR_WIDTH) - 1,
 					topPos + WORK_BAR_Y + BAR_HEIGHT - 1,
 					0xFF3CD05B
 			);
 		}
 
-		float idle_percent = (float) this.menu.getIdle() / (float) this.menu.blockEntity.getIdleTime();
-		if (idle_percent > 0) {
+		float idlePercent = (float) this.menu.getIdle() / (float) this.menu.getIdleTime();
+		if (idlePercent > 0) {
 			graphics.fill(
 					leftPos + IDLE_BAR_X + 1,
 					topPos + IDLE_BAR_Y + 1,
-					leftPos + IDLE_BAR_X + (int) (idle_percent * BAR_WIDTH) - 1,
+					leftPos + IDLE_BAR_X + (int) (idlePercent * BAR_WIDTH) - 1,
 					topPos + IDLE_BAR_Y + BAR_HEIGHT - 1,
 					0xFF3C7ED0
 			);
@@ -64,12 +63,10 @@ public abstract class AbstractMachineScreen<T extends AbstractMachineBE, U exten
 		super.render(graphics, mouseX, mouseY, partialTick);
 
 		// Render work and idle tooltips
-		assert this.menu.blockEntity != null;
-
 		if (hasWork && Mathematics.pointWithinRectangle(mouseX, mouseY, leftPos + WORK_BAR_X, topPos + WORK_BAR_Y, BAR_WIDTH, BAR_HEIGHT)) {
-			graphics.renderTooltip(this.font, Component.literal(this.menu.getWork() + "/" + this.menu.blockEntity.getMaxWork() + " Work"), mouseX, mouseY);
+			graphics.renderTooltip(this.font, Component.literal(this.menu.getWork() + "/" + this.menu.getMaxWork() + " Work"), mouseX, mouseY);
 		} else if (hasIdle && Mathematics.pointWithinRectangle(mouseX, mouseY, leftPos + IDLE_BAR_X, topPos + IDLE_BAR_Y, BAR_WIDTH, BAR_HEIGHT)) {
-			graphics.renderTooltip(this.font, Component.literal(this.menu.getIdle() + "/" + this.menu.blockEntity.getIdleTime() + " Idle"), mouseX, mouseY);
+			graphics.renderTooltip(this.font, Component.literal(this.menu.getIdle() + "/" + this.menu.getIdleTime() + " Idle"), mouseX, mouseY);
 		}
 	}
 }

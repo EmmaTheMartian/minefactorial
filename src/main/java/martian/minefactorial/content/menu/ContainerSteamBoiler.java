@@ -3,20 +3,18 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractMachineContainer;
+import martian.minefactorial.foundation.menu.AbstractBlockEntityContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.DataSlot;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
-public class ContainerSteamBoiler extends AbstractMachineContainer<BlockSteamBoilerBE> {
+public class ContainerSteamBoiler extends AbstractBlockEntityContainer<BlockSteamBoilerBE> {
 	public final int waterCapacity, steamCapacity;
 	protected int waterMillibuckets, steamMillibuckets, burnTicksLeft, totalBurnTicksForFuel;
 
 	public ContainerSteamBoiler(int containerId, Inventory playerInventory, BlockPos pos) {
 		super(MFMenuTypes.STEAM_BOILER.get(), MFBlocks.STEAM_BOILER.get(), BlockSteamBoilerBE.SLOT_COUNT, containerId, playerInventory, pos);
-
-		assert this.blockEntity != null;
 
 		this.waterCapacity = this.blockEntity.getWaterTank().getCapacity();
 		addDataSlot(new DataSlot() {
