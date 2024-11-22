@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minefactorial:item/suspicious_stew_bucket"
+  }
+}

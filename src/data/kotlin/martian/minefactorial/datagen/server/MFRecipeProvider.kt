@@ -1,6 +1,5 @@
 package martian.minefactorial.datagen.server
 
-import martian.minefactorial.content.registry.MFItems
 import martian.dapper.api.server.recipe.DapperRecipeProvider
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.pattern2x2
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.shapedRecipeBuilder
@@ -11,6 +10,7 @@ import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.smeltsTo
 import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.unlockWith
 import martian.minefactorial.content.MFTags
 import martian.minefactorial.content.registry.MFBlocks
+import martian.minefactorial.content.registry.MFItems
 import martian.minefactorial.datagen.id
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMaceration
 import net.minecraft.tags.ItemTags

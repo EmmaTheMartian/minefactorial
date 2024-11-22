@@ -66,8 +66,8 @@ public final class MFFluids {
 			MFFluids.OIL,
 			MFFluids.OIL_FLOWING
 	)
-			.slopeFindDistance(2)
-			.levelDecreasePerBlock(1)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
 			.block(MFFluids.OIL_BLOCK)
 			.bucket(MFFluids.OIL_BUCKET);
 
@@ -86,4 +86,84 @@ public final class MFFluids {
 			.levelDecreasePerBlock(1)
 			.block(MFFluids.ESSENCE_BLOCK)
 			.bucket(MFFluids.ESSENCE_BUCKET);
+
+	// Beetroot Soup
+	public static DeferredHolder<Fluid, FlowingFluid> BEETROOT_SOUP = registerSource("beetroot_soup", () -> MFFluids.BEETROOT_SOUP_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> BEETROOT_SOUP_FLOWING = registerFlowing("beetroot_soup_flowing", () -> MFFluids.BEETROOT_SOUP_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> BEETROOT_SOUP_BLOCK = registerBlock("beetroot_soup", MFFluids.BEETROOT_SOUP);
+	public static DeferredItem<BucketItem> BEETROOT_SOUP_BUCKET = registerBucket("beetroot_soup_bucket", MFFluids.BEETROOT_SOUP);
+
+	public static BaseFlowingFluid.Properties BEETROOT_SOUP_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.BEETROOT_SOUP,
+			MFFluids.BEETROOT_SOUP,
+			MFFluids.BEETROOT_SOUP_FLOWING
+	)
+			.slopeFindDistance(2)
+			.levelDecreasePerBlock(1)
+			.block(MFFluids.BEETROOT_SOUP_BLOCK)
+			.bucket(MFFluids.BEETROOT_SOUP_BUCKET);
+
+	// Mushroom Stew
+	public static DeferredHolder<Fluid, FlowingFluid> MUSHROOM_STEW = registerSource("mushroom_stew", () -> MFFluids.MUSHROOM_STEW_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> MUSHROOM_STEW_FLOWING = registerFlowing("mushroom_stew_flowing", () -> MFFluids.MUSHROOM_STEW_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> MUSHROOM_STEW_BLOCK = registerBlock("mushroom_stew", MFFluids.MUSHROOM_STEW);
+	public static DeferredItem<BucketItem> MUSHROOM_STEW_BUCKET = registerBucket("mushroom_stew_bucket", MFFluids.MUSHROOM_STEW);
+
+	public static BaseFlowingFluid.Properties MUSHROOM_STEW_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.MUSHROOM_STEW,
+			MFFluids.MUSHROOM_STEW,
+			MFFluids.MUSHROOM_STEW_FLOWING
+	)
+			.slopeFindDistance(2)
+			.levelDecreasePerBlock(1)
+			.block(MFFluids.MUSHROOM_STEW_BLOCK)
+			.bucket(MFFluids.MUSHROOM_STEW_BUCKET);
+
+	// Suspicious Stew
+	public static DeferredHolder<Fluid, FlowingFluid> SUSPICIOUS_STEW = registerSource("suspicious_stew", () -> MFFluids.SUSPICIOUS_STEW_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> SUSPICIOUS_STEW_FLOWING = registerFlowing("suspicious_stew_flowing", () -> MFFluids.SUSPICIOUS_STEW_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> SUSPICIOUS_STEW_BLOCK = registerBlock("suspicious_stew", MFFluids.SUSPICIOUS_STEW);
+	public static DeferredItem<BucketItem> SUSPICIOUS_STEW_BUCKET = registerBucket("suspicious_stew_bucket", MFFluids.SUSPICIOUS_STEW);
+
+	public static BaseFlowingFluid.Properties SUSPICIOUS_STEW_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.SUSPICIOUS_STEW,
+			MFFluids.SUSPICIOUS_STEW,
+			MFFluids.SUSPICIOUS_STEW_FLOWING
+	)
+			.slopeFindDistance(2)
+			.levelDecreasePerBlock(1)
+			.block(MFFluids.SUSPICIOUS_STEW_BLOCK)
+			.bucket(MFFluids.SUSPICIOUS_STEW_BUCKET);
+
+	// Rabbit Stew
+	public static DeferredHolder<Fluid, FlowingFluid> RABBIT_STEW = registerSource("rabbit_stew", () -> MFFluids.RABBIT_STEW_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> RABBIT_STEW_FLOWING = registerFlowing("rabbit_stew_flowing", () -> MFFluids.RABBIT_STEW_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> RABBIT_STEW_BLOCK = registerBlock("rabbit_stew", MFFluids.RABBIT_STEW);
+	public static DeferredItem<BucketItem> RABBIT_STEW_BUCKET = registerBucket("rabbit_stew_bucket", MFFluids.RABBIT_STEW);
+
+	public static BaseFlowingFluid.Properties RABBIT_STEW_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.RABBIT_STEW,
+			MFFluids.RABBIT_STEW,
+			MFFluids.RABBIT_STEW_FLOWING
+	)
+			.slopeFindDistance(2)
+			.levelDecreasePerBlock(1)
+			.block(MFFluids.RABBIT_STEW_BLOCK)
+			.bucket(MFFluids.RABBIT_STEW_BUCKET);
+
+	// Honey
+	public static DeferredHolder<Fluid, FlowingFluid> HONEY = registerSource("honey", () -> MFFluids.HONEY_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> HONEY_FLOWING = registerFlowing("honey_flowing", () -> MFFluids.HONEY_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> HONEY_BLOCK = registerBlock("honey", MFFluids.HONEY);
+	public static DeferredItem<BucketItem> HONEY_BUCKET = registerBucket("honey_bucket", MFFluids.HONEY);
+
+	public static BaseFlowingFluid.Properties HONEY_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.HONEY,
+			MFFluids.HONEY,
+			MFFluids.HONEY_FLOWING
+	)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
+			.block(MFFluids.HONEY_BLOCK)
+			.bucket(MFFluids.HONEY_BUCKET);
 }

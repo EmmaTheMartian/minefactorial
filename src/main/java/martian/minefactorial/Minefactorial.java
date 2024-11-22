@@ -5,10 +5,12 @@ import martian.minefactorial.client.MinefactorialClient;
 import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.registry.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.Foods;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -49,15 +51,28 @@ public class Minefactorial {
 		MFRecipeSerializers.REGISTRY.register(modBus);
 
 		// Add Straw actions
-		MFStrawActions.add(FluidTags.WATER, player -> player.heal(2));
+		MFStrawActions.add(FluidTags.WATER, player -> {
+			player.heal(2);
+			if (player.isOnFire()) {
+				player.extinguishFire();
+			}
+		});
 		MFStrawActions.add(FluidTags.LAVA, player -> player.setRemainingFireTicks(200));
 		MFStrawActions.add(Tags.Fluids.MILK, player -> player.removeEffectsCuredBy(EffectCures.MILK));
 		MFStrawActions.add(stack -> stack.is(MFTags.Fluids.OIL) || stack.is(MFTags.Fluids.CRUDE_OIL), player -> {
-			player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 300, 3));
-			player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 300, 2));
-			player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 300, 1));
-			player.addEffect(new MobEffectInstance(MobEffects.WITHER, 300, 1));
+			if (player instanceof ServerPlayer) {
+				player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 300, 3));
+				player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 300, 2));
+				player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 300, 1));
+				player.addEffect(new MobEffectInstance(MobEffects.WITHER, 300, 1));
+			}
 		});
+		MFStrawActions.add(Tags.Fluids.EXPERIENCE, player -> player.giveExperiencePoints(100));
+		MFStrawActions.add(Tags.Fluids.BEETROOT_SOUP, player -> MFStrawActions.eat(Foods.BEETROOT_SOUP, player));
+		MFStrawActions.add(Tags.Fluids.MUSHROOM_STEW, player -> MFStrawActions.eat(Foods.MUSHROOM_STEW, player));
+		MFStrawActions.add(Tags.Fluids.SUSPICIOUS_STEW, player -> MFStrawActions.eat(Foods.SUSPICIOUS_STEW, player));
+		MFStrawActions.add(Tags.Fluids.RABBIT_STEW, player -> MFStrawActions.eat(Foods.RABBIT_STEW, player));
+		MFStrawActions.add(Tags.Fluids.HONEY, player -> MFStrawActions.eat(Foods.HONEY_BOTTLE, player));
 	}
 
 	public static ResourceLocation id(String path) {

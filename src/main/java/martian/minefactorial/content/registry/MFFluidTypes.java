@@ -3,6 +3,7 @@ package martian.minefactorial.content.registry;
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.foundation.fluid.BasicFluidType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -26,21 +27,37 @@ public final class MFFluidTypes {
 		return REGISTRY.register(id, () -> fluidType);
 	}
 
-	public static final DeferredHolder<FluidType, BasicFluidType> STEAM = register("steam", new BasicFluidType(
-			WATER_STILL_TEXTURE,
-			WATER_FLOWING,
-			WATER_OVERLAY,
-			0xFFEFEFEF,
-			new Vector3f(0.8f, 0.8f, 0.8f),
-			FluidType.Properties.create()
-	));
+	private static DeferredHolder<FluidType, BasicFluidType> registerSimple(String id, int colour, FluidType.Properties props) {
+		return REGISTRY.register(id, () -> new BasicFluidType(
+				WATER_STILL_TEXTURE,
+				WATER_FLOWING,
+				WATER_OVERLAY,
+				colour,
+				colourFromHex(colour),
+				props
+		));
+	}
+
+	private static DeferredHolder<FluidType, BasicFluidType> registerSimple(String id, int colour) {
+		return registerSimple(id, colour, FluidType.Properties.create());
+	}
+
+	private static Vector3f colourFromHex(int colour) {
+		return new Vector3f(
+				FastColor.ARGB32.red(colour),
+				FastColor.ARGB32.green(colour),
+				FastColor.ARGB32.blue(colour)
+		);
+	}
+
+	public static final DeferredHolder<FluidType, BasicFluidType> STEAM = registerSimple("steam", 0xFFEFEFEF);
 
 	public static final DeferredHolder<FluidType, BasicFluidType> OIL = register("oil", new BasicFluidType(
 			WATER_STILL_TEXTURE,
 			WATER_FLOWING,
 			WATER_OVERLAY,
 			0xFF555555,
-			new Vector3f(0.1f, 0.1f, 0.1f),
+			colourFromHex(0xFF555555),
 			FluidType.Properties.create()
 					.density(3000)
 					.viscosity(6000)
@@ -53,12 +70,15 @@ public final class MFFluidTypes {
 				}
 			});
 
-	public static final DeferredHolder<FluidType, BasicFluidType> ESSENCE = register("essence", new BasicFluidType(
-			WATER_STILL_TEXTURE,
-			WATER_FLOWING,
-			WATER_OVERLAY,
-			0xFF44FF44,
-			new Vector3f(0.1f, 0.9f, 0.1f),
-			FluidType.Properties.create()
-	));
+	public static final DeferredHolder<FluidType, BasicFluidType> ESSENCE = registerSimple("essence", 0xFF44FF44);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> BEETROOT_SOUP = registerSimple("beetroot_soup", 0xFF84160D);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> MUSHROOM_STEW = registerSimple("mushroom_stew", 0xFFBE785E);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> SUSPICIOUS_STEW = registerSimple("suspicious_stew", 0xFFC5A45E);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> RABBIT_STEW = registerSimple("rabbit_stew", 0xFFE29D4A);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> HONEY = registerSimple("honey", 0xFFFF9116);
 }

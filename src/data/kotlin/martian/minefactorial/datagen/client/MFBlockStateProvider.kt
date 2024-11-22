@@ -129,8 +129,8 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				.build("macerator_not_running", models())
 
 			MFBlocks.MACERATOR.get().stateDefinition.possibleStates.forEach { state ->
-				val direction = state.getValue(BlockMacerator.FACING);
-				val running = state.getValue(BlockMacerator.RUNNING);
+				val direction = state.getValue(BlockMacerator.FACING)
+				val running = state.getValue(BlockMacerator.RUNNING)
 
 				partialState()
 					.with(BlockMacerator.FACING, direction)

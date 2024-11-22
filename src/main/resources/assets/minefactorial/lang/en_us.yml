@@ -48,6 +48,11 @@ block.minefactorial:
   steam: Steam
   oil: Oil
   essence: Essence
+  beetroot_soup: Beetroot Soup
+  mushroom_stew: Mushroom Stew
+  suspicious_stew: Suspicious Stew
+  rabbit_stew: Rabbit Stew
+  honey: Honey
 
 item.minefactorial:
   straw: Straw
@@ -90,11 +95,21 @@ item.minefactorial:
   steam_bucket: Steam Bucket
   oil_bucket: Oil Bucket
   essence_bucket: Essence Bucket
+  beetroot_soup_bucket: Beetroot Soup Bucket
+  mushroom_stew_bucket: Mushroom Stew Bucket
+  suspicious_stew_bucket: Suspicious Stew Bucket
+  rabbit_stew_bucket: Rabbit Stew Bucket
+  honey_bucket: Honey Bucket
 
 fluid_type.minefactorial:
   steam: Steam
   oil: Oil
   essence: Essence
+  beetroot_soup: Beetroot Soup
+  mushroom_stew: Mushroom Stew
+  suspicious_stew: Suspicious Stew
+  rabbit_stew: Rabbit Stew
+  honey: Honey
 
 itemGroup.minefactorial.name: MineFactorial
 

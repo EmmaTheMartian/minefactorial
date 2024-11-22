@@ -51,6 +51,11 @@ public final class MinefactorialClient {
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.STEAM.get()), MFFluidTypes.STEAM);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.OIL.get()), MFFluidTypes.OIL);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.ESSENCE.get()), MFFluidTypes.ESSENCE);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.BEETROOT_SOUP.get()), MFFluidTypes.BEETROOT_SOUP);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.MUSHROOM_STEW.get()), MFFluidTypes.MUSHROOM_STEW);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.SUSPICIOUS_STEW.get()), MFFluidTypes.SUSPICIOUS_STEW);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.RABBIT_STEW.get()), MFFluidTypes.RABBIT_STEW);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.HONEY.get()), MFFluidTypes.HONEY);
 		}
 	}
 

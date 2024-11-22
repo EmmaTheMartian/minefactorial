@@ -1,12 +1,9 @@
 package martian.minefactorial.foundation.menu;
 
-import martian.minefactorial.foundation.block.AbstractEnergyBE;
-import martian.minefactorial.foundation.block.IEnergyBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;

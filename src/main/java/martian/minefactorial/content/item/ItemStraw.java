@@ -98,7 +98,7 @@ public class ItemStraw extends MFItem {
 				level.setBlockAndUpdate(hit.getBlockPos(), Blocks.AIR.defaultBlockState());
 			}
 
-			if (entityLiving instanceof ServerPlayer serverPlayer) {
+			if (player instanceof ServerPlayer serverPlayer) {
 				CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
 				serverPlayer.awardStat(Stats.ITEM_USED.get(this));
 			}

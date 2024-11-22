@@ -5,10 +5,7 @@ import martian.dapper.api.addProviders
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.datagen.client.MFBlockStateProvider
 import martian.minefactorial.datagen.client.MFItemModelProvider
-import martian.minefactorial.datagen.server.MFBlockTagsProvider
-import martian.minefactorial.datagen.server.MFItemTagsProvider
-import martian.minefactorial.datagen.server.MFLootTableProvider
-import martian.minefactorial.datagen.server.MFRecipeProvider
+import martian.minefactorial.datagen.server.*
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.data.event.GatherDataEvent
@@ -26,6 +23,7 @@ object MFDataGen {
 			server = {
 				it.add(MFLootTableProvider(event))
 				it.add(MFBlockTagsProvider(event))
+				it.add(MFFluidTagsProvider(event))
 				it.add(MFItemTagsProvider(event))
 				it.add(MFRecipeProvider(event))
 			}
