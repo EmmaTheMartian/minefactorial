@@ -1,0 +1,156 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "martian",
+    "module": "minefactorial",
+    "version": "1.0.1+1.21.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "minefactorial-1.0.1+1.21.1.jar",
+          "url": "minefactorial-1.0.1+1.21.1.jar",
+          "size": 560255,
+          "sha512": "8e9244ad1dcdf82b3fff5180af41f65053a68b1b0f82980e63598144138b3f58b42db0cadfea75e3d60e93ffe0f99430083af096dd7dbe62eb96bf24e1dca1f7",
+          "sha256": "f72254a66f49bf65fe7f5588755bf6ab45b762f617eb84057520f706512bda18",
+          "sha1": "27436322c283eae2b338966f8e30b2104b3f08cc",
+          "md5": "d48fa1be7c4e90f38e352d18799e1f72"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "martian",
+          "module": "regolith-neoforge",
+          "version": {
+            "requires": "1.1.1-beta"
+          }
+        },
+        {
+          "group": "martian",
+          "module": "dapper",
+          "version": {
+            "requires": "1.3-beta"
+          }
+        },
+        {
+          "group": "thedarkcolour",
+          "module": "kotlinforforge-neoforge",
+          "version": {
+            "requires": "5.6.0"
+          },
+          "excludes": [
+            {
+              "group": "net.neoforged.fancymodloader",
+              "module": "loader"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.0"
+          }
+        },
+        {
+          "group": "dev.emi",
+          "module": "emi-neoforge",
+          "version": {
+            "requires": "1.1.18+1.21.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "minefactorial-1.0.1+1.21.1.jar",
+          "url": "minefactorial-1.0.1+1.21.1.jar",
+          "size": 560255,
+          "sha512": "8e9244ad1dcdf82b3fff5180af41f65053a68b1b0f82980e63598144138b3f58b42db0cadfea75e3d60e93ffe0f99430083af096dd7dbe62eb96bf24e1dca1f7",
+          "sha256": "f72254a66f49bf65fe7f5588755bf6ab45b762f617eb84057520f706512bda18",
+          "sha1": "27436322c283eae2b338966f8e30b2104b3f08cc",
+          "md5": "d48fa1be7c4e90f38e352d18799e1f72"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "minefactorial-1.0.1+1.21.1-sources.jar",
+          "url": "minefactorial-1.0.1+1.21.1-sources.jar",
+          "size": 379426,
+          "sha512": "81d07b35862bf0f42daeb1df17bcb2f3591567d9b21d2c8cf1b19849c391b37faeb2579435b7212e69105f80d488080438405384474f74a9dc5cf688d269b933",
+          "sha256": "1b806e1f1697a05ca14328ae5380587a49beb5590fad793b4a32ddbacc05e740",
+          "sha1": "c34711937f786e954392c008ca49cf940c0e9b13",
+          "md5": "44ca5e602774d3ee4c9dcb992a1d426a"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "minefactorial-1.0.1+1.21.1-javadoc.jar",
+          "url": "minefactorial-1.0.1+1.21.1-javadoc.jar",
+          "size": 790795,
+          "sha512": "14cbb0d19345b9c61012ad8a027a08d11cc910cb9c654fe3bf2509e99d514d4081bec4d76d5ce49e04400a3b8bd7645ffa1a172bbc29a34441a53f304ad643c1",
+          "sha256": "2ededbfbfd0dab8ca340ed265a993bf53246ae31733db46c961904d0c095ea87",
+          "sha1": "f875a12a5d32216cd561c1e69c2616f9131333c8",
+          "md5": "d5651a1c2c048e54c22c3110d634b958"
+        }
+      ]
+    }
+  ]
+}
