@@ -4,7 +4,7 @@ import martian.minefactorial.content.recipe.RecipeMaceration;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFRecipeTypes;
 import martian.minefactorial.foundation.ArrayHelpers;
-import martian.minefactorial.foundation.block.AbstractSlottedMachineBE;
+import martian.minefactorial.foundation.block.AbstractInventoryMachine;
 import martian.minefactorial.foundation.block.IInventoryBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class BlockMaceratorBE extends AbstractSlottedMachineBE {
+public class BlockMaceratorBE extends AbstractInventoryMachine {
 	public static final int INPUT_SLOTS = 1, OUTPUT_SLOTS = 4;
 	public static final int[]
 			INPUT_SLOT_INDEXES = ArrayHelpers.rangeOf(INPUT_SLOTS),

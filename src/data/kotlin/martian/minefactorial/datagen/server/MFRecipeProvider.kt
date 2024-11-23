@@ -389,7 +389,7 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 		// endregion Misc/Wood
 
 		// region Misc/Ore Processing
-		fun oreProcessingChain(id: String, result: ItemLike, ore: Ingredient, raw: Ingredient? = null, byproductId: String? = null) {
+		fun oreProcessingChain(id: String, result: ItemLike?, ore: Ingredient, raw: Ingredient? = null, byproductId: String? = null) {
 			val dust = MFItems.ORE_DUSTS.get("${id}_dust")
 			val macerated = MFItems.MACERATED_ORES.get("macerated_${id}")
 			val byproductDust = if (byproductId != null) {
@@ -400,8 +400,10 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			} else { null }
 
 			// macerated and dust -> result
-			macerated smeltsTo result unlockWith macerated save "smelting/macerated_ores/${id}".id
-			dust smeltsTo result unlockWith dust save "smelting/dusts/${id}".id
+			if (result != null) {
+				macerated smeltsTo result unlockWith macerated save "smelting/macerated_ores/${id}".id
+				dust smeltsTo result unlockWith dust save "smelting/dusts/${id}".id
+			}
 
 			RecipeBuilderMaceration(
 				ore,

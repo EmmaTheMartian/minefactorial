@@ -2,7 +2,7 @@ package martian.minefactorial.content.block.machinery;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.FakePlayerHelpers;
-import martian.minefactorial.foundation.block.AbstractSlottedMachineBE;
+import martian.minefactorial.foundation.block.AbstractInventoryMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-public class BlockBreakerBE extends AbstractSlottedMachineBE {
+public class BlockBreakerBE extends AbstractInventoryMachine {
 	public static final int SLOTS = 5;
 
 	public BlockBreakerBE(BlockPos pos, BlockState blockState) {

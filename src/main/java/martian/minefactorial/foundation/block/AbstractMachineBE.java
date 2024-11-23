@@ -33,41 +33,25 @@ public abstract class AbstractMachineBE
 		return currentIdleTime;
 	}
 
-	/**
-	 * Called when idle runs out to check for new work. This is only executed on the server.
-	 * @param level The server level. Null checks are performed before this is called, so
-	 *              you do not have to worry about checking it manually.
-	 * @return If work is available.
-	 */
 	public abstract boolean checkForWork(ServerLevel level);
 
-	/**
-	 * Called immediately after the machine leaves its idle state and before {@code doWork}
-	 * or {@code doWorkTick} are invoked.
-	 * @param level The server level. Null checks are performed before this is called, so
-	 *              you do not have to worry about checking it manually.
-	 * @return {@code true} to return to the idle state, {@code false} otherwise.
-	 */
-	public boolean afterIdle(ServerLevel level) {
-		return false;
-	}
-
-	/**
-	 * Called when the machine should perform its task. This is only executed on the server.
-	 * @param level The server level. Null checks are performed before this is called, so
-	 *              you do not have to worry about checking it manually.
-	 */
 	public abstract void doWork(ServerLevel level);
 
 	/**
-	 * Called for every tick that the machine is working. This is only executed on the server.
+	 * Called when the machine starts working. This can be used to change the BlockState
+	 * for animation purposes.
 	 * @param level The server level. Null checks are performed before this is called, so
 	 *              you do not have to worry about checking it manually.
-	 * @return {@code true} if working should be cancelled, {@code false} otherwise.
 	 */
-	public boolean onWorkTick(ServerLevel level) {
-		return false;
-	}
+	public void onWorkStart(ServerLevel level) { }
+
+	/**
+	 * Called when the machine stops working (whether successful or not). This can be
+	 * used to change the BlockState for animation purposes.
+	 * @param level The server level. Null checks are performed before this is called, so
+	 *              you do not have to worry about checking it manually.
+	 */
+	public void onWorkStop(ServerLevel level) { }
 
 	@Override
 	public void serverTick(ServerLevel level) {
@@ -82,6 +66,7 @@ public abstract class AbstractMachineBE
 				currentIdleTime = 0;
 				if (this.getEnergyStored() >= this.getEnergyPerWork() && checkForWork(level) && !afterIdle(level)) {
 					isIdle = false;
+					onWorkStart(level);
 				}
 			}
 			return;
@@ -91,6 +76,7 @@ public abstract class AbstractMachineBE
 			isIdle = true;
 			currentIdleTime = 0;
 			currentWork = 0;
+			onWorkStop(level);
 			return;
 		}
 

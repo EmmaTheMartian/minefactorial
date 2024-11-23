@@ -8,11 +8,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractSlottedMachineBE extends AbstractMachineBE implements IInventoryBE {
+public abstract class AbstractInventoryMachine extends AbstractMachineBE implements IInventoryBE {
 	protected final ItemStackHandler inventory;
 	protected final int slots;
 
-	public AbstractSlottedMachineBE(BlockEntityType<?> type, int slots, BlockPos pos, BlockState blockState) {
+	public AbstractInventoryMachine(BlockEntityType<?> type, int slots, BlockPos pos, BlockState blockState) {
 		super(type, pos, blockState);
 		this.slots = slots;
 		this.inventory = makeItemStackHandler();
@@ -22,7 +22,7 @@ public abstract class AbstractSlottedMachineBE extends AbstractMachineBE impleme
 		return new ItemStackHandler(slots) {
 			@Override
 			public void onContentsChanged(int slot) {
-				AbstractSlottedMachineBE.this.setChanged();
+				AbstractInventoryMachine.this.setChanged();
 			}
 		};
 	}
