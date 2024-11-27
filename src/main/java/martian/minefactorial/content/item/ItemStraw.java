@@ -18,7 +18,9 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -95,7 +97,11 @@ public class ItemStraw extends MFItem {
 					}
 				}
 				// "Drink" the liquid
-				level.setBlockAndUpdate(hit.getBlockPos(), Blocks.AIR.defaultBlockState());
+				if (state.getBlock() instanceof LiquidBlock) {
+					level.setBlockAndUpdate(hit.getBlockPos(), Blocks.AIR.defaultBlockState());
+				} else {
+					level.setBlockAndUpdate(hit.getBlockPos(), state.setValue(BlockStateProperties.WATERLOGGED, false));
+				}
 			}
 
 			if (player instanceof ServerPlayer serverPlayer) {
