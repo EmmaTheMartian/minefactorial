@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "martian",
+    "module": "minefactorial",
+    "version": "0.1.2-modfest",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.8"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "minefactorial-0.1.2-modfest.jar",
+          "url": "minefactorial-0.1.2-modfest.jar",
+          "size": 294556,
+          "sha512": "b8eed4fe47a4d417a5b810a4a621873d322cccd411ea0a54e9c322c4e0c2b3ca1d62c581cdff59fc3cf7ba31c6e1813de27193a91494e7473fe77cf064e1065f",
+          "sha256": "8270bf14c49dcad03c3a5488566568319ade89ec6b11123cba936aa163670717",
+          "sha1": "21416323a4bba678c9c4c2047c7d19df1b70b3a8",
+          "md5": "03e48a5657375d4b5e66f569766463e3"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "minefactorial-0.1.2-modfest.jar",
+          "url": "minefactorial-0.1.2-modfest.jar",
+          "size": 294556,
+          "sha512": "b8eed4fe47a4d417a5b810a4a621873d322cccd411ea0a54e9c322c4e0c2b3ca1d62c581cdff59fc3cf7ba31c6e1813de27193a91494e7473fe77cf064e1065f",
+          "sha256": "8270bf14c49dcad03c3a5488566568319ade89ec6b11123cba936aa163670717",
+          "sha1": "21416323a4bba678c9c4c2047c7d19df1b70b3a8",
+          "md5": "03e48a5657375d4b5e66f569766463e3"
+        }
+      ]
+    }
+  ]
+}
