@@ -81,6 +81,13 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			save("shaped/tools/screwdriver".id)
 		}
 
+		MFItems.RULER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			unlockWith(MFItems.PLASTIC_SHEETS)
+			save("shaped/tools/ruler".id)
+		}
+
 		MFItems.TREE_TAP.shapedRecipeBuilder().apply {
 			pattern(" S ")
 			pattern("PPP")
@@ -121,6 +128,13 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			define('I', Tags.Items.INGOTS_IRON)
 			unlockWith(MFItems.RUBBER_INGOT)
 			save("shaped/logistics/conveyor".id)
+		}
+
+		MFBlocks.HOPPING_CONVEYOR.shapelessRecipeBuilder().apply {
+			requires(MFBlocks.CONVEYOR)
+			requires(Items.HOPPER)
+			unlockWith(MFBlocks.CONVEYOR)
+			save("shapeless/logistics/hopping_conveyor".id)
 		}
 
 		MFBlocks.EJECTOR.shapedRecipeBuilder(4).apply {

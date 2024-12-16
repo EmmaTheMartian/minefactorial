@@ -16,6 +16,7 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFItems.WRENCH.basicHandheldModel()
 		MFItems.TREE_TAP.basicHandheldModel()
 		MFItems.SCREWDRIVER.basicHandheldModel()
+		MFItems.RULER.basicModel()
 
 		// Resources
 		MFItems.RAW_RUBBER.basicModel()
@@ -50,6 +51,7 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 
 		// Block items with models that are not just parenting its block model
 		basicItem("conveyor".id)
+		basicItem("hopping_conveyor".id)
 		MFBlocks.RUBBER_SAPLING.asItem() addModel "block/foliage/rubber_sapling".id
 	}
 }

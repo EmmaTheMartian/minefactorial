@@ -4,7 +4,6 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -15,15 +14,16 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends Block implements EntityBlock {
+public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends MFBlock implements EntityBlock {
 	private final BlockEntityFactory<T> blockEntityFactory;
 	protected boolean hasTicker = true;
 
 	public AbstractBlockWithEntity(
 			BlockEntityFactory<T> blockEntityFactory,
-			Properties properties
+			Properties properties,
+			String... hoverText
 	) {
-		super(properties);
+		super(properties, hoverText);
 		this.blockEntityFactory = blockEntityFactory;
 	}
 

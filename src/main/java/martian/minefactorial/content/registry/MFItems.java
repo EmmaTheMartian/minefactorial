@@ -2,10 +2,7 @@ package martian.minefactorial.content.registry;
 
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.item.ItemScrewdriver;
-import martian.minefactorial.content.item.ItemStraw;
-import martian.minefactorial.content.item.ItemTreeTap;
-import martian.minefactorial.content.item.ItemWrench;
+import martian.minefactorial.content.item.*;
 import martian.minefactorial.foundation.item.MFItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.RegolithItemUtil;
@@ -15,8 +12,10 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public final class MFItems {
 	private MFItems() { }
 
@@ -53,6 +52,7 @@ public final class MFItems {
 			MEGA_STRAW = register("mega_straw", () -> new ItemStraw(80, Integer.MAX_VALUE, new Item.Properties().stacksTo(1), getHoverTextIdsFor("mega_straw", 3))),
 			WRENCH = register("wrench", () -> new ItemWrench(new Item.Properties().stacksTo(1), getHoverTextIdsFor("wrench"))),
 			SCREWDRIVER = register("screwdriver", () -> new ItemScrewdriver(new Item.Properties().stacksTo(1), getHoverTextIdsFor("screwdriver"))),
+			RULER = register("ruler", () -> new ItemRuler(new Item.Properties().stacksTo(1).component(MFDataComponents.POS, Optional.empty()), getHoverTextIdsFor("ruler"))),
 			TREE_TAP = register("tree_tap", () -> new ItemTreeTap(new Item.Properties().stacksTo(1).durability(150), getHoverTextIdsFor("tree_tap"))),
 			// Resources
 			RAW_RUBBER = simpleItem("raw_rubber", getHoverTextIdsFor("raw_rubber")),

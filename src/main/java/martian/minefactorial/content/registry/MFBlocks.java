@@ -4,16 +4,17 @@ import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.block.foliage.BlockRubberWood;
 import martian.minefactorial.content.block.logistics.*;
 import martian.minefactorial.content.block.machinery.*;
+import martian.minefactorial.content.block.machinery.farming.BlockPlanter;
 import martian.minefactorial.content.block.power.BlockSteamBoiler;
 import martian.minefactorial.content.block.power.BlockSteamTurbine;
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock;
 import martian.minefactorial.content.block.storage.*;
+import martian.minefactorial.foundation.item.MFBlockItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.builder.RegolithBlockBuilder;
 import martian.regolith.neoforge.RegolithNeoForge;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -32,10 +33,23 @@ public final class MFBlocks {
 
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(Minefactorial.MODID);
 
-	private static DeferredBlock<?> register(String id, Supplier<Block> supplier) {
+	private static DeferredBlock<?> register(String id, Supplier<Block> supplier, String... hoverText) {
 		DeferredBlock<?> entry = REGISTRY.register(id, supplier);
-		MFItems.REGISTRY.register(id, () -> new BlockItem(entry.get(), new Item.Properties()));
+		MFItems.REGISTRY.register(id, () -> new MFBlockItem(entry.get(), new Item.Properties(), hoverText));
 		return entry;
+	}
+
+	// Hover ID shorthands
+	private static String[] getHoverTextIdsFor(String id, int lines) {
+		String[] ids = new String[lines];
+		for (int i = 0; i < lines; i++) {
+			ids[i] = String.format("block.%s.%s.desc.%d", Minefactorial.MODID, id, i);
+		}
+		return ids;
+	}
+
+	private static String[] getHoverTextIdsFor(String id) {
+		return getHoverTextIdsFor(id, 1);
 	}
 
 	// Regolith shorthands
@@ -114,8 +128,9 @@ public final class MFBlocks {
 
 	public static final DeferredBlock<?>
 			// Logistics
-			CONVEYOR = register("conveyor", () -> new BlockConveyor(CONVEYOR_PROPS)),
-			EJECTOR = register("ejector", () -> new BlockEjector(MACHINE_PROPS)),
+			CONVEYOR = register("conveyor", () -> new BlockConveyor(CONVEYOR_PROPS), getHoverTextIdsFor("conveyor", 2)),
+			HOPPING_CONVEYOR = register("hopping_conveyor", () -> new BlockHoppingConveyor(CONVEYOR_PROPS), getHoverTextIdsFor("hopping_conveyor", 3)),
+			EJECTOR = register("ejector", () -> new BlockEjector(MACHINE_PROPS), getHoverTextIdsFor("ejector", 2)),
 			FLUID_EXTRACTOR = register("fluid_extractor", () -> new BlockFluidExtractor(MACHINE_PROPS)),
 			ENERGY_PIPE = register("energy_pipe", () -> new BlockPipeEnergy(PIPE_PROPS)),
 			FLUID_PIPE = register("fluid_pipe", () -> new BlockPipeFluid(PIPE_PROPS)),
@@ -127,6 +142,7 @@ public final class MFBlocks {
 			PLACER = register("placer", () -> new BlockPlacer(MACHINE_PROPS)),
 			SMASHER = register("smasher", () -> new BlockSmasher(MACHINE_PROPS)),
 			MACERATOR = register("macerator", () -> new BlockMacerator(MACHINE_PROPS)),
+			PLANTER = register("planter", () -> new BlockPlanter(MACHINE_PROPS)),
 			// Power
 			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
 			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),

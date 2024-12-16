@@ -3,6 +3,7 @@ package martian.minefactorial.content.registry;
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.block.logistics.*;
 import martian.minefactorial.content.block.machinery.*;
+import martian.minefactorial.content.block.machinery.farming.BlockPlanterBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.block.redstone.BlockRedstoneClockBE;
@@ -31,6 +32,7 @@ public final class MFBlockEntityTypes {
 	}
 
 	private static <T extends BlockEntity> DeferredBEType<T> register(String id, BlockEntityType.BlockEntitySupplier<T> blockEntityFactory, DeferredBlock<?>... validBlockHolders) {
+		//noinspection DataFlowIssue
 		return DeferredBEType.fromDeferredHolder(REGISTRY.register(id, () -> new BlockEntityType<>(
 				blockEntityFactory,
 				Arrays.stream(validBlockHolders).map(DeferredBlock::get).collect(Collectors.toSet()),
@@ -56,6 +58,7 @@ public final class MFBlockEntityTypes {
 
 	// Logistics
 	public static final DeferredBEType<BlockConveyorBE> CONVEYOR = register("conveyor", BlockConveyorBE::new, MFBlocks.CONVEYOR);
+	public static final DeferredBEType<BlockHoppingConveyorBE> HOPPING_CONVEYOR = register("hopping_conveyor", BlockHoppingConveyorBE::new, MFBlocks.HOPPING_CONVEYOR);
 	public static final DeferredBEType<BlockEjectorBE> EJECTOR = register("ejector", BlockEjectorBE::new, MFBlocks.EJECTOR);
 	public static final DeferredBEType<BlockFluidExtractorBE> FLUID_EXTRACTOR = register("fluid_extractor", BlockFluidExtractorBE::new, MFBlocks.FLUID_EXTRACTOR);
 	public static final DeferredBEType<BlockPipeEnergyBE> ENERGY_PIPE = register("energy_pipe", BlockPipeEnergyBE::new, MFBlocks.ENERGY_PIPE);
@@ -68,6 +71,7 @@ public final class MFBlockEntityTypes {
 	public static final DeferredBEType<BlockPlacerBE> PLACER = register("placer", BlockPlacerBE::new, MFBlocks.PLACER);
 	public static final DeferredBEType<BlockSmasherBE> SMASHER = register("smasher", BlockSmasherBE::new, MFBlocks.SMASHER);
 	public static final DeferredBEType<BlockMaceratorBE> MACERATOR = register("macerator", BlockMaceratorBE::new, MFBlocks.MACERATOR);
+	public static final DeferredBEType<BlockPlanterBE> PLANTER = register("planter", BlockPlanterBE::new, MFBlocks.PLANTER);
 	// Power
 	public static final DeferredBEType<BlockSteamTurbineBE> STEAM_TURBINE = register("steam_turbine", BlockSteamTurbineBE::new, MFBlocks.STEAM_TURBINE);
 	public static final DeferredBEType<BlockSteamBoilerBE> STEAM_BOILER = register("steam_boiler", BlockSteamBoilerBE::new, MFBlocks.STEAM_BOILER);

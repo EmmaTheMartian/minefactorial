@@ -2,7 +2,7 @@ package martian.minefactorial.content.block.machinery;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.FakePlayerHelpers;
-import martian.minefactorial.foundation.block.AbstractInventoryMachine;
+import martian.minefactorial.foundation.block.AbstractInventoryMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-public class BlockBreakerBE extends AbstractInventoryMachine {
+public class BlockBreakerBE extends AbstractInventoryMachineBE {
 	public static final int SLOTS = 5;
 
 	public BlockBreakerBE(BlockPos pos, BlockState blockState) {
@@ -43,7 +43,7 @@ public class BlockBreakerBE extends AbstractInventoryMachine {
 		// instead will drop it in the world.
 		// We break with a fake player to ensure that a block's data is retained. For example, breaking a shulker box
 		// without a fake player will not retain its inventory.
-		FakePlayerHelpers.breakBlockAndGetDrops((ServerLevel) level, pos).forEach(stack -> {
+		FakePlayerHelpers.breakBlockAndGetDrops(level, pos).forEach(stack -> {
 			ItemStack remainder = giveItem(stack);
 			if (!remainder.isEmpty()) {
 				Vec3 centre = pos.getCenter();

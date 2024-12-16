@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -53,5 +54,9 @@ public final class FakePlayerHelpers {
 		} else {
 			Minefactorial.LOGGER.error("FakePlayerHelper#placeBlockItem was provided an item stack that was not a BlockItem! ItemStack: {}", blockItemStack);
 		}
+	}
+
+	public static UseOnContext getUseOnContext(ServerLevel level, ItemStack stack, BlockPos pos) {
+		return new UseOnContext(level, FAKE_PLAYER.get(level), InteractionHand.MAIN_HAND, stack, new BlockHitResult(Vec3.ZERO, Direction.UP, pos, true));
 	}
 }

@@ -68,6 +68,10 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.CREATIVE_TANK.addModel(creativeMachineFrame.copy() side machineId("creative_tank_side"))
 		MFBlocks.STORAGE_UNIT.addModel(machineFrame.copy() side machineId("storage_unit_side"))
 		MFBlocks.MACHINE_FRAME.addModel(machineFrame)
+		MFBlocks.PLANTER.addModel(machineFrame.copy()
+			side machineId("planter_side")
+			up machineId("planter_top")
+			down itemOutputBottom)
 
 		MFBlocks.MOB_GRINDER.addHorizontalDirectionalModel(machineFrame.copy()
 			north machineId("mob_grinder_front")

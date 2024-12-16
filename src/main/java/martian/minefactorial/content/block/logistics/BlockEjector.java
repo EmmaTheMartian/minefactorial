@@ -1,7 +1,9 @@
 package martian.minefactorial.content.block.logistics;
 
+import martian.minefactorial.Minefactorial;
 import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import martian.minefactorial.foundation.block.IInventoryBE;
+import martian.minefactorial.foundation.block.IScrewdriverFunctionality;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -32,15 +34,14 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> {
-	public static final int SLOTS = 9;
+public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> implements IScrewdriverFunctionality {
 	private static final int TRIGGER_DURATION = 4;
 
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 	public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
 
-	public BlockEjector(Properties properties) {
-		super(BlockEjectorBE::new, properties);
+	public BlockEjector(Properties properties, String... hoverText) {
+		super(BlockEjectorBE::new, properties, hoverText);
 		registerDefaultState(getStateDefinition().any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(TRIGGERED, false));
@@ -103,7 +104,10 @@ public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> {
 	@ParametersAreNonnullByDefault
 	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (level.getBlockEntity(pos) instanceof BlockEjectorBE ejectorBE) {
-			IInventoryBE.ejectFrom(ejectorBE, 64);
+			int slot = ejectorBE.getRandomUsedSlot(Minefactorial.RANDOM, ejectorBE.minStackSizeForEject);
+			if (slot > -1) {
+				IInventoryBE.ejectFrom(ejectorBE, slot, 64);
+			}
 		}
 	}
 
@@ -124,5 +128,18 @@ public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> {
 	@ParametersAreNonnullByDefault
 	protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
+	}
+
+	@Override
+	public void onUseScrewdriver(Player player, ServerLevel level, BlockState state, BlockPos pos) {
+		if (level.getBlockEntity(pos) instanceof BlockEjectorBE be) {
+			if (be.minStackSizeForEject >= 64) {
+				be.minStackSizeForEject = 1;
+			} else {
+				be.minStackSizeForEject = Math.clamp(be.minStackSizeForEject * 2L, 1, 64);
+			}
+			be.setChanged();
+			player.sendSystemMessage(Component.translatable("messages.minefactorial.set_min_stack_size_for_eject_to", be.minStackSizeForEject));
+		}
 	}
 }

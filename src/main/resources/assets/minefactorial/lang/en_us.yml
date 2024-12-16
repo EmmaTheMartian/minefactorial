@@ -1,7 +1,18 @@
 block.minefactorial:
   # Logistics
   conveyor: Conveyor
+  conveyor.desc:
+    "0": Transports items and entities
+    "1": Right-click with a wrench to make vertical conveyors
+  hopping_conveyor: Hopping Conveyor
+  hopping_conveyor.desc:
+    "0": Transports items and entities and moves items into a container below
+    "1": Right-click with a wrench to make vertical conveyors
+    "2": Right-click with a screwdriver to modify maximum item count per transfer
   ejector: Ejector
+  ejector.desc:
+    "0": Ejects items out of its internal inventory when given a redstone signal
+    "1": Right-click with a screwdriver to modify the minimum amount of items it can eject at once
   fluid_extractor: Fluid Extractor
   energy_pipe: Energy Cable
   fluid_pipe: Fluid Pipe
@@ -14,6 +25,7 @@ block.minefactorial:
   placer: Placer
   smasher: Smasher
   macerator: Macerator
+  planter: Planter
 
   # Power
   steam_boiler: Steam Boiler
@@ -66,10 +78,12 @@ item.minefactorial:
     "2": Side effects may vary
   wrench: Wrench
   wrench.desc.0: Rotates blocks
-  tree_tap: Tree Tap
-  tree_tap.desc.0: Use on Rubber Wood to obtain Raw Rubber
   screwdriver: Screwdriver
   screwdriver.desc.0: Use on machinery to toggle auto-eject
+  ruler: Ruler
+  ruler.desc.0: Click two blocks to measure the distance between them
+  tree_tap: Tree Tap
+  tree_tap.desc.0: Use on Rubber Wood to obtain Raw Rubber
 
   raw_rubber: Raw Rubber
   raw_rubber.desc.0: Obtain by using a Tree Tap on Rubber Wood
@@ -114,9 +128,15 @@ fluid_type.minefactorial:
 itemGroup.minefactorial.name: MineFactorial
 
 messages.minefactorial:
-  set_ticks_to: "Set ticks to %d."
+  set_ticks_to: "Set ticks to %d"
   enabled_auto_eject: "Enabled Auto Eject"
   disabled_auto_eject: "Disabled Auto Eject"
+  current_pos: "Current position: %s"
+  set_max_insert_to: "Max insert set to: %d"
+  set_pos_to: "Position set to %s"
+  distance: "Distance: %d blocks"
+  distance_client_message: "%d blocks (%dx%dx%d)"
+  set_min_stack_size_for_eject_to: "Min stack size for eject set to: %d"
 
 emi.category.minefactorial:
   maceration: Maceration

@@ -20,6 +20,9 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface IInventoryBE extends IBE, WorldlyContainer {
 	ItemStackHandler getInventory();
 
@@ -46,12 +49,7 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 	 * @return If the inventory is full. This does NOT account for stack sizes.
 	 */
 	default boolean isInventoryFull() {
-		for (int i = 0; i < getInventory().getSlots(); i++) {
-			if (getInventory().getStackInSlot(i).isEmpty()) {
-				return false;
-			}
-		}
-		return true;
+		return isFull(getInventory());
 	}
 
 	default int getContainerSize() {
@@ -129,17 +127,45 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 		}
 	}
 
+	/**
+	 * Gets a random slot with at least 1 item in it.
+	 * @param random Random source to use.
+	 * @return The index to the random slot.
+	 */
 	default int getRandomUsedSlot(RandomSource random) {
+		// Code from the dispenser functionality
 		int slot = -1;
 		int j = 1;
+		IItemHandler inventory = getInventory();
 
-		for (int i = 0; i < getInventory().getSlots(); i++) {
-			if (!getInventory().getStackInSlot(i).isEmpty() && random.nextInt(j++) == 0) {
+		for (int i = 0; i < inventory.getSlots(); i++) {
+			if (!inventory.getStackInSlot(i).isEmpty() && random.nextInt(j++) == 0) {
 				slot = i;
 			}
 		}
 
 		return slot;
+	}
+
+	/**
+	 * Gets a random slot with at least {@code minimumCount} items in it, or a slot where
+	 * the maximum stack size equals 1.
+	 * @param random Random source to use.
+	 * @param minimumCount The minimum count for a stack to be picked.
+	 * @return The index to the random slot. Returns to -1 if no slots match.
+	 */
+	default int getRandomUsedSlot(RandomSource random, int minimumCount) {
+		IItemHandler inventory = getInventory();
+		List<Integer> possibleSlots = new ArrayList<>();
+		for (int i = 0; i < inventory.getSlots(); i++) {
+			if (inventory.getStackInSlot(i).getCount() >= minimumCount) {
+				possibleSlots.add(i);
+			}
+		}
+		if (possibleSlots.isEmpty()) {
+			return -1;
+		}
+		return possibleSlots.get(random.nextInt(possibleSlots.size()));
 	}
 
 	/**
@@ -262,6 +288,10 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 		ejectFrom((ServerLevel) be.getLevel(), be.getBlockPos(), be.getEjectDirection(be.getBlockState()), -1, maxAmount);
 	}
 
+	static void ejectFrom(IInventoryBE be, int slot, int maxAmount) {
+		ejectFrom((ServerLevel) be.getLevel(), be.getBlockPos(), be.getEjectDirection(be.getBlockState()), slot, maxAmount);
+	}
+
 	static ItemStack insertItemInto(IItemHandler itemHandler, ItemStack stack, int startIndex, int endIndex) {
 		ItemStack copy = stack.copy();
 		for (int i = startIndex; i < endIndex; i++) {
@@ -280,5 +310,14 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 
 	static ItemStack insertItemInto(IItemHandler itemHandler, ItemStack stack) {
 		return insertItemInto(itemHandler, stack, 0, itemHandler.getSlots());
+	}
+
+	static boolean isFull(IItemHandler handler) {
+		for (int i = 0; i < handler.getSlots(); i++) {
+			if (handler.getStackInSlot(i).isEmpty()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

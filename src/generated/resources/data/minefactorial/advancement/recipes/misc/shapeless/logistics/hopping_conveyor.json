@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minefactorial_conveyor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefactorial:conveyor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefactorial:shapeless/logistics/hopping_conveyor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minefactorial_conveyor"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefactorial:shapeless/logistics/hopping_conveyor"
+    ]
+  }
+}

@@ -59,4 +59,7 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMacerator>> MACERATOR =
 			registerSimple("macerator", ContainerMacerator::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerPlanter>> PLANTER =
+			registerSimple("planter", ContainerPlanter::new);
 }
