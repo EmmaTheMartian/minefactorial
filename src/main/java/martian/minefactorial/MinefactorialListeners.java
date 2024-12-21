@@ -71,6 +71,9 @@ final class MinefactorialListeners {
 			// Planter
 			registerEnergyCapability(MFBlockEntityTypes.PLANTER.get());
 			registerItemCapability(MFBlockEntityTypes.PLANTER.get());
+			// Harvester
+			registerEnergyCapability(MFBlockEntityTypes.HARVESTER.get());
+			registerItemCapability(MFBlockEntityTypes.HARVESTER.get());
 
 			////// Power //////
 			// Steam Boiler

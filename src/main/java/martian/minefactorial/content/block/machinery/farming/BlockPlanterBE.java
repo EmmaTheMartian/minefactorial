@@ -3,6 +3,7 @@ package martian.minefactorial.content.block.machinery.farming;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.FakePlayerHelpers;
 import martian.minefactorial.foundation.block.AbstractZonedInventoryMachineBE;
+import martian.minefactorial.foundation.item.RoundRobinInventory;
 import martian.minefactorial.foundation.world.AABBHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -23,6 +25,16 @@ public class BlockPlanterBE extends AbstractZonedInventoryMachineBE {
 
 	public BlockPlanterBE(BlockPos pos, BlockState blockState) {
 		super(MFBlockEntityTypes.PLANTER.get(), SLOTS, pos, blockState);
+	}
+
+	@Override
+	protected ItemStackHandler makeItemStackHandler() {
+		return new RoundRobinInventory(this.slots) {
+			@Override
+			public void onContentsChanged(int slot) {
+				BlockPlanterBE.this.setChanged();
+			}
+		};
 	}
 
 	@Override

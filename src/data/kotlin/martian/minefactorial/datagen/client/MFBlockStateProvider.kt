@@ -14,6 +14,7 @@ import martian.dapper.api.mcId
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.block.foliage.BlockRubberWood
 import martian.minefactorial.content.block.machinery.BlockMacerator
+import martian.minefactorial.content.block.machinery.farming.BlockHarvester
 import martian.minefactorial.content.block.power.BlockSteamBoiler
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock
 import martian.minefactorial.content.registry.MFBlocks
@@ -22,7 +23,10 @@ import martian.minefactorial.foundation.pipenet.AbstractPipeBlock
 import martian.minefactorial.foundation.pipenet.PipeState
 import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.RotatedPillarBlock
+import net.minecraft.world.level.block.state.properties.BooleanProperty
+import net.minecraft.world.level.block.state.properties.DirectionProperty
 import net.neoforged.neoforge.client.model.generators.ModelFile
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import net.neoforged.neoforge.data.event.GatherDataEvent
@@ -120,33 +124,54 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				up fluidOutputTop
 		)
 
-		getVariantBuilder(MFBlocks.MACERATOR.get()).apply {
-			val modelRunning = machineFrame.copy()
+		fun directionalRunningMachine(block: Block, stateFacing: DirectionProperty, stateRunning: BooleanProperty, modelRunning: ModelFile, modelNotRunning: ModelFile) {
+			getVariantBuilder(block).apply {
+				block.stateDefinition.possibleStates.forEach { state ->
+					val direction = state.getValue(stateFacing)
+					val running = state.getValue(stateRunning)
+
+					partialState()
+						.with(stateFacing, direction)
+						.with(stateRunning, running)
+						.modelForState()
+						.rotationY(((direction.toYRot() + 180) % 360).toInt())
+						.modelFile(if (running) modelRunning else modelNotRunning)
+						.addModel()
+				}
+
+				simpleBlockItem(block, modelNotRunning)
+			}
+		}
+
+		directionalRunningMachine(
+			MFBlocks.MACERATOR.get(),
+			BlockMacerator.FACING,
+			BlockMacerator.RUNNING,
+			machineFrame.copy()
 				.up(machineId("macerator_top_running"))
 				.north(machineId("macerator_side_running"))
 				.south(itemOutputSide)
-				.build("macerator_running", models())
-			val modelNotRunning = machineFrame.copy()
+				.build("macerator_running", models()),
+			machineFrame.copy()
 				.up(machineId("macerator_top"))
 				.north(machineId("macerator_side"))
 				.south(itemOutputSide)
 				.build("macerator_not_running", models())
+		)
 
-			MFBlocks.MACERATOR.get().stateDefinition.possibleStates.forEach { state ->
-				val direction = state.getValue(BlockMacerator.FACING)
-				val running = state.getValue(BlockMacerator.RUNNING)
-
-				partialState()
-					.with(BlockMacerator.FACING, direction)
-					.with(BlockMacerator.RUNNING, running)
-					.modelForState()
-					.rotationY(((direction.toYRot() + 180) % 360).toInt())
-					.modelFile(if (running) modelRunning else modelNotRunning)
-					.addModel()
-			}
-
-			simpleBlockItem(MFBlocks.MACERATOR.get(), modelNotRunning)
-		}
+		directionalRunningMachine(
+			MFBlocks.HARVESTER.get(),
+			BlockHarvester.FACING,
+			BlockHarvester.RUNNING,
+			machineFrame.copy()
+				.north(machineId("harvester_front_running"))
+				.south(itemOutputSide)
+				.build("harvester_running", models()),
+			machineFrame.copy()
+				.north(machineId("harvester_front"))
+				.south(itemOutputSide)
+				.build("harvester_not_running", models())
+		)
 
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this

@@ -10,7 +10,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Optional;
 
-@SuppressWarnings("unused")
 public final class MFDataComponents {
 	private MFDataComponents() { }
 

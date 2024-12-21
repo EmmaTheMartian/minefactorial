@@ -1,4 +1,4 @@
-package martian.minefactorial.content.block.machinery;
+package martian.minefactorial.content.block.machinery.husbandry;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;

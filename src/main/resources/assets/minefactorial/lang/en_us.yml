@@ -26,6 +26,7 @@ block.minefactorial:
   smasher: Smasher
   macerator: Macerator
   planter: Planter
+  harvester: Harvester
 
   # Power
   steam_boiler: Steam Boiler

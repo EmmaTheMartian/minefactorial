@@ -4,7 +4,9 @@ import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.block.foliage.BlockRubberWood;
 import martian.minefactorial.content.block.logistics.*;
 import martian.minefactorial.content.block.machinery.*;
+import martian.minefactorial.content.block.machinery.farming.BlockHarvester;
 import martian.minefactorial.content.block.machinery.farming.BlockPlanter;
+import martian.minefactorial.content.block.machinery.husbandry.BlockMobGrinder;
 import martian.minefactorial.content.block.power.BlockSteamBoiler;
 import martian.minefactorial.content.block.power.BlockSteamTurbine;
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock;
@@ -143,6 +145,7 @@ public final class MFBlocks {
 			SMASHER = register("smasher", () -> new BlockSmasher(MACHINE_PROPS)),
 			MACERATOR = register("macerator", () -> new BlockMacerator(MACHINE_PROPS)),
 			PLANTER = register("planter", () -> new BlockPlanter(MACHINE_PROPS)),
+			HARVESTER = register("harvester", () -> new BlockHarvester(MACHINE_PROPS)),
 			// Power
 			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
 			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),

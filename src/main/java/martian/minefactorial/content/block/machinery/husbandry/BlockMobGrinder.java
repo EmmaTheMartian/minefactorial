@@ -1,4 +1,4 @@
-package martian.minefactorial.content.block.machinery;
+package martian.minefactorial.content.block.machinery.husbandry;
 
 import martian.minefactorial.content.menu.ContainerMobGrinder;
 import martian.minefactorial.foundation.block.AbstractBlockWithEntity;

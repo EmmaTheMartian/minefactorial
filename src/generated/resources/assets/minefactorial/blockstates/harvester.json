@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,running=false": {
+      "model": "minefactorial:block/harvester_not_running",
+      "y": 90
+    },
+    "facing=east,running=true": {
+      "model": "minefactorial:block/harvester_running",
+      "y": 90
+    },
+    "facing=north,running=false": {
+      "model": "minefactorial:block/harvester_not_running"
+    },
+    "facing=north,running=true": {
+      "model": "minefactorial:block/harvester_running"
+    },
+    "facing=south,running=false": {
+      "model": "minefactorial:block/harvester_not_running",
+      "y": 180
+    },
+    "facing=south,running=true": {
+      "model": "minefactorial:block/harvester_running",
+      "y": 180
+    },
+    "facing=west,running=false": {
+      "model": "minefactorial:block/harvester_not_running",
+      "y": 270
+    },
+    "facing=west,running=true": {
+      "model": "minefactorial:block/harvester_running",
+      "y": 270
+    }
+  }
+}

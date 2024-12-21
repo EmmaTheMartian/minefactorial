@@ -55,6 +55,7 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.SMASHER.get(), ScreenSmasher::new);
 			event.register(MFMenuTypes.MACERATOR.get(), ScreenMacerator::new);
 			event.register(MFMenuTypes.PLANTER.get(), ScreenPlanter::new);
+			event.register(MFMenuTypes.HARVESTER.get(), ScreenHarvester::new);
 		}
 
 		@SubscribeEvent
