@@ -27,6 +27,8 @@ block.minefactorial:
   macerator: Macerator
   planter: Planter
   harvester: Harvester
+  slaughterhouse: Slaughterhouse
+  meat_packer: Meat Packer
 
   # Power
   steam_boiler: Steam Boiler
@@ -66,6 +68,8 @@ block.minefactorial:
   suspicious_stew: Suspicious Stew
   rabbit_stew: Rabbit Stew
   honey: Honey
+  pink_slime: Pink Slime
+  meat: Liquid Meat
 
 item.minefactorial:
   straw: Straw
@@ -92,6 +96,10 @@ item.minefactorial:
   raw_plastic: Raw Plastic
   plastic_ingot: Plastic Ingot
   plastic_sheets: Plastic Sheets
+  raw_meat_ingot: Raw Meat "Ingot"
+  raw_meat_ingot.desc.0: A repulsive culmination of meat from a variety of sources.
+  cooked_meat_ingot: Cooked Meat "Ingot"
+  cooked_meat_ingot.desc.0: Meatloaf, except now you know how it was made.
 
   macerated_coal: Macerated Coal
   macerated_copper: Macerated Copper
@@ -115,6 +123,8 @@ item.minefactorial:
   suspicious_stew_bucket: Suspicious Stew Bucket
   rabbit_stew_bucket: Rabbit Stew Bucket
   honey_bucket: Honey Bucket
+  pink_slime_bucket: Pink Slime Bucket
+  meat_bucket: Liquid Meat Bucket
 
 fluid_type.minefactorial:
   steam: Steam
@@ -125,6 +135,8 @@ fluid_type.minefactorial:
   suspicious_stew: Suspicious Stew
   rabbit_stew: Rabbit Stew
   honey: Honey
+  pink_slime: Pink Slime
+  meat: Liquid Meat
 
 itemGroup.minefactorial.name: MineFactorial
 

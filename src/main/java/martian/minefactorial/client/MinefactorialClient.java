@@ -56,6 +56,8 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.MACERATOR.get(), ScreenMacerator::new);
 			event.register(MFMenuTypes.PLANTER.get(), ScreenPlanter::new);
 			event.register(MFMenuTypes.HARVESTER.get(), ScreenHarvester::new);
+			event.register(MFMenuTypes.SLAUGHTERHOUSE.get(), ScreenSlaughterhouse::new);
+			event.register(MFMenuTypes.MEAT_PACKER.get(), ScreenMeatPacker::new);
 		}
 
 		@SubscribeEvent
@@ -68,6 +70,8 @@ public final class MinefactorialClient {
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.SUSPICIOUS_STEW.get()), MFFluidTypes.SUSPICIOUS_STEW);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.RABBIT_STEW.get()), MFFluidTypes.RABBIT_STEW);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.HONEY.get()), MFFluidTypes.HONEY);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.PINK_SLIME.get()), MFFluidTypes.PINK_SLIME);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.MEAT.get()), MFFluidTypes.MEAT);
 		}
 	}
 

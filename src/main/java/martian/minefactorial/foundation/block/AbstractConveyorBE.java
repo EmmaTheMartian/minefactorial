@@ -28,7 +28,7 @@ public abstract class AbstractConveyorBE extends BlockEntity implements ITickabl
 		Direction direction = getBlockState().getValue(AbstractConveyorBlock.FACING);
 
 		for (Entity entity : level.getEntitiesOfClass(Entity.class, AABBHelpers.ofBlock(worldPosition))) {
-			if (entity.isCrouching()) {
+			if (entity.isCrouching() || entity instanceof Player player && player.getAbilities().flying) {
 				continue;
 			}
 			handleConveyorMovement(entity, worldPosition, direction, verticalState);

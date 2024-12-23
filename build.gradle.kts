@@ -41,7 +41,7 @@ repositories {
         }
     }
 
-    // Jade, AE2, Mekanism
+    // Jade, AE2, Mekanism, Cable Facades
     exclusiveContent {
         forRepository {
             maven("https://api.modrinth.com/maven")
@@ -150,6 +150,9 @@ dependencies {
 
     // Mekanism (todo: replace this with its actual maven instead of modrinth maven)
     modLocalRuntime("maven.modrinth:mekanism:${prop("mekanism_version")}")
+
+    // Cable Facades
+    modLocalRuntime("maven.modrinth:cable-facades:${prop("cable_facades_version")}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "S": {
+      "tag": "c:seeds"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "ISI",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:harvester"
+  }
+}

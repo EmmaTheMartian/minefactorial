@@ -24,6 +24,8 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFItems.RAW_PLASTIC.basicModel()
 		MFItems.PLASTIC_INGOT.basicModel()
 		MFItems.PLASTIC_SHEETS.basicModel()
+		MFItems.RAW_MEAT_INGOT.basicModel()
+		MFItems.COOKED_MEAT_INGOT.basicModel()
 
 		MFItems.ORE_DUSTS.get("coal_dust").basicModel()
 		MFItems.ORE_DUSTS.get("iron_dust").basicModel()
@@ -48,6 +50,8 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFFluids.SUSPICIOUS_STEW_BUCKET.basicModel()
 		MFFluids.RABBIT_STEW_BUCKET.basicModel()
 		MFFluids.HONEY_BUCKET.basicModel()
+		MFFluids.PINK_SLIME_BUCKET.basicModel()
+		MFFluids.MEAT_BUCKET.basicModel()
 
 		// Block items with models that are not just parenting its block model
 		basicItem("conveyor".id)

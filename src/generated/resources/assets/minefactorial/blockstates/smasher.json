@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "minefactorial:block/smasher",
+    "facing=east,running=false": {
+      "model": "minefactorial:block/smasher_not_running",
       "y": 90
     },
-    "facing=north": {
-      "model": "minefactorial:block/smasher"
+    "facing=east,running=true": {
+      "model": "minefactorial:block/smasher_running",
+      "y": 90
     },
-    "facing=south": {
-      "model": "minefactorial:block/smasher",
+    "facing=north,running=false": {
+      "model": "minefactorial:block/smasher_not_running"
+    },
+    "facing=north,running=true": {
+      "model": "minefactorial:block/smasher_running"
+    },
+    "facing=south,running=false": {
+      "model": "minefactorial:block/smasher_not_running",
       "y": 180
     },
-    "facing=west": {
-      "model": "minefactorial:block/smasher",
+    "facing=south,running=true": {
+      "model": "minefactorial:block/smasher_running",
+      "y": 180
+    },
+    "facing=west,running=false": {
+      "model": "minefactorial:block/smasher_not_running",
+      "y": 270
+    },
+    "facing=west,running=true": {
+      "model": "minefactorial:block/smasher_running",
       "y": 270
     }
   }

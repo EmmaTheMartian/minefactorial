@@ -2,6 +2,7 @@ package martian.minefactorial.content.block.machinery;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.foundation.block.AbstractSingleTankMachineBE;
+import martian.minefactorial.foundation.fluid.MFFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -16,6 +17,18 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 public class BlockPumpBE extends AbstractSingleTankMachineBE {
 	public BlockPumpBE(BlockPos pos, BlockState blockState) {
 		super(MFBlockEntityTypes.PUMP.get(), 4000, pos, blockState);
+	}
+
+	@Override
+	protected MFFluidTank makeFluidTank() {
+		MFFluidTank tank = new MFFluidTank(this.capacity, this::validate) {
+			@Override
+			public void onContentsChanged() {
+				BlockPumpBE.this.setChanged();
+			}
+		};
+		tank.canReceive = false;
+		return tank;
 	}
 
 	protected BlockPos getTargetPos() {
@@ -40,7 +53,7 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 				int amount = Math.min(getTank().getFluidAmount(), getMaxFluidExtract());
 				FluidStack stack = getTank().getFluid().copyWithAmount(amount);
 				fluidHandler.fill(stack, IFluidHandler.FluidAction.EXECUTE);
-				getTank().drain(amount, IFluidHandler.FluidAction.EXECUTE);
+				((MFFluidTank) getTank()).forceDrain(amount, IFluidHandler.FluidAction.EXECUTE);
 			}
 		}
 

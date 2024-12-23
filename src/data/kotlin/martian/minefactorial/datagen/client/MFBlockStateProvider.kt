@@ -3,17 +3,21 @@ package martian.minefactorial.datagen.client
 import martian.dapper.api.client.CubeModel
 import martian.dapper.api.client.CubeModel.Companion.all
 import martian.dapper.api.client.CubeModel.Companion.down
+import martian.dapper.api.client.CubeModel.Companion.east
 import martian.dapper.api.client.CubeModel.Companion.from
 import martian.dapper.api.client.CubeModel.Companion.north
 import martian.dapper.api.client.CubeModel.Companion.renderType
 import martian.dapper.api.client.CubeModel.Companion.side
 import martian.dapper.api.client.CubeModel.Companion.south
 import martian.dapper.api.client.CubeModel.Companion.up
+import martian.dapper.api.client.CubeModel.Companion.west
 import martian.dapper.api.client.DapperBlockStateProvider
 import martian.dapper.api.mcId
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.block.foliage.BlockRubberWood
 import martian.minefactorial.content.block.machinery.BlockMacerator
+import martian.minefactorial.content.block.machinery.BlockMeatPacker
+import martian.minefactorial.content.block.machinery.BlockSmasher
 import martian.minefactorial.content.block.machinery.farming.BlockHarvester
 import martian.minefactorial.content.block.power.BlockSteamBoiler
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock
@@ -80,9 +84,11 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.MOB_GRINDER.addHorizontalDirectionalModel(machineFrame.copy()
 			north machineId("mob_grinder_front")
 			south itemOutputSide)
-		MFBlocks.SMASHER.addHorizontalDirectionalModel(machineFrame.copy()
-			north machineId("smasher_front")
-			south itemOutputSide)
+		MFBlocks.SLAUGHTERHOUSE.addHorizontalDirectionalModel(machineFrame.copy()
+			north machineId("slaughterhouse_front")
+			south itemOutputSide
+			west fluidOutputSide
+			east fluidOutputSide)
 
 		MFBlocks.FLUID_EXTRACTOR.addDirectionalModel(CubeModel() from blockId("fluid_extractor"))
 
@@ -144,6 +150,20 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		}
 
 		directionalRunningMachine(
+			MFBlocks.SMASHER.get(),
+			BlockSmasher.FACING,
+			BlockSmasher.RUNNING,
+			machineFrame.copy()
+				.north(machineId("smasher_front_running"))
+				.south(itemOutputSide)
+				.build("smasher_running", models()),
+			machineFrame.copy()
+				.north(machineId("smasher_front"))
+				.south(itemOutputSide)
+				.build("smasher_not_running", models())
+		)
+
+		directionalRunningMachine(
 			MFBlocks.MACERATOR.get(),
 			BlockMacerator.FACING,
 			BlockMacerator.RUNNING,
@@ -171,6 +191,20 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				.north(machineId("harvester_front"))
 				.south(itemOutputSide)
 				.build("harvester_not_running", models())
+		)
+
+		directionalRunningMachine(
+			MFBlocks.MEAT_PACKER.get(),
+			BlockMeatPacker.FACING,
+			BlockMeatPacker.RUNNING,
+			machineFrame.copy()
+				.north(machineId("meat_packer_front_running"))
+				.south(itemOutputSide)
+				.build("meat_packer_running", models()),
+			machineFrame.copy()
+				.north(machineId("meat_packer_front"))
+				.south(itemOutputSide)
+				.build("meat_packer_not_running", models())
 		)
 
 		// why is the datagen for rubber wood so cursed...

@@ -20,4 +20,10 @@ public abstract class AbstractZonedSingleTankAndInventoryMachineBE
 	public Lazy<AABB> getCachedWorkZone() {
 		return cachedWorkZone;
 	}
+
+	@Override
+	public void setChanged() {
+		this.invalidateWorkZone();
+		super.setChanged();
+	}
 }

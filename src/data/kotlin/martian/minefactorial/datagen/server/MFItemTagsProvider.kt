@@ -3,14 +3,20 @@ package martian.minefactorial.datagen.server
 import martian.dapper.api.server.DapperTagProvider
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.registry.MFItems
+import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
 class MFItemTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.Items(event, Minefactorial.MODID) {
 	override fun addTags() {
 		MFItems.WRENCH addTo "c:tools/wrenches"
+		MFItems.SCREWDRIVER addTo "c:tools/screwdrivers"
+
 		MFItems.PLASTIC_INGOT addTo "c:ingots/plastic"
 		MFItems.PLASTIC_SHEETS addTo "c:plates/plastic"
 		MFItems.RUBBER_INGOT addTo "c:ingots/rubber"
+
+		MFItems.RAW_MEAT_INGOT addTo tag(Tags.Items.FOODS_RAW_MEAT)
+		MFItems.COOKED_MEAT_INGOT addTo tag(Tags.Items.FOODS_COOKED_MEAT)
 
 		MFItems.ORE_DUSTS.get("coal_dust").addTo("c:dusts", "c:dusts/coal")
 		MFItems.ORE_DUSTS.get("iron_dust").addTo("c:dusts", "c:dusts/iron")

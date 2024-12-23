@@ -7,6 +7,7 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
 import martian.minefactorial.content.recipe.RecipeMaceration;
+import martian.minefactorial.content.recipe.RecipeMeatPacking;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,9 @@ public class MFEmiPlugin implements EmiPlugin {
 	public static final EmiStack MACERATOR = EmiStack.of(MFBlocks.MACERATOR);
 	public static final EmiRecipeCategory MACERATION = new EmiRecipeCategory(id("maceration"), MACERATOR, new EmiTexture(ICONS, 0, 0, 16, 16));
 
+	public static final EmiStack MEAT_PACKER = EmiStack.of(MFBlocks.MEAT_PACKER);
+	public static final EmiRecipeCategory MEAT_PACKING = new EmiRecipeCategory(id("meat_packing"), MEAT_PACKER, new EmiTexture(ICONS, 0, 0, 32, 16));
+
 	@Override
 	public void register(EmiRegistry registry) {
 		RecipeManager rm = registry.getRecipeManager();
@@ -34,6 +38,12 @@ public class MFEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(MACERATION, MACERATOR);
 		for (RecipeHolder<RecipeMaceration> recipe : rm.getAllRecipesFor(MFRecipeTypes.MACERATION.get())) {
 			registry.addRecipe(new EmiRecipeMaceration(recipe));
+		}
+
+		registry.addCategory(MEAT_PACKING);
+		registry.addWorkstation(MEAT_PACKING, MEAT_PACKER);
+		for (RecipeHolder<RecipeMeatPacking> recipe : rm.getAllRecipesFor(MFRecipeTypes.MEAT_PACKING.get())) {
+			registry.addRecipe(new EmiRecipeMeatPacking(recipe));
 		}
 	}
 }

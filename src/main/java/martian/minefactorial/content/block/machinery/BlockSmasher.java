@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
@@ -29,10 +30,13 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockSmasher extends AbstractBlockWithEntity<BlockSmasherBE> {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public static final BooleanProperty RUNNING = BooleanProperty.create("running");
 
 	public BlockSmasher(Properties properties) {
 		super(BlockSmasherBE::new, properties);
-		registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH));
+		registerDefaultState(getStateDefinition().any()
+				.setValue(FACING, Direction.NORTH)
+				.setValue(RUNNING, false));
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class BlockSmasher extends AbstractBlockWithEntity<BlockSmasherBE> {
 
 	@Override
 	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING);
+		builder.add(FACING, RUNNING);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public abstract class MFItem extends Item {
+public class MFItem extends Item {
 	private final String[] hoverText;
 
 	public MFItem(Properties properties, String... hoverText) {

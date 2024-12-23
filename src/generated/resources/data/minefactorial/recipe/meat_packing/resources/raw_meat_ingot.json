@@ -1,0 +1,12 @@
+{
+  "type": "minefactorial:meat_packing",
+  "craftDuration": 60,
+  "input": {
+    "fluid": "minefactorial:meat"
+  },
+  "powerPerTick": 2,
+  "result": {
+    "count": 1,
+    "id": "minefactorial:raw_meat_ingot"
+  }
+}

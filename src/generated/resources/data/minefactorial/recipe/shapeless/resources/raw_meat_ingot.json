@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minefactorial:meat_bucket"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "minefactorial:raw_meat_ingot"
+  }
+}

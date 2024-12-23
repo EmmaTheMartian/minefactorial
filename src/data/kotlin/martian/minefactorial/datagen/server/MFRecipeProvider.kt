@@ -1,5 +1,6 @@
 package martian.minefactorial.datagen.server
 
+import martian.dapper.api.ofStack
 import martian.dapper.api.server.recipe.DapperRecipeProvider
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.pattern2x2
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.shapedRecipeBuilder
@@ -10,15 +11,19 @@ import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.smeltsTo
 import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.unlockWith
 import martian.minefactorial.content.MFTags
 import martian.minefactorial.content.registry.MFBlocks
+import martian.minefactorial.content.registry.MFFluidTypes
+import martian.minefactorial.content.registry.MFFluids
 import martian.minefactorial.content.registry.MFItems
 import martian.minefactorial.datagen.id
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMaceration
+import martian.minefactorial.datagen.server.recipe.RecipeBuilderMeatPacking
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.data.event.GatherDataEvent
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient
 
 class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 	override fun buildRecipes() {
@@ -113,6 +118,19 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			unlockWith(MFItems.RAW_PLASTIC)
 			save("shaped/resources/plastic_sheets".id)
 		}
+
+		MFItems.RAW_MEAT_INGOT.shapelessRecipeBuilder(4).apply {
+			requires(MFFluids.MEAT_BUCKET)
+			unlockWith(MFFluids.MEAT_BUCKET)
+			save("shapeless/resources/raw_meat_ingot".id)
+		}
+
+		RecipeBuilderMeatPacking(FluidIngredient.single(MFFluids.MEAT), MFItems.RAW_MEAT_INGOT ofStack 1)
+			.save("meat_packing/resources/raw_meat_ingot".id)
+
+		(MFItems.RAW_MEAT_INGOT smeltsTo MFItems.COOKED_MEAT_INGOT
+			unlockWith MFItems.RAW_MEAT_INGOT
+			save "smelting/resources/cooked_meat_from_raw_meat".id)
 		//endregion Items/Resources
 
 		// endregion Items
@@ -264,10 +282,58 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			pattern(" F ")
 			define('P', MFTags.Items.PLASTIC_SHEETS)
 			define('F', MFBlocks.MACHINE_FRAME)
-			define('D', Items.DIAMOND)
+			define('D', Tags.Items.GEMS_DIAMOND)
 			define('I', Items.PISTON)
 			unlockWith(MFBlocks.MACHINE_FRAME)
 			save("shaped/machinery/macerator".id)
+		}
+
+		MFBlocks.PLANTER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("IHI")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('H', Items.GOLDEN_HOE)
+			define('I', Tags.Items.INGOTS_IRON)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/planter".id)
+		}
+
+		MFBlocks.HARVESTER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("ISI")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('S', Tags.Items.SEEDS)
+			define('I', Tags.Items.INGOTS_IRON)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/harvester".id)
+		}
+
+		MFBlocks.SLAUGHTERHOUSE.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("TST")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('S', Items.GOLDEN_SWORD)
+			define('T', MFBlocks.PLASTIC_TANK)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/slaughterhouse".id)
+		}
+
+		MFBlocks.MEAT_PACKER.shapedRecipeBuilder().apply {
+			pattern("PHP")
+			pattern("PIP")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('H', Items.PISTON)
+			define('I', Items.CAULDRON)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/meat_packer".id)
 		}
 		// endregion Blocks/Machinery
 

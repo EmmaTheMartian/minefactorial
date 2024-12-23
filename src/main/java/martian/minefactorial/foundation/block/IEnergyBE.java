@@ -6,11 +6,13 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public interface IEnergyBE extends IBE {
+	int DEFAULT_MAX_ENERGY = 1600;
+
 	ProtectiveEnergyStorage getEnergyStorage();
 
 	/** Energy capacity of the machine */
 	default int getMaxEnergy() {
-		return 1600;
+		return DEFAULT_MAX_ENERGY;
 	}
 
 	/** Maximum energy extractable per tick for the machine */

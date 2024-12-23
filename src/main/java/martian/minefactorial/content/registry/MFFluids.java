@@ -166,4 +166,36 @@ public final class MFFluids {
 			.levelDecreasePerBlock(2)
 			.block(MFFluids.HONEY_BLOCK)
 			.bucket(MFFluids.HONEY_BUCKET);
+
+	// Pink Slime
+	public static DeferredHolder<Fluid, FlowingFluid> PINK_SLIME = registerSource("pink_slime", () -> MFFluids.PINK_SLIME_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> PINK_SLIME_FLOWING = registerFlowing("pink_slime_flowing", () -> MFFluids.PINK_SLIME_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> PINK_SLIME_BLOCK = registerBlock("pink_slime", MFFluids.PINK_SLIME);
+	public static DeferredItem<BucketItem> PINK_SLIME_BUCKET = registerBucket("pink_slime_bucket", MFFluids.PINK_SLIME);
+
+	public static BaseFlowingFluid.Properties PINK_SLIME_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.PINK_SLIME,
+			MFFluids.PINK_SLIME,
+			MFFluids.PINK_SLIME_FLOWING
+	)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
+			.block(MFFluids.PINK_SLIME_BLOCK)
+			.bucket(MFFluids.PINK_SLIME_BUCKET);
+
+	// Meat
+	public static DeferredHolder<Fluid, FlowingFluid> MEAT = registerSource("meat", () -> MFFluids.MEAT_PROPERTIES);
+	public static DeferredHolder<Fluid, FlowingFluid> MEAT_FLOWING = registerFlowing("meat_flowing", () -> MFFluids.MEAT_PROPERTIES);
+	public static DeferredBlock<LiquidBlock> MEAT_BLOCK = registerBlock("meat", MFFluids.MEAT);
+	public static DeferredItem<BucketItem> MEAT_BUCKET = registerBucket("meat_bucket", MFFluids.MEAT);
+
+	public static BaseFlowingFluid.Properties MEAT_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.MEAT,
+			MFFluids.MEAT,
+			MFFluids.MEAT_FLOWING
+	)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
+			.block(MFFluids.MEAT_BLOCK)
+			.bucket(MFFluids.MEAT_BUCKET);
 }

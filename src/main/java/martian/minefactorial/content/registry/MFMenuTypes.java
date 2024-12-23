@@ -65,4 +65,10 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerHarvester>> HARVESTER =
 			registerSimple("harvester", ContainerHarvester::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSlaughterhouse>> SLAUGHTERHOUSE =
+			registerSimple("slaughterhouse", ContainerSlaughterhouse::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMeatPacker>> MEAT_PACKER =
+			registerSimple("meat_packer", ContainerMeatPacker::new);
 }

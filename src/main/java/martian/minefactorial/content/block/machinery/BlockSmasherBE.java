@@ -85,6 +85,16 @@ public class BlockSmasherBE extends AbstractSingleTankAndInventoryMachineBE {
 	}
 
 	@Override
+	public void onWorkStart(ServerLevel level) {
+		level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(BlockSmasher.RUNNING, true));
+	}
+
+	@Override
+	public void onWorkStop(ServerLevel level) {
+		level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(BlockSmasher.RUNNING, false));
+	}
+
+	@Override
 	public void doWork(ServerLevel level) {
 		ItemStack toSmash = getInventory().getStackInSlot(0);
 		Block block = ((BlockItem) toSmash.getItem()).getBlock();

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "H": {
+      "item": "minecraft:piston"
+    },
+    "I": {
+      "item": "minecraft:cauldron"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    "PHP",
+    "PIP",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:meat_packer"
+  }
+}

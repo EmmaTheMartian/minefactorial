@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -92,5 +93,14 @@ public class BlockMobGrinder extends AbstractBlockWithEntity<BlockMobGrinderBE> 
 	@ParametersAreNonnullByDefault
 	protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
+		super.onBlockStateChange(level, pos, oldState, newState);
+		if (level.getBlockEntity(pos) instanceof BlockSlaughterhouseBE be) {
+			be.invalidateWorkZone();
+		}
 	}
 }

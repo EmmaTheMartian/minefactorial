@@ -81,4 +81,24 @@ public final class MFFluidTypes {
 	public static final DeferredHolder<FluidType, BasicFluidType> RABBIT_STEW = registerSimple("rabbit_stew", 0xFFE29D4A);
 
 	public static final DeferredHolder<FluidType, BasicFluidType> HONEY = registerSimple("honey", 0xFFFF9116);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> PINK_SLIME = register("pink_slime", new BasicFluidType(
+			WATER_STILL_TEXTURE,
+			WATER_FLOWING,
+			WATER_OVERLAY,
+			0xFFE394B2,
+			colourFromHex(0xFFE394B2),
+			FluidType.Properties.create()
+					.density(3000)
+					.viscosity(6000)
+					.canSwim(false)
+	) {
+		@Override
+		public void setItemMovement(@NotNull ItemEntity entity) {
+			Vec3 vec3 = entity.getDeltaMovement();
+			entity.setDeltaMovement(vec3.x * (double) 0.95F, vec3.y + (double) (vec3.y < (double) 0.06F ? 5.0E-4F : 0.0F), vec3.z * (double) 0.95F);
+		}
+	});
+
+	public static final DeferredHolder<FluidType, BasicFluidType> MEAT = registerSimple("meat", 0xFFE79983);
 }

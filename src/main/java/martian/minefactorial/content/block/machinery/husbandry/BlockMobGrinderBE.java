@@ -6,6 +6,7 @@ import martian.minefactorial.foundation.ArgLazy;
 import martian.minefactorial.foundation.block.AbstractZonedSingleTankAndInventoryMachineBE;
 import martian.minefactorial.foundation.entity.IMixinLivingEntity;
 import martian.minefactorial.foundation.fluid.FluidHelpers;
+import martian.minefactorial.foundation.fluid.MFFluidTank;
 import martian.minefactorial.foundation.item.MFItemStackHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -40,6 +41,18 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 
 	public BlockMobGrinderBE(BlockPos pos, BlockState blockState) {
 		super(MFBlockEntityTypes.MOB_GRINDER.get(), 4000, SLOTS, pos, blockState);
+	}
+
+	@Override
+	protected MFFluidTank makeFluidTank() {
+		MFFluidTank tank = new MFFluidTank(this.tankCapacity, this::validateFluidStack) {
+			@Override
+			public void onContentsChanged() {
+				BlockMobGrinderBE.this.setChanged();
+			}
+		};
+		tank.canReceive = false;
+		return tank;
 	}
 
 	@Override
@@ -120,8 +133,8 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 			int reward = entity.getExperienceReward(level, null) * 10;
 			if (reward > 0) {
 				FluidStack stack = new FluidStack(MFFluids.ESSENCE, reward);
-				if (getTank().fill(stack, IFluidHandler.FluidAction.SIMULATE) == reward) {
-					getTank().fill(stack, IFluidHandler.FluidAction.EXECUTE);
+				if (((MFFluidTank) getTank()).forceFill(stack, IFluidHandler.FluidAction.SIMULATE) == reward) {
+					((MFFluidTank) getTank()).forceFill(stack, IFluidHandler.FluidAction.EXECUTE);
 					entity.skipDropExperience();
 				}
 			}

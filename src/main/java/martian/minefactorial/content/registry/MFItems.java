@@ -2,6 +2,7 @@ package martian.minefactorial.content.registry;
 
 
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.content.MFFoodProperties;
 import martian.minefactorial.content.item.*;
 import martian.minefactorial.foundation.item.MFItem;
 import martian.regolith.DeferredHolders;
@@ -59,7 +60,9 @@ public final class MFItems {
 			RUBBER_INGOT = simpleItem("rubber_ingot"),
 			RAW_PLASTIC = simpleItem("raw_plastic"),
 			PLASTIC_INGOT = simpleItem("plastic_ingot"),
-			PLASTIC_SHEETS = simpleItem("plastic_sheets")
+			PLASTIC_SHEETS = simpleItem("plastic_sheets"),
+			RAW_MEAT_INGOT = register("raw_meat_ingot", () -> new MFItem(new Item.Properties().food(MFFoodProperties.RAW_MEAT_INGOT), getHoverTextIdsFor("raw_meat_ingot"))),
+			COOKED_MEAT_INGOT = register("cooked_meat_ingot", () -> new MFItem(new Item.Properties().food(MFFoodProperties.COOKED_MEAT_INGOT), getHoverTextIdsFor("cooked_meat_ingot")))
 	;
 
 	// These are used to register macerated ores and ore dusts

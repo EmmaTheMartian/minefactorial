@@ -6,6 +6,7 @@ import martian.minefactorial.content.block.machinery.*;
 import martian.minefactorial.content.block.machinery.farming.BlockHarvesterBE;
 import martian.minefactorial.content.block.machinery.farming.BlockPlanterBE;
 import martian.minefactorial.content.block.machinery.husbandry.BlockMobGrinderBE;
+import martian.minefactorial.content.block.machinery.husbandry.BlockSlaughterhouseBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.block.redstone.BlockRedstoneClockBE;
@@ -75,6 +76,8 @@ public final class MFBlockEntityTypes {
 	public static final DeferredBEType<BlockMaceratorBE> MACERATOR = register("macerator", BlockMaceratorBE::new, MFBlocks.MACERATOR);
 	public static final DeferredBEType<BlockPlanterBE> PLANTER = register("planter", BlockPlanterBE::new, MFBlocks.PLANTER);
 	public static final DeferredBEType<BlockHarvesterBE> HARVESTER = register("harvester", BlockHarvesterBE::new, MFBlocks.HARVESTER);
+	public static final DeferredBEType<BlockSlaughterhouseBE> SLAUGHTERHOUSE = register("slaughterhouse", BlockSlaughterhouseBE::new, MFBlocks.SLAUGHTERHOUSE);
+	public static final DeferredBEType<BlockMeatPackerBE> MEAT_PACKER = register("meat_packer", BlockMeatPackerBE::new, MFBlocks.MEAT_PACKER);
 	// Power
 	public static final DeferredBEType<BlockSteamTurbineBE> STEAM_TURBINE = register("steam_turbine", BlockSteamTurbineBE::new, MFBlocks.STEAM_TURBINE);
 	public static final DeferredBEType<BlockSteamBoilerBE> STEAM_BOILER = register("steam_boiler", BlockSteamBoilerBE::new, MFBlocks.STEAM_BOILER);
