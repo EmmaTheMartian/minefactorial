@@ -55,7 +55,7 @@ class RecipeBuilderMaceration(
 			id,
 			RecipeMaceration(powerPerTick, duration, ingredient, results),
 			builder.build(id.withPrefix("recipes/" + this.category.folderName + "/"))
-		);
+		)
 	}
 
 	override fun unlockedBy(name: String, criterion: Criterion<*>): RecipeBuilderMaceration {

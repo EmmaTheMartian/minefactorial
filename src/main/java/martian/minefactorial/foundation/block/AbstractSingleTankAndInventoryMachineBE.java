@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractSingleTankAndInventoryMachineBE
 		extends AbstractMachineBE
-		implements ISingleTankBE, IInventoryBE
+		implements ISingleTankBE, IInventoryBE<ItemStackHandler>
 {
 	private final FluidTank tank;
 	protected final int tankCapacity;

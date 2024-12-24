@@ -22,7 +22,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInventoryBE {
+public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInventoryBE<ItemStackHandler> {
 	public static final int SLOT_COUNT = 1;
 
 	private final FluidTank waterTank = new FluidTank(2000, fluidStack -> fluidStack.is(Fluids.WATER)) {

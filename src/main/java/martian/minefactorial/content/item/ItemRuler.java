@@ -41,13 +41,7 @@ public class ItemRuler extends MFItem {
 		//noinspection OptionalAssignedToNull
 		if (posComponent == null || posComponent.isEmpty()) {
 			context.getItemInHand().set(MFDataComponents.POS, Optional.of(context.getClickedPos()));
-//			if (context.getPlayer() != null) {
-//				context.getPlayer().sendSystemMessage(Component.translatable("messages.minefactorial.set_pos_to", context.getClickedPos().toShortString()));
-//			}
 		} else {
-//			if (context.getPlayer() != null) {
-//				context.getPlayer().sendSystemMessage(Component.translatable(
-//						"messages.minefactorial.distance",
 //						context.getClickedPos().distManhattan(posComponent.get())
 //				));
 //			}

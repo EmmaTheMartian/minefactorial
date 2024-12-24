@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class AbstractSingleTankAndInventoryBE
 		extends BlockEntity
-		implements ISingleTankBE, IInventoryBE
+		implements ISingleTankBE, IInventoryBE<ItemStackHandler>
 {
 	private final FluidTank tank;
 	protected final int tankCapacity;
@@ -58,11 +58,6 @@ public abstract class AbstractSingleTankAndInventoryBE
 	@Override
 	public ItemStackHandler getInventory() {
 		return inventory;
-	}
-
-	@Override
-	public boolean shouldEjectItems() {
-		return false;
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public abstract class AbstractCapacitorBE extends AbstractEnergyBE implements ITickableBE, IInventoryBE {
+public abstract class AbstractCapacitorBE extends AbstractEnergyBE implements ITickableBE, IInventoryBE<ItemStackHandler> {
 	protected final ItemStackHandler itemHandler = new ItemStackHandler();
 
 	public static final int SLOT_COUNT = 1;

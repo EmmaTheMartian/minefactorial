@@ -112,7 +112,7 @@ public interface IInventoryBE<T extends IItemHandler & IItemHandlerModifiable & 
 	}
 
 	default boolean shouldEjectItems() {
-		return true;
+		return false;
 	}
 
 	default boolean canEjectSlot(int slot) {

@@ -34,7 +34,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 // Model/shape code adapted from https://github.com/McJty/Tut4_3Power/blob/ca152c3644ed0073a00ffdad5b11655c73eb396d/src/main/java/com/mcjty/tutpower/cables/blocks/CableBlock.java#L37
 public abstract class AbstractPipeBlock<T, U extends BlockEntity> extends AbstractBlockWithEntity<U> implements EntityBlock {
-	public static BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<PipeState>
 			CONNECTION_UP = EnumProperty.create("up", PipeState.class),
 			CONNECTION_DOWN = EnumProperty.create("down", PipeState.class),

@@ -10,7 +10,7 @@ public abstract class AbstractZonedSingleTankAndInventoryMachineBE
 		extends AbstractSingleTankAndInventoryMachineBE
 		implements IZonedBE
 {
-	protected Lazy<AABB> cachedWorkZone = Lazy.of(this::getWorkZone);
+	protected final Lazy<AABB> cachedWorkZone = Lazy.of(this::getWorkZone);
 
 	public AbstractZonedSingleTankAndInventoryMachineBE(BlockEntityType<?> type, int tankCapacity, int slots, BlockPos pos, BlockState blockState) {
 		super(type, tankCapacity, slots, pos, blockState);

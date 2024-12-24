@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractInventoryMachineBE extends AbstractMachineBE implements IInventoryBE {
+public abstract class AbstractInventoryMachineBE extends AbstractMachineBE implements IInventoryBE<ItemStackHandler> {
 	protected final ItemStackHandler inventory;
 	protected final int slots;
 

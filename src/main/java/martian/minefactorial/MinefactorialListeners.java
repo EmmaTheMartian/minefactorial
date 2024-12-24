@@ -20,6 +20,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -144,12 +145,12 @@ final class MinefactorialListeners {
 		registerCapabilitiesEvent.registerBlockEntity(Capabilities.FluidHandler.BLOCK, type, capabilityProvider);
 	}
 
-	private static <T extends BlockEntity & IInventoryBE> void registerItemCapability(BlockEntityType<T> type) {
+	private static <T extends BlockEntity & IInventoryBE<ItemStackHandler>> void registerItemCapability(BlockEntityType<T> type) {
 		assert registerCapabilitiesEvent != null;
 		registerCapabilitiesEvent.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, IInventoryBE::getInventory);
 	}
 
-	private static <T extends BlockEntity & IInventoryBE> void registerSidedItemCapability(BlockEntityType<T> type) {
+	private static <T extends BlockEntity & IInventoryBE<ItemStackHandler>> void registerSidedItemCapability(BlockEntityType<T> type) {
 		assert registerCapabilitiesEvent != null;
 		registerCapabilitiesEvent.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, SidedInvWrapper::new);
 	}

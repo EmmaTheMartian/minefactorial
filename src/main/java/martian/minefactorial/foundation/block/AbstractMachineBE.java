@@ -17,7 +17,7 @@ public abstract class AbstractMachineBE
 	protected boolean isIdle = true;
 
 	/** If this machine should automatically eject its items to a container or into the world. */
-	public boolean autoEject = true;
+	public boolean autoEject = false;
 
 	public AbstractMachineBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
 		super(type, pos, blockState);
@@ -56,7 +56,7 @@ public abstract class AbstractMachineBE
 	@Override
 	public void serverTick(ServerLevel level) {
 		// Eject items, if there are any
-		if (this instanceof IInventoryBE inventoryBE && inventoryBE.shouldEjectItems() && !inventoryBE.isEmpty()) {
+		if (this instanceof IInventoryBE<?> inventoryBE && inventoryBE.shouldEjectItems() && !inventoryBE.isEmpty()) {
 			IInventoryBE.ejectFrom(inventoryBE, 64);
 		}
 

@@ -36,7 +36,7 @@ class RecipeBuilderMeatPacking(
 			id,
 			RecipeMeatPacking(powerPerTick, duration, ingredient, result),
 			builder.build(id.withPrefix("recipes/" + this.category.folderName + "/"))
-		);
+		)
 	}
 
 	override fun unlockedBy(name: String, criterion: Criterion<*>): RecipeBuilderMeatPacking {

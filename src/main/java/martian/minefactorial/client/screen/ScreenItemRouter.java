@@ -1,11 +1,7 @@
 package martian.minefactorial.client.screen;
 
-import martian.minefactorial.content.block.logistics.BlockItemRouterBE;
-import martian.minefactorial.content.block.machinery.farming.BlockHarvesterBE;
-import martian.minefactorial.content.menu.ContainerHarvester;
 import martian.minefactorial.content.menu.ContainerItemRouter;
 import martian.minefactorial.foundation.client.screen.AbstractMFScreen;
-import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
