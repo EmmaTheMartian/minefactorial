@@ -3,21 +3,15 @@ package martian.minefactorial.integration.emi;
 import dev.emi.emi.api.neoforge.NeoForgeEmiIngredient;
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.render.EmiTexture;
-import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import martian.minefactorial.client.screen.ScreenMeatPacker;
-import martian.minefactorial.content.block.machinery.BlockMeatPackerBE;
 import martian.minefactorial.content.recipe.RecipeMeatPacking;
 import martian.minefactorial.foundation.Mathematics;
 import martian.minefactorial.foundation.block.IEnergyBE;
-import martian.minefactorial.foundation.client.FluidRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.fluids.FluidStack;
 
 public class EmiRecipeMeatPacking extends BasicEmiRecipe {
 	private static final int PADDING_Y = 8;

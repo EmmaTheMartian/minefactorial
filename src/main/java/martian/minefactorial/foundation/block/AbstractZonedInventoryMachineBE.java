@@ -1,15 +1,10 @@
 package martian.minefactorial.foundation.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.util.Lazy;
-
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class AbstractZonedInventoryMachineBE
 		extends AbstractInventoryMachineBE

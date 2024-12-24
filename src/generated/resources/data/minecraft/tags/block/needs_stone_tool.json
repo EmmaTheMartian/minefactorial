@@ -6,6 +6,7 @@
     "minefactorial:fluid_extractor",
     "minefactorial:energy_pipe",
     "minefactorial:fluid_pipe",
+    "minefactorial:item_router",
     "minefactorial:breaker",
     "minefactorial:mob_grinder",
     "minefactorial:fountain",

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/logistics/item_router/bottom",
+    "east": "minefactorial:block/logistics/item_router/east",
+    "north": "minefactorial:block/logistics/item_router/north",
+    "particle": "minefactorial:block/logistics/item_router/top",
+    "south": "minefactorial:block/logistics/item_router/south",
+    "up": "minefactorial:block/logistics/item_router/top",
+    "west": "minefactorial:block/logistics/item_router/west"
+  }
+}

@@ -66,6 +66,7 @@ public final class MFBlockEntityTypes {
 	public static final DeferredBEType<BlockFluidExtractorBE> FLUID_EXTRACTOR = register("fluid_extractor", BlockFluidExtractorBE::new, MFBlocks.FLUID_EXTRACTOR);
 	public static final DeferredBEType<BlockPipeEnergyBE> ENERGY_PIPE = register("energy_pipe", BlockPipeEnergyBE::new, MFBlocks.ENERGY_PIPE);
 	public static final DeferredBEType<BlockPipeFluidBE> FLUID_PIPE = register("fluid_pipe", BlockPipeFluidBE::new, MFBlocks.FLUID_PIPE);
+	public static final DeferredBEType<BlockItemRouterBE> ITEM_ROUTER = register("item_router", BlockItemRouterBE::new, MFBlocks.ITEM_ROUTER);
 	// Machines
 	public static final DeferredBEType<BlockBreakerBE> BREAKER = register("breaker", BlockBreakerBE::new, MFBlocks.BREAKER);
 	public static final DeferredBEType<BlockMobGrinderBE> MOB_GRINDER = register("mob_grinder", BlockMobGrinderBE::new, MFBlocks.MOB_GRINDER);

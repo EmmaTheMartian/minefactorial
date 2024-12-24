@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ContainerHarvester extends AbstractMachineContainer<BlockHarvesterBE> {
 	public ContainerHarvester(int containerId, Inventory playerInventory, BlockPos pos) {
-		super(MFMenuTypes.HARVESTER.get(), MFBlocks.HARVESTER.get(), 0, containerId, playerInventory, pos);
+		super(MFMenuTypes.HARVESTER.get(), MFBlocks.HARVESTER.get(), BlockHarvesterBE.SLOTS, containerId, playerInventory, pos);
 
 		addEnergySlot(this.blockEntity);
 		addWorkSlot(this.blockEntity);

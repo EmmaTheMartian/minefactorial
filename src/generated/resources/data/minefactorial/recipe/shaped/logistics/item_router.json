@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minefactorial:conveyor"
+    },
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "CFC",
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:item_router"
+  }
+}

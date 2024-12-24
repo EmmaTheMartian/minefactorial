@@ -137,6 +137,7 @@ public final class MFBlocks {
 			FLUID_EXTRACTOR = register("fluid_extractor", () -> new BlockFluidExtractor(MACHINE_PROPS)),
 			ENERGY_PIPE = register("energy_pipe", () -> new BlockPipeEnergy(PIPE_PROPS)),
 			FLUID_PIPE = register("fluid_pipe", () -> new BlockPipeFluid(PIPE_PROPS)),
+			ITEM_ROUTER = register("item_router", () -> new BlockItemRouter(MACHINE_PROPS), getHoverTextIdsFor("item_router")),
 			// Machinery
 			BREAKER = register("breaker", () -> new BlockBreaker(MACHINE_PROPS)),
 			MOB_GRINDER = register("mob_grinder", () -> new BlockMobGrinder(MACHINE_PROPS)),

@@ -11,7 +11,6 @@ import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.smeltsTo
 import martian.dapper.api.server.recipe.DapperSmeltingRecipeUtil.unlockWith
 import martian.minefactorial.content.MFTags
 import martian.minefactorial.content.registry.MFBlocks
-import martian.minefactorial.content.registry.MFFluidTypes
 import martian.minefactorial.content.registry.MFFluids
 import martian.minefactorial.content.registry.MFItems
 import martian.minefactorial.datagen.id
@@ -196,6 +195,17 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			define('B', Items.BUCKET)
 			unlockWith(MFItems.PLASTIC_SHEETS)
 			save("shaped/logistics/fluid_pipe".id)
+		}
+
+		MFBlocks.ITEM_ROUTER.shapedRecipeBuilder().apply {
+			pattern("PCP")
+			pattern("CFC")
+			pattern("PCP")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('C', MFBlocks.CONVEYOR)
+			define('F', MFBlocks.MACHINE_FRAME)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/logistics/item_router".id)
 		}
 		// endregion Blocks/Logistics
 

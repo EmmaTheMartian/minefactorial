@@ -16,6 +16,8 @@ block.minefactorial:
   fluid_extractor: Fluid Extractor
   energy_pipe: Energy Cable
   fluid_pipe: Fluid Pipe
+  item_router: Item Router
+  item_router.desc.0: Filters items per-side and rejects items that do not match.
 
   # Machinery
   breaker: Breaker

@@ -6,30 +6,33 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractInventoryBE extends BlockEntity implements IInventoryBE<ItemStackHandler> {
-	protected final ItemStackHandler inventory;
+/**
+ * {@link AbstractInventoryBE} but allowing for any valid item handler.
+ * {@see BlockItemRouterBE} for an example use-case.
+ * @param <T>
+ */
+public abstract class AbstractGenericInventoryBE<T extends IItemHandler & IItemHandlerModifiable & INBTSerializable<CompoundTag>>
+		extends BlockEntity
+		implements IInventoryBE<T>
+{
+	protected final T inventory;
 	protected final int slots;
 
-	public AbstractInventoryBE(BlockEntityType<?> type, int slots, BlockPos pos, BlockState blockState) {
+	public AbstractGenericInventoryBE(BlockEntityType<?> type, int slots, BlockPos pos, BlockState blockState) {
 		super(type, pos, blockState);
 		this.slots = slots;
 		this.inventory = makeItemStackHandler();
 	}
 
-	protected ItemStackHandler makeItemStackHandler() {
-		return new ItemStackHandler(slots) {
-			@Override
-			public void onContentsChanged(int slot) {
-				AbstractInventoryBE.this.setChanged();
-			}
-		};
-	}
+	protected abstract T makeItemStackHandler();
 
 	@Override
-	public ItemStackHandler getInventory() {
+	public T getInventory() {
 		return inventory;
 	}
 

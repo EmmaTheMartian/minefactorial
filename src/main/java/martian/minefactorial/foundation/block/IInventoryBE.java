@@ -4,6 +4,7 @@ import martian.minefactorial.foundation.ArrayHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.WorldlyContainer;
@@ -16,17 +17,18 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IInventoryBE extends IBE, WorldlyContainer {
-	ItemStackHandler getInventory();
+public interface IInventoryBE<T extends IItemHandler & IItemHandlerModifiable & INBTSerializable<CompoundTag>> extends IBE, WorldlyContainer {
+	T getInventory();
 
-	default ItemStackHandler getInventory(Direction side) {
+	default T getInventory(Direction side) {
 		return getInventory();
 	}
 
@@ -222,7 +224,7 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 	}
 
 	static void ejectFrom(ServerLevel level, BlockPos pos, Direction direction, int slot, int maxCount) {
-		if (!(level.getBlockEntity(pos) instanceof IInventoryBE be)) {
+		if (!(level.getBlockEntity(pos) instanceof IInventoryBE<?> be)) {
 			return;
 		}
 
@@ -284,11 +286,11 @@ public interface IInventoryBE extends IBE, WorldlyContainer {
 		}
 	}
 
-	static void ejectFrom(IInventoryBE be, int maxAmount) {
+	static <T extends IItemHandler & IItemHandlerModifiable & INBTSerializable<CompoundTag>> void ejectFrom(IInventoryBE<T> be, int maxAmount) {
 		ejectFrom((ServerLevel) be.getLevel(), be.getBlockPos(), be.getEjectDirection(be.getBlockState()), -1, maxAmount);
 	}
 
-	static void ejectFrom(IInventoryBE be, int slot, int maxAmount) {
+	static <T extends IItemHandler & IItemHandlerModifiable & INBTSerializable<CompoundTag>> void ejectFrom(IInventoryBE<T> be, int slot, int maxAmount) {
 		ejectFrom((ServerLevel) be.getLevel(), be.getBlockPos(), be.getEjectDirection(be.getBlockState()), slot, maxAmount);
 	}
 

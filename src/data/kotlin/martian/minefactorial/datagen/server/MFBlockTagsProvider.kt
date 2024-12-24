@@ -2,7 +2,6 @@ package martian.minefactorial.datagen.server
 
 import martian.dapper.api.server.DapperTagProvider
 import martian.minefactorial.Minefactorial
-import martian.minefactorial.content.registry.MFBlocks
 import martian.minefactorial.content.registry.MFBlocks.*
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
@@ -23,6 +22,7 @@ class MFBlockTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.
 			FLUID_EXTRACTOR,
 			ENERGY_PIPE,
 			FLUID_PIPE,
+			ITEM_ROUTER,
 			// Machinery
 			BREAKER,
 			MOB_GRINDER,

@@ -45,8 +45,12 @@ public abstract class AbstractMFContainer extends AbstractContainerMenu {
 	}
 
 	protected int addSlotRange(Container container, int index, int x, int y, int count, int dx) {
+		return addSlotRange(container, index, x, y, count, dx, Slot::new);
+	}
+
+	protected int addSlotRange(Container container, int index, int x, int y, int count, int dx, SlotFactory factory) {
 		for (int i = 0; i < count; i++) {
-			addSlot(new Slot(container, index, x, y));
+			addSlot(factory.makeSlot(container, index, x, y));
 			x += dx;
 			index++;
 		}
@@ -54,8 +58,12 @@ public abstract class AbstractMFContainer extends AbstractContainerMenu {
 	}
 
 	protected int addSlotBox(Container container, int index, int x, int y, int horizontalCount, int verticalCount, int dx, int dy) {
+		return addSlotBox(container, index, x, y, horizontalCount, verticalCount, dx, dy, Slot::new);
+	}
+
+	protected int addSlotBox(Container container, int index, int x, int y, int horizontalCount, int verticalCount, int dx, int dy, SlotFactory factory) {
 		for (int i = 0; i < verticalCount; i++) {
-			index = addSlotRange(container, index, x, y, horizontalCount, dx);
+			index = addSlotRange(container, index, x, y, horizontalCount, dx, factory);
 			y += dy;
 		}
 		return index;
@@ -83,5 +91,10 @@ public abstract class AbstractMFContainer extends AbstractContainerMenu {
 		addSlotBox(playerInventory, 9, leftColumn, topRow, 9, 3, 18, 18);
 		// Hotbar
 		addSlotRange(playerInventory, 0, leftColumn, topRow + 58, 9, 18);
+	}
+
+	@FunctionalInterface
+	public interface SlotFactory {
+		Slot makeSlot(Container container, int slot, int x, int y);
 	}
 }
