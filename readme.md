@@ -6,6 +6,13 @@ MineFactorial is a revival of MineFactory Reloaded for modern versions of Minecr
 
 ---
 
+## Mod Integration
+
+- [EMI](https://modrinth.com/mod/emi) by Emi
+- [Fusion (Connected Textures)](https://modrinth.com/mod/fusion-connected-textures) by SuperMartijn642 - Optional connected textures
+- [Cable Facades](https://modrinth.com/mod/cable-facades) by Thepigcat76 - Adds M! cables and pipes to `#supports_facade`
+- [Legacy Landscape](https://modrinth.com/mod/legacy-landscape/) by Vulpixel - Optional recipe integration
+
 ## Credits and Attributions
 
 - thepigcat, for updating all the textures to look very fanciful :D
@@ -18,7 +25,9 @@ MineFactorial is a revival of MineFactory Reloaded for modern versions of Minecr
   to stay unique and diverge from what is seen in IF though.
 - M! is currently **in-development** and not 100% complete!
 
-## Misc
+## Links
+
+[Modrinth](https://modrinth.com/mod/minefactorial) - [Curseforge](https://modrinth.com/minecraft/mc-mods/minefactorial) - [GitHub](https://github.com/emmathemartian/minefactorial) - [Discord](https://discord.gg/3rtqUtCG8g)
 
 You can find the Minecraft Forum thread for MineFactory Reloaded
 [here](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1287424-1-5-1-1-5-2-powercrystals-mods-the-updates-never).
