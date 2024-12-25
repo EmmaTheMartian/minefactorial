@@ -41,7 +41,7 @@ repositories {
         }
     }
 
-    // Jade, AE2, Mekanism, Cable Facades
+    // Jade, AE2, Mekanism, Cable Facades, Fusion
     exclusiveContent {
         forRepository {
             maven("https://api.modrinth.com/maven")
@@ -142,17 +142,24 @@ dependencies {
     forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.3") // Gradle doesn't get this automatically from the CC Tweaked dependency, for whatever reason
     modLocalRuntime("cc.tweaked:cc-tweaked-${prop("minecraft_version")}-forge:${prop("cc_version")}")
 
-    // Jade (todo: replace this with its actual maven instead of modrinth maven)
-    modLocalRuntime("maven.modrinth:jade:${prop("jade_version")}")
+    // Modrinth maven dependencies
+    fun modrinth(id: String) = "maven.modrinth:$id:${prop("${id.replace('-', '_')}_version")}"
+    fun enabled(id: String) = prop("enable_$id") == "true"
 
-    // AE2 (todo: replace this with its actual maven instead of modrinth maven)
-    modLocalRuntime("maven.modrinth:ae2:${prop("ae2_version")}")
-
-    // Mekanism (todo: replace this with its actual maven instead of modrinth maven)
-    modLocalRuntime("maven.modrinth:mekanism:${prop("mekanism_version")}")
-
-    // Cable Facades
-    modLocalRuntime("maven.modrinth:cable-facades:${prop("cable_facades_version")}")
+    if (enabled("jade"))
+        modLocalRuntime(modrinth("jade"))
+    if (enabled("ae2"))
+        modLocalRuntime(modrinth("ae2"))
+    if (enabled("mekanism"))
+        modLocalRuntime(modrinth("mekanism"))
+    if (enabled("cable_facades"))
+        modLocalRuntime(modrinth("cable-facades"))
+    if (enabled("fusion_connected_textures"))
+        modLocalRuntime(modrinth("fusion-connected-textures"))
+    if (enabled("continuity"))
+        modLocalRuntime(modrinth("continuity"))
+    if (enabled("athena_ctm"))
+        modLocalRuntime(modrinth("athena-ctm"))
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

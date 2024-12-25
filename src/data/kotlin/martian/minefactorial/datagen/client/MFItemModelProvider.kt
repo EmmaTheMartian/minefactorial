@@ -17,6 +17,7 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFItems.TREE_TAP.basicHandheldModel()
 		MFItems.SCREWDRIVER.basicHandheldModel()
 		MFItems.RULER.basicModel()
+		MFItems.TWEAKERULER.basicModel()
 
 		// Resources
 		MFItems.RAW_RUBBER.basicModel()

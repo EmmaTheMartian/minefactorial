@@ -1,0 +1,9 @@
+{
+	"pack": {
+		"description": "MineFactorial Resources",
+		"pack_format": 48
+	},
+	"fusion": {
+		"overrides_folder": "fusion"
+	}
+}

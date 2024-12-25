@@ -39,6 +39,19 @@ public final class MFItems {
 		return getHoverTextIdsFor(id, 1);
 	}
 
+	private static String[] getLongHoverTextIdsFor(String id, int lines) {
+		String[] ids = new String[lines];
+		for (int i = 0; i < lines; i++) {
+			ids[i] = String.format("item.%s.%s.desc.long.%d", Minefactorial.MODID, id, i);
+		}
+		return ids;
+	}
+
+	private static String[] getLongHoverTextIdsFor(String id) {
+		return getLongHoverTextIdsFor(id, 1);
+	}
+
+	// Registry shorthands
 	private static DeferredItem<?> simpleItem(String id) {
 		return register(id, () -> new Item(new Item.Properties()));
 	}
@@ -54,6 +67,12 @@ public final class MFItems {
 			WRENCH = register("wrench", () -> new ItemWrench(new Item.Properties().stacksTo(1), getHoverTextIdsFor("wrench"))),
 			SCREWDRIVER = register("screwdriver", () -> new ItemScrewdriver(new Item.Properties().stacksTo(1), getHoverTextIdsFor("screwdriver"))),
 			RULER = register("ruler", () -> new ItemRuler(new Item.Properties().stacksTo(1).component(MFDataComponents.POS, Optional.empty()), getHoverTextIdsFor("ruler"))),
+			TWEAKERULER = register("tweakeruler", () -> new ItemTweakeruler(
+							new Item.Properties().stacksTo(1)
+									.component(MFDataComponents.POS, Optional.empty())
+									.component(MFDataComponents.TWEAKERULER_MODE, ItemTweakeruler.Mode.NONE),
+							getHoverTextIdsFor("tweakeruler", 2),
+							getLongHoverTextIdsFor("tweakeruler", 4))),
 			TREE_TAP = register("tree_tap", () -> new ItemTreeTap(new Item.Properties().stacksTo(1).durability(150), getHoverTextIdsFor("tree_tap"))),
 			// Resources
 			RAW_RUBBER = simpleItem("raw_rubber", getHoverTextIdsFor("raw_rubber")),

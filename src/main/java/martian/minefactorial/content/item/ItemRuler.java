@@ -42,9 +42,6 @@ public class ItemRuler extends MFItem {
 		if (posComponent == null || posComponent.isEmpty()) {
 			context.getItemInHand().set(MFDataComponents.POS, Optional.of(context.getClickedPos()));
 		} else {
-//						context.getClickedPos().distManhattan(posComponent.get())
-//				));
-//			}
 			context.getItemInHand().set(MFDataComponents.POS, Optional.empty());
 		}
 		return InteractionResult.SUCCESS;

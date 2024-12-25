@@ -9,6 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
+import static martian.minefactorial.Minefactorial.id;
+
 public final class MFTags {
 	private MFTags() { }
 
@@ -21,10 +23,16 @@ public final class MFTags {
 			return ItemTags.create(c(id));
 		}
 
+		private static TagKey<Item> modTag(String id) {
+			return ItemTags.create(id(id));
+		}
+
 		public static final TagKey<Item>
 				RUBBER_INGOT = cTag("ingots/rubber"),
 				PLASTIC_INGOT = cTag("ingots/plastic"),
-				PLASTIC_SHEETS = cTag("plates/plastic");
+				PLASTIC_SHEETS = cTag("plates/plastic"),
+				RULERS = modTag("tools/rulers")
+				;
 	}
 
 	public static final class Blocks {

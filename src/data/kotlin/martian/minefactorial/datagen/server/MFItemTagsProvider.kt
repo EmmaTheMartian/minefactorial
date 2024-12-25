@@ -1,6 +1,7 @@
 package martian.minefactorial.datagen.server
 
 import martian.dapper.api.server.DapperTagProvider
+import martian.dapper.api.server.tag.DapperTagUtil.add
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.registry.MFItems
 import net.neoforged.neoforge.common.Tags
@@ -10,6 +11,8 @@ class MFItemTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.I
 	override fun addTags() {
 		MFItems.WRENCH addTo "c:tools/wrenches"
 		MFItems.SCREWDRIVER addTo "c:tools/screwdrivers"
+
+		modTag("tools/rulers").add(MFItems.RULER, MFItems.TWEAKERULER)
 
 		MFItems.PLASTIC_INGOT addTo "c:ingots/plastic"
 		MFItems.PLASTIC_SHEETS addTo "c:plates/plastic"

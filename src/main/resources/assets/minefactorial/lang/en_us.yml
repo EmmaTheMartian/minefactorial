@@ -91,6 +91,15 @@ item.minefactorial:
   ruler.desc.0: Click two blocks to measure the distance between them
   tree_tap: Tree Tap
   tree_tap.desc.0: Use on Rubber Wood to obtain Raw Rubber
+  tweakeruler: Tweakeruler
+  tweakeruler.desc:
+    "0": A ruler capable of tweaking and modifying the world around you
+    "1": With great power comes great responsibility.
+  tweakeruler.desc.long:
+    "0": Switch modes by crouching and using the item without looking at a block
+    "1": In §b[REPLACE]§r mode, selected blocks are replaced with the block in your offhand
+    "2": In §b[REMOVE]§r mode, selected blocks are removed
+    "3": In §b[NONE]§r mode, it acts as a generic ruler
 
   raw_rubber: Raw Rubber
   raw_rubber.desc.0: Obtain by using a Tree Tap on Rubber Wood
@@ -152,9 +161,17 @@ messages.minefactorial:
   distance: "Distance: %d blocks"
   distance_client_message: "%d blocks (%dx%dx%d)"
   set_min_stack_size_for_eject_to: "Min stack size for eject set to: %d"
+  blocks_changed: "Blocks changed: %d"
+  current_mode: "Current mode: %s"
+  set_mode_to: "Set mode to %s"
+  show_extended_tooltip: "Hold %s for more"
+
+key.minefactorial:
+  show_extended_tooltip: "Show Extended Tooltip"
 
 emi.category.minefactorial:
   maceration: Maceration
+  meat_packing: Meat Packing
 
 tag:
   item.c:
@@ -164,3 +181,6 @@ tag:
     plates.plastic: Plastic Plates
 
     macerated_ores: Macerated Ores
+
+  item.minefactorial:
+    tools.rulers: Rulers

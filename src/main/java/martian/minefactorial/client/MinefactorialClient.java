@@ -1,8 +1,10 @@
 package martian.minefactorial.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.client.screen.*;
+import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.registry.MFDataComponents;
 import martian.minefactorial.content.registry.MFFluidTypes;
 import martian.minefactorial.content.registry.MFItems;
@@ -10,6 +12,7 @@ import martian.minefactorial.content.registry.MFMenuTypes;
 import martian.minefactorial.foundation.Raycasting;
 import martian.minefactorial.foundation.block.IZonedBE;
 import martian.minefactorial.foundation.fluid.BasicFluidType;
+import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -26,8 +29,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
@@ -74,6 +79,11 @@ public final class MinefactorialClient {
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.PINK_SLIME.get()), MFFluidTypes.PINK_SLIME);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.MEAT.get()), MFFluidTypes.MEAT);
 		}
+
+		@SubscribeEvent
+		static void registerKeys(final RegisterKeyMappingsEvent event) {
+			event.register(MFKeys.SHOW_EXTENDED_TOOLTIP.get());
+		}
 	}
 
 	@ApiStatus.Internal
@@ -111,8 +121,8 @@ public final class MinefactorialClient {
 					);
 					poseStack.popPose();
 				}
-			} else if (player.getMainHandItem().is(MFItems.RULER) || player.getOffhandItem().is(MFItems.RULER)) {
-				ItemStack ruler = player.getMainHandItem().is(MFItems.RULER) ? player.getMainHandItem() : player.getOffhandItem();
+			} else if (player.getMainHandItem().is(MFTags.Items.RULERS) || player.getOffhandItem().is(MFTags.Items.RULERS)) {
+				ItemStack ruler = player.getMainHandItem().is(MFTags.Items.RULERS) ? player.getMainHandItem() : player.getOffhandItem();
 				@Nullable Optional<BlockPos> posComponent = ruler.get(MFDataComponents.POS);
 				//noinspection OptionalAssignedToNull
 				if (posComponent == null || posComponent.isEmpty()) {
@@ -143,6 +153,20 @@ public final class MinefactorialClient {
 						(int)aabb.getYsize(),
 						(int)aabb.getZsize()
 				), true);
+			}
+		}
+
+		@SubscribeEvent
+		static void onScreenKeyPress(final ScreenEvent.KeyPressed.Post event) {
+			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.KEYSYM.getOrCreate(event.getKeyCode()))) {
+				MFItem.showExtendedTooltip = true;
+			}
+		}
+
+		@SubscribeEvent
+		static void onScreenKeyRelease(final ScreenEvent.KeyReleased.Post event) {
+			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.KEYSYM.getOrCreate(event.getKeyCode()))) {
+				MFItem.showExtendedTooltip = false;
 			}
 		}
 	}
