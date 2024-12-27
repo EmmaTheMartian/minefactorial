@@ -1,12 +1,11 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.item.ItemTweakeruler;
+import martian.minefactorial.content.item.tweakeruler.TweakerulerMode;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.util.StringRepresentable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -23,10 +22,10 @@ public final class MFDataComponents {
 					.networkSynchronized(ByteBufCodecs.optional(BlockPos.STREAM_CODEC))
 	);
 
-	public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemTweakeruler.Mode>> TWEAKERULER_MODE = REGISTRY.registerComponentType(
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<TweakerulerMode>> TWEAKERULER_MODE = REGISTRY.registerComponentType(
 			"tweakeruler_mode",
 			builder -> builder
-					.persistent(ItemTweakeruler.Mode.CODEC)
-					.networkSynchronized(ItemTweakeruler.Mode.STREAM_CODEC)
+					.persistent(TweakerulerMode.CODEC)
+					.networkSynchronized(TweakerulerMode.STREAM_CODEC)
 	);
 }

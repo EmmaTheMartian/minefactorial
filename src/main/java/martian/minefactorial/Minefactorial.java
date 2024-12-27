@@ -33,7 +33,7 @@ public class Minefactorial {
 		// Add event listeners
 		modBus.addListener(MFTabs::addItems);
 		modBus.register(MinefactorialListeners.ModBusEvents.class);
-//		NeoForge.EVENT_BUS.register(MinefactorialListeners.GameBusEvents.class); // There are no events on this *yet*
+		NeoForge.EVENT_BUS.register(MinefactorialListeners.GameBusEvents.class);
 		if (dist.isClient()) {
 			modBus.register(MinefactorialClient.ModBusEvents.class);
 			NeoForge.EVENT_BUS.register(MinefactorialClient.GameBusEvents.class);

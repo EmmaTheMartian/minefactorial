@@ -1,42 +1,36 @@
-package martian.minefactorial.content.item;
+package martian.minefactorial.content.item.tweakeruler;
 
-import com.mojang.serialization.Codec;
-import io.netty.buffer.ByteBuf;
+import martian.minefactorial.client.overlay.scrollmenu.OverlayScrollMenu;
+import martian.minefactorial.client.overlay.scrollmenu.ScrollMenu;
+import martian.minefactorial.client.overlay.scrollmenu.ScrollMenuEntry;
+import martian.minefactorial.content.net.PacketServerboundSetTweakerulerMode;
 import martian.minefactorial.content.registry.MFDataComponents;
 import martian.minefactorial.foundation.item.MFItem;
-import martian.minefactorial.foundation.world.AABBHelpers;
+import martian.minefactorial.managers.TweakerulerHistoryManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.StringRepresentable;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.AABB;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ItemTweakeruler extends MFItem {
-	public ItemTweakeruler(Properties properties, String... hoverText) {
-		super(properties, hoverText);
-	}
-
 	public ItemTweakeruler(Properties properties, String[] hoverText, String[] longHoverText) {
 		super(properties, hoverText, longHoverText);
 	}
@@ -50,7 +44,7 @@ public class ItemTweakeruler extends MFItem {
 					Component.literal(posComponent.get().toShortString()).withStyle(ChatFormatting.AQUA)));
 		}
 
-		@Nullable Mode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
+		@Nullable TweakerulerMode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
 		if (modeComponent != null) {
 			tooltipComponents.add(Component.translatable("messages.minefactorial.current_mode",
 					Component.literal(modeComponent.getSerializedName()).withStyle(ChatFormatting.AQUA)));
@@ -68,19 +62,31 @@ public class ItemTweakeruler extends MFItem {
 		@Nullable Optional<BlockPos> posComponent = context.getItemInHand().get(MFDataComponents.POS);
 		//noinspection OptionalAssignedToNull
 		if (posComponent == null || posComponent.isEmpty()) {
-			context.getItemInHand().set(MFDataComponents.POS, Optional.of(context.getClickedPos()));
+			BlockPos pos = context.getClickedPos();
+
+			@Nullable TweakerulerMode modeComponent = context.getItemInHand().get(MFDataComponents.TWEAKERULER_MODE);
+			if (modeComponent == TweakerulerMode.PLACE) {
+				// Placing atop the clicked face instead of selecting that block
+				pos = pos.relative(context.getClickedFace());
+			}
+
+			context.getItemInHand().set(MFDataComponents.POS, Optional.of(pos));
 		} else {
 			BlockPos from = posComponent.get();
 			BlockPos to = context.getClickedPos();
 
-			@Nullable Mode modeComponent = context.getItemInHand().get(MFDataComponents.TWEAKERULER_MODE);
+			@Nullable TweakerulerMode modeComponent = context.getItemInHand().get(MFDataComponents.TWEAKERULER_MODE);
 			if (modeComponent != null) {
 				Player player = context.getPlayer();
 				if (player == null) {
 					return InteractionResult.SUCCESS; // This should never happen
 				}
+				// Find the non-ruler item
 				ItemStack nonRuler = context.getHand() == InteractionHand.MAIN_HAND ? player.getOffhandItem() : player.getMainHandItem();
-				int blocksChanged = modeComponent.run(from, to, context.getItemInHand(), nonRuler, player, context.getLevel());
+				// Run the action
+				TweakerulerHistory history = TweakerulerHistoryManager.getHistoryFor((ServerPlayer) player);
+				int blocksChanged = history.run(context.getLevel(), from, to, context.getItemInHand().copy(), nonRuler.copy(), player, modeComponent);
+				// Notify the player with the amount of changed blocks
 				player.sendSystemMessage(Component.translatable("messages.minefactorial.blocks_changed",
 						Component.literal(String.valueOf(blocksChanged)).withStyle(ChatFormatting.RED)));
 			}
@@ -94,25 +100,17 @@ public class ItemTweakeruler extends MFItem {
 	public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
 		ItemStack stack = player.getItemInHand(usedHand);
 
-		if (level.isClientSide) {
-			return InteractionResultHolder.success(stack);
+		if (level.isClientSide()) {
+			if (!OverlayScrollMenu.isMenuOpen()) {
+				OverlayScrollMenu.pushMenu(getScrollMenu(player, stack));
+				return InteractionResultHolder.success(stack);
+			} else if (OverlayScrollMenu.getTopMenu() instanceof Menu m) {
+				// If the menu is a tweakeruler menu, we can close it this way.
+				m.triggerSelect(true);
+			}
 		}
 
-		if (player.isCrouching()) {
-			@Nullable Mode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
-			Mode mode = modeComponent == null ?
-					Mode.NONE :
-					switch (modeComponent) {
-						case NONE -> Mode.REPLACE;
-						case REPLACE -> Mode.REMOVE;
-						case REMOVE -> Mode.NONE;
-					};
-			stack.set(MFDataComponents.TWEAKERULER_MODE, mode);
-			player.sendSystemMessage(Component.translatable("messages.minefactorial.set_mode_to",
-					Component.literal(mode.getSerializedName()).withStyle(ChatFormatting.AQUA)));
-		}
-
-		return InteractionResultHolder.success(stack);
+		return InteractionResultHolder.pass(stack);
 	}
 
 	@Override
@@ -125,7 +123,7 @@ public class ItemTweakeruler extends MFItem {
 				return;
 			}
 
-			@Nullable Mode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
+			@Nullable TweakerulerMode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
 			if (modeComponent != null) {
 				player.displayClientMessage(Component.translatable(
 						"messages.minefactorial.current_mode",
@@ -135,48 +133,31 @@ public class ItemTweakeruler extends MFItem {
 		}
 	}
 
-	@FunctionalInterface
-	public interface ITweakerulerAction {
-		int run(BlockPos from, BlockPos to, ItemStack ruler, ItemStack other, Player player, Level level);
+	@OnlyIn(Dist.CLIENT)
+	public static ScrollMenu getScrollMenu(Player player, ItemStack stack) {
+		@Nullable TweakerulerMode modeComponent = stack.get(MFDataComponents.TWEAKERULER_MODE);
+		TweakerulerMode currentMode = modeComponent == null ? TweakerulerMode.NONE : modeComponent;
+
+		Menu menu = new Menu();
+
+		for (int i = 0; i < TweakerulerMode.values().length; i++) {
+			TweakerulerMode mode = TweakerulerMode.values()[i];
+
+			menu.addEntry(new ScrollMenuEntry(Component.literal(mode.getSerializedName()), () -> {
+				PacketDistributor.sendToServer(new PacketServerboundSetTweakerulerMode(mode));
+//				player.sendSystemMessage(Component.translatable("messages.minefactorial.set_mode_to",
+//						Component.literal(mode.getSerializedName()).withStyle(ChatFormatting.AQUA)));
+			}));
+
+			if (mode == currentMode) {
+				menu.selection = i;
+			}
+		}
+
+		return menu;
 	}
 
-	public enum Mode implements StringRepresentable, ITweakerulerAction {
-		NONE((from, to, ruler, other, player, level) -> 0),
-		REPLACE((from, to, ruler, other, player, level) -> {
-			Block replaceWith = other.getItem() instanceof BlockItem blockItem ? blockItem.getBlock() : Blocks.AIR;
-			AtomicInteger blocksChanged = new AtomicInteger(0);
-			BlockPos.betweenClosedStream(from, to).forEach(pos -> {
-				level.setBlockAndUpdate(pos, replaceWith.defaultBlockState());
-				blocksChanged.incrementAndGet();
-			});
-			return blocksChanged.get();
-		}),
-		REMOVE((from, to, ruler, ignoredOther, player, level) -> {
-			AtomicInteger blocksChanged = new AtomicInteger(0);
-			BlockPos.betweenClosedStream(from, to).forEach(pos -> {
-				level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-				blocksChanged.incrementAndGet();
-			});
-			return blocksChanged.get();
-		}),
-		;
-
-		public static final Codec<Mode> CODEC = StringRepresentable.fromEnum(Mode::values);
-		public static final StreamCodec<ByteBuf, Mode> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
-
-		private final ITweakerulerAction action;
-
-		Mode(ITweakerulerAction action) {
-			this.action = action;
-		}
-
-		public int run(BlockPos from, BlockPos to, ItemStack ruler, ItemStack other, Player player, Level level) {
-			return this.action.run(from, to, ruler, other, player, level);
-		}
-
-		@Override
-		public @NotNull String getSerializedName() {
-			return this.name().toUpperCase();
-		}
+	// We extend it here so that we can confirm if a scroll menu was made by the tweakeruler or not later on.
+	public static class Menu extends ScrollMenu {
 	}
 }

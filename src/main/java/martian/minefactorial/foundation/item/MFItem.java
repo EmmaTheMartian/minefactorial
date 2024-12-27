@@ -1,7 +1,5 @@
 package martian.minefactorial.foundation.item;
 
-import com.mojang.blaze3d.platform.InputConstants;
-import martian.minefactorial.client.MFKeys;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

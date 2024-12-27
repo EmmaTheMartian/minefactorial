@@ -168,6 +168,11 @@ messages.minefactorial:
 
 key.minefactorial:
   show_extended_tooltip: "Show Extended Tooltip"
+  scroll_menu_up: "Up (Scroll Menu)"
+  scroll_menu_down: "Down (Scroll Menu)"
+  scroll_menu_select: "Select (Scroll Menu)"
+  tweakeruler_undo: "Undo (Tweakeruler)"
+  tweakeruler_redo: "Redo (Tweakeruler)"
 
 emi.category.minefactorial:
   maceration: Maceration

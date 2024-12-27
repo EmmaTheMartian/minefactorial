@@ -68,7 +68,7 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 
 	@Override
 	public void doWork(ServerLevel level) {
-		getTank().fill(new FluidStack(getTargetFluidState(level).getType(), 1000), IFluidHandler.FluidAction.EXECUTE);
+		((MFFluidTank) getTank()).forceFill(new FluidStack(getTargetFluidState(level).getType(), 1000), IFluidHandler.FluidAction.EXECUTE);
 		level.setBlockAndUpdate(getTargetPos(), Blocks.AIR.defaultBlockState());
 	}
 }

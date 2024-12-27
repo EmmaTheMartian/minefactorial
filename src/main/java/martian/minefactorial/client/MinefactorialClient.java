@@ -3,8 +3,12 @@ package martian.minefactorial.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.client.overlay.scrollmenu.OverlayScrollMenu;
+import martian.minefactorial.client.overlay.scrollmenu.ScrollMenu;
 import martian.minefactorial.client.screen.*;
 import martian.minefactorial.content.MFTags;
+import martian.minefactorial.content.net.PacketServerboundTweakerulerRedo;
+import martian.minefactorial.content.net.PacketServerboundTweakerulerUndo;
 import martian.minefactorial.content.registry.MFDataComponents;
 import martian.minefactorial.content.registry.MFFluidTypes;
 import martian.minefactorial.content.registry.MFItems;
@@ -29,15 +33,15 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
-import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+
+import static martian.minefactorial.Minefactorial.id;
 
 @OnlyIn(Dist.CLIENT)
 public final class MinefactorialClient {
@@ -83,6 +87,16 @@ public final class MinefactorialClient {
 		@SubscribeEvent
 		static void registerKeys(final RegisterKeyMappingsEvent event) {
 			event.register(MFKeys.SHOW_EXTENDED_TOOLTIP.get());
+			event.register(MFKeys.SCROLL_MENU_UP.get());
+			event.register(MFKeys.SCROLL_MENU_DOWN.get());
+			event.register(MFKeys.SCROLL_MENU_SELECT.get());
+			event.register(MFKeys.TWEAKERULER_UNDO.get());
+			event.register(MFKeys.TWEAKERULER_REDO.get());
+		}
+
+		@SubscribeEvent
+		static void registerGuiLayers(final RegisterGuiLayersEvent event) {
+			event.registerBelowAll(id("scroll_menu"), new OverlayScrollMenu());
 		}
 	}
 
@@ -157,6 +171,15 @@ public final class MinefactorialClient {
 		}
 
 		@SubscribeEvent
+		static void onClientTick(final ClientTickEvent.Pre event) {
+			if (MFKeys.TWEAKERULER_UNDO.get().consumeClick()) {
+				PacketDistributor.sendToServer(new PacketServerboundTweakerulerUndo());
+			} else if (MFKeys.TWEAKERULER_REDO.get().consumeClick()) {
+				PacketDistributor.sendToServer(new PacketServerboundTweakerulerRedo());
+			}
+		}
+
+		@SubscribeEvent
 		static void onScreenKeyPress(final ScreenEvent.KeyPressed.Post event) {
 			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.KEYSYM.getOrCreate(event.getKeyCode()))) {
 				MFItem.showExtendedTooltip = true;
@@ -167,6 +190,23 @@ public final class MinefactorialClient {
 		static void onScreenKeyRelease(final ScreenEvent.KeyReleased.Post event) {
 			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.KEYSYM.getOrCreate(event.getKeyCode()))) {
 				MFItem.showExtendedTooltip = false;
+			}
+		}
+
+		@SubscribeEvent
+		static void onScroll(final InputEvent.MouseScrollingEvent event) {
+			if (OverlayScrollMenu.isMenuOpen()) {
+				ScrollMenu top = OverlayScrollMenu.getTopMenu();
+
+				top.selection += event.getScrollDeltaY() > 0 ? -1 : 1;
+
+				if (top.selection >= top.entries.size()) {
+					top.selection = 0;
+				} else if (top.selection < 0) {
+					top.selection = top.entries.size() - 1;
+				}
+
+				event.setCanceled(true);
 			}
 		}
 	}

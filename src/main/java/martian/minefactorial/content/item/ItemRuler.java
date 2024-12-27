@@ -37,12 +37,13 @@ public class ItemRuler extends MFItem {
 			return InteractionResult.SUCCESS;
 		}
 
-		@Nullable Optional<BlockPos> posComponent = context.getItemInHand().get(MFDataComponents.POS);
+		ItemStack stack = context.getItemInHand();
+		@Nullable Optional<BlockPos> posComponent = stack.get(MFDataComponents.POS);
 		//noinspection OptionalAssignedToNull
 		if (posComponent == null || posComponent.isEmpty()) {
-			context.getItemInHand().set(MFDataComponents.POS, Optional.of(context.getClickedPos()));
+			stack.set(MFDataComponents.POS, Optional.of(context.getClickedPos()));
 		} else {
-			context.getItemInHand().set(MFDataComponents.POS, Optional.empty());
+			stack.set(MFDataComponents.POS, Optional.empty());
 		}
 		return InteractionResult.SUCCESS;
 	}

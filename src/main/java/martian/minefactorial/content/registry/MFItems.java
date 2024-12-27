@@ -4,6 +4,8 @@ package martian.minefactorial.content.registry;
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.MFFoodProperties;
 import martian.minefactorial.content.item.*;
+import martian.minefactorial.content.item.tweakeruler.ItemTweakeruler;
+import martian.minefactorial.content.item.tweakeruler.TweakerulerMode;
 import martian.minefactorial.foundation.item.MFItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.RegolithItemUtil;
@@ -70,7 +72,7 @@ public final class MFItems {
 			TWEAKERULER = register("tweakeruler", () -> new ItemTweakeruler(
 							new Item.Properties().stacksTo(1)
 									.component(MFDataComponents.POS, Optional.empty())
-									.component(MFDataComponents.TWEAKERULER_MODE, ItemTweakeruler.Mode.NONE),
+									.component(MFDataComponents.TWEAKERULER_MODE, TweakerulerMode.NONE),
 							getHoverTextIdsFor("tweakeruler", 2),
 							getLongHoverTextIdsFor("tweakeruler", 4))),
 			TREE_TAP = register("tree_tap", () -> new ItemTreeTap(new Item.Properties().stacksTo(1).durability(150), getHoverTextIdsFor("tree_tap"))),
