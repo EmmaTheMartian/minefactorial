@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.nio.charset.StandardCharsets
 
 plugins {
     id("java-library")
@@ -6,6 +7,8 @@ plugins {
     id("dev.architectury.loom") version "1.7-SNAPSHOT"
     id("me.fallenbreath.yamlang") version "1.4.0"
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
+    id("me.modmuss50.mod-publish-plugin") version "0.8.3"
+    id("co.uzzu.dotenv.gradle") version "4.0.0"
 }
 
 fun prop(key: String) = property(key) as String
@@ -198,7 +201,6 @@ tasks.withType<Jar>().configureEach {
     exclude("martian/minefactorial/datagen/*")
 }
 
-// Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
         register<MavenPublication>("mavenJava") {
@@ -207,6 +209,74 @@ publishing {
     }
     repositories {
         maven("file://${project.projectDir}/repo")
+    }
+}
+
+publishMods {
+    type = STABLE
+    modLoaders.add("neoforge")
+
+    file = tasks.jar.get().archiveFile
+
+    var changelogText = "# ${prop("version")}\n\n"
+    // Read the latest version from the changelog
+    changelogText += File(rootDir, "changelog.md")
+        .readText(StandardCharsets.UTF_8)
+        .split(Regex("^#(?!#).*$", RegexOption.MULTILINE))[1]
+        .trim()
+    println(changelogText)
+    changelog = changelogText
+
+//    dryRun = true
+
+    curseforge {
+        projectId = "1144883"
+        projectSlug = "minefactorial"
+        accessToken = env.CURSEFORGE_TOKEN.value
+        announcementTitle = "Get from CurseForge"
+
+        minecraftVersions.add("1.21.1")
+        javaVersions.add(JavaVersion.VERSION_21)
+        javaVersions.add(JavaVersion.VERSION_22)
+        clientRequired = true
+        serverRequired = true
+
+        optional("emi")
+        optional("fusion-connected-textures")
+    }
+
+    modrinth {
+        projectId = "4sjHMjq5"
+        accessToken = env.MODRINTH_TOKEN.value
+        announcementTitle = "Get from Modrinth"
+
+        minecraftVersions.add("1.21.1")
+
+        optional("emi")
+        optional("fusion-connected-textures")
+    }
+
+    github {
+        repository = "emmathemartian/minefactorial"
+        // My branches are named by the minecraft version they target
+        commitish = prop("minecraft_version")
+        accessToken = env.GITHUB_TOKEN.value
+        announcementTitle = "Get from GitHub"
+
+        allowEmptyFiles = true
+    }
+
+    discord {
+        val avatar = "https://raw.githubusercontent.com/EmmaTheMartian/minefactorial/refs/heads/1.21.1/src/main/resources/assets/minefactorial/icon.png"
+
+        webhookUrl = env.DISCORD_WEBHOOK_URL.value
+        username = "MineFactorial Build Bot"
+        avatarUrl = avatar
+
+        style {
+            look = "MODERN"
+            thumbnailUrl = avatar
+        }
     }
 }
 

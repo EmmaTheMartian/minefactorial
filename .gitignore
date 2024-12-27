@@ -123,3 +123,6 @@ src/generated/resources/.cache/
 
 # Allow published jars
 !/repo/**/**.jar
+
+# Ignore environment variables (which often contain secrets)
+.env
