@@ -1,3 +1,10 @@
+# 1.1.2+1.21.1
+
+## Bug Fixes
+
+- Fix mod-publish-plugin using the wrong archive file
+  - It was using the `dev` build, which does not have anything JiJ'ed, causing a crash due to Regolith classes being missing.
+
 # 1.1.1+1.21.1
 
 ## Changes
