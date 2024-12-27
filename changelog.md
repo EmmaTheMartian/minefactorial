@@ -1,3 +1,10 @@
+# 1.1.3+1.21.1
+
+## Bug Fixes
+
+- Fixed `clientTick` existing on the server side and crashing
+- Fixed Tweakeruler sending undo/redo debug information to the chat
+
 # 1.1.2+1.21.1
 
 ## Bug Fixes

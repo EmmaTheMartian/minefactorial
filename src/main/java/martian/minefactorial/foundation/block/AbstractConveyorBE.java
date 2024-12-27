@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 public abstract class AbstractConveyorBE extends BlockEntity implements ITickableBE {
 	public AbstractConveyorBE(BlockEntityType<? extends AbstractConveyorBE> blockEntityType, BlockPos pos, BlockState blockState) {
@@ -43,6 +45,7 @@ public abstract class AbstractConveyorBE extends BlockEntity implements ITickabl
 		commonTick(level);
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public void clientTick(ClientLevel level) {
 		commonTick(level);

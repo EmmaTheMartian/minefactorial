@@ -29,7 +29,7 @@ public record PacketServerboundTweakerulerUndo() implements CustomPacketPayload 
 			LOGGER.info("Undo requested for {}", player.getName());
 			TweakerulerHistory history = TweakerulerHistoryManager.getHistoryFor(player);
 			history.undo();
-			player.sendSystemMessage(Component.literal("Undid changes. data.size: %d, redoHistory.size: %d".formatted(history.dataSize(), history.historySize())));
+//			player.sendSystemMessage(Component.literal("Undid changes. data.size: %d, redoHistory.size: %d".formatted(history.dataSize(), history.historySize())));
 		});
 	}
 }

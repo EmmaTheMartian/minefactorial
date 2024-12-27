@@ -29,7 +29,7 @@ public record PacketServerboundTweakerulerRedo() implements CustomPacketPayload 
 			LOGGER.info("Redo requested for {}", player.getName());
 			TweakerulerHistory history = TweakerulerHistoryManager.getHistoryFor(player);
 			history.redo();
-			player.sendSystemMessage(Component.literal("Redid changes. data.size: %d, redoHistory.size: %d".formatted(history.dataSize(), history.historySize())));
+//			player.sendSystemMessage(Component.literal("Redid changes. data.size: %d, redoHistory.size: %d".formatted(history.dataSize(), history.historySize())));
 		});
 	}
 }

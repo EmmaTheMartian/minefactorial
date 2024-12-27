@@ -225,7 +225,6 @@ publishMods {
         .readText(StandardCharsets.UTF_8)
         .split(Regex("^#(?!#).*$", RegexOption.MULTILINE))[1]
         .trim()
-    println(changelogText)
     changelog = changelogText
 
 //    dryRun = true
