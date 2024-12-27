@@ -217,6 +217,7 @@ publishMods {
     modLoaders.add("neoforge")
 
     file = tasks.remapJar.get().archiveFile
+    additionalFiles.from(tasks.remapSourcesJar.get().archiveFile)
 
     var changelogText = "# ${prop("version")}\n\n"
     // Read the latest version from the changelog
