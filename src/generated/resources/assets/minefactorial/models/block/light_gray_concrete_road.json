@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "east": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "north": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "particle": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "south": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "up": "minefactorial:block/decor/roads/light_gray_concrete_road",
+    "west": "minefactorial:block/decor/roads/light_gray_concrete_road"
+  }
+}

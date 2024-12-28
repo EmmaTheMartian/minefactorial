@@ -300,7 +300,9 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.DECOR_BLOCKS.get("smooth_plastic").addModel(CubeModel() all blockId("decor/smooth_plastic"))
 		MFBlocks.DECOR_BLOCKS.get("plastic_pillar") addAxisModel blockId("decor/plastic_pillar")
 
-		MFBlocks.ROAD_BLOCKS.get("plastic_road").addModel(CubeModel() all blockId("decor/plastic_road"))
+		MFBlocks.ROAD_BLOCKS.entries.forEach {
+			it.value.addModel(CubeModel() all blockId("decor/roads/${it.key}"))
+		}
 	}
 
 	// Thank you Thepigcat for letting me use this code! :D

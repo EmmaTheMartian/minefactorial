@@ -112,6 +112,10 @@ yamlang {
 }
 
 dependencies {
+    // Shorthands for Modrinth maven dependencies
+    fun modrinth(id: String) = "maven.modrinth:$id:${prop("${id.replace('-', '_')}_version")}"
+    fun enabled(id: String) = prop("enable_$id") == "true"
+
     minecraft("com.mojang:minecraft:${prop("minecraft_version")}")
 
     @Suppress("UnstableApiUsage")
@@ -145,9 +149,8 @@ dependencies {
     forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.3") // Gradle doesn't get this automatically from the CC Tweaked dependency, for whatever reason
     modLocalRuntime("cc.tweaked:cc-tweaked-${prop("minecraft_version")}-forge:${prop("cc_version")}")
 
-    // Modrinth maven dependencies
-    fun modrinth(id: String) = "maven.modrinth:$id:${prop("${id.replace('-', '_')}_version")}"
-    fun enabled(id: String) = prop("enable_$id") == "true"
+    // Fusion
+    modImplementation(modrinth("fusion-connected-textures"))
 
     if (enabled("jade"))
         modLocalRuntime(modrinth("jade"))
@@ -157,12 +160,6 @@ dependencies {
         modLocalRuntime(modrinth("mekanism"))
     if (enabled("cable_facades"))
         modLocalRuntime(modrinth("cable-facades"))
-    if (enabled("fusion_connected_textures"))
-        modLocalRuntime(modrinth("fusion-connected-textures"))
-    if (enabled("continuity"))
-        modLocalRuntime(modrinth("continuity"))
-    if (enabled("athena_ctm"))
-        modLocalRuntime(modrinth("athena-ctm"))
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

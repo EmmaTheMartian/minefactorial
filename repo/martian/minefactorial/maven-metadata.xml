@@ -3,8 +3,8 @@
   <groupId>martian</groupId>
   <artifactId>minefactorial</artifactId>
   <versioning>
-    <latest>1.1.2+1.21.1</latest>
-    <release>1.1.2+1.21.1</release>
+    <latest>1.1.3+1.21.1</latest>
+    <release>1.1.3+1.21.1</release>
     <versions>
       <version>0.1-modfest</version>
       <version>0.1.1-modfest</version>
@@ -14,7 +14,8 @@
       <version>1.1.0+1.21.1</version>
       <version>1.1.1+1.21.1</version>
       <version>1.1.2+1.21.1</version>
+      <version>1.1.3+1.21.1</version>
     </versions>
-    <lastUpdated>20241227185608</lastUpdated>
+    <lastUpdated>20241227203928</lastUpdated>
   </versioning>
 </metadata>

@@ -59,7 +59,25 @@ block.minefactorial:
   smooth_plastic: Smooth Plastic Block
   plastic_bricks: Plastic Bricks
   plastic_pillar: Plastic Pillar
+
+  # Roads
   plastic_road: Plastic Road
+  orange_concrete_road: Orange Concrete Road
+  blue_concrete_road: Blue Concrete Road
+  white_concrete_road: White Concrete Road
+  black_concrete_road: Black Concrete Road
+  cyan_concrete_road: Cyan Concrete Road
+  pink_concrete_road: Pink Concrete Road
+  light_blue_concrete_road: Light Blue Concrete Road
+  green_concrete_road: Green Concrete Road
+  lime_concrete_road: Lime Concrete Road
+  light_gray_concrete_road: Light Gray Concrete Road
+  yellow_concrete_road: Yellow Concrete Road
+  purple_concrete_road: Purple Concrete Road
+  red_concrete_road: Red Concrete Road
+  brown_concrete_road: Brown Concrete Road
+  gray_concrete_road: Gray Concrete Road
+  magenta_concrete_road: Magenta Concrete Road
 
   # Fluids
   steam: Steam

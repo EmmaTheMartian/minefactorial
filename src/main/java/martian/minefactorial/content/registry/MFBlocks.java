@@ -16,8 +16,11 @@ import martian.minefactorial.foundation.item.MFBlockItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.builder.RegolithBlockBuilder;
 import martian.regolith.neoforge.RegolithNeoForge;
+import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -29,7 +32,9 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Arrays;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public final class MFBlocks {
 	private MFBlocks() { }
@@ -177,8 +182,11 @@ public final class MFBlocks {
 			.done();
 
 	// Roads
-	public static final DeferredHolders<Block, DeferredBlock<? extends Block>> ROAD_BLOCKS = bulkRegister(
-			ROAD_PROPS,
-			"plastic_road"
-	);
+	public static final DeferredHolders<Block, DeferredBlock<? extends Block>> ROAD_BLOCKS = getRegolithBuilder(ROAD_PROPS)
+			.register("plastic_road")
+			// Concrete roads
+			.register(Arrays.stream(DyeColor.values())
+					.map(it -> it.getName() + "_concrete_road")
+					.collect(Collectors.toSet()))
+			.done();
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cyan_concrete"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PCP",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "id": "minefactorial:cyan_concrete_road"
+  }
+}

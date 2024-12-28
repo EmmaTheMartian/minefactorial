@@ -1,5 +1,6 @@
 package martian.minefactorial.datagen.server
 
+import martian.dapper.api.mcId
 import martian.dapper.api.ofStack
 import martian.dapper.api.server.recipe.DapperRecipeProvider
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.pattern2x2
@@ -16,13 +17,21 @@ import martian.minefactorial.content.registry.MFItems
 import martian.minefactorial.datagen.id
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMaceration
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMeatPacking
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
+import net.minecraft.world.item.DyeColor
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient
+import net.neoforged.neoforge.registries.DeferredHolder
+import net.neoforged.neoforge.registries.DeferredItem
+import java.util.*
 
 class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 	override fun buildRecipes() {
@@ -464,6 +473,34 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			unlockWith(MFItems.PLASTIC_SHEETS)
 			save("shaped/roads/plastic_road".id)
 		}
+
+		fun concreteRoadRecipe(result: ItemLike, centre: ItemLike, id: String) {
+			result.shapedRecipeBuilder(4).apply {
+				pattern(" P ")
+				pattern("PCP")
+				pattern(" P ")
+				define('P', MFTags.Items.PLASTIC_SHEETS)
+				define('C', centre)
+				unlockWith(MFItems.PLASTIC_SHEETS)
+				save(id.id)
+			}
+		}
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("white_concrete_road"), Items.WHITE_CONCRETE, "shaped/roads/white_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("orange_concrete_road"), Items.ORANGE_CONCRETE, "shaped/roads/orange_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("magenta_concrete_road"), Items.MAGENTA_CONCRETE, "shaped/roads/magenta_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("light_blue_concrete_road"), Items.LIGHT_BLUE_CONCRETE, "shaped/roads/light_blue_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("yellow_concrete_road"), Items.YELLOW_CONCRETE, "shaped/roads/yellow_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("lime_concrete_road"), Items.LIME_CONCRETE, "shaped/roads/lime_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("pink_concrete_road"), Items.PINK_CONCRETE, "shaped/roads/pink_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("gray_concrete_road"), Items.GRAY_CONCRETE, "shaped/roads/gray_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("light_gray_concrete_road"), Items.LIGHT_GRAY_CONCRETE, "shaped/roads/light_gray_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("cyan_concrete_road"), Items.CYAN_CONCRETE, "shaped/roads/cyan_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("purple_concrete_road"), Items.PURPLE_CONCRETE, "shaped/roads/purple_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("blue_concrete_road"), Items.BLUE_CONCRETE, "shaped/roads/blue_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("brown_concrete_road"), Items.BROWN_CONCRETE, "shaped/roads/brown_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("green_concrete_road"), Items.GREEN_CONCRETE, "shaped/roads/green_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("red_concrete_road"), Items.RED_CONCRETE, "shaped/roads/red_concrete_road")
+		concreteRoadRecipe(MFBlocks.ROAD_BLOCKS.get("black_concrete_road"), Items.BLACK_CONCRETE, "shaped/roads/black_concrete_road")
 		// endregion Blocks/Roads
 
 		// endregion Blocks

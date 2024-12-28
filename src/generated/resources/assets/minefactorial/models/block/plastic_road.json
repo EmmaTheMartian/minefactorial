@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "minefactorial:block/decor/plastic_road",
-    "east": "minefactorial:block/decor/plastic_road",
-    "north": "minefactorial:block/decor/plastic_road",
-    "particle": "minefactorial:block/decor/plastic_road",
-    "south": "minefactorial:block/decor/plastic_road",
-    "up": "minefactorial:block/decor/plastic_road",
-    "west": "minefactorial:block/decor/plastic_road"
+    "down": "minefactorial:block/decor/roads/plastic_road",
+    "east": "minefactorial:block/decor/roads/plastic_road",
+    "north": "minefactorial:block/decor/roads/plastic_road",
+    "particle": "minefactorial:block/decor/roads/plastic_road",
+    "south": "minefactorial:block/decor/roads/plastic_road",
+    "up": "minefactorial:block/decor/roads/plastic_road",
+    "west": "minefactorial:block/decor/roads/plastic_road"
   }
 }
