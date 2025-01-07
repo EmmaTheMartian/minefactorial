@@ -34,8 +34,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class ItemStraw extends MFItem {
 	protected final int drinkDuration, drinkAmountMb;
 
-	public ItemStraw(int drinkDuration, int drinkAmountMb, Properties properties, String... hoverText) {
-		super(properties, hoverText);
+	public ItemStraw(int drinkDuration, int drinkAmountMb, Properties properties) {
+		super(properties);
 		this.drinkDuration = drinkDuration;
 		this.drinkAmountMb = drinkAmountMb;
 	}

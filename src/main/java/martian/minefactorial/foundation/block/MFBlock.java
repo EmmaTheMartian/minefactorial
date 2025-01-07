@@ -6,18 +6,34 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class MFBlock extends Block {
-	private final String[] hoverText;
+	private String[] hoverText = {};
+	private String[] longHoverText = {};
 
-	public MFBlock(Properties properties, String... hoverText) {
+	public MFBlock(Properties properties) {
 		super(properties);
+	}
+
+	public MFBlock setHoverText(String... hoverText) {
 		this.hoverText = hoverText;
+		return this;
+	}
+
+	public MFBlock setLongHoverText(String... longHoverText) {
+		this.longHoverText = longHoverText;
+		return this;
 	}
 
 	public String[] getHoverText() {
 		return hoverText;
 	}
 
+	public String[] getLongHoverText() {
+		return longHoverText;
+	}
+
 	public BlockItem getBlockItem() {
-		return new MFBlockItem(this, new Item.Properties(), getHoverText());
+		return new MFBlockItem(this, new Item.Properties())
+				.setHoverText(getHoverText())
+				.setLongHoverText(getLongHoverText());
 	}
 }

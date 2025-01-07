@@ -16,8 +16,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemTreeTap extends MFItem {
-	public ItemTreeTap(Properties properties, String... hoverText) {
-		super(properties, hoverText);
+	public ItemTreeTap(Properties properties) {
+		super(properties);
 	}
 
 	@Override

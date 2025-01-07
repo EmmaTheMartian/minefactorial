@@ -25,8 +25,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class BlockItemRouter extends AbstractBlockWithEntity<BlockItemRouterBE> {
 	public static final VoxelShape SHAPE = Block.box(1, 1, 1, 15, 15, 15);
 
-	public BlockItemRouter(Properties properties, String... hoverText) {
-		super(BlockItemRouterBE::new, properties, hoverText);
+	public BlockItemRouter(Properties properties) {
+		super(BlockItemRouterBE::new, properties);
 	}
 
 	@Override

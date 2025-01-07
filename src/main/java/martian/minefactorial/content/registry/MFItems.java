@@ -4,13 +4,16 @@ package martian.minefactorial.content.registry;
 import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.MFFoodProperties;
 import martian.minefactorial.content.item.*;
+import martian.minefactorial.content.item.safarinet.ItemSafariNet;
 import martian.minefactorial.content.item.tweakeruler.ItemTweakeruler;
 import martian.minefactorial.content.item.tweakeruler.TweakerulerMode;
 import martian.minefactorial.foundation.item.MFItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.RegolithItemUtil;
 import martian.regolith.neoforge.RegolithNeoForge;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -59,31 +62,56 @@ public final class MFItems {
 	}
 
 	private static DeferredItem<?> simpleItem(String id, String[] hoverText) {
-		return register(id, () -> new MFItem(new Item.Properties(), hoverText) { });
+		return register(id, () -> new MFItem(new Item.Properties()).setHoverText(hoverText));
 	}
 
 	public static final DeferredItem<?>
 			// Tools
-			STRAW = register("straw", () -> new ItemStraw(80, 1000, new Item.Properties().stacksTo(1), getHoverTextIdsFor("straw", 2))),
-			MEGA_STRAW = register("mega_straw", () -> new ItemStraw(80, Integer.MAX_VALUE, new Item.Properties().stacksTo(1), getHoverTextIdsFor("mega_straw", 3))),
-			WRENCH = register("wrench", () -> new ItemWrench(new Item.Properties().stacksTo(1), getHoverTextIdsFor("wrench"))),
-			SCREWDRIVER = register("screwdriver", () -> new ItemScrewdriver(new Item.Properties().stacksTo(1), getHoverTextIdsFor("screwdriver"))),
-			RULER = register("ruler", () -> new ItemRuler(new Item.Properties().stacksTo(1).component(MFDataComponents.POS, Optional.empty()), getHoverTextIdsFor("ruler"))),
+			STRAW = register("straw", () -> new ItemStraw(80, 1000,
+					new Item.Properties().stacksTo(1))
+					.setHoverText(getHoverTextIdsFor("straw", 2))),
+			MEGA_STRAW = register("mega_straw", () -> new ItemStraw(80, Integer.MAX_VALUE,
+					new Item.Properties().stacksTo(1))
+					.setHoverText(getHoverTextIdsFor("mega_straw", 3))),
+			WRENCH = register("wrench", () -> new ItemWrench(
+					new Item.Properties().stacksTo(1))
+					.setHoverText(getHoverTextIdsFor("wrench"))),
+			SCREWDRIVER = register("screwdriver", () -> new ItemScrewdriver(
+					new Item.Properties().stacksTo(1))
+					.setHoverText(getHoverTextIdsFor("screwdriver"))),
+			RULER = register("ruler", () -> new ItemRuler(
+					new Item.Properties()
+							.stacksTo(1)
+							.component(MFDataComponents.POS, Optional.empty()))
+					.setHoverText(getHoverTextIdsFor("ruler"))),
 			TWEAKERULER = register("tweakeruler", () -> new ItemTweakeruler(
 							new Item.Properties().stacksTo(1)
 									.component(MFDataComponents.POS, Optional.empty())
-									.component(MFDataComponents.TWEAKERULER_MODE, TweakerulerMode.NONE),
-							getHoverTextIdsFor("tweakeruler", 2),
-							getLongHoverTextIdsFor("tweakeruler", 4))),
-			TREE_TAP = register("tree_tap", () -> new ItemTreeTap(new Item.Properties().stacksTo(1).durability(150), getHoverTextIdsFor("tree_tap"))),
+									.component(MFDataComponents.TWEAKERULER_MODE, TweakerulerMode.NONE))
+							.setHoverText(getHoverTextIdsFor("tweakeruler", 2))
+							.setLongHoverText(getLongHoverTextIdsFor("tweakeruler", 4))),
+			TREE_TAP = register("tree_tap", () -> new ItemTreeTap(
+					new Item.Properties()
+							.stacksTo(1)
+							.durability(150))
+					.setHoverText(getHoverTextIdsFor("tree_tap"))),
+			SAFARI_NET = register("safari_net", () -> new ItemSafariNet(
+					new Item.Properties()
+							.stacksTo(1)
+							.component(DataComponents.ENTITY_DATA, CustomData.EMPTY))
+					.setHoverText(getHoverTextIdsFor("safari_net"))),
 			// Resources
 			RAW_RUBBER = simpleItem("raw_rubber", getHoverTextIdsFor("raw_rubber")),
 			RUBBER_INGOT = simpleItem("rubber_ingot"),
 			RAW_PLASTIC = simpleItem("raw_plastic"),
 			PLASTIC_INGOT = simpleItem("plastic_ingot"),
 			PLASTIC_SHEETS = simpleItem("plastic_sheets"),
-			RAW_MEAT_INGOT = register("raw_meat_ingot", () -> new MFItem(new Item.Properties().food(MFFoodProperties.RAW_MEAT_INGOT), getHoverTextIdsFor("raw_meat_ingot"))),
-			COOKED_MEAT_INGOT = register("cooked_meat_ingot", () -> new MFItem(new Item.Properties().food(MFFoodProperties.COOKED_MEAT_INGOT), getHoverTextIdsFor("cooked_meat_ingot")))
+			RAW_MEAT_INGOT = register("raw_meat_ingot", () -> new MFItem(
+					new Item.Properties().food(MFFoodProperties.RAW_MEAT_INGOT))
+					.setHoverText(getHoverTextIdsFor("raw_meat_ingot"))),
+			COOKED_MEAT_INGOT = register("cooked_meat_ingot", () -> new MFItem(
+					new Item.Properties().food(MFFoodProperties.COOKED_MEAT_INGOT))
+					.setHoverText(getHoverTextIdsFor("cooked_meat_ingot")))
 	;
 
 	// These are used to register macerated ores and ore dusts

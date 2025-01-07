@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemScrewdriver extends MFItem {
-	public ItemScrewdriver(Item.Properties properties, String... hoverText) {
-		super(properties, hoverText);
+	public ItemScrewdriver(Item.Properties properties) {
+		super(properties);
 	}
 
 	@Override

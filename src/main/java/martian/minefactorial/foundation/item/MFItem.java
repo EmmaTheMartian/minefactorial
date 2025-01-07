@@ -12,18 +12,29 @@ import java.util.List;
 public class MFItem extends Item {
 	public static boolean showExtendedTooltip = false;
 
-	private final String[] hoverText;
-	private String[] longHoverText = null;
+	private String[] hoverText = {};
+	private String[] longHoverText = {};
 
-	public MFItem(Properties properties, String... hoverText) {
+	public MFItem(Properties properties) {
 		super(properties);
-		this.hoverText = hoverText;
 	}
 
-	public MFItem(Properties properties, String[] hoverText, String[] longHoverText) {
-		super(properties);
+	public MFItem setHoverText(String... hoverText) {
 		this.hoverText = hoverText;
+		return this;
+	}
+
+	public MFItem setLongHoverText(String... longHoverText) {
 		this.longHoverText = longHoverText;
+		return this;
+	}
+
+	public String[] getHoverText() {
+		return hoverText;
+	}
+
+	public String[] getLongHoverText() {
+		return longHoverText;
 	}
 
 	@Override
@@ -33,7 +44,7 @@ public class MFItem extends Item {
 			tooltipComponents.add(Component.translatable(s));
 		}
 
-		if (longHoverText != null) {
+		if (longHoverText.length > 0) {
 			if (showExtendedTooltip) {
 				for (String s : longHoverText) {
 					tooltipComponents.add(Component.translatable(s));

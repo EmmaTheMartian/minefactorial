@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ItemTweakeruler extends MFItem {
-	public ItemTweakeruler(Properties properties, String[] hoverText, String[] longHoverText) {
-		super(properties, hoverText, longHoverText);
+	public ItemTweakeruler(Properties properties) {
+		super(properties);
 	}
 
 	@Override

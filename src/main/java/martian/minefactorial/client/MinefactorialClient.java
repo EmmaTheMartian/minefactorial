@@ -9,10 +9,7 @@ import martian.minefactorial.client.screen.*;
 import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.net.PacketServerboundTweakerulerRedo;
 import martian.minefactorial.content.net.PacketServerboundTweakerulerUndo;
-import martian.minefactorial.content.registry.MFDataComponents;
-import martian.minefactorial.content.registry.MFFluidTypes;
-import martian.minefactorial.content.registry.MFItems;
-import martian.minefactorial.content.registry.MFMenuTypes;
+import martian.minefactorial.content.registry.*;
 import martian.minefactorial.foundation.Raycasting;
 import martian.minefactorial.foundation.block.IZonedBE;
 import martian.minefactorial.foundation.fluid.BasicFluidType;
@@ -21,6 +18,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +32,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -97,6 +97,18 @@ public final class MinefactorialClient {
 		@SubscribeEvent
 		static void registerGuiLayers(final RegisterGuiLayersEvent event) {
 			event.registerBelowAll(id("scroll_menu"), new OverlayScrollMenu());
+		}
+
+		@SubscribeEvent
+		static void setup(final FMLClientSetupEvent event) {
+			event.enqueueWork(() -> {
+				setupEntityRenderers();
+			});
+		}
+
+		// These are called from #setup(FMLClientSetupEvent)
+		private static void setupEntityRenderers() {
+			EntityRenderers.register(MFEntityTypes.THROWN_SAFARI_NET.get(), ThrownItemRenderer::new);
 		}
 	}
 

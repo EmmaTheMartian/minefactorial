@@ -17,8 +17,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class ItemWrench extends MFItem {
-	public ItemWrench(Properties properties, String... hoverText) {
-		super(properties, hoverText);
+	public ItemWrench(Properties properties) {
+		super(properties);
 	}
 
 	@Override

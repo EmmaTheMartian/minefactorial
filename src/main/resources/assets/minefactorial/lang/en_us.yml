@@ -118,6 +118,9 @@ item.minefactorial:
     "1": In §b[REPLACE]§r mode, selected blocks are replaced with the block in your offhand
     "2": In §b[REMOVE]§r mode, selected blocks are removed
     "3": In §b[NONE]§r mode, it acts as a generic ruler
+  safari_net: Safari Net
+  safari_net.captured: Safari Net (%s)
+  safari_net.desc.0: Throw at a mob to capture it, then use again to release it elsewhere.
 
   raw_rubber: Raw Rubber
   raw_rubber.desc.0: Obtain by using a Tree Tap on Rubber Wood

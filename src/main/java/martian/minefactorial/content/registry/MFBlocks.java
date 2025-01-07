@@ -16,9 +16,7 @@ import martian.minefactorial.foundation.item.MFBlockItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.builder.RegolithBlockBuilder;
 import martian.regolith.neoforge.RegolithNeoForge;
-import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -43,7 +41,7 @@ public final class MFBlocks {
 
 	private static DeferredBlock<?> register(String id, Supplier<Block> supplier, String... hoverText) {
 		DeferredBlock<?> entry = REGISTRY.register(id, supplier);
-		MFItems.REGISTRY.register(id, () -> new MFBlockItem(entry.get(), new Item.Properties(), hoverText));
+		MFItems.REGISTRY.register(id, () -> new MFBlockItem(entry.get(), new Item.Properties()).setHoverText(hoverText));
 		return entry;
 	}
 
@@ -93,7 +91,7 @@ public final class MFBlocks {
 					.sound(SoundType.POLISHED_DEEPSLATE)
 					.mapColor(MapColor.COLOR_GRAY)
 					.strength(3f)
-					.speedFactor(1.15f)
+					.speedFactor(1.2f)
 					.requiresCorrectToolForDrops(),
 			PIPE_PROPS = BlockBehaviour.Properties.of()
 					.sound(SoundType.STONE)

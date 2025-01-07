@@ -46,6 +46,7 @@ public class Minefactorial {
 		MFBlockEntityTypes.REGISTRY.register(modBus);
 		MFDataComponents.REGISTRY.register(modBus);
 		MFItems.REGISTRY.register(modBus);
+		MFEntityTypes.REGISTRY.register(modBus);
 		MFTabs.REGISTRY.register(modBus);
 		MFMenuTypes.REGISTRY.register(modBus);
 		MFRecipeTypes.REGISTRY.register(modBus);

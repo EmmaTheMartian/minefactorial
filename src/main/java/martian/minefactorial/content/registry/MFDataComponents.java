@@ -1,6 +1,7 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.content.item.safarinet.SafariNetData;
 import martian.minefactorial.content.item.tweakeruler.TweakerulerMode;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
@@ -27,5 +28,12 @@ public final class MFDataComponents {
 			builder -> builder
 					.persistent(TweakerulerMode.CODEC)
 					.networkSynchronized(TweakerulerMode.STREAM_CODEC)
+	);
+
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<SafariNetData>> SAFARI_NET_DATA = REGISTRY.registerComponentType(
+			"safari_net_data",
+			builder -> builder
+					.persistent(SafariNetData.CODEC.codec())
+					.networkSynchronized(SafariNetData.STREAM_CODEC)
 	);
 }

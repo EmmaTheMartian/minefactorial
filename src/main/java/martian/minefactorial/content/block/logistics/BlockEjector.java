@@ -40,8 +40,8 @@ public class BlockEjector extends AbstractBlockWithEntity<BlockEjectorBE> implem
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 	public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
 
-	public BlockEjector(Properties properties, String... hoverText) {
-		super(BlockEjectorBE::new, properties, hoverText);
+	public BlockEjector(Properties properties) {
+		super(BlockEjectorBE::new, properties);
 		registerDefaultState(getStateDefinition().any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(TRIGGERED, false));

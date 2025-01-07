@@ -32,8 +32,8 @@ public class BlockMeatPacker extends AbstractBlockWithEntity<BlockMeatPackerBE> 
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty RUNNING = BooleanProperty.create("running");
 
-	public BlockMeatPacker(Properties properties, String... hoverText) {
-		super(BlockMeatPackerBE::new, properties, hoverText);
+	public BlockMeatPacker(Properties properties) {
+		super(BlockMeatPackerBE::new, properties);
 		registerDefaultState(getStateDefinition().any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(RUNNING, false));

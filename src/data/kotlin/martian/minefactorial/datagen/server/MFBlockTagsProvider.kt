@@ -13,8 +13,10 @@ class MFBlockTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.
 		RUBBER_SAPLING addTo mcTag("saplings")
 
 		// Mineable with Stone-tier minimum
+		val pickaxeMineable = mcTag("mineable/pickaxe")
+		val needsStoneTool = mcTag("needs_stone_tool")
 		addToMultipleTags(
-			setOf(mcTag("mineable/pickaxe"), mcTag("needs_stone_tool")),
+			setOf(pickaxeMineable, needsStoneTool),
 			// Logistics
 			CONVEYOR,
 			HOPPING_CONVEYOR,
@@ -48,12 +50,14 @@ class MFBlockTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.
 			STORAGE_UNIT,
 			// Misc
 			MACHINE_FRAME,
-			// Bulk
-			DECOR_BLOCKS.get("plastic_block"),
-			DECOR_BLOCKS.get("smooth_plastic"),
-			DECOR_BLOCKS.get("plastic_bricks"),
-			DECOR_BLOCKS.get("plastic_pillar"),
-			ROAD_BLOCKS.get("plastic_road"),
 		)
+		DECOR_BLOCKS.entries.forEach {
+			it.value addTo pickaxeMineable
+			it.value addTo needsStoneTool
+		}
+		ROAD_BLOCKS.entries.forEach {
+			it.value addTo pickaxeMineable
+			it.value addTo needsStoneTool
+		}
 	}
 }

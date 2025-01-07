@@ -20,10 +20,9 @@ public abstract class AbstractBlockWithEntity<T extends BlockEntity> extends MFB
 
 	public AbstractBlockWithEntity(
 			BlockEntityFactory<T> blockEntityFactory,
-			Properties properties,
-			String... hoverText
+			Properties properties
 	) {
-		super(properties, hoverText);
+		super(properties);
 		this.blockEntityFactory = blockEntityFactory;
 	}
 

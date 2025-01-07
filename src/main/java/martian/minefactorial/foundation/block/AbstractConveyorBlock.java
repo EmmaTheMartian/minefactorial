@@ -30,8 +30,8 @@ public abstract class AbstractConveyorBlock<T extends AbstractConveyorBE> extend
 	protected static final VoxelShape FLAT_AABB = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
 	protected static final VoxelShape FULL_BLOCK_AABB = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
 
-	public AbstractConveyorBlock(BlockEntityFactory<T> factory, BlockBehaviour.Properties properties, String... hoverText) {
-		super(factory, properties, hoverText);
+	public AbstractConveyorBlock(BlockEntityFactory<T> factory, BlockBehaviour.Properties properties) {
+		super(factory, properties);
 		registerDefaultState(getStateDefinition().any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(VERTICAL_STATE, VerticalState.NONE));

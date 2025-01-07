@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ItemRuler extends MFItem {
-	public ItemRuler(Properties properties, String... hoverText) {
-		super(properties, hoverText);
+	public ItemRuler(Properties properties) {
+		super(properties);
 	}
 
 	@Override
