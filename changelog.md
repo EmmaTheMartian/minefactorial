@@ -3,10 +3,21 @@
 ## Additions
 
 - Concrete roads of all 16 colours!
+- Safari Net
+- Rancher, a machine that collects certain resources from specific mobs
+
+## Bug Fixes
+
+- Make the Hopping Conveyor's item texture match the Conveyor's texture
+
+## Changes
+
+- Increase speed gain from roads
 
 ## Miscellaneous
 
 - Update to Regolith 1.2.1-beta
+- Update internals for hover text and extended hover text (this does not affect players, only developers)
 
 # 1.1.3+1.21.1
 

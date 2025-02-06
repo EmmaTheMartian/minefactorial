@@ -1,0 +1,13 @@
+{
+  "type": "minefactorial:ranching",
+  "ingredient": {
+    "entity": "minecraft:parrot"
+  },
+  "outputItem": {
+    "chance": 0.5,
+    "stack": {
+      "count": 1,
+      "id": "minecraft:feather"
+    }
+  }
+}

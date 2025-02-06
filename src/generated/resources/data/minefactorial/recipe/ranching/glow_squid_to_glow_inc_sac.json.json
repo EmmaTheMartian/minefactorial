@@ -1,0 +1,13 @@
+{
+  "type": "minefactorial:ranching",
+  "ingredient": {
+    "entity": "minecraft:glow_squid"
+  },
+  "outputItem": {
+    "chance": 0.5,
+    "stack": {
+      "count": 1,
+      "id": "minecraft:glow_ink_sac"
+    }
+  }
+}

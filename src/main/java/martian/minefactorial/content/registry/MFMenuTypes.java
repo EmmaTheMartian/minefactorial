@@ -74,4 +74,7 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerItemRouter>> ITEM_ROUTER =
 			registerSimple("item_router", ContainerItemRouter::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerRancher>> RANCHER =
+			registerSimple("rancher", ContainerRancher::new);
 }

@@ -1,6 +1,5 @@
 package martian.minefactorial.datagen.server
 
-import martian.dapper.api.mcId
 import martian.dapper.api.ofStack
 import martian.dapper.api.server.recipe.DapperRecipeProvider
 import martian.dapper.api.server.recipe.DapperShapedRecipeUtil.pattern2x2
@@ -17,21 +16,18 @@ import martian.minefactorial.content.registry.MFItems
 import martian.minefactorial.datagen.id
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMaceration
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMeatPacking
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceLocation
+import martian.minefactorial.datagen.server.recipe.RecipeBuilderRanching
+import martian.minefactorial.foundation.entity.EntityIngredient
+import martian.minefactorial.foundation.fluid.ChancedFluidStack
 import net.minecraft.tags.ItemTags
-import net.minecraft.world.item.DyeColor
-import net.minecraft.world.item.Item
+import net.minecraft.world.entity.EntityType
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
+import net.neoforged.neoforge.common.NeoForgeMod
 import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient
-import net.neoforged.neoforge.registries.DeferredHolder
-import net.neoforged.neoforge.registries.DeferredItem
-import java.util.*
 
 class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 	override fun buildRecipes() {
@@ -109,6 +105,17 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			define('P', ItemTags.PLANKS)
 			unlockWith(Items.STICK)
 			save("shaped/tools/tree_tap".id)
+		}
+
+		MFItems.SAFARI_NET.shapedRecipeBuilder().apply {
+			pattern("IPI")
+			pattern("PSP")
+			pattern("IPI")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('I', Tags.Items.NUGGETS_IRON)
+			define('S', Tags.Items.SLIME_BALLS)
+			unlockWith(MFItems.PLASTIC_SHEETS)
+			save("shaped/tools/safari_net".id)
 		}
 		// endregion Items/Tools
 
@@ -583,7 +590,49 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 		oreProcessingChain("ancient_debris",
 			Items.NETHERITE_SCRAP,
 			Ingredient.of(Tags.Items.ORES_NETHERITE_SCRAP))
-		// endregion
+		// endregion Misc/Ore Processing
+
+		// region Misc/Ranching
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.COW)).apply {
+			setResultFluid(ChancedFluidStack(NeoForgeMod.MILK.get(), 250, 0.1f))
+			save("ranching/cow_to_milk.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.CHICKEN)).apply {
+			setResultItem(Items.FEATHER, 0.5f)
+			save("ranching/chicken_to_feather.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.PARROT)).apply {
+			setResultItem(Items.FEATHER, 0.5f)
+			save("ranching/parrot_to_feather.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.SQUID)).apply {
+			setResultItem(Items.INK_SAC, 0.5f)
+			save("ranching/squid_to_ink_sac.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.GLOW_SQUID)).apply {
+			setResultItem(Items.GLOW_INK_SAC, 0.5f)
+			save("ranching/glow_squid_to_glow_inc_sac.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.SPIDER)).apply {
+			setResultItem(Items.STRING, 0.25f)
+			save("ranching/spider_to_string.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.CREEPER)).apply {
+			setResultItem(Items.GUNPOWDER, 0.25f)
+			save("ranching/creeper_to_gunpowder.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.SLIME)).apply {
+			setResultItem(Items.SLIME_BALL, 0.25f)
+			save("ranching/slime_to_slime_ball.json".id)
+		}
+		// endregion Misc/Ranching
 
 		// endregion Misc
 	}

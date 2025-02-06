@@ -99,6 +99,10 @@ final class MinefactorialListeners {
 			registerEnergyCapability(MFBlockEntityTypes.MEAT_PACKER.get());
 			registerItemCapability(MFBlockEntityTypes.MEAT_PACKER.get());
 			registerFluidCapability(MFBlockEntityTypes.MEAT_PACKER.get());
+			// Rancher
+			registerEnergyCapability(MFBlockEntityTypes.RANCHER.get());
+			registerItemCapability(MFBlockEntityTypes.RANCHER.get());
+			registerFluidCapability(MFBlockEntityTypes.RANCHER.get());
 
 			////// Power //////
 			// Steam Boiler

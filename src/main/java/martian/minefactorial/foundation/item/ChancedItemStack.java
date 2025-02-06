@@ -26,6 +26,6 @@ public record ChancedItemStack(ItemStack stack, float chance) {
 	}
 
 	public ItemStack roll() {
-		return Minefactorial.RANDOM.nextFloat() <= chance ? stack : ItemStack.EMPTY;
+		return Minefactorial.RANDOM.nextFloat() <= chance ? stack.copy() : ItemStack.EMPTY;
 	}
 }

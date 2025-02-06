@@ -68,6 +68,7 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.SLAUGHTERHOUSE.get(), ScreenSlaughterhouse::new);
 			event.register(MFMenuTypes.MEAT_PACKER.get(), ScreenMeatPacker::new);
 			event.register(MFMenuTypes.ITEM_ROUTER.get(), ScreenItemRouter::new);
+			event.register(MFMenuTypes.RANCHER.get(), ScreenRancher::new);
 		}
 
 		@SubscribeEvent

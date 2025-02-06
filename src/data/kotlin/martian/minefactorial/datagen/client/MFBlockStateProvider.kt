@@ -1,5 +1,6 @@
 package martian.minefactorial.datagen.client
 
+import com.google.gson.JsonObject
 import martian.dapper.api.client.CubeModel
 import martian.dapper.api.client.CubeModel.Companion.all
 import martian.dapper.api.client.CubeModel.Companion.down
@@ -22,6 +23,7 @@ import martian.minefactorial.content.block.machinery.farming.BlockHarvester
 import martian.minefactorial.content.block.power.BlockSteamBoiler
 import martian.minefactorial.content.block.redstone.BlockRedstoneClock
 import martian.minefactorial.content.registry.MFBlocks
+import martian.minefactorial.content.registry.MFFluids
 import martian.minefactorial.datagen.id
 import martian.minefactorial.foundation.pipenet.AbstractPipeBlock
 import martian.minefactorial.foundation.pipenet.PipeState
@@ -31,6 +33,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.RotatedPillarBlock
 import net.minecraft.world.level.block.state.properties.BooleanProperty
 import net.minecraft.world.level.block.state.properties.DirectionProperty
+import net.neoforged.neoforge.client.model.generators.IGeneratedBlockState
 import net.neoforged.neoforge.client.model.generators.ModelFile
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder
 import net.neoforged.neoforge.data.event.GatherDataEvent
@@ -303,6 +306,21 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.ROAD_BLOCKS.entries.forEach {
 			it.value.addModel(CubeModel() all blockId("decor/roads/${it.key}"))
 		}
+
+		blankState(MFFluids.STEAM_BLOCK)
+		blankState(MFFluids.OIL_BLOCK)
+		blankState(MFFluids.ESSENCE_BLOCK)
+		blankState(MFFluids.BEETROOT_SOUP_BLOCK)
+		blankState(MFFluids.MUSHROOM_STEW_BLOCK)
+		blankState(MFFluids.SUSPICIOUS_STEW_BLOCK)
+		blankState(MFFluids.RABBIT_STEW_BLOCK)
+		blankState(MFFluids.HONEY_BLOCK)
+		blankState(MFFluids.PINK_SLIME_BLOCK)
+		blankState(MFFluids.MEAT_BLOCK)
+	}
+
+	private fun blankState(block: DeferredBlock<*>) {
+		this.registeredBlocks[block.get()] = IGeneratedBlockState { JsonObject() }
 	}
 
 	// Thank you Thepigcat for letting me use this code! :D

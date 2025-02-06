@@ -1,0 +1,13 @@
+{
+  "type": "minefactorial:ranching",
+  "ingredient": {
+    "entity": "minecraft:slime"
+  },
+  "outputItem": {
+    "chance": 0.25,
+    "stack": {
+      "count": 1,
+      "id": "minecraft:slime_ball"
+    }
+  }
+}
