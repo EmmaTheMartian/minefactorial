@@ -361,6 +361,18 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			unlockWith(MFBlocks.MACHINE_FRAME)
 			save("shaped/machinery/meat_packer".id)
 		}
+
+		MFBlocks.RANCHER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("STS")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', MFBlocks.PLASTIC_TANK)
+			define('S', Items.SHEARS)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/rancher".id)
+		}
 		// endregion Blocks/Machinery
 
 		// region Blocks/Power
@@ -597,10 +609,19 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			setResultFluid(ChancedFluidStack(NeoForgeMod.MILK.get(), 250, 0.1f))
 			save("ranching/cow_to_milk.json".id)
 		}
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.MOOSHROOM)).apply {
+			setResultFluid(ChancedFluidStack(MFFluids.MUSHROOM_STEW.get(), 250, 0.1f))
+			save("ranching/mooshroom_to_mushroom_stew.json".id)
+		}
 
 		RecipeBuilderRanching(EntityIngredient.of(EntityType.CHICKEN)).apply {
 			setResultItem(Items.FEATHER, 0.5f)
 			save("ranching/chicken_to_feather.json".id)
+		}
+
+		RecipeBuilderRanching(EntityIngredient.of(EntityType.SHEEP)).apply {
+			setResultItem(Items.WHITE_WOOL, 0.5f)
+			save("ranching/sheep_to_wool.json".id)
 		}
 
 		RecipeBuilderRanching(EntityIngredient.of(EntityType.PARROT)).apply {

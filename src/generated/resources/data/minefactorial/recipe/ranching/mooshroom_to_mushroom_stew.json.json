@@ -1,0 +1,13 @@
+{
+  "type": "minefactorial:ranching",
+  "ingredient": {
+    "entity": "minecraft:mooshroom"
+  },
+  "outputFluid": {
+    "chance": 0.1,
+    "stack": {
+      "amount": 250,
+      "id": "minefactorial:mushroom_stew"
+    }
+  }
+}

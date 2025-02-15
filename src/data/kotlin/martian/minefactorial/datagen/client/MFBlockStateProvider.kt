@@ -220,6 +220,11 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 				.build("meat_packer_not_running", models())
 		)
 
+		dapperDirectionalBlock(MFBlocks.RANCHER.get(), machineFrame.copy()
+			.north(machineId("rancher_front"))
+			.south(itemOutputSide)
+			.up(fluidOutputTop), horizontalOnly = true)
+
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this
 		getVariantBuilder(MFBlocks.RUBBER_WOOD.get()).apply {

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "S": {
+      "item": "minecraft:shears"
+    },
+    "T": {
+      "item": "minefactorial:plastic_tank"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "STS",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:rancher"
+  }
+}

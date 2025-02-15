@@ -1,0 +1,13 @@
+{
+  "type": "minefactorial:ranching",
+  "ingredient": {
+    "entity": "minecraft:sheep"
+  },
+  "outputItem": {
+    "chance": 0.5,
+    "stack": {
+      "count": 1,
+      "id": "minecraft:white_wool"
+    }
+  }
+}

@@ -31,6 +31,7 @@ block.minefactorial:
   harvester: Harvester
   slaughterhouse: Slaughterhouse
   meat_packer: Meat Packer
+  rancher: Rancher
 
   # Power
   steam_boiler: Steam Boiler

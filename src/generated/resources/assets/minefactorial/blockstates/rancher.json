@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "minefactorial:block/rancher",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "minefactorial:block/rancher"
+    },
+    "facing=south": {
+      "model": "minefactorial:block/rancher",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "minefactorial:block/rancher",
+      "y": 270
+    }
+  }
+}
