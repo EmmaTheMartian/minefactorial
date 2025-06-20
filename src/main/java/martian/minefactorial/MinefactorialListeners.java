@@ -2,6 +2,7 @@ package martian.minefactorial;
 
 import martian.minefactorial.client.overlay.scrollmenu.OverlayScrollMenu;
 import martian.minefactorial.content.block.logistics.BlockFluidExtractorBE;
+import martian.minefactorial.content.block.machinery.farming.BlockIndustrialComposterBE;
 import martian.minefactorial.content.block.machinery.husbandry.BlockSlaughterhouseBE;
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.block.storage.BlockCapacitorBE;
@@ -27,7 +28,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -102,7 +102,15 @@ final class MinefactorialListeners {
 			// Rancher
 			registerEnergyCapability(MFBlockEntityTypes.RANCHER.get());
 			registerItemCapability(MFBlockEntityTypes.RANCHER.get());
-			registerFluidCapability(MFBlockEntityTypes.RANCHER.get());
+			registerFluidCapability(MFBlockEntityTypes.RANCHER.get(), (it, side) -> side == Direction.DOWN ? it.getTank() : null);
+			// Fertilizer
+			registerEnergyCapability(MFBlockEntityTypes.FERTILIZER.get());
+			registerFluidCapability(MFBlockEntityTypes.FERTILIZER.get());
+			// Sewage Collector
+			registerFluidCapability(MFBlockEntityTypes.SEWAGE_COLLECTOR.get(), (it, side) -> side == Direction.UP ? it.getTank() : null);
+			// Industrial Composter
+			registerEnergyCapability(MFBlockEntityTypes.INDUSTRIAL_COMPOSTER.get());
+			registerFluidCapability(MFBlockEntityTypes.INDUSTRIAL_COMPOSTER.get(), BlockIndustrialComposterBE::getTankForSide);
 
 			////// Power //////
 			// Steam Boiler

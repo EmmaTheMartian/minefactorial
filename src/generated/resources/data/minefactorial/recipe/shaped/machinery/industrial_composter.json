@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:composter"
+    },
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "T": {
+      "item": "minefactorial:plastic_tank"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "TCT",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:industrial_composter"
+  }
+}

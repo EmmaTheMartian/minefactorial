@@ -54,6 +54,7 @@ class MFItemModelProvider(event: GatherDataEvent) : DapperItemModelProvider(even
 		MFFluids.HONEY_BUCKET.basicModel()
 		MFFluids.PINK_SLIME_BUCKET.basicModel()
 		MFFluids.MEAT_BUCKET.basicModel()
+		MFFluids.INDUSTRIAL_FERTILIZER_BUCKET.basicModel()
 
 		// Block items with models that are not just parenting its block model
 		basicItem("conveyor".id)

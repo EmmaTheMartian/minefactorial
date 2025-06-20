@@ -198,4 +198,36 @@ public final class MFFluids {
 			.levelDecreasePerBlock(2)
 			.block(MFFluids.MEAT_BLOCK)
 			.bucket(MFFluids.MEAT_BUCKET);
+
+	// Industrial Fertilizer
+	public static final DeferredHolder<Fluid, FlowingFluid> INDUSTRIAL_FERTILIZER = registerSource("industrial_fertilizer", () -> MFFluids.INDUSTRIAL_FERTILIZER_PROPERTIES);
+	public static final DeferredHolder<Fluid, FlowingFluid> INDUSTRIAL_FERTILIZER_FLOWING = registerFlowing("industrial_fertilizer_flowing", () -> MFFluids.INDUSTRIAL_FERTILIZER_PROPERTIES);
+	public static final DeferredBlock<LiquidBlock> INDUSTRIAL_FERTILIZER_BLOCK = registerBlock("industrial_fertilizer", MFFluids.INDUSTRIAL_FERTILIZER);
+	public static final DeferredItem<BucketItem> INDUSTRIAL_FERTILIZER_BUCKET = registerBucket("industrial_fertilizer_bucket", MFFluids.INDUSTRIAL_FERTILIZER);
+
+	public static final BaseFlowingFluid.Properties INDUSTRIAL_FERTILIZER_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.INDUSTRIAL_FERTILIZER,
+			MFFluids.INDUSTRIAL_FERTILIZER,
+			MFFluids.INDUSTRIAL_FERTILIZER_FLOWING
+	)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
+			.block(MFFluids.INDUSTRIAL_FERTILIZER_BLOCK)
+			.bucket(MFFluids.INDUSTRIAL_FERTILIZER_BUCKET);
+
+	// Sewage
+	public static final DeferredHolder<Fluid, FlowingFluid> SEWAGE = registerSource("sewage", () -> MFFluids.SEWAGE_PROPERTIES);
+	public static final DeferredHolder<Fluid, FlowingFluid> SEWAGE_FLOWING = registerFlowing("sewage_flowing", () -> MFFluids.SEWAGE_PROPERTIES);
+	public static final DeferredBlock<LiquidBlock> SEWAGE_BLOCK = registerBlock("sewage", MFFluids.SEWAGE);
+	public static final DeferredItem<BucketItem> SEWAGE_BUCKET = registerBucket("sewage_bucket", MFFluids.SEWAGE);
+
+	public static final BaseFlowingFluid.Properties SEWAGE_PROPERTIES = new BaseFlowingFluid.Properties(
+			MFFluidTypes.SEWAGE,
+			MFFluids.SEWAGE,
+			MFFluids.SEWAGE_FLOWING
+	)
+			.slopeFindDistance(1)
+			.levelDecreasePerBlock(2)
+			.block(MFFluids.SEWAGE_BLOCK)
+			.bucket(MFFluids.SEWAGE_BUCKET);
 }

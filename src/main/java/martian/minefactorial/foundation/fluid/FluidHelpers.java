@@ -17,11 +17,15 @@ public final class FluidHelpers {
 	}
 
 	public static <T extends BlockEntity> void tryDistributeFluid(IFluidTank tank, Level level, int maxExtract, T be) {
+		tryDistributeFluid(tank, level, maxExtract, be, Direction.values());
+	}
+
+	public static <T extends BlockEntity> void tryDistributeFluid(IFluidTank tank, Level level, int maxExtract, T be, Direction[] directions) {
 		if (tank.getFluidAmount() <= 0) {
 			return;
 		}
 
-		for (Direction direction : Direction.values()) {
+		for (Direction direction : directions) {
 			if (tank.getFluidAmount() <= 0) {
 				return;
 			}

@@ -5,6 +5,7 @@
 - Concrete roads of all 16 colours!
 - Safari Net
 - Rancher, a machine that collects certain resources from specific mobs
+- Fertilizer, a machine that automatically bonemeals crops using Industrial Fertilizer
 
 ## Bug Fixes
 

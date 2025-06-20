@@ -55,6 +55,7 @@ public class ContainerSlaughterhouse extends AbstractMachineContainer<BlockSlaug
 	public int getPinkSlimeMillibuckets() {
 		return pinkSlimeMillibuckets;
 	}
+
 	public int getMeatMillibuckets() {
 		return meatMillibuckets;
 	}

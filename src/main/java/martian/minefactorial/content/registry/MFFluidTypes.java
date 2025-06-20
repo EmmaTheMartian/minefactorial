@@ -101,4 +101,24 @@ public final class MFFluidTypes {
 	});
 
 	public static final DeferredHolder<FluidType, BasicFluidType> MEAT = registerSimple("meat", 0xFFE79983);
+
+	public static final DeferredHolder<FluidType, BasicFluidType> INDUSTRIAL_FERTILIZER = register("industrial_fertilizer", new BasicFluidType(
+			WATER_STILL_TEXTURE,
+			WATER_FLOWING,
+			WATER_OVERLAY,
+			0xFFB77761,
+			colourFromHex(0xFFE394B2),
+			FluidType.Properties.create()
+					.density(3000)
+					.viscosity(6000)
+					.canSwim(false)
+	) {
+		@Override
+		public void setItemMovement(@NotNull ItemEntity entity) {
+			Vec3 vec3 = entity.getDeltaMovement();
+			entity.setDeltaMovement(vec3.x * (double) 0.95F, vec3.y + (double) (vec3.y < (double) 0.06F ? 5.0E-4F : 0.0F), vec3.z * (double) 0.95F);
+		}
+	});
+
+	public static final DeferredHolder<FluidType, BasicFluidType> SEWAGE = registerSimple("sewage", 0xAEAA2A2A);
 }

@@ -69,6 +69,9 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.MEAT_PACKER.get(), ScreenMeatPacker::new);
 			event.register(MFMenuTypes.ITEM_ROUTER.get(), ScreenItemRouter::new);
 			event.register(MFMenuTypes.RANCHER.get(), ScreenRancher::new);
+			event.register(MFMenuTypes.FERTILIZER.get(), ScreenFertilizer::new);
+			event.register(MFMenuTypes.SEWAGE_COLLECTOR.get(), ScreenSewageCollector::new);
+			event.register(MFMenuTypes.INDUSTRIAL_COMPOSTER.get(), ScreenIndustrialComposter::new);
 		}
 
 		@SubscribeEvent
@@ -83,6 +86,8 @@ public final class MinefactorialClient {
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.HONEY.get()), MFFluidTypes.HONEY);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.PINK_SLIME.get()), MFFluidTypes.PINK_SLIME);
 			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.MEAT.get()), MFFluidTypes.MEAT);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.INDUSTRIAL_FERTILIZER.get()), MFFluidTypes.INDUSTRIAL_FERTILIZER);
+			event.registerFluidType(BasicFluidType.getClientExtensionsFor(MFFluidTypes.SEWAGE.get()), MFFluidTypes.SEWAGE);
 		}
 
 		@SubscribeEvent
@@ -102,9 +107,7 @@ public final class MinefactorialClient {
 
 		@SubscribeEvent
 		static void setup(final FMLClientSetupEvent event) {
-			event.enqueueWork(() -> {
-				setupEntityRenderers();
-			});
+			event.enqueueWork(ModBusEvents::setupEntityRenderers);
 		}
 
 		// These are called from #setup(FMLClientSetupEvent)
@@ -202,6 +205,20 @@ public final class MinefactorialClient {
 		@SubscribeEvent
 		static void onScreenKeyRelease(final ScreenEvent.KeyReleased.Post event) {
 			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.KEYSYM.getOrCreate(event.getKeyCode()))) {
+				MFItem.showExtendedTooltip = false;
+			}
+		}
+
+		@SubscribeEvent
+		static void onScreenMousePress(final ScreenEvent.MouseButtonPressed.Post event) {
+			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.MOUSE.getOrCreate(event.getButton()))) {
+				MFItem.showExtendedTooltip = true;
+			}
+		}
+
+		@SubscribeEvent
+		static void onScreenMouseRelease(final ScreenEvent.MouseButtonReleased.Post event) {
+			if (MFKeys.SHOW_EXTENDED_TOOLTIP.get().isActiveAndMatches(InputConstants.Type.MOUSE.getOrCreate(event.getButton()))) {
 				MFItem.showExtendedTooltip = false;
 			}
 		}

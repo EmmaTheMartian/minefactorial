@@ -77,4 +77,13 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerRancher>> RANCHER =
 			registerSimple("rancher", ContainerRancher::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerFertilizer>> FERTILIZER =
+			registerSimple("fertilizer", ContainerFertilizer::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerSewageCollector>> SEWAGE_COLLECTOR =
+			registerSimple("sewage_collector", ContainerSewageCollector::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerIndustrialComposter>> INDUSTRIAL_COMPOSTER =
+			registerSimple("industrial_composter", ContainerIndustrialComposter::new);
 }

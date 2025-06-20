@@ -32,6 +32,9 @@ block.minefactorial:
   slaughterhouse: Slaughterhouse
   meat_packer: Meat Packer
   rancher: Rancher
+  fertilizer: Fertilizer
+  sewage_collector: Sewer
+  industrial_composter: Industrial Composter
 
   # Power
   steam_boiler: Steam Boiler
@@ -91,6 +94,8 @@ block.minefactorial:
   honey: Honey
   pink_slime: Pink Slime
   meat: Liquid Meat
+  industrial_fertilizer: Industrial Fertilizer
+  sewage: Sewage
 
 item.minefactorial:
   straw: Straw
@@ -158,6 +163,8 @@ item.minefactorial:
   honey_bucket: Honey Bucket
   pink_slime_bucket: Pink Slime Bucket
   meat_bucket: Liquid Meat Bucket
+  industrial_fertilizer_bucket: Industrial Fertilizer Bucket
+  sewage_bucket: Sewage Bucket
 
 fluid_type.minefactorial:
   steam: Steam
@@ -170,6 +177,8 @@ fluid_type.minefactorial:
   honey: Honey
   pink_slime: Pink Slime
   meat: Liquid Meat
+  industrial_fertilizer: Industrial Fertilizer
+  sewage: Sewage
 
 itemGroup.minefactorial.name: MineFactorial
 
@@ -199,6 +208,7 @@ key.minefactorial:
 emi.category.minefactorial:
   maceration: Maceration
   meat_packing: Meat Packing
+  ranching: Ranching
 
 tag:
   item.c:

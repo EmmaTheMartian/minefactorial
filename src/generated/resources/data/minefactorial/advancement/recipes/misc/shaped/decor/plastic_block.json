@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_minefactorial_raw_plastic": {
+    "has_minefactorial_plastic_sheets": {
       "conditions": {
         "items": [
           {
-            "items": "minefactorial:raw_plastic"
+            "items": "minefactorial:plastic_sheets"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_minefactorial_raw_plastic"
+      "has_minefactorial_plastic_sheets"
     ]
   ],
   "rewards": {

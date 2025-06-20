@@ -50,6 +50,7 @@ public final class MFTags {
 		public static final TagKey<Fluid>
 				STEAM = cTag("steam"),
 				OIL = cTag("oil"),
-				CRUDE_OIL = cTag("crude_oil");
+				CRUDE_OIL = cTag("crude_oil"),
+				FERTILIZERS = cTag("fertilizers");
 	}
 }

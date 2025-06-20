@@ -106,7 +106,7 @@ public class BlockHarvester extends AbstractBlockWithEntity<BlockHarvesterBE> {
 	@ParametersAreNonnullByDefault
 	public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
 		super.onBlockStateChange(level, pos, oldState, newState);
-		if (level.getBlockEntity(pos) instanceof BlockSlaughterhouseBE be) {
+		if (level.getBlockEntity(pos) instanceof BlockHarvesterBE be) {
 			be.invalidateWorkZone();
 		}
 	}

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class RoundRobinInventory extends ItemStackHandler {
 	protected int index = 0;
+	protected int simulatedIndex = 0;
 
 	public RoundRobinInventory() {
 		super();
@@ -26,11 +27,15 @@ public class RoundRobinInventory extends ItemStackHandler {
 	public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
 		// We will be disregarding `slot` here because we want to round-robin
 		// distribute items
-		ItemStack result = super.insertItem(index++, stack, simulate);
-		if (index >= this.getSlots()) {
-			index = 0;
+		if (simulate) {
+			return super.insertItem(slot, stack, true);
+		} else {
+			ItemStack result = super.insertItem(index++, stack, false);
+			if (index >= this.getSlots()) {
+				index = 0;
+			}
+			return result;
 		}
-		return result;
 	}
 
 	public ItemStack insertItem(@NotNull ItemStack stack, boolean simulate) {

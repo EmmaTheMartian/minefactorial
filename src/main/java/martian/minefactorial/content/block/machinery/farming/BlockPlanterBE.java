@@ -27,6 +27,15 @@ public class BlockPlanterBE extends AbstractZonedInventoryMachineBE {
 		super(MFBlockEntityTypes.PLANTER.get(), SLOTS, pos, blockState);
 	}
 
+	public boolean hasNoSeeds() {
+		for (int i = 0 ; i < this.getContainerSize() ; i++) {
+			if (this.getItem(i).getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof CropBlock) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@Override
 	protected ItemStackHandler makeItemStackHandler() {
 		return new RoundRobinInventory(this.slots) {
@@ -66,6 +75,10 @@ public class BlockPlanterBE extends AbstractZonedInventoryMachineBE {
 
 	@Override
 	public boolean checkForWork(ServerLevel level) {
+		if (hasNoSeeds()) {
+			return false;
+		}
+
 		// Check for dirt or grass to till
 		AtomicBoolean result = new AtomicBoolean(false);
 		AABBHelpers.properlyBoundedStreamAABB(getCachedWorkZone().get().move(new BlockPos(0, -1, 0))).forEach(pos -> {
@@ -92,7 +105,7 @@ public class BlockPlanterBE extends AbstractZonedInventoryMachineBE {
 				result.set(true);
 			}
 		});
-		return result.get() && !this.isEmpty();
+		return result.get();
 	}
 
 	@Override
@@ -115,7 +128,7 @@ public class BlockPlanterBE extends AbstractZonedInventoryMachineBE {
 		});
 
 		// Plant crops
-		if (this.isEmpty()) {
+		if (hasNoSeeds()) {
 			return;
 		}
 

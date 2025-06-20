@@ -38,6 +38,8 @@ class MFBlockTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.
 			SLAUGHTERHOUSE,
 			MEAT_PACKER,
 			RANCHER,
+			FERTILIZER,
+			SEWAGE_COLLECTOR,
 			// Power
 			STEAM_BOILER,
 			STEAM_TURBINE,

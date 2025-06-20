@@ -225,6 +225,18 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 			.south(itemOutputSide)
 			.up(fluidOutputTop), horizontalOnly = true)
 
+		dapperDirectionalBlock(MFBlocks.FERTILIZER.get(), machineFrame.copy()
+			.north(machineId("fertilizer_front"))
+			.south(fluidInputSide), horizontalOnly = true)
+
+		MFBlocks.SEWAGE_COLLECTOR.addModel(machineFrame.copy()
+			.up(machineId("sewage_collector_top"))
+			.down(fluidOutputBottom))
+
+		MFBlocks.INDUSTRIAL_COMPOSTER.addModel(machineFrame.copy()
+			.side(machineId("industrial_composter_side"))
+			.up(fluidInputTop))
+
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this
 		getVariantBuilder(MFBlocks.RUBBER_WOOD.get()).apply {
@@ -322,6 +334,7 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		blankState(MFFluids.HONEY_BLOCK)
 		blankState(MFFluids.PINK_SLIME_BLOCK)
 		blankState(MFFluids.MEAT_BLOCK)
+		blankState(MFFluids.INDUSTRIAL_FERTILIZER_BLOCK)
 	}
 
 	private fun blankState(block: DeferredBlock<*>) {

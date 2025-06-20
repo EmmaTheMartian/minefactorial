@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minefactorial:machine_frame"
+    },
+    "M": {
+      "item": "minecraft:bone_meal"
+    },
+    "P": {
+      "tag": "c:plates/plastic"
+    },
+    "T": {
+      "item": "minefactorial:plastic_tank"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "MTM",
+    " F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minefactorial:fertilizer"
+  }
+}

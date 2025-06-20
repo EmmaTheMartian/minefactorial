@@ -37,6 +37,10 @@ public abstract class AbstractMachineBE
 
 	public abstract void doWork(ServerLevel level);
 
+	public boolean hasRedstoneControls() {
+		return true;
+	}
+
 	/**
 	 * Called when the machine starts working. This can be used to change the BlockState
 	 * for animation purposes.
@@ -55,6 +59,11 @@ public abstract class AbstractMachineBE
 
 	@Override
 	public void serverTick(ServerLevel level) {
+		// If there's a redstone signal coming into the block, we will skip everything here.
+		if (hasRedstoneControls() && level.hasNeighborSignal(getBlockPos())) {
+			return;
+		}
+
 		// Eject items, if there are any
 		if (this instanceof IInventoryBE<?> inventoryBE && inventoryBE.shouldEjectItems() && !inventoryBE.isEmpty()) {
 			IInventoryBE.ejectFrom(inventoryBE, 64);

@@ -373,6 +373,42 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			unlockWith(MFBlocks.MACHINE_FRAME)
 			save("shaped/machinery/rancher".id)
 		}
+
+		MFBlocks.FERTILIZER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("MTM")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', MFBlocks.PLASTIC_TANK)
+			define('M', Items.BONE_MEAL)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/fertilizer".id)
+		}
+
+		MFBlocks.SEWAGE_COLLECTOR.shapedRecipeBuilder().apply {
+			pattern("PBP")
+			pattern("PTP")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', MFBlocks.PLASTIC_TANK)
+			define('B', Items.IRON_BARS)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/sewage_collector".id)
+		}
+
+		MFBlocks.INDUSTRIAL_COMPOSTER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("TCT")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', MFBlocks.PLASTIC_TANK)
+			define('C', Items.COMPOSTER)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/industrial_composter".id)
+		}
 		// endregion Blocks/Machinery
 
 		// region Blocks/Power
@@ -453,8 +489,8 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 		MFBlocks.DECOR_BLOCKS.get("plastic_block").shapedRecipeBuilder(4).apply {
 			pattern("PP")
 			pattern("PP")
-			define('P', MFItems.RAW_PLASTIC)
-			unlockWith(MFItems.RAW_PLASTIC)
+			define('P', MFItems.PLASTIC_SHEETS)
+			unlockWith(MFItems.PLASTIC_SHEETS)
 			save("shaped/decor/plastic_block".id)
 		}
 
