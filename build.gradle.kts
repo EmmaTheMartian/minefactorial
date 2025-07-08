@@ -179,6 +179,7 @@ val replaceProperties = mapOf(
         "mod_version"             to prop("mod_version"),
         "mod_authors"             to prop("mod_authors"),
         "mod_description"         to prop("mod_description"),
+        "lazuli_version_range"    to prop("lazuli_version_range"),
 )
 
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {

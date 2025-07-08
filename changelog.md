@@ -17,6 +17,7 @@
 - Change the recipe for Plastic Blocks to not conflict with Plastic Sheets.
 - Fix the harvester not invalidating its working zone on block state changes.
 - Fix the planter's inventory not properly round-robin'ing when a non-stackable+non-plantable item is inside.
+- Fix hopping conveyors voiding items when the target container is full.
 
 ## Changes
 

@@ -42,7 +42,7 @@ public class BlockHoppingConveyorBE extends AbstractConveyorBE {
 						if (remainder.isEmpty()) {
 							itemEntity.setItem(stack.copyWithCount(stack.getCount() - toInsert.getCount()));
 						} else {
-							itemEntity.setItem(stack.copyWithCount(stack.getCount() - remainder.getCount()));
+							itemEntity.setItem(remainder.copy());
 						}
 					}
 				}
