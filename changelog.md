@@ -3,13 +3,19 @@
 ## Additions
 
 - Concrete roads of all 16 colours!
-- Safari Net
-- Rancher, a machine that collects certain resources from specific mobs
-- Fertilizer, a machine that automatically bonemeals crops using Industrial Fertilizer
+- Safari Net, an item that can capture and release entities.
+- Rancher, a machine that collects certain resources from specific mobs.
+- Fertilizer, a machine that automatically bonemeals crops using Industrial Fertilizer.
+- Sewer, a block that collects sewage when living entities step on it.
+- Industrial Composter, a machine that converts sewage into Industrial Fertilizer.
+- Add redstone controls for machinery, powering a machine will disable it.
 
 ## Bug Fixes
 
-- Make the Hopping Conveyor's item texture match the Conveyor's texture
+- Make the Hopping Conveyor's item texture match the Conveyor's texture.
+- Change the recipe for Plastic Blocks to not conflict with Plastic Sheets.
+- Fix the harvester not invalidating its working zone on block state changes.
+- Fix the planter's inventory not properly round-robin'ing when a non-stackable+non-plantable item is inside.
 
 ## Changes
 
