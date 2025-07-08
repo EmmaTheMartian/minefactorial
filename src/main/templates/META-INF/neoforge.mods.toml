@@ -35,3 +35,10 @@ config = "${mod_id}.mixins.json"
     versionRange = "${minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+    modId = "lazuli"
+    type = "required"
+    versionRange = "${lazuli_version_range}"
+    ordering = "NONE"
+    side = "BOTH"

@@ -8,6 +8,7 @@
 - Fertilizer, a machine that automatically bonemeals crops using Industrial Fertilizer.
 - Sewer, a block that collects sewage when living entities step on it.
 - Industrial Composter, a machine that converts sewage into Industrial Fertilizer.
+- Breeder, a machine that breeds animals within a range.
 - Add redstone controls for machinery, powering a machine will disable it.
 
 ## Bug Fixes
@@ -25,6 +26,7 @@
 
 - Update to Regolith 1.2.1-beta
 - Update internals for hover text and extended hover text (this does not affect players, only developers)
+- Gut the foundation in favour of Lazuli
 
 # 1.1.3+1.21.1
 

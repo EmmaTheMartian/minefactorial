@@ -2,7 +2,10 @@
 
 (aka: Mine! or M!)
 
-MineFactorial is a revival of MineFactory Reloaded for modern versions of Minecraft.
+MineFactorial is a revival and reimagining of MineFactory Reloaded for modern
+versions of Minecraft.
+
+Depends on [Lazuli](https://modrinth.com/mod/lazuli)
 
 ---
 
@@ -15,15 +18,19 @@ MineFactorial is a revival of MineFactory Reloaded for modern versions of Minecr
 
 ## Credits and Attributions
 
-- thepigcat, for updating all the textures to look very fanciful :D
-- PowerCrystals, for making the original MineFactory (and MineFactory Reloaded) that we know and love
+- thepigcat, for updating all the M! textures to look very fanciful :D
+- PowerCrystals, for making the original MineFactory (and MineFactory Reloaded)
+  that we know and love
 
 ## Notes
 
-- Yes this mod is similar to Industrial Foregoing. Both it and M!
-  are based on MFR, so there will be a lot of similarities and overlap. I'm trying my best
+- Yes this mod is similar to Industrial Foregoing. Both it and M! are based on 
+  MFR, so there will be a lot of similarities and overlap. I'm trying my best
   to stay unique and diverge from what is seen in IF though.
 - M! is currently **in-development** and not 100% complete!
+- M! has differences from MineFactory, it's not a 1:1 port of it. Expect some
+  machines to work differently and expect the mods to have slightly different
+  content.
 
 ## Links
 
