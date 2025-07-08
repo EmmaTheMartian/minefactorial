@@ -1,34 +1,24 @@
 package martian.minefactorial.content.block.machinery.husbandry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.content.recipe.RecipeRanching;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFRecipeTypes;
-import martian.minefactorial.foundation.block.AbstractZonedSingleTankAndInventoryMachineBE;
-import martian.minefactorial.foundation.block.IInventoryBE;
-import martian.minefactorial.foundation.fluid.FluidHelpers;
-import martian.minefactorial.foundation.fluid.MFFluidTank;
-import martian.minefactorial.foundation.item.MFItemStackHandler;
-import martian.minefactorial.foundation.recipe.EntityRecipeInput;
+import martian.minefactorial.api.block.AbstractZonedSingleTankAndInventoryMachineBE;
+import martian.minefactorial.api.fluid.MFFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import top.girlkisser.lazuli.api.block.IFluidBE;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.crafting.EntityRecipeInput;
+import top.girlkisser.lazuli.api.inventory.LazuliItemStackHandler;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static martian.minefactorial.Minefactorial.id;
 
 public class BlockRancherBE extends AbstractZonedSingleTankAndInventoryMachineBE {
 	public static final int SLOTS = 5;
@@ -72,7 +62,7 @@ public class BlockRancherBE extends AbstractZonedSingleTankAndInventoryMachineBE
 
 	@Override
 	public void serverTick(ServerLevel level) {
-		FluidHelpers.tryPushFluid(getTank(), level, getMaxFluidExtract(), this, Direction.UP);
+		IFluidBE.tryPushFluid(getTank(), level, getMaxFluidExtract(), this, Direction.UP);
 		super.serverTick(level);
 	}
 
@@ -96,7 +86,7 @@ public class BlockRancherBE extends AbstractZonedSingleTankAndInventoryMachineBE
 				.ifPresent(r -> {
 					ItemStack item = r.value().rollItemStack();
 					if (!item.isEmpty()) {
-						ItemStack remainder = MFItemStackHandler.insertItem(getInventory(), item, false);
+						ItemStack remainder = LazuliItemStackHandler.insertItem(getInventory(), item, false);
 						if (remainder.isEmpty()) {
 							IInventoryBE.ejectStack(level, getBlockPos(), getEjectDirection(getBlockState()), remainder);
 						}

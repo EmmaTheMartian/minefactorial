@@ -1,7 +1,7 @@
 package martian.minefactorial.content.block.logistics;
 
-import martian.minefactorial.foundation.block.AbstractConveyorBlock;
-import martian.minefactorial.foundation.block.IScrewdriverFunctionality;
+import martian.minefactorial.api.block.AbstractConveyorBlock;
+import martian.minefactorial.api.block.IScrewdriverFunctionality;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;

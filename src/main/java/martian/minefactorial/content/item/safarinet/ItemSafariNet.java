@@ -1,8 +1,8 @@
 package martian.minefactorial.content.item.safarinet;
 
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.content.entity.ThrownSafariNet;
 import martian.minefactorial.content.registry.MFDataComponents;
-import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.item.LazuliItem;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;

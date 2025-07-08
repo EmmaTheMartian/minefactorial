@@ -1,18 +1,17 @@
 package martian.minefactorial.client.screen;
 
+import martian.minefactorial.api.client.screen.AbstractEnergyScreen;
 import martian.minefactorial.content.block.machinery.farming.BlockIndustrialComposterBE;
 import martian.minefactorial.content.menu.ContainerIndustrialComposter;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.client.FluidRenderer;
-import martian.minefactorial.foundation.client.screen.AbstractEnergyScreen;
-import martian.minefactorial.foundation.client.screen.AbstractMFScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.client.FluidRenderingHelpers;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import static martian.minefactorial.Minefactorial.id;
 
@@ -38,7 +37,7 @@ public class ScreenIndustrialComposter extends AbstractEnergyScreen<BlockIndustr
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
 		if (menu.getSewageMillibuckets() >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.SEWAGE, menu.getSewageMillibuckets()),
 					menu.sewageCapacity,
 					graphics,
@@ -50,7 +49,7 @@ public class ScreenIndustrialComposter extends AbstractEnergyScreen<BlockIndustr
 		}
 
 		if (menu.getIndustrialFertilizerMillibuckets() >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.INDUSTRIAL_FERTILIZER, menu.getIndustrialFertilizerMillibuckets()),
 					menu.industrialFertilizerCapacity,
 					graphics,

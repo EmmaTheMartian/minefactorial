@@ -35,6 +35,7 @@ block.minefactorial:
   fertilizer: Fertilizer
   sewage_collector: Sewer
   industrial_composter: Industrial Composter
+  breeder: Breeder
 
   # Power
   steam_boiler: Steam Boiler

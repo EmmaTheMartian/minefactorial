@@ -1,8 +1,8 @@
 package martian.minefactorial.content.block.machinery;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractSingleTankMachineBE;
-import martian.minefactorial.foundation.fluid.MFFluidTank;
+import martian.minefactorial.api.block.AbstractSingleTankMachineBE;
+import martian.minefactorial.api.fluid.MFFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

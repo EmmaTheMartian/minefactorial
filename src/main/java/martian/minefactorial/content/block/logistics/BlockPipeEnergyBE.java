@@ -1,8 +1,6 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractEnergyBE;
-import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,6 +9,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import top.girlkisser.lazuli.api.block.AbstractEnergyBE;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -3,9 +3,7 @@ package martian.minefactorial.content.block.machinery;
 import martian.minefactorial.content.recipe.RecipeMeatPacking;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFRecipeTypes;
-import martian.minefactorial.foundation.block.AbstractSingleTankAndInventoryMachineBE;
-import martian.minefactorial.foundation.block.IInventoryBE;
-import martian.minefactorial.foundation.fluid.FluidStackInput;
+import martian.minefactorial.api.block.AbstractSingleTankAndInventoryMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.crafting.FluidStackInput;
 
 import javax.annotation.Nullable;
 

@@ -1,10 +1,10 @@
 package martian.minefactorial.content.block.storage;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractInventoryBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import top.girlkisser.lazuli.api.block.AbstractInventoryBE;
 
 public class BlockStorageUnitBE extends AbstractInventoryBE {
 	public static final int SLOTS = 54; // The size of a double chest

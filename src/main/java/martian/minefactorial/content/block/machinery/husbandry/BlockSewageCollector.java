@@ -1,10 +1,7 @@
 package martian.minefactorial.content.block.machinery.husbandry;
 
-import martian.minefactorial.content.block.machinery.BlockPumpBE;
-import martian.minefactorial.content.menu.ContainerPump;
 import martian.minefactorial.content.menu.ContainerSewageCollector;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -20,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.AbstractBlockWithEntity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

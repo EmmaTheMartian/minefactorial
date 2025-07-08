@@ -3,8 +3,6 @@ package martian.minefactorial.content.block.power;
 import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.block.IInventoryBE;
-import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -21,6 +19,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 public class BlockSteamBoilerBE extends BlockEntity implements ITickableBE, IInventoryBE<ItemStackHandler> {
 	public static final int SLOT_COUNT = 1;

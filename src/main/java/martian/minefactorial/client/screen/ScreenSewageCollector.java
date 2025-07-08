@@ -1,22 +1,22 @@
 package martian.minefactorial.client.screen;
 
+import martian.minefactorial.api.client.screen.AbstractEnergyScreen;
 import martian.minefactorial.content.block.machinery.husbandry.BlockSewageCollectorBE;
 import martian.minefactorial.content.menu.ContainerSewageCollector;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.client.FluidRenderer;
-import martian.minefactorial.foundation.client.screen.AbstractEnergyScreen;
-import martian.minefactorial.foundation.client.screen.AbstractMFScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.client.FluidRenderingHelpers;
+import top.girlkisser.lazuli.api.client.screen.AbstractLazuliContainerScreen;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import static martian.minefactorial.Minefactorial.id;
 
-public class ScreenSewageCollector extends AbstractMFScreen<ContainerSewageCollector> {
+public class ScreenSewageCollector extends AbstractLazuliContainerScreen<ContainerSewageCollector> {
 	public static final ResourceLocation UI = id("textures/gui/sewage_collector.png");
 
 	public static final int
@@ -48,7 +48,7 @@ public class ScreenSewageCollector extends AbstractMFScreen<ContainerSewageColle
 		}
 
 		if (this.menu.fluidAmount >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.SEWAGE, this.menu.fluidAmount),
 					menu.capacity,
 					graphics,

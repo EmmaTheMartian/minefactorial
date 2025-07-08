@@ -1,7 +1,6 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.menu.ContainerItemRouter;
-import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +18,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.AbstractBlockWithEntity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

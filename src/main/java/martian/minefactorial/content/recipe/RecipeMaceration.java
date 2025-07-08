@@ -3,7 +3,6 @@ package martian.minefactorial.content.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import martian.minefactorial.foundation.item.ChancedItemStack;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -14,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.ApiStatus;
+import top.girlkisser.lazuli.api.item.ChancedItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

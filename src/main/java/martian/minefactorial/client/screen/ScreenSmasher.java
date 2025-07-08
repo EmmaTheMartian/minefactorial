@@ -1,12 +1,10 @@
 package martian.minefactorial.client.screen;
 
+import martian.minefactorial.api.client.screen.AbstractMachineScreen;
 import martian.minefactorial.content.block.machinery.BlockSmasherBE;
 import martian.minefactorial.content.menu.ContainerSmasher;
 import martian.minefactorial.content.net.PacketServerboundSetSmasherFortuneLevel;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.client.FluidRenderer;
-import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
@@ -19,6 +17,8 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.client.FluidRenderingHelpers;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -86,7 +86,7 @@ public class ScreenSmasher extends AbstractMachineScreen<BlockSmasherBE, Contain
 
 		// Render fluid
 		if (this.menu.fluidAmount >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.ESSENCE, this.menu.fluidAmount),
 					menu.tankCapacity,
 					graphics,

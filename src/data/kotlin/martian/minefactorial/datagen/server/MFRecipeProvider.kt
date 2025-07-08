@@ -17,8 +17,7 @@ import martian.minefactorial.datagen.id
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMaceration
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderMeatPacking
 import martian.minefactorial.datagen.server.recipe.RecipeBuilderRanching
-import martian.minefactorial.foundation.entity.EntityIngredient
-import martian.minefactorial.foundation.fluid.ChancedFluidStack
+import martian.minefactorial.api.entity.EntityIngredient
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.item.Items
@@ -28,6 +27,7 @@ import net.neoforged.neoforge.common.NeoForgeMod
 import net.neoforged.neoforge.common.Tags
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient
+import top.girlkisser.lazuli.api.fluid.ChancedFluidStack
 
 class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 	override fun buildRecipes() {
@@ -408,6 +408,18 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			define('C', Items.COMPOSTER)
 			unlockWith(MFBlocks.MACHINE_FRAME)
 			save("shaped/machinery/industrial_composter".id)
+		}
+
+		MFBlocks.BREEDER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("IHI")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('I', Tags.Items.INGOTS_IRON)
+			define('H', Items.HAY_BLOCK)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/breeder".id)
 		}
 		// endregion Blocks/Machinery
 

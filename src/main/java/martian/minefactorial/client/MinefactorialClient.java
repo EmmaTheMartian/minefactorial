@@ -3,6 +3,7 @@ package martian.minefactorial.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.client.overlay.scrollmenu.OverlayScrollMenu;
 import martian.minefactorial.client.overlay.scrollmenu.ScrollMenu;
 import martian.minefactorial.client.screen.*;
@@ -10,10 +11,6 @@ import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.net.PacketServerboundTweakerulerRedo;
 import martian.minefactorial.content.net.PacketServerboundTweakerulerUndo;
 import martian.minefactorial.content.registry.*;
-import martian.minefactorial.foundation.Raycasting;
-import martian.minefactorial.foundation.block.IZonedBE;
-import martian.minefactorial.foundation.fluid.BasicFluidType;
-import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -38,6 +35,9 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.block.IZonedBE;
+import top.girlkisser.lazuli.api.fluid.BasicFluidType;
+import top.girlkisser.lazuli.api.world.Raycasting;
 
 import java.util.Optional;
 
@@ -72,6 +72,7 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.FERTILIZER.get(), ScreenFertilizer::new);
 			event.register(MFMenuTypes.SEWAGE_COLLECTOR.get(), ScreenSewageCollector::new);
 			event.register(MFMenuTypes.INDUSTRIAL_COMPOSTER.get(), ScreenIndustrialComposter::new);
+			event.register(MFMenuTypes.BREEDER.get(), ScreenBreeder::new);
 		}
 
 		@SubscribeEvent

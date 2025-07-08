@@ -1,10 +1,11 @@
 package martian.minefactorial.content.item;
 
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.content.registry.MFDataComponents;
-import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;

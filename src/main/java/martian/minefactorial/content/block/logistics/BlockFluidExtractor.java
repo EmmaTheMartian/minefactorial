@@ -1,6 +1,5 @@
 package martian.minefactorial.content.block.logistics;
 
-import martian.minefactorial.foundation.block.AbstractBlockWithEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,6 +16,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.AbstractBlockWithEntity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

@@ -3,7 +3,6 @@ package martian.minefactorial.content.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import martian.minefactorial.foundation.fluid.FluidStackInput;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -16,6 +15,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import org.jetbrains.annotations.ApiStatus;
+import top.girlkisser.lazuli.api.crafting.FluidStackInput;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

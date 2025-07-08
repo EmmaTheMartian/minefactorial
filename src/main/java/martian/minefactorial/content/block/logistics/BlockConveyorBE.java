@@ -1,7 +1,7 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractConveyorBE;
+import martian.minefactorial.api.block.AbstractConveyorBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 

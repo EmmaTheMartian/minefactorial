@@ -1,14 +1,14 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlocks;
-import martian.minefactorial.foundation.block.ITickableBE;
-import martian.minefactorial.foundation.pipenet.AbstractPipeBlock;
+import martian.minefactorial.api.pipenet.AbstractPipeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

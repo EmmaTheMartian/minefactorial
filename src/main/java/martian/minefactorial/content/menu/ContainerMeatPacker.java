@@ -3,12 +3,12 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.machinery.BlockMeatPackerBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractMachineContainer;
-import martian.minefactorial.foundation.menu.SlotOutputOnly;
+import martian.minefactorial.api.menu.AbstractMachineContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.DataSlot;
+import top.girlkisser.lazuli.api.menu.SlotOutputOnly;
 
 public class ContainerMeatPacker extends AbstractMachineContainer<BlockMeatPackerBE> {
 	public final int capacity;

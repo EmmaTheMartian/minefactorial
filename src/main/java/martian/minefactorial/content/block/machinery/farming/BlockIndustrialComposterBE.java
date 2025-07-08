@@ -2,9 +2,6 @@ package martian.minefactorial.content.block.machinery.farming;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.block.AbstractEnergyBE;
-import martian.minefactorial.foundation.block.ITickableBE;
-import martian.minefactorial.foundation.fluid.FluidHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -15,6 +12,9 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.AbstractEnergyBE;
+import top.girlkisser.lazuli.api.block.IFluidBE;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 public class BlockIndustrialComposterBE extends AbstractEnergyBE implements ITickableBE {
     public static final int WORK_COST = 2;
@@ -58,7 +58,7 @@ public class BlockIndustrialComposterBE extends AbstractEnergyBE implements ITic
             industrialFertilizerTank.fill(new FluidStack(MFFluids.INDUSTRIAL_FERTILIZER, 1), IFluidHandler.FluidAction.EXECUTE);
         }
 
-        FluidHelpers.tryPushFluid(this.industrialFertilizerTank, level, 4, this, Direction.UP);
+        IFluidBE.tryPushFluid(this.industrialFertilizerTank, level, 4, this, Direction.UP);
     }
 
     @Override

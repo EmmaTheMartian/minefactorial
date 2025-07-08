@@ -7,13 +7,13 @@ import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import martian.minefactorial.content.recipe.RecipeMaceration;
-import martian.minefactorial.foundation.Mathematics;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import java.util.List;
 

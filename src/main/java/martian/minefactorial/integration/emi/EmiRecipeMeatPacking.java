@@ -6,12 +6,12 @@ import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import martian.minefactorial.content.recipe.RecipeMeatPacking;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.block.IEnergyBE;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import top.girlkisser.lazuli.api.block.IEnergyBE;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 public class EmiRecipeMeatPacking extends BasicEmiRecipe {
 	private static final int PADDING_Y = 8;

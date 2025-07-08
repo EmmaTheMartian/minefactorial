@@ -1,12 +1,12 @@
 package martian.minefactorial.content.item.tweakeruler;
 
-import martian.minefactorial.foundation.HistoryList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.collections.HistoryList;
 
 import java.util.HashMap;
 import java.util.Map;

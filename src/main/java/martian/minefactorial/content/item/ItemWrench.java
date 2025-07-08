@@ -1,11 +1,12 @@
 package martian.minefactorial.content.item;
 
-import martian.minefactorial.foundation.block.IWrenchFunctionality;
-import martian.minefactorial.foundation.item.MFItem;
+import martian.minefactorial.api.block.IWrenchFunctionality;
+import martian.minefactorial.api.item.MFItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.item.LazuliItem;
 
 import java.util.Optional;
 

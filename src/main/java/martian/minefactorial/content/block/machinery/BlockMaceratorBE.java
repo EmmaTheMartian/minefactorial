@@ -1,11 +1,10 @@
 package martian.minefactorial.content.block.machinery;
 
+import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.recipe.RecipeMaceration;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFRecipeTypes;
-import martian.minefactorial.foundation.ArrayHelpers;
-import martian.minefactorial.foundation.block.AbstractInventoryMachineBE;
-import martian.minefactorial.foundation.block.IInventoryBE;
+import martian.minefactorial.api.block.AbstractInventoryMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +13,8 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.collections.ArrayHelpers;
 
 import javax.annotation.Nullable;
 
@@ -126,7 +127,7 @@ public class BlockMaceratorBE extends AbstractInventoryMachineBE {
 	public void doWork(ServerLevel level) {
 		if (recipe != null) {
 			recipe.value().results().forEach(stack -> {
-				ItemStack rolled = stack.roll();
+				ItemStack rolled = stack.roll(Minefactorial.RANDOM);
 				if (!rolled.isEmpty()) {
 					IInventoryBE.insertItemInto(this.inventory, rolled, INPUT_SLOTS, OUTPUT_SLOTS);
 				}

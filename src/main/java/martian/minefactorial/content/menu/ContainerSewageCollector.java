@@ -3,10 +3,10 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.machinery.husbandry.BlockSewageCollectorBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractBlockEntityContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.DataSlot;
+import top.girlkisser.lazuli.api.menu.AbstractBlockEntityContainer;
 
 //TODO: Sewage as a recipe, i.e, certain mobs have certain sewage fluids.
 public class ContainerSewageCollector extends AbstractBlockEntityContainer<BlockSewageCollectorBE> {

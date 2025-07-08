@@ -1,13 +1,10 @@
 package martian.minefactorial.content.block.machinery.husbandry;
 
+import martian.minefactorial.api.fluid.MFFluidTank;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.ArgLazy;
-import martian.minefactorial.foundation.block.AbstractZonedSingleTankAndInventoryMachineBE;
+import martian.minefactorial.api.block.AbstractZonedSingleTankAndInventoryMachineBE;
 import martian.minefactorial.foundation.entity.IMixinLivingEntity;
-import martian.minefactorial.foundation.fluid.FluidHelpers;
-import martian.minefactorial.foundation.fluid.MFFluidTank;
-import martian.minefactorial.foundation.item.MFItemStackHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +20,8 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import top.girlkisser.lazuli.api.inventory.LazuliItemStackHandler;
+import top.girlkisser.lazuli.api.misc.ArgLazy;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -82,7 +81,7 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 
 	@Override
 	public void serverTick(ServerLevel level) {
-		FluidHelpers.tryDistributeFluid(level, this);
+		tryDistributeFluid();
 		super.serverTick(level);
 	}
 
@@ -118,13 +117,13 @@ public class BlockMobGrinderBE extends AbstractZonedSingleTankAndInventoryMachin
 			// Simulate item inserts. If this fails then we won't collect the remainder items
 			AtomicBoolean hasStorageForItems = new AtomicBoolean(true);
 			items.forEach(item -> {
-				ItemStack remainder = MFItemStackHandler.insertItem(getInventory(), item, true);
+				ItemStack remainder = LazuliItemStackHandler.insertItem(getInventory(), item, true);
 				if (remainder != ItemStack.EMPTY || isInventoryFull()) {
 					hasStorageForItems.set(false);
 				}
 			});
 			if (hasStorageForItems.get()) {
-				items.forEach(item -> MFItemStackHandler.insertItem(getInventory(), item, false));
+				items.forEach(item -> LazuliItemStackHandler.insertItem(getInventory(), item, false));
 			}
 		}
 

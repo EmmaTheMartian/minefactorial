@@ -1,9 +1,7 @@
 package martian.minefactorial.datagen.server.recipe
 
 import martian.minefactorial.content.recipe.RecipeRanching
-import martian.minefactorial.foundation.entity.EntityIngredient
-import martian.minefactorial.foundation.fluid.ChancedFluidStack
-import martian.minefactorial.foundation.item.ChancedItemStack
+import martian.minefactorial.api.entity.EntityIngredient
 import net.minecraft.advancements.AdvancementRequirements
 import net.minecraft.advancements.AdvancementRewards
 import net.minecraft.advancements.Criterion
@@ -18,6 +16,8 @@ import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.material.Fluid
 import net.neoforged.neoforge.fluids.FluidStack
 import org.jetbrains.annotations.ApiStatus
+import top.girlkisser.lazuli.api.fluid.ChancedFluidStack
+import top.girlkisser.lazuli.api.item.ChancedItemStack
 import java.util.*
 
 class RecipeBuilderRanching(

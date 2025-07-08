@@ -1,7 +1,6 @@
 package martian.minefactorial.datagen.server.recipe
 
 import martian.minefactorial.content.recipe.RecipeMaceration
-import martian.minefactorial.foundation.item.ChancedItemStack
 import net.minecraft.advancements.AdvancementRequirements
 import net.minecraft.advancements.AdvancementRewards
 import net.minecraft.advancements.Criterion
@@ -16,6 +15,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import org.jetbrains.annotations.ApiStatus
+import top.girlkisser.lazuli.api.item.ChancedItemStack
 
 class RecipeBuilderMaceration(
 	val ingredient: Ingredient,

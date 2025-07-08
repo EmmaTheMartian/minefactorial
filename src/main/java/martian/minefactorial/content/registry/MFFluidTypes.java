@@ -1,7 +1,6 @@
 package martian.minefactorial.content.registry;
 
 import martian.minefactorial.Minefactorial;
-import martian.minefactorial.foundation.fluid.BasicFluidType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -12,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
+import top.girlkisser.lazuli.api.fluid.BasicFluidType;
 
 public final class MFFluidTypes {
 	private MFFluidTypes() { }

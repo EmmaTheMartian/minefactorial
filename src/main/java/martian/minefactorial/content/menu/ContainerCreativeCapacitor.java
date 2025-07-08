@@ -3,14 +3,14 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.storage.BlockCreativeCapacitorBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractEnergyContainer;
+import martian.minefactorial.api.menu.AbstractEnergyContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class ContainerCreativeCapacitor extends AbstractEnergyContainer<BlockCreativeCapacitorBE> {
 	public ContainerCreativeCapacitor(int containerId, Inventory playerInventory, BlockPos pos) {
-		super(MFMenuTypes.CREATIVE_CAPACITOR.get(), MFBlocks.CREATIVE_CAPACITOR.get(), BlockCreativeCapacitorBE.SLOT_COUNT, containerId, playerInventory, pos);
+		super(MFMenuTypes.CREATIVE_CAPACITOR.get(), MFBlocks.CREATIVE_CAPACITOR.get(), 1, containerId, playerInventory, pos);
 
 		addEnergySlot(this.blockEntity);
 

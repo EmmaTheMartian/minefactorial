@@ -2,9 +2,6 @@ package martian.minefactorial.client.screen;
 
 import martian.minefactorial.content.menu.ContainerSteamBoiler;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.client.FluidRenderer;
-import martian.minefactorial.foundation.client.screen.AbstractMFScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -13,10 +10,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.client.FluidRenderingHelpers;
+import top.girlkisser.lazuli.api.client.screen.AbstractLazuliContainerScreen;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import static martian.minefactorial.Minefactorial.id;
 
-public class ScreenSteamBoiler extends AbstractMFScreen<ContainerSteamBoiler> {
+public class ScreenSteamBoiler extends AbstractLazuliContainerScreen<ContainerSteamBoiler> {
 	public static final ResourceLocation UI = id("textures/gui/steam_boiler.png");
 	public static final ResourceLocation BURN_PROGRESS_SPRITE = id("minecraft", "container/furnace/lit_progress");
 
@@ -44,7 +44,7 @@ public class ScreenSteamBoiler extends AbstractMFScreen<ContainerSteamBoiler> {
 		int burnTicksLeft = this.menu.getBurnTicksLeft();
 
 		if (water >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(Fluids.WATER, water),
 					menu.waterCapacity,
 					graphics,
@@ -56,7 +56,7 @@ public class ScreenSteamBoiler extends AbstractMFScreen<ContainerSteamBoiler> {
 		}
 
 		if (steam >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.STEAM, steam),
 					menu.steamCapacity,
 					graphics,

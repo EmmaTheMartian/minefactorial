@@ -14,9 +14,6 @@ import martian.minefactorial.content.net.PacketServerboundTweakerulerUndo;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFDataComponents;
 import martian.minefactorial.content.registry.MFItems;
-import martian.minefactorial.foundation.block.AbstractEnergyBE;
-import martian.minefactorial.foundation.block.IInventoryBE;
-import martian.minefactorial.foundation.block.ISingleTankBE;
 import martian.minefactorial.managers.TweakerulerHistoryManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,6 +35,9 @@ import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.block.AbstractEnergyBE;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.block.ISingleTankBE;
 
 import java.util.Optional;
 
@@ -111,6 +111,9 @@ final class MinefactorialListeners {
 			// Industrial Composter
 			registerEnergyCapability(MFBlockEntityTypes.INDUSTRIAL_COMPOSTER.get());
 			registerFluidCapability(MFBlockEntityTypes.INDUSTRIAL_COMPOSTER.get(), BlockIndustrialComposterBE::getTankForSide);
+			// Breeder
+			registerEnergyCapability(MFBlockEntityTypes.BREEDER.get());
+			registerItemCapability(MFBlockEntityTypes.BREEDER.get());
 
 			////// Power //////
 			// Steam Boiler

@@ -1,8 +1,8 @@
 package martian.minefactorial.client.screen;
 
+import martian.minefactorial.api.client.screen.AbstractMachineScreen;
 import martian.minefactorial.content.block.machinery.BlockPlacerBE;
 import martian.minefactorial.content.menu.ContainerPlacer;
-import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;

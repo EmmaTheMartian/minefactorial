@@ -1,14 +1,14 @@
 package martian.minefactorial.content.block.machinery;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.FakePlayerHelpers;
-import martian.minefactorial.foundation.block.AbstractInventoryMachineBE;
+import martian.minefactorial.api.block.AbstractInventoryMachineBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import top.girlkisser.lazuli.api.world.FakePlayerHelpers;
 
 public class BlockPlacerBE extends AbstractInventoryMachineBE {
 	public static final int SLOTS = 1;

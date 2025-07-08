@@ -1,17 +1,17 @@
 package martian.minefactorial.client.screen;
 
+import martian.minefactorial.api.client.screen.AbstractMachineScreen;
 import martian.minefactorial.content.block.machinery.husbandry.BlockSlaughterhouseBE;
 import martian.minefactorial.content.menu.ContainerSlaughterhouse;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.Mathematics;
-import martian.minefactorial.foundation.client.FluidRenderer;
-import martian.minefactorial.foundation.client.screen.AbstractMachineScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import top.girlkisser.lazuli.api.client.FluidRenderingHelpers;
+import top.girlkisser.lazuli.api.mathematics.Mathematics;
 
 import static martian.minefactorial.Minefactorial.id;
 
@@ -37,7 +37,7 @@ public class ScreenSlaughterhouse extends AbstractMachineScreen<BlockSlaughterho
 		super.renderBg(graphics, partialTick, mouseX, mouseY);
 
 		if (this.menu.getPinkSlimeMillibuckets() >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.PINK_SLIME, this.menu.getPinkSlimeMillibuckets()),
 					menu.pinkSlimeCapacity,
 					graphics,
@@ -49,7 +49,7 @@ public class ScreenSlaughterhouse extends AbstractMachineScreen<BlockSlaughterho
 		}
 
 		if (this.menu.getMeatMillibuckets() >= 0) {
-			FluidRenderer.renderFluidTankGui(
+			FluidRenderingHelpers.renderFluidTankGui(
 					new FluidStack(MFFluids.MEAT, this.menu.getMeatMillibuckets()),
 					menu.meatCapacity,
 					graphics,

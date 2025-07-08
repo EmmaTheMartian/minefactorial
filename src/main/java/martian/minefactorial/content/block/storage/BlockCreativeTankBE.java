@@ -1,14 +1,14 @@
 package martian.minefactorial.content.block.storage;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractSingleTankBE;
-import martian.minefactorial.foundation.block.ISingleTankBE;
-import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import top.girlkisser.lazuli.api.block.AbstractSingleTankBE;
+import top.girlkisser.lazuli.api.block.ISingleTankBE;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 public class BlockCreativeTankBE extends AbstractSingleTankBE implements ISingleTankBE, ITickableBE {
 	public BlockCreativeTankBE(BlockPos pos, BlockState blockState) {

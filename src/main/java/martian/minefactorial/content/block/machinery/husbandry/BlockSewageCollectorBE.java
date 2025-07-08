@@ -1,11 +1,8 @@
 package martian.minefactorial.content.block.machinery.husbandry;
 
-import martian.minefactorial.Minefactorial;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.block.AbstractSingleTankBE;
-import martian.minefactorial.foundation.block.ITickableBE;
-import martian.minefactorial.foundation.fluid.MFFluidTank;
+import martian.minefactorial.api.fluid.MFFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -15,6 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import top.girlkisser.lazuli.api.block.AbstractSingleTankBE;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

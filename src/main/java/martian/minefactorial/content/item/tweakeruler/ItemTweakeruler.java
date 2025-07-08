@@ -1,11 +1,11 @@
 package martian.minefactorial.content.item.tweakeruler;
 
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.client.overlay.scrollmenu.OverlayScrollMenu;
 import martian.minefactorial.client.overlay.scrollmenu.ScrollMenu;
 import martian.minefactorial.client.overlay.scrollmenu.ScrollMenuEntry;
 import martian.minefactorial.content.net.PacketServerboundSetTweakerulerMode;
 import martian.minefactorial.content.registry.MFDataComponents;
-import martian.minefactorial.foundation.item.MFItem;
 import martian.minefactorial.managers.TweakerulerHistoryManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;

@@ -25,8 +25,8 @@ import martian.minefactorial.content.block.redstone.BlockRedstoneClock
 import martian.minefactorial.content.registry.MFBlocks
 import martian.minefactorial.content.registry.MFFluids
 import martian.minefactorial.datagen.id
-import martian.minefactorial.foundation.pipenet.AbstractPipeBlock
-import martian.minefactorial.foundation.pipenet.PipeState
+import martian.minefactorial.api.pipenet.AbstractPipeBlock
+import martian.minefactorial.api.pipenet.PipeState
 import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
@@ -236,6 +236,9 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.INDUSTRIAL_COMPOSTER.addModel(machineFrame.copy()
 			.side(machineId("industrial_composter_side"))
 			.up(fluidInputTop))
+
+		MFBlocks.BREEDER.addModel(machineFrame.copy()
+			.side(machineId("breeder_side")))
 
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this

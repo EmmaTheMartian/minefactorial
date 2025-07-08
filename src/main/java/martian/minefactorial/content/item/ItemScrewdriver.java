@@ -1,8 +1,8 @@
 package martian.minefactorial.content.item;
 
-import martian.minefactorial.foundation.block.AbstractMachineBE;
-import martian.minefactorial.foundation.block.IScrewdriverFunctionality;
-import martian.minefactorial.foundation.item.MFItem;
+import martian.minefactorial.api.block.AbstractMachineBE;
+import martian.minefactorial.api.block.IScrewdriverFunctionality;
+import martian.minefactorial.api.item.MFItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;

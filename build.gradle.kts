@@ -44,7 +44,7 @@ repositories {
         }
     }
 
-    // Jade, AE2, Mekanism, Cable Facades, Fusion
+    // Jade, AE2, Mekanism, Cable Facades, Fusion, Lazuli
     exclusiveContent {
         forRepository {
             maven("https://api.modrinth.com/maven")
@@ -125,6 +125,9 @@ dependencies {
     })
 
     neoForge("net.neoforged:neoforge:${prop("neo_version")}")
+
+    // Lazuli
+    modImplementation(modrinth("lazuli"))
 
     // Regolith
     include(implementation("martian:regolith-neoforge:${prop("regolith_version")}")!!)

@@ -1,10 +1,7 @@
 package martian.minefactorial.content.block.logistics;
 
+import martian.minefactorial.api.block.AbstractGenericInventoryBE;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractGenericInventoryBE;
-import martian.minefactorial.foundation.block.ITickableBE;
-import martian.minefactorial.foundation.item.GhostStackHandler;
-import martian.minefactorial.foundation.world.AABBHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,6 +10,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import top.girlkisser.lazuli.api.block.ITickableBE;
+import top.girlkisser.lazuli.api.inventory.GhostStackHandler;
+import top.girlkisser.lazuli.api.world.AABBHelpers;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;

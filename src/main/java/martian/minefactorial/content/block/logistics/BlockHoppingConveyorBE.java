@@ -1,9 +1,7 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractConveyorBE;
-import martian.minefactorial.foundation.block.IInventoryBE;
-import martian.minefactorial.foundation.world.AABBHelpers;
+import martian.minefactorial.api.block.AbstractConveyorBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -14,6 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
+import top.girlkisser.lazuli.api.block.IInventoryBE;
+import top.girlkisser.lazuli.api.world.AABBHelpers;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;

@@ -1,11 +1,11 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractInventoryBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
+import top.girlkisser.lazuli.api.block.AbstractInventoryBE;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

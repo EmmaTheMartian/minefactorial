@@ -2,12 +2,12 @@ package martian.minefactorial.content.registry;
 
 
 import martian.minefactorial.Minefactorial;
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.content.MFFoodProperties;
 import martian.minefactorial.content.item.*;
 import martian.minefactorial.content.item.safarinet.ItemSafariNet;
 import martian.minefactorial.content.item.tweakeruler.ItemTweakeruler;
 import martian.minefactorial.content.item.tweakeruler.TweakerulerMode;
-import martian.minefactorial.foundation.item.MFItem;
 import martian.regolith.DeferredHolders;
 import martian.regolith.RegolithItemUtil;
 import martian.regolith.neoforge.RegolithNeoForge;

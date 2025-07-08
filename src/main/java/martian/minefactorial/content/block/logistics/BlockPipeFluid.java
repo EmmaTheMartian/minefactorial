@@ -1,7 +1,7 @@
 package martian.minefactorial.content.block.logistics;
 
 import martian.minefactorial.content.registry.MFBlocks;
-import martian.minefactorial.foundation.pipenet.AbstractPipeBlock;
+import martian.minefactorial.api.pipenet.AbstractPipeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;

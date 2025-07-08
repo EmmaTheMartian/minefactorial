@@ -2,13 +2,13 @@ package martian.minefactorial.content.block.power;
 
 import martian.minefactorial.content.MFTags;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractGeneratorBE;
-import martian.minefactorial.foundation.block.ISingleTankBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import top.girlkisser.lazuli.api.block.AbstractGeneratorBE;
+import top.girlkisser.lazuli.api.block.ISingleTankBE;
 
 public class BlockSteamTurbineBE extends AbstractGeneratorBE implements ISingleTankBE {
 	public final int STEAM_PER_WORK = 2, ENERGY_GENERATION_PER_WORK = 1;

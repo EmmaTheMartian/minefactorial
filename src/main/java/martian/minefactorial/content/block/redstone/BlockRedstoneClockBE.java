@@ -1,13 +1,13 @@
 package martian.minefactorial.content.block.redstone;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.ITickableBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import top.girlkisser.lazuli.api.block.ITickableBE;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

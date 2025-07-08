@@ -3,7 +3,7 @@ package martian.minefactorial.content.menu;
 import martian.minefactorial.content.block.power.BlockSteamTurbineBE;
 import martian.minefactorial.content.registry.MFBlocks;
 import martian.minefactorial.content.registry.MFMenuTypes;
-import martian.minefactorial.foundation.menu.AbstractEnergyContainer;
+import martian.minefactorial.api.menu.AbstractEnergyContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.DataSlot;

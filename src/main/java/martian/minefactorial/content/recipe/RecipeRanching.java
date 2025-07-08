@@ -2,10 +2,8 @@ package martian.minefactorial.content.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import martian.minefactorial.foundation.entity.EntityIngredient;
-import martian.minefactorial.foundation.fluid.ChancedFluidStack;
-import martian.minefactorial.foundation.item.ChancedItemStack;
-import martian.minefactorial.foundation.recipe.EntityRecipeInput;
+import martian.minefactorial.Minefactorial;
+import martian.minefactorial.api.entity.EntityIngredient;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -18,6 +16,9 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus;
+import top.girlkisser.lazuli.api.crafting.EntityRecipeInput;
+import top.girlkisser.lazuli.api.fluid.ChancedFluidStack;
+import top.girlkisser.lazuli.api.item.ChancedItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
@@ -38,7 +39,7 @@ public record RecipeRanching(
 		if (outputItem.isEmpty()) {
 			return ItemStack.EMPTY;
 		} else {
-			return outputItem.get().roll();
+			return outputItem.get().roll(Minefactorial.RANDOM);
 		}
 	}
 
@@ -46,7 +47,7 @@ public record RecipeRanching(
 		if (outputFluid.isEmpty()) {
 			return FluidStack.EMPTY;
 		} else {
-			return outputFluid.get().roll();
+			return outputFluid.get().roll(Minefactorial.RANDOM);
 		}
 	}
 

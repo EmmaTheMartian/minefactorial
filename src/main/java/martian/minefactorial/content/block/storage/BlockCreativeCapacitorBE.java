@@ -1,12 +1,12 @@
 package martian.minefactorial.content.block.storage;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.block.AbstractCapacitorBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import top.girlkisser.lazuli.api.block.AbstractCapacitorBE;
 
 import javax.annotation.Nullable;
 

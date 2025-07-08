@@ -1,10 +1,8 @@
 package martian.minefactorial.content.block.machinery.farming;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
-import martian.minefactorial.foundation.FakePlayerHelpers;
-import martian.minefactorial.foundation.block.AbstractZonedInventoryMachineBE;
-import martian.minefactorial.foundation.item.RoundRobinInventory;
-import martian.minefactorial.foundation.world.AABBHelpers;
+import martian.minefactorial.api.block.AbstractZonedInventoryMachineBE;
+import martian.minefactorial.api.item.RoundRobinInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import top.girlkisser.lazuli.api.world.AABBHelpers;
+import top.girlkisser.lazuli.api.world.FakePlayerHelpers;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

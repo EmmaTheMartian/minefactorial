@@ -2,12 +2,9 @@ package martian.minefactorial.content.block.machinery.husbandry;
 
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFFluids;
-import martian.minefactorial.foundation.ArgLazy;
-import martian.minefactorial.foundation.block.AbstractZonedInventoryMachineBE;
+import martian.minefactorial.api.block.AbstractZonedInventoryMachineBE;
 import martian.minefactorial.foundation.entity.IMixinLivingEntity;
-import martian.minefactorial.foundation.fluid.FluidHelpers;
-import martian.minefactorial.foundation.fluid.MFFluidTank;
-import martian.minefactorial.foundation.item.MFItemStackHandler;
+import martian.minefactorial.api.fluid.MFFluidTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -25,6 +22,9 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.Nullable;
+import top.girlkisser.lazuli.api.block.IFluidBE;
+import top.girlkisser.lazuli.api.inventory.LazuliItemStackHandler;
+import top.girlkisser.lazuli.api.misc.ArgLazy;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -107,8 +107,8 @@ public class BlockSlaughterhouseBE extends AbstractZonedInventoryMachineBE {
 	@Override
 	public void serverTick(ServerLevel level) {
 		Direction facing = getBlockState().getValue(BlockMobGrinder.FACING);
-		FluidHelpers.tryPushFluid(getPinkSlimeTank(), level, getMaxFluidExtract(), this, facing.getClockWise());
-		FluidHelpers.tryPushFluid(getMeatTank(), level, getMaxFluidExtract(), this, facing.getCounterClockWise());
+		IFluidBE.tryPushFluid(getPinkSlimeTank(), level, getMaxFluidExtract(), this, facing.getClockWise());
+		IFluidBE.tryPushFluid(getMeatTank(), level, getMaxFluidExtract(), this, facing.getCounterClockWise());
 		super.serverTick(level);
 	}
 
@@ -150,7 +150,7 @@ public class BlockSlaughterhouseBE extends AbstractZonedInventoryMachineBE {
 				if (item.is(Tags.Items.FOODS_RAW_MEAT)) {
 					return;
 				}
-				ItemStack remainder = MFItemStackHandler.insertItem(getInventory(), item, true);
+				ItemStack remainder = LazuliItemStackHandler.insertItem(getInventory(), item, true);
 				if (remainder != ItemStack.EMPTY || isInventoryFull()) {
 					hasStorageForItems.set(false);
 				}
@@ -161,7 +161,7 @@ public class BlockSlaughterhouseBE extends AbstractZonedInventoryMachineBE {
 						meatItems.incrementAndGet();
 						return;
 					}
-					MFItemStackHandler.insertItem(getInventory(), item, false);
+					LazuliItemStackHandler.insertItem(getInventory(), item, false);
 				});
 			}
 		}

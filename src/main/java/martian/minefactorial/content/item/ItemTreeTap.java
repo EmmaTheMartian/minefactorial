@@ -1,14 +1,15 @@
 package martian.minefactorial.content.item;
 
+import martian.minefactorial.api.item.MFItem;
 import martian.minefactorial.content.block.foliage.BlockRubberWood;
 import martian.minefactorial.content.registry.MFItems;
-import martian.minefactorial.foundation.item.MFItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;

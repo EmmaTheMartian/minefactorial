@@ -1,6 +1,6 @@
 package martian.minefactorial.content.registry;
 
-import martian.minefactorial.foundation.fluid.IStrawAction;
+import martian.minefactorial.api.fluid.IStrawAction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
