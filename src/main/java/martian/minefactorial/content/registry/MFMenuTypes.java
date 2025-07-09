@@ -89,4 +89,10 @@ public final class MFMenuTypes {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerBreeder>> BREEDER =
 			registerSimple("breeder", ContainerBreeder::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMobRouter>> MOB_ROUTER =
+			registerSimple("mob_router", ContainerMobRouter::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerChronotyper>> CHRONOTYPER =
+			registerSimple("chronotyper", ContainerChronotyper::new);
 }

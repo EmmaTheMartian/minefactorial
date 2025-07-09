@@ -21,6 +21,7 @@ Depends on [Lazuli](https://modrinth.com/mod/lazuli)
 - thepigcat, for updating all the M! textures to look very fanciful :D
 - PowerCrystals, for making the original MineFactory (and MineFactory Reloaded)
   that we know and love
+- skyboy026, for maintaining MineFactory Reloaded for so long
 
 ## Notes
 

@@ -159,6 +159,8 @@ public final class MFBlocks {
 			SEWAGE_COLLECTOR = register("sewage_collector", () -> new BlockSewageCollector(MACHINE_PROPS)),
 			INDUSTRIAL_COMPOSTER = register("industrial_composter", () -> new BlockIndustrialComposter(MACHINE_PROPS)),
 			BREEDER = register("breeder", () -> new BlockBreeder(MACHINE_PROPS)),
+			MOB_ROUTER = register("mob_router", () -> new BlockMobRouter(MACHINE_PROPS)),
+			CHRONOTYPER = register("chronotyper", () -> new BlockChronotyper(MACHINE_PROPS)),
 			// Power
 			STEAM_BOILER = register("steam_boiler", () -> new BlockSteamBoiler(MACHINE_PROPS)),
 			STEAM_TURBINE = register("steam_turbine", () -> new BlockSteamTurbine(MACHINE_PROPS)),

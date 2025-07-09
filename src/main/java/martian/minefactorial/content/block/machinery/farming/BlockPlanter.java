@@ -1,5 +1,6 @@
 package martian.minefactorial.content.block.machinery.farming;
 
+import martian.minefactorial.content.block.machinery.husbandry.BlockChronotyperBE;
 import martian.minefactorial.content.menu.ContainerPlanter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
@@ -60,5 +62,14 @@ public class BlockPlanter extends AbstractBlockWithEntity<BlockPlanterBE> {
 	@ParametersAreNonnullByDefault
 	protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
 		return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
+	}
+
+	@Override
+	@ParametersAreNonnullByDefault
+	public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
+		super.onBlockStateChange(level, pos, oldState, newState);
+		if (level.getBlockEntity(pos) instanceof BlockChronotyperBE be) {
+			be.invalidateWorkZone();
+		}
 	}
 }

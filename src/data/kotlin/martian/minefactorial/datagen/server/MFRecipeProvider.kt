@@ -421,6 +421,30 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			unlockWith(MFBlocks.MACHINE_FRAME)
 			save("shaped/machinery/breeder".id)
 		}
+
+		MFBlocks.MOB_ROUTER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("TST")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', Items.PISTON)
+			define('S', MFItems.SAFARI_NET)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/mob_router".id)
+		}
+
+		MFBlocks.CHRONOTYPER.shapedRecipeBuilder().apply {
+			pattern("PPP")
+			pattern("TCT")
+			pattern(" F ")
+			define('P', MFTags.Items.PLASTIC_SHEETS)
+			define('F', MFBlocks.MACHINE_FRAME)
+			define('T', Items.PISTON)
+			define('C', Items.CLOCK)
+			unlockWith(MFBlocks.MACHINE_FRAME)
+			save("shaped/machinery/chronotype".id)
+		}
 		// endregion Blocks/Machinery
 
 		// region Blocks/Power

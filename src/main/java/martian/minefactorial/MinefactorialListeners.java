@@ -7,10 +7,7 @@ import martian.minefactorial.content.block.machinery.husbandry.BlockSlaughterhou
 import martian.minefactorial.content.block.power.BlockSteamBoilerBE;
 import martian.minefactorial.content.block.storage.BlockCapacitorBE;
 import martian.minefactorial.content.item.tweakeruler.ItemTweakeruler;
-import martian.minefactorial.content.net.PacketServerboundSetSmasherFortuneLevel;
-import martian.minefactorial.content.net.PacketServerboundSetTweakerulerMode;
-import martian.minefactorial.content.net.PacketServerboundTweakerulerRedo;
-import martian.minefactorial.content.net.PacketServerboundTweakerulerUndo;
+import martian.minefactorial.content.net.*;
 import martian.minefactorial.content.registry.MFBlockEntityTypes;
 import martian.minefactorial.content.registry.MFDataComponents;
 import martian.minefactorial.content.registry.MFItems;
@@ -114,6 +111,11 @@ final class MinefactorialListeners {
 			// Breeder
 			registerEnergyCapability(MFBlockEntityTypes.BREEDER.get());
 			registerItemCapability(MFBlockEntityTypes.BREEDER.get());
+			// Mob Router
+			registerEnergyCapability(MFBlockEntityTypes.MOB_ROUTER.get());
+			registerItemCapability(MFBlockEntityTypes.MOB_ROUTER.get());
+			// Chronotyper
+			registerEnergyCapability(MFBlockEntityTypes.CHRONOTYPER.get());
 
 			////// Power //////
 			// Steam Boiler
@@ -151,6 +153,7 @@ final class MinefactorialListeners {
 			registrar.playToServer(PacketServerboundTweakerulerUndo.TYPE, PacketServerboundTweakerulerUndo.STREAM_CODEC, PacketServerboundTweakerulerUndo::handle);
 			registrar.playToServer(PacketServerboundTweakerulerRedo.TYPE, PacketServerboundTweakerulerRedo.STREAM_CODEC, PacketServerboundTweakerulerRedo::handle);
 			registrar.playToServer(PacketServerboundSetTweakerulerMode.TYPE, PacketServerboundSetTweakerulerMode.STREAM_CODEC, PacketServerboundSetTweakerulerMode::handle);
+			registrar.playToServer(PacketServerboundSetChronotyperState.TYPE, PacketServerboundSetChronotyperState.STREAM_CODEC, PacketServerboundSetChronotyperState::handle);
 		}
 	}
 

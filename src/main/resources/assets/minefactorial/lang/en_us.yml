@@ -36,6 +36,8 @@ block.minefactorial:
   sewage_collector: Sewer
   industrial_composter: Industrial Composter
   breeder: Breeder
+  mob_router: Mob Router
+  chronotyper: Chronotyper
 
   # Power
   steam_boiler: Steam Boiler
@@ -197,6 +199,11 @@ messages.minefactorial:
   current_mode: "Current mode: %s"
   set_mode_to: "Set mode to %s"
   show_extended_tooltip: "Hold %s for more"
+
+screen.minefactorial:
+  chronotyper:
+    state_babies: "Moving: Babies"
+    state_adults: "Moving: Adults"
 
 key.minefactorial:
   show_extended_tooltip: "Show Extended Tooltip"

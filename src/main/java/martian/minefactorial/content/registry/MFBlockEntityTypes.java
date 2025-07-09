@@ -85,6 +85,8 @@ public final class MFBlockEntityTypes {
 	public static final DeferredBEType<BlockSewageCollectorBE> SEWAGE_COLLECTOR = register("sewage_collector", BlockSewageCollectorBE::new, MFBlocks.SEWAGE_COLLECTOR);
 	public static final DeferredBEType<BlockIndustrialComposterBE> INDUSTRIAL_COMPOSTER = register("industrial_composter", BlockIndustrialComposterBE::new, MFBlocks.INDUSTRIAL_COMPOSTER);
 	public static final DeferredBEType<BlockBreederBE> BREEDER = register("breeder", BlockBreederBE::new, MFBlocks.BREEDER);
+	public static final DeferredBEType<BlockMobRouterBE> MOB_ROUTER = register("mob_router", BlockMobRouterBE::new, MFBlocks.MOB_ROUTER);
+	public static final DeferredBEType<BlockChronotyperBE> CHRONOTYPER = register("chronotyper", BlockChronotyperBE::new, MFBlocks.CHRONOTYPER);
 	// Power
 	public static final DeferredBEType<BlockSteamTurbineBE> STEAM_TURBINE = register("steam_turbine", BlockSteamTurbineBE::new, MFBlocks.STEAM_TURBINE);
 	public static final DeferredBEType<BlockSteamBoilerBE> STEAM_BOILER = register("steam_boiler", BlockSteamBoilerBE::new, MFBlocks.STEAM_BOILER);

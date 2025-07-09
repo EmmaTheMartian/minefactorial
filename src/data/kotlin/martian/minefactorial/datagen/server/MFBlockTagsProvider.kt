@@ -40,6 +40,9 @@ class MFBlockTagsProvider(event: GatherDataEvent) : DapperTagProvider.Companion.
 			RANCHER,
 			FERTILIZER,
 			SEWAGE_COLLECTOR,
+			BREEDER,
+			MOB_ROUTER,
+			CHRONOTYPER,
 			// Power
 			STEAM_BOILER,
 			STEAM_TURBINE,

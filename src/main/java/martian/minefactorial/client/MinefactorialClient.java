@@ -73,6 +73,8 @@ public final class MinefactorialClient {
 			event.register(MFMenuTypes.SEWAGE_COLLECTOR.get(), ScreenSewageCollector::new);
 			event.register(MFMenuTypes.INDUSTRIAL_COMPOSTER.get(), ScreenIndustrialComposter::new);
 			event.register(MFMenuTypes.BREEDER.get(), ScreenBreeder::new);
+			event.register(MFMenuTypes.MOB_ROUTER.get(), ScreenMobRouter::new);
+			event.register(MFMenuTypes.CHRONOTYPER.get(), ScreenChronotyper::new);
 		}
 
 		@SubscribeEvent

@@ -4,20 +4,25 @@
 
 - Concrete roads of all 16 colours!
 - Safari Net, an item that can capture and release entities.
-- Rancher, a machine that collects certain resources from specific mobs.
-- Fertilizer, a machine that automatically bonemeals crops using Industrial Fertilizer.
-- Sewer, a block that collects sewage when living entities step on it.
-- Industrial Composter, a machine that converts sewage into Industrial Fertilizer.
-- Breeder, a machine that breeds animals within a range.
 - Add redstone controls for machinery, powering a machine will disable it.
+- New machines!
+  - Rancher: Collects certain resources from specific mobs.
+  - Fertilizer: Automatically bonemeals crops using Industrial Fertilizer.
+  - Sewer: Collects sewage when living entities step on it.
+  - Industrial Composter: Converts sewage into Industrial Fertilizer.
+  - Breeder: Breeds animals automatically.
+  - Chronotyper: Moves animals based on if they're a baby or an adult.
+  - Mob Router: Moves animals based on a provided filter via Safari Net.
 
 ## Bug Fixes
 
 - Make the Hopping Conveyor's item texture match the Conveyor's texture.
 - Change the recipe for Plastic Blocks to not conflict with Plastic Sheets.
-- Fix the harvester not invalidating its working zone on block state changes.
-- Fix the planter's inventory not properly round-robin'ing when a non-stackable+non-plantable item is inside.
-- Fix hopping conveyors voiding items when the target container is full.
+- Fix the Harvester not invalidating its working zone on block state changes.
+- Fix the Planter's inventory not properly round-robin'ing when a non-stackable+non-plantable item is inside.
+- Fix Hopping Conveyors voiding items when the target container is full.
+- Fix Meat Packer consuming fluid even when it's output slot is full.
+- Fix mob grinder not properly invalidating its work zone when the block state changes.
 
 ## Changes
 
@@ -27,7 +32,8 @@
 
 - Update to Regolith 1.2.1-beta
 - Update internals for hover text and extended hover text (this does not affect players, only developers)
-- Gut the foundation in favour of Lazuli
+- Gut the foundational code (`martian.minefactorial.foundation`) in favour of [Lazuli](https://github.com/emmathemartian/lazuli/)
+  - [Cygnus](https://github.com/nebula-modding/cygnus/) shares a *lot* of the foundation from Minefactorial, so I decided to gut both of their foundations into its own library for maintainability.
 
 # 1.1.3+1.21.1
 

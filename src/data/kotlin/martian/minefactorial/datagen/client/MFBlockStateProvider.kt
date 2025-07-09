@@ -240,6 +240,12 @@ class MFBlockStateProvider(event: GatherDataEvent) : DapperBlockStateProvider(ev
 		MFBlocks.BREEDER.addModel(machineFrame.copy()
 			.side(machineId("breeder_side")))
 
+		MFBlocks.MOB_ROUTER.addModel(machineFrame.copy()
+			.side(machineId("mob_router_side")))
+
+		MFBlocks.CHRONOTYPER.addModel(machineFrame.copy()
+			.side(machineId("chronotyper_side")))
+
 		// why is the datagen for rubber wood so cursed...
 		// todo: dapper-ify this
 		getVariantBuilder(MFBlocks.RUBBER_WOOD.get()).apply {

@@ -1,6 +1,6 @@
 package martian.minefactorial.content.block.machinery.husbandry;
 
-import martian.minefactorial.content.menu.ContainerBreeder;
+import martian.minefactorial.content.menu.ContainerMobRouter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -23,17 +24,26 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import top.girlkisser.lazuli.api.block.AbstractBlockWithEntity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockBreeder extends AbstractBlockWithEntity<BlockBreederBE> {
+public class BlockMobRouter extends AbstractBlockWithEntity<BlockMobRouterBE> {
+    public static final VoxelShape SHAPE = Block.box(1, 1, 1, 15, 15, 15);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    public BlockBreeder(Properties properties) {
-        super(BlockBreederBE::new, properties);
+    public BlockMobRouter(Properties properties) {
+        super(BlockMobRouterBE::new, properties);
         registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
     @Override
@@ -60,7 +70,7 @@ public class BlockBreeder extends AbstractBlockWithEntity<BlockBreederBE> {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide && level.getBlockEntity(pos) instanceof BlockBreederBE) {
+        if (!level.isClientSide && level.getBlockEntity(pos) instanceof BlockMobRouterBE) {
             player.openMenu(new MenuProvider() {
                 @Override
                 public @NotNull Component getDisplayName() {
@@ -69,7 +79,7 @@ public class BlockBreeder extends AbstractBlockWithEntity<BlockBreederBE> {
 
                 @Override
                 public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player) {
-                    return new ContainerBreeder(windowId, inventory, pos);
+                    return new ContainerMobRouter(windowId, inventory, pos);
                 }
             }, buf -> buf.writeBlockPos(pos));
         }
@@ -85,21 +95,9 @@ public class BlockBreeder extends AbstractBlockWithEntity<BlockBreederBE> {
 
     @Override
     @ParametersAreNonnullByDefault
-    protected boolean hasAnalogOutputSignal(BlockState state) {
-        return true;
-    }
-
-    @Override
-    @ParametersAreNonnullByDefault
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
-    }
-
-    @Override
-    @ParametersAreNonnullByDefault
     public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
         super.onBlockStateChange(level, pos, oldState, newState);
-        if (level.getBlockEntity(pos) instanceof BlockBreederBE be) {
+        if (level.getBlockEntity(pos) instanceof BlockMobRouterBE be) {
             be.invalidateWorkZone();
         }
     }

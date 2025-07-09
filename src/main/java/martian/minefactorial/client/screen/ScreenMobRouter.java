@@ -1,0 +1,23 @@
+package martian.minefactorial.client.screen;
+
+import martian.minefactorial.api.client.screen.AbstractMachineScreen;
+import martian.minefactorial.content.block.machinery.husbandry.BlockMobRouterBE;
+import martian.minefactorial.content.menu.ContainerMobRouter;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+
+import static martian.minefactorial.Minefactorial.id;
+
+public class ScreenMobRouter extends AbstractMachineScreen<BlockMobRouterBE, ContainerMobRouter> {
+	public static final ResourceLocation UI = id("textures/gui/generic_1_slot_machine.png");
+
+	public ScreenMobRouter(ContainerMobRouter menu, Inventory playerInventory, Component title) {
+		super(menu, playerInventory, title);
+	}
+
+	@Override
+	protected ResourceLocation getUI() {
+		return UI;
+	}
+}

@@ -1,9 +1,7 @@
 package martian.minefactorial.client.screen;
 
 import martian.minefactorial.api.client.screen.AbstractMachineScreen;
-import martian.minefactorial.content.block.machinery.BlockBreakerBE;
 import martian.minefactorial.content.block.machinery.husbandry.BlockBreederBE;
-import martian.minefactorial.content.menu.ContainerBreaker;
 import martian.minefactorial.content.menu.ContainerBreeder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

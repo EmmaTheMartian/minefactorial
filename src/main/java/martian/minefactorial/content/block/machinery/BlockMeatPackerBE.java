@@ -34,6 +34,11 @@ public class BlockMeatPackerBE extends AbstractSingleTankAndInventoryMachineBE {
 			return false;
 		}
 
+		ItemStack slot = this.inventory.getStackInSlot(0);
+		if (slot.getCount() >= slot.getMaxStackSize()) {
+			return false;
+		}
+
 		FluidStack toPack = getTank().getFluid();
 		FluidStackInput input = new FluidStackInput(toPack);
 
@@ -42,6 +47,9 @@ public class BlockMeatPackerBE extends AbstractSingleTankAndInventoryMachineBE {
 				.ifPresent(recipe -> {
 					// Check if we actually have energy to start the craft
 					if (getEnergyStored() < recipe.value().powerPerTick()) {
+						return;
+					}
+					if (!ItemStack.isSameItemSameComponents(slot, recipe.value().result())) {
 						return;
 					}
 					consumedFluid = toPack;
