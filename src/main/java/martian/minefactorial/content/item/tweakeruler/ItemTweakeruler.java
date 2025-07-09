@@ -16,7 +16,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
@@ -34,6 +33,17 @@ import java.util.Optional;
 public class ItemTweakeruler extends MFItem {
 	public ItemTweakeruler(Properties properties) {
 		super(properties);
+	}
+
+	protected void runAction(UseOnContext context, BlockPos from, BlockPos to, TweakerulerMode mode) {
+		var player = context.getPlayer();
+		if (player == null) {
+			return; // This should never happen
+		}
+
+		ItemStack nonRulerItem = context.getHand() == InteractionHand.MAIN_HAND ? player.getOffhandItem() : player.getMainHandItem();
+		TweakerulerHistory history = TweakerulerHistoryManager.getHistoryFor((ServerPlayer) player);
+		history.run(context.getLevel(), from, to, context.getItemInHand().copy(), nonRulerItem.copy(), player, mode);
 	}
 
 	@Override
@@ -66,34 +76,33 @@ public class ItemTweakeruler extends MFItem {
 			BlockPos pos = context.getClickedPos();
 
 			@Nullable TweakerulerMode modeComponent = context.getItemInHand().get(MFDataComponents.TWEAKERULER_MODE);
-			if (modeComponent == TweakerulerMode.PLACE) {
+			if (modeComponent != null && modeComponent.offsetPosByFace) {
 				// Placing atop the clicked face instead of selecting that block
 				pos = pos.relative(context.getClickedFace());
 			}
 
-			context.getItemInHand().set(MFDataComponents.POS, Optional.of(pos));
+			if (modeComponent != null && modeComponent.singlePos) {
+				runAction(context, pos, null, modeComponent);
+			} else {
+				context.getItemInHand().set(MFDataComponents.POS, Optional.of(pos));
+			}
 		} else {
 			BlockPos from = posComponent.get();
 			BlockPos to = context.getClickedPos();
 
 			@Nullable TweakerulerMode modeComponent = context.getItemInHand().get(MFDataComponents.TWEAKERULER_MODE);
+			if (modeComponent != null && modeComponent.offsetPosByFace) {
+				// Placing atop the clicked face instead of selecting that block
+				to = to.relative(context.getClickedFace());
+			}
+
 			if (modeComponent != null) {
-				Player player = context.getPlayer();
-				if (player == null) {
-					return InteractionResult.SUCCESS; // This should never happen
-				}
-				// Find the non-ruler item
-				ItemStack nonRuler = context.getHand() == InteractionHand.MAIN_HAND ? player.getOffhandItem() : player.getMainHandItem();
-				// Run the action
-				TweakerulerHistory history = TweakerulerHistoryManager.getHistoryFor((ServerPlayer) player);
-				int blocksChanged = history.run(context.getLevel(), from, to, context.getItemInHand().copy(), nonRuler.copy(), player, modeComponent);
-				// Notify the player with the amount of changed blocks
-				player.sendSystemMessage(Component.translatable("messages.minefactorial.blocks_changed",
-						Component.literal(String.valueOf(blocksChanged)).withStyle(ChatFormatting.RED)));
+				runAction(context, from, to, modeComponent);
 			}
 
 			context.getItemInHand().set(MFDataComponents.POS, Optional.empty());
 		}
+
 		return InteractionResult.SUCCESS;
 	}
 

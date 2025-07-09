@@ -196,6 +196,7 @@ messages.minefactorial:
   distance_client_message: "%d blocks (%dx%dx%d)"
   set_min_stack_size_for_eject_to: "Min stack size for eject set to: %d"
   blocks_changed: "Blocks changed: %d"
+  copied_blocks: "Copied %d blocks"
   current_mode: "Current mode: %s"
   set_mode_to: "Set mode to %s"
   show_extended_tooltip: "Hold %s for more"
