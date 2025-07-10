@@ -22,7 +22,8 @@
 - Fix the Planter's inventory not properly round-robin'ing when a non-stackable+non-plantable item is inside.
 - Fix Hopping Conveyors voiding items when the target container is full.
 - Fix Meat Packer consuming fluid even when it's output slot is full.
-- Fix mob grinder not properly invalidating its work zone when the block state changes.
+- Fix Mob Grinder not properly invalidating its work zone when the block state changes.
+- Fix Pump pushing fluid even when the destination tank is full.
 
 ## Changes
 

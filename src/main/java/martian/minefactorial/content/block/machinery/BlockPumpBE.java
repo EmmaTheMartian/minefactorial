@@ -13,6 +13,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import top.girlkisser.lazuli.api.block.IFluidBE;
 
 public class BlockPumpBE extends AbstractSingleTankMachineBE {
 	public BlockPumpBE(BlockPos pos, BlockState blockState) {
@@ -48,13 +49,7 @@ public class BlockPumpBE extends AbstractSingleTankMachineBE {
 	public void serverTick(ServerLevel level) {
 		if (getTank().getFluidAmount() > 0) {
 			Direction direction = getBlockState().getValue(BlockPump.FACING).getOpposite();
-			IFluidHandler fluidHandler = level.getCapability(Capabilities.FluidHandler.BLOCK, getBlockPos().relative(direction), direction);
-			if (fluidHandler != null) {
-				int amount = Math.min(getTank().getFluidAmount(), getMaxFluidExtract());
-				FluidStack stack = getTank().getFluid().copyWithAmount(amount);
-				fluidHandler.fill(stack, IFluidHandler.FluidAction.EXECUTE);
-				((MFFluidTank) getTank()).forceDrain(amount, IFluidHandler.FluidAction.EXECUTE);
-			}
+			IFluidBE.tryPushFluid(getTank(), level, getMaxFluidExtract(), this, direction);
 		}
 
 		super.serverTick(level);
