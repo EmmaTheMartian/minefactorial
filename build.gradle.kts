@@ -2,10 +2,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.nio.charset.StandardCharsets
 
 plugins {
+    id("idea")
     id("java-library")
     id("maven-publish")
-    id("dev.architectury.loom") version "1.7-SNAPSHOT"
-    id("me.fallenbreath.yamlang") version "1.4.0"
+    id("dev.architectury.loom") version "1.10-SNAPSHOT"
+    id("me.fallenbreath.yamlang") version "1.4.1"
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("me.modmuss50.mod-publish-plugin") version "0.8.3"
     id("co.uzzu.dotenv.gradle") version "4.0.0"

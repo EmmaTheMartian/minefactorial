@@ -30,12 +30,8 @@ public class BlockMeatPackerBE extends AbstractSingleTankAndInventoryMachineBE {
 	}
 
 	public boolean checkForRecipe(ServerLevel level) {
-		if (getTank().getFluidAmount() < 1000) {
-			return false;
-		}
-
 		ItemStack slot = this.inventory.getStackInSlot(0);
-		if (slot.getCount() >= slot.getMaxStackSize()) {
+		if (!slot.isEmpty() && slot.getCount() >= slot.getMaxStackSize()) {
 			return false;
 		}
 
@@ -49,11 +45,14 @@ public class BlockMeatPackerBE extends AbstractSingleTankAndInventoryMachineBE {
 					if (getEnergyStored() < recipe.value().powerPerTick()) {
 						return;
 					}
-					if (!ItemStack.isSameItemSameComponents(slot, recipe.value().result())) {
+
+					// Ensure that the output item is the same as whatever we already have in the output slot, or that the output slot is empty.
+					if (!slot.isEmpty() && !ItemStack.isSameItemSameComponents(slot, recipe.value().result())) {
 						return;
 					}
+
 					consumedFluid = toPack;
-					getTank().drain(1000, IFluidHandler.FluidAction.EXECUTE);
+					getTank().drain(recipe.value().inputAmount(), IFluidHandler.FluidAction.EXECUTE);
 					this.recipe = recipe;
 				});
 

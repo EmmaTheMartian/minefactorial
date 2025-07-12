@@ -4,6 +4,7 @@
   "input": {
     "fluid": "minefactorial:meat"
   },
+  "inputAmount": 1000,
   "powerPerTick": 2,
   "result": {
     "count": 1,

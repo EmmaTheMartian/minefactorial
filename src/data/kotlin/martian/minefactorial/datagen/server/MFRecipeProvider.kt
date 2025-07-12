@@ -140,7 +140,7 @@ class MFRecipeProvider(event: GatherDataEvent) : DapperRecipeProvider(event) {
 			save("shapeless/resources/raw_meat_ingot".id)
 		}
 
-		RecipeBuilderMeatPacking(FluidIngredient.single(MFFluids.MEAT), MFItems.RAW_MEAT_INGOT ofStack 1)
+		RecipeBuilderMeatPacking(FluidIngredient.single(MFFluids.MEAT), 1000, MFItems.RAW_MEAT_INGOT ofStack 1)
 			.save("meat_packing/resources/raw_meat_ingot".id)
 
 		(MFItems.RAW_MEAT_INGOT smeltsTo MFItems.COOKED_MEAT_INGOT

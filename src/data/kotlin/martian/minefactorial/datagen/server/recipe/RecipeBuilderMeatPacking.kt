@@ -15,6 +15,7 @@ import org.jetbrains.annotations.ApiStatus
 
 class RecipeBuilderMeatPacking(
 	val ingredient: FluidIngredient,
+	val inputAmount: Int,
 	val result: ItemStack,
 	val powerPerTick: Int = 2,
 	val duration: Int = 60,
@@ -34,7 +35,7 @@ class RecipeBuilderMeatPacking(
 		criteria.forEach(builder::addCriterion)
 		recipeOutput.accept(
 			id,
-			RecipeMeatPacking(powerPerTick, duration, ingredient, result),
+			RecipeMeatPacking(powerPerTick, duration, ingredient, inputAmount, result),
 			builder.build(id.withPrefix("recipes/" + this.category.folderName + "/"))
 		)
 	}

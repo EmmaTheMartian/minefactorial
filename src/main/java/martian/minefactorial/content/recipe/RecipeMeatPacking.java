@@ -27,6 +27,7 @@ public record RecipeMeatPacking(
 		int powerPerTick,
 		int craftDuration,
 		FluidIngredient input,
+		int inputAmount,
 		ItemStack result
 ) implements Recipe<FluidStackInput> {
 	public static final RecipeType<RecipeMeatPacking> TYPE = RecipeType.simple(id("meat_packing"));
@@ -34,7 +35,7 @@ public record RecipeMeatPacking(
 
 	@Override
 	public boolean matches(FluidStackInput recipeInput, Level level) {
-		return input.test(recipeInput.fluid());
+		return input.test(recipeInput.fluid()) && recipeInput.fluid().getAmount() >= inputAmount;
 	}
 
 	@Override
@@ -69,6 +70,7 @@ public record RecipeMeatPacking(
 				Codec.INT.fieldOf("powerPerTick").forGetter(RecipeMeatPacking::powerPerTick),
 				Codec.INT.fieldOf("craftDuration").forGetter(RecipeMeatPacking::craftDuration),
 				FluidIngredient.CODEC.fieldOf("input").forGetter(RecipeMeatPacking::input),
+				Codec.INT.fieldOf("inputAmount").forGetter(RecipeMeatPacking::inputAmount),
 				ItemStack.CODEC.fieldOf("result").forGetter(RecipeMeatPacking::result)
 		).apply(it, RecipeMeatPacking::new));
 
