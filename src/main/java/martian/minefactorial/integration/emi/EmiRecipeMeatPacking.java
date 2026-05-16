@@ -40,7 +40,7 @@ public class EmiRecipeMeatPacking extends BasicEmiRecipe {
 		widgets.addSlot(this.inputs.getFirst(), PADDING_X + 7, PADDING_Y + 23);
 
 		// Result
-		widgets.addSlot(this.outputs.getFirst(), PADDING_X + 61, PADDING_Y + 23);
+		widgets.addSlot(this.outputs.getFirst(), PADDING_X + 61, PADDING_Y + 23).recipeContext(this);
 
 		// Render energy cost
 		widgets.addDrawable(PADDING_X, PADDING_Y, 105, 4, (GuiGraphics graphics, int mouseX, int mouseY, float partialTick) -> {

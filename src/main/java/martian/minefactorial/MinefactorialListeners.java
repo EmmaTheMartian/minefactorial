@@ -44,7 +44,7 @@ final class MinefactorialListeners {
 	private MinefactorialListeners() {
 	}
 
-	@EventBusSubscriber(modid = Minefactorial.MODID, bus = EventBusSubscriber.Bus.MOD)
+	@EventBusSubscriber(modid = Minefactorial.MODID)
 	static final class ModBusEvents {
 		@SubscribeEvent
 		static void onRegisterCapabilities(final RegisterCapabilitiesEvent event) {
@@ -157,7 +157,7 @@ final class MinefactorialListeners {
 		}
 	}
 
-	@EventBusSubscriber(modid = Minefactorial.MODID, bus = EventBusSubscriber.Bus.GAME)
+	@EventBusSubscriber(modid = Minefactorial.MODID)
 	static final class GameBusEvents {
 		@SubscribeEvent
 		static void onPlayerLogout(final PlayerEvent.PlayerLoggedOutEvent event) {

@@ -1,0 +1,28 @@
+modLoader = "kotlinforforge"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL="https://github.com/emmathemartian/minefactorial/issues"
+
+[[mods]]
+modId = "${mod_id}_data"
+version = "${mod_version}"
+displayName = "${mod_name} datagen"
+displayURL = "https://github.com/emmathemartian/minefactorial"
+logoFile="assets/${mod_id}/icon.png"
+credits = ""
+authors = ""
+description = ''''''
+
+[[dependencies."${mod_id}_data"]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "${neo_version_range}"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies."${mod_id}_data"]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "${minecraft_version_range}"
+    ordering = "NONE"
+    side = "BOTH"

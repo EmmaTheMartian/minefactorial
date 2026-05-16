@@ -5,7 +5,7 @@ plugins {
     id("idea")
     id("java-library")
     id("maven-publish")
-    id("dev.architectury.loom") version "1.10-SNAPSHOT"
+    id("dev.architectury.loom") version "1.14-SNAPSHOT"
     id("me.fallenbreath.yamlang") version "1.4.1"
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
     id("me.modmuss50.mod-publish-plugin") version "0.8.3"
@@ -20,7 +20,7 @@ group = prop("mod_group_id")
 repositories {
     mavenLocal()
 
-    maven("https://maven.neoforged.net")
+    maven("https://maven.neoforged.net/releases")
     maven("https://maven.parchmentmc.org")
 
     // Regolith
@@ -36,7 +36,7 @@ repositories {
     maven("https://maven.terraformersmc.com/")
 
     // Legacy Landscape
-    maven("https://maven.muonmc.org/releases/")
+//    maven("https://maven.muonmc.org/releases/")
 
     // CC Tweaked
     maven("https://maven.squiddev.cc") {
@@ -80,6 +80,9 @@ sourceSets {
         kotlin {
             srcDirs("src/data/kotlin")
         }
+        resources {
+            srcDir("src/data/resources")
+        }
         compileClasspath += main.get().compileClasspath + main.get().output
         runtimeClasspath += main.get().runtimeClasspath + main.get().output
     }
@@ -100,9 +103,15 @@ loom {
 
             source(sourceSets["data"])
 
-            programArgs("--all", "--mod", prop("mod_id"),
+            programArgs("--all", "--mod", prop("mod_id") + "_data",
                     "--output", file("src/generated/resources/").absolutePath,
                     "--existing", file("src/main/resources/").absolutePath)
+        }
+    }
+
+    mods {
+        create("${prop("mod_id")}_data") {
+            sourceSet(sourceSets["data"])
         }
     }
 }
@@ -147,7 +156,7 @@ dependencies {
     runtimeOnly("dev.emi:emi-neoforge:${prop("emi_version")}")
 
     // Legacy Landscape
-    modLocalRuntime("gay.sylv.legacy_landscape:legacy_landscape:${prop("legacy_landscape_version")}") { isTransitive = false }
+//    modLocalRuntime("gay.sylv.legacy_landscape:legacy_landscape:${prop("legacy_landscape_version")}") { isTransitive = false }
 
     // ComputerCraft
     forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.3") // Gradle doesn't get this automatically from the CC Tweaked dependency, for whatever reason
@@ -183,19 +192,21 @@ val replaceProperties = mapOf(
         "lazuli_version_range"    to prop("lazuli_version_range"),
 )
 
-val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
-    inputs.properties(replaceProperties)
-    expand(replaceProperties)
-    from("src/main/templates")
-    into("build/generated/sources/modMetadata")
-}
+sourceSets.forEach {
+    val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata-${it.name}") {
+        inputs.properties(replaceProperties)
+        expand(replaceProperties)
+        from("src/${it.name}/templates")
+        into("build/generated/sources/modMetadata-${it.name}")
+    }
 
-// Include the output of "generateModMetadata" as an input directory for the build
-// this works with both building through Gradle and the IDE.
-sourceSets.main.get().resources.srcDir(generateModMetadata)
-// To avoid having to run "generateModMetadata" manually, make it run on every project reload
-tasks.ideaSyncTask.configure {
-    dependsOn(generateModMetadata)
+    // Include the output of "generateModMetadata" as an input directory for the build
+    // this works with both building through Gradle and the IDE.
+    it.resources.srcDir(generateModMetadata)
+    // To avoid having to run "generateModMetadata" manually, make it run on every project reload
+    tasks.ideaSyncTask.configure {
+        dependsOn(generateModMetadata)
+    }
 }
 
 // Exclude the `data` source set from any jars build

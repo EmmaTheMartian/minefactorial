@@ -97,7 +97,7 @@ public class EmiRecipeMaceration implements EmiRecipe {
 								results.get(index),
 						startX + (dx * x),
 						startY + (dy * y)
-				);
+				).recipeContext(this);
 				index++;
 			}
 		}

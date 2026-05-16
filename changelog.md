@@ -1,3 +1,16 @@
+# 1.2.1+1.21.1
+
+## Additions
+
+- Add Sewage Bucket texture
+
+## Bug Fixes
+
+## Miscellaneous
+
+- Update to NeoForge 1.21.230
+- Update to Dapper 1.4-beta
+
 # 1.2.0+1.21.1
 
 ## Additions

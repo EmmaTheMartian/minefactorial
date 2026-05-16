@@ -1,6 +1,6 @@
 package martian.minefactorial.datagen.server
 
-import martian.dapper.api.server.DapperTagProvider
+import martian.dapper.api.server.tag.DapperTagProvider
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.registry.MFBlocks.*
 import net.neoforged.neoforge.data.event.GatherDataEvent

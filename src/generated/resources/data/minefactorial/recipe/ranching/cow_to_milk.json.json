@@ -4,7 +4,7 @@
     "entity": "minecraft:cow"
   },
   "outputFluid": {
-    "chance": 0.5,
+    "chance": 0.1,
     "stack": {
       "amount": 250,
       "id": "minecraft:milk"

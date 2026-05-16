@@ -1,6 +1,6 @@
 package martian.minefactorial.datagen.server
 
-import martian.dapper.api.server.DapperTagProvider
+import martian.dapper.api.server.tag.DapperTagProvider
 import martian.dapper.api.server.tag.DapperTagUtil.add
 import martian.minefactorial.Minefactorial
 import martian.minefactorial.content.registry.MFItems
