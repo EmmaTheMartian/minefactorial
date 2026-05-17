@@ -1,16 +1,3 @@
-# 1.2.1+1.21.1
-
-## Additions
-
-- Add Sewage Bucket texture
-
-## Bug Fixes
-
-## Miscellaneous
-
-- Update to NeoForge 1.21.230
-- Update to Dapper 1.4-beta
-
 # 1.2.0+1.21.1
 
 ## Additions
@@ -26,6 +13,7 @@
   - Breeder: Breeds animals automatically.
   - Chronotyper: Moves animals based on if they're a baby or an adult.
   - Mob Router: Moves animals based on a provided filter via Safari Net.
+- Add Sewage Bucket texture
 
 ## Bug Fixes
 
@@ -45,6 +33,8 @@
 ## Miscellaneous
 
 - Update to Regolith 1.2.1-beta
+- Update to NeoForge 1.21.230
+- Update to Dapper 1.4-beta
 - Update internals for hover text and extended hover text (this does not affect players, only developers)
 - Gut the foundational code (`martian.minefactorial.foundation`) in favour of [Lazuli](https://github.com/emmathemartian/lazuli/)
   - [Cygnus](https://github.com/nebula-modding/cygnus/) shares a *lot* of the foundation from Minefactorial, so I decided to gut both of their foundations into its own library for maintainability.
